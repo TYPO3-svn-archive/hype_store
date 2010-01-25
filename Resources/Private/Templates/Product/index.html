@@ -1,0 +1,146 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:layout name="default" />
+
+<f:section name="content">
+	<f:if condition="{product}">
+		
+		<!-- product.title -->
+		<h1 class="title">{product.title}</h1>
+		
+		<!-- product.subtitle -->
+		<f:if condition="{product.subtitle}">
+			<h2 class="subtitle">{product.subtitle}</h2>
+		</f:if>
+		
+		<!-- product.identifier -->
+		<f:if condition="{product.identifier}">
+			<p class="identifier">Article-No.: #{product.identifier}</p>
+		</f:if>
+		
+		<!-- product.versionDate -->
+		<f:if condition="{f:format.date(date: '{product.versionDate}', format: 'U')}">
+			<p class="version_date">Version: {product.versionDate->f:format.date(format: 'd.m.Y')}</p>
+		</f:if>
+		
+		<!-- product.introduction -->
+		<f:if condition="{product.introduction}">
+			<p class="introduction">{product.introduction->f:format.nl2br()}</p>
+		</f:if>
+		
+		<!-- product.images -->
+		<f:if condition="{product.images}">
+			<p class="images">
+				<f:for each="{product.images}" as="image">
+					<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{image}')}">
+						<f:image src="{settings.object.product.field.images.path}{image}" maxWidth="{settings.view.product.action.index.field.images.maxWidth}" maxHeight="{settings.view.product.action.index.field.images.maxHeight}" alt="" />
+					</f:if>
+				</f:for>
+			</p>
+		</f:if>
+		
+		<!-- product.description -->
+		<f:if condition="{product.description}">
+			<div class="description">{product.description->f:format.html()}</div>
+		</f:if>
+		
+		<hr />
+		
+		<!-- product.attributes -->
+		<f:if condition="{product.attributes}">
+			<div class="attributes">
+				<h3>Attributes</h3>
+				
+				<ul>
+					<f:for each="{product.attributes}" as="attribute">
+						<li>{attribute.attribute.title}: <em>{attribute.value} <f:if condition="{attribute.attribute.unit}">{attribute.attribute.unit}</f:if></em></li>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
+		
+		<!-- product.minimumOrderQuantity -->
+		<f:if condition="{product.minimumOrderQuantity}">
+			<dl class="minimum_order_quantity">
+				<dt>Minimum order quantity</dt>
+				<dd><em>{product.minimumOrderQuantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em></dd>
+			</dl>
+		</f:if>
+		
+		<!-- product.flatPrice -->
+		<f:if condition="{product.flatPrice}">
+			<dl class="flat_price">
+				<dt>Price including. 20% VAT</dt>
+				<dd><em>{product.flatPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+			</dl>
+		</f:if>
+		
+		<!-- product.scaledPrices -->
+		<f:if condition="{product.scaledPrices}">
+			<div class="scaled_prices">
+				<h3>Scaled prices</h3>
+				
+				<ul>
+					<f:for each="{product.scaledPrices}" as="price">
+						<li>
+							Price for {price.quantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}: <em>{price.value->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em><br />
+							<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product, quantity: price.quantity}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {price.quantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em> into the cart.</f:link.action>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
+		
+		<!-- product.files -->
+		<f:if condition="{product.files}">
+			<div class="files">
+				<h3>Attached files</h3>
+				
+				<ul>
+					<f:for each="{product.files}" as="file">
+						<f:if condition="{h:file.exists(path: '{settings.object.product.field.files.path}{file}')}">
+							<li><f:link.external uri="{settings.object.product.field.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.field.files.path}{file}')}</li>
+						</f:if>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
+		
+		<!-- product.stockQuantity -->
+		<f:if condition="{product.stockQuantity} > 0">
+			<f:then>
+				<p class="stock_status">Product is probably in stock! ({product.stockQuantity})</p>
+			</f:then>
+			
+			<f:else>
+				<p class="stock_status">Product is out of stock!</p>
+			</f:else>
+		</f:if>
+		
+		<!-- WISHLIST / SHOPPING CART -->
+		<f:render partial="Product/interaction" arguments="{product: product, settings: settings}"/>
+		
+		<!-- product.relatedProducts -->
+		<f:if condition="{product.relatedProducts}">
+			<hr />
+			
+			<div class="products related_products">
+				<h3>Similar products</h3>
+				
+				<ul>
+					<f:for each="{product.relatedProducts}" as="relatedProduct">
+						<li>
+							<h4><f:link.action arguments="{product: relatedProduct}" class="title">{relatedProduct.title}</f:link.action></h4>
+								
+							<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{relatedProduct.images.0}')}">
+								<f:link.action arguments="{product: relatedProduct}" class="image">
+									<f:image src="{settings.object.product.field.images.path}{relatedProduct.images.0}" maxHeight="60" alt="" />
+								</f:link.action>
+							</f:if>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
+	</f:if>
+</f:section>

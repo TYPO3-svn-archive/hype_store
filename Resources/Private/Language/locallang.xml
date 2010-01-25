@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the blog_example extension</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="product.stock_unit.I.0">pcs</label>
+			<label index="product.stock_unit.I.1">lm</label>
+			<label index="product.stock_unit.I.2">kg</label>
+			<label index="product.stock_unit.I.3">ltr</label>
+		</languageKey>
+		
+		<languageKey index="de" type="array">
+			<label index="product.stock_unit.I.0">Stk.</label>
+			<label index="product.stock_unit.I.1">Lfm.</label>
+			<label index="product.stock_unit.I.2">kg</label>
+			<label index="product.stock_unit.I.3">l</label>
+		</languageKey>
+	</data>
+</T3locallang>

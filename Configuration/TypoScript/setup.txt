@@ -1,0 +1,285 @@
+includeLibs.tx_hypestore_menu = EXT:hype_store/Classes/Hook/class.tx_hypestore_menu.php
+
+config.tx_extbase {
+	persistence {
+		classes {
+			Tx_HypeStore_Domain_Model_Customer {
+				mapping {
+					tableName = fe_users
+					
+					columns {
+						tx_hypestore_domain_model_addresses.mapOnProperty = addresses
+						tx_hypestore_domain_model_cart_items.mapOnProperty = cartItems
+					}
+				}
+				
+				columns {
+					cart_items.foreignClass = Tx_HypeStore_Domain_Model_CartItem
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_CustomerAddress {
+				mapping {
+					tableName = tx_hypestore_domain_model_customer_address
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_Product {
+				columns {
+					attributes.foreignClass = Tx_HypeStore_Domain_Model_ProductAttribute
+					scaled_prices.foreignClass = Tx_HypeStore_Domain_Model_ProductPrice
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_ProductPrice {
+				mapping {
+					tableName = tx_hypestore_domain_model_product_price
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_ProductAttribute {
+				mapping {
+					tableName = tx_hypestore_domain_model_product_attribute
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_ProductStock {
+				mapping {
+					tableName = tx_hypestore_domain_model_product_stock
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_ProductState {
+				mapping {
+					tableName = tx_hypestore_domain_model_product_state
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_Depot {
+				mapping {
+					tableName = tx_hypestore_domain_model_depot
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_CartItem {
+				mapping {
+					tableName = tx_hypestore_domain_model_cart_item
+				}
+			}
+		}
+	}
+}
+
+plugin.tx_hypestore {
+	persistence {
+		storagePid = 
+	}
+	
+	settings {
+		
+		common {
+			navigation {
+				expAll = {$plugin.tx_hypestore.settings.common.navigation.expAll}
+			}
+			
+			currency {
+				code = {$plugin.tx_hypestore.settings.common.currency.code}
+				sign = {$plugin.tx_hypestore.settings.common.currency.sign}
+				name = {$plugin.tx_hypestore.settings.common.currency.name}
+			}
+			
+			feature {
+				cart = {$plugin.tx_hypestore.settings.common.feature.cart}
+				checkout = {$plugin.tx_hypestore.settings.common.feature.checkout}
+			}
+		}
+		
+		object {
+			category {
+				
+				field {
+					images {
+						path = {$plugin.tx_hypestore.settings.object.category.field.images.path}
+					}
+				}
+			}
+			
+			product {
+				
+				field {
+					images {
+						path = {$plugin.tx_hypestore.settings.object.product.field.images.path}
+					}
+					
+					files {
+						path = {$plugin.tx_hypestore.settings.object.product.field.files.path}
+					}
+				}
+			}
+		}
+		
+		view {
+			category {
+				pid = {$plugin.tx_hypestore.settings.view.category.pid}
+				
+				action {
+					index {
+						field {
+							images {
+								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.field.images.maxWidth}
+								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.field.images.maxHeight}
+							}
+						}
+						
+						object {
+							category {
+								field {
+									images {
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.object.category.field.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.object.category.field.images.maxHeight}
+									}
+								}
+							}
+							
+							product {
+								field {
+									images {
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.object.product.field.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.object.product.field.images.maxHeight}
+									}
+								}
+							}
+						}
+					}
+					
+					list {
+						field {
+							images {
+								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.field.images.maxWidth}
+								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.field.images.maxHeight}
+							}
+						}
+						
+						object {
+							category {
+								field {
+									images {
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.field.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.field.images.maxHeight}
+									}
+								}
+							}
+							
+							product {
+								field {
+									images {
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.object.product.field.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.field.images.maxHeight}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			product {
+				pid = {$plugin.tx_hypestore.settings.view.product.pid}
+				
+				action {
+					index {
+						field {
+							images {
+								maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.field.images.maxWidth}
+								maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.field.images.maxHeight}
+							}
+						}
+						
+						object {
+							category {
+								field {
+									images {
+										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.object.category.field.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.object.category.field.images.maxHeight}
+									}
+								}
+							}
+							
+							product {
+								field {
+									images {
+										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.object.product.field.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.object.product.field.images.maxHeight}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			cart {
+				pid = {$plugin.tx_hypestore.settings.view.cart.pid}
+				
+				common {
+					
+				}
+				
+				action {
+					
+				}
+			}
+			
+			checkout {
+				pid = {$plugin.tx_hypestore.settings.view.checkout.pid}
+				
+				common {
+					
+				}
+				
+				action {
+					
+				}
+			}
+		}
+	}
+	
+	template {
+		menu = HMENU
+		menu {
+			special = userfunction
+			special {
+				userFunc = user_hypestore_menu->tree
+				pid = {$plugin.tx_hypestore.settings.view.category.pid}
+				expAll = {$plugin.tx_hypestore.settings.common.navigation.expAll}
+			}
+			
+			1 = TMENU
+			1 {
+				itemArrayProcFunc = user_hypestore_menu->item
+				expAll = 1
+				wrap = <ul>|</ul>
+				
+				NO = 1
+				NO {
+					wrapItemAndSub = <li>|</li>
+				}
+				
+				CUR = 1
+				CUR {
+					wrapItemAndSub = <li class="active">|</li>
+					ATagParams = class="active"
+				}
+				
+				ACT = 1
+				ACT {
+					wrapItemAndSub = <li class="crumb">|</li>
+					ATagParams = class="crumb"
+				}
+			}
+			
+			2 < .1
+			3 < .1
+		}
+	}
+}

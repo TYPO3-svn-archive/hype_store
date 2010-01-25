@@ -1,0 +1,174 @@
+plugin.tx_hypestore {
+	settings {
+		
+		common {
+			navigation {
+				expAll = 0
+			}
+			
+			currency {
+				code = EUR
+				sign = €
+				name = Euro
+			}
+			
+			feature {
+				cart = 1
+				checkout = 1
+			}
+		}
+		
+		object {
+			category {
+				
+				field {
+					images {
+						path = uploads/hype/store/category/images/
+					}
+				}
+			}
+			
+			product {
+				
+				field {
+					images {
+						path = uploads/hype/store/product/images/
+					}
+					
+					files {
+						path = uploads/hype/store/product/files/
+					}
+				}
+			}
+		}
+		
+		view {
+			category {
+				pid =
+				
+				action {
+					index {
+						field {
+							images {
+								maxWidth = 240
+								maxHeight =
+							}
+						}
+						
+						object {
+							category {
+								field {
+									images {
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+							
+							product {
+								field {
+									images {
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+						}
+					}
+					
+					list {
+						field {
+							images {
+								maxWidth = 120
+								maxHeight =
+							}
+						}
+						
+						object {
+							category {
+								field {
+									images {
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+							
+							product {
+								field {
+									images {
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			product {
+				pid = 
+				
+				action {
+					index {
+						field {
+							images {
+								maxWidth = 400
+								maxHeight =
+							}
+						}
+						
+						object {
+							category {
+								field {
+									images {
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+							
+							product {
+								field {
+									images {
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			cart {
+				pid = 
+				
+				common {
+					
+				}
+				
+				action {
+					
+				}
+			}
+			
+			checkout {
+				pid =
+				
+				common {
+					
+				}
+				
+				action {
+					
+				}
+			}
+		}
+	}
+	
+	persistence {
+		storagePid = 
+	}
+}

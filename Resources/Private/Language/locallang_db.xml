@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'hype_store'</description>
+	</meta>
+	
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_hypestore.tabs.details">Details</label>
+			<label index="tx_hypestore.tabs.media">Media</label>
+			<label index="tx_hypestore.tabs.stocks">Stocks</label>
+			<label index="tx_hypestore.tabs.states">States</label>
+			<label index="tx_hypestore.tabs.events">Events</label>
+			<label index="tx_hypestore.tabs.units">Request units</label>
+			<label index="tx_hypestore.tabs.address">Address</label>
+			<label index="tx_hypestore.tabs.attributes">Attributes</label>
+			<label index="tx_hypestore.tabs.prices">Prices</label>
+			<label index="tx_hypestore.tabs.relations">Relations</label>
+			
+			<label index="tx_hypestore_domain_model_category">Category</label>
+			<label index="tx_hypestore_domain_model_category.title">Title</label>
+			<label index="tx_hypestore_domain_model_category.subtitle">Subtitle</label>
+			<label index="tx_hypestore_domain_model_category.introduction">Introduction</label>
+			<label index="tx_hypestore_domain_model_category.description">Description</label>
+			<label index="tx_hypestore_domain_model_category.images">Images</label>
+			<label index="tx_hypestore_domain_model_category.categories">Subcategories</label>
+			<label index="tx_hypestore_domain_model_category.products">Products</label>
+			
+			<label index="tx_hypestore_domain_model_product">Product</label>
+			<label index="tx_hypestore_domain_model_product.title">Title</label>
+			<label index="tx_hypestore_domain_model_product.subtitle">Subtitle</label>
+			<label index="tx_hypestore_domain_model_product.identifier">Identifier</label>
+			<label index="tx_hypestore_domain_model_product.introduction">Introduction</label>
+			<label index="tx_hypestore_domain_model_product.description">Description</label>
+			<label index="tx_hypestore_domain_model_product.images">Images</label>
+			<label index="tx_hypestore_domain_model_product.files">Files</label>
+			<label index="tx_hypestore_domain_model_product.flat_price">Price</label>
+			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Minimum order quantity</label>
+			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
+			<label index="tx_hypestore_domain_model_product.scaled_prices">Prices</label>
+			<label index="tx_hypestore_domain_model_product.related_products">Related Products</label>
+			<label index="tx_hypestore_domain_model_product.attributes">Attributes</label>
+			<label index="tx_hypestore_domain_model_product.stock_threshold">Stock treshold</label>
+			<label index="tx_hypestore_domain_model_product.stock_unit">Unit</label>
+			<label index="tx_hypestore_domain_model_product.stocks">Stocks</label>
+			<label index="tx_hypestore_domain_model_product.states">States</label>
+			<label index="tx_hypestore_domain_model_product.events">Events</label>
+			<label index="tx_hypestore_domain_model_product.categories">Categories</label>
+			
+			<label index="tx_hypestore_domain_model_product_price">Price</label>
+			<label index="tx_hypestore_domain_model_product_price.product">Product</label>
+			<label index="tx_hypestore_domain_model_product_price.quantity">Quantity</label>
+			<label index="tx_hypestore_domain_model_product_price.value">Value</label>
+			
+			<label index="tx_hypestore_domain_model_product_stock">Stock</label>
+			<label index="tx_hypestore_domain_model_product_stock.depot">Depot</label>
+			<label index="tx_hypestore_domain_model_product_stock.product">Product</label>
+			<label index="tx_hypestore_domain_model_product_stock.quantity">Quantity</label>
+			
+			<label index="tx_hypestore_domain_model_product_state">Product state</label>
+			<label index="tx_hypestore_domain_model_product_state.product">Product</label>
+			<label index="tx_hypestore_domain_model_product_state.depot">Depot</label>
+			<label index="tx_hypestore_domain_model_product_state.quantity">Quantity</label>
+			<label index="tx_hypestore_domain_model_product_state.disposal_date">Start date</label>
+			<label index="tx_hypestore_domain_model_product_state.return_date">End date</label>
+			<label index="tx_hypestore_domain_model_product_state.type">Reason</label>
+			<label index="tx_hypestore_domain_model_product_state.type.I.0">Repair</label>
+			<label index="tx_hypestore_domain_model_product_state.type.I.1">Maintenance</label>
+			<label index="tx_hypestore_domain_model_product_state.type.I.2">Other</label>
+			
+			<label index="tx_hypestore_domain_model_product_event">Product event</label>
+			<label index="tx_hypestore_domain_model_product_event.product">Product</label>
+			<label index="tx_hypestore_domain_model_product_event.quantity">Quantity</label>
+			<label index="tx_hypestore_domain_model_product_event.date">Date</label>
+			<label index="tx_hypestore_domain_model_product_event.type">Action</label>
+			<label index="tx_hypestore_domain_model_product_event.type.I.0">ordered</label>
+			<label index="tx_hypestore_domain_model_product_event.type.I.1">delivered</label>
+			<label index="tx_hypestore_domain_model_product_event.type.I.2">returned</label>
+			
+			<label index="tx_hypestore_domain_model_product_attribute">Product value</label>
+			<label index="tx_hypestore_domain_model_product_attribute.product">Product</label>
+			<label index="tx_hypestore_domain_model_product_attribute.attribute">Attribute</label>
+			<label index="tx_hypestore_domain_model_product_attribute.value">Value</label>
+			
+			<label index="tx_hypestore_domain_model_depot">Depot</label>
+			<label index="tx_hypestore_domain_model_depot.title">Title</label>
+			<label index="tx_hypestore_domain_model_depot.street">Street</label>
+			<label index="tx_hypestore_domain_model_depot.postcode">Postcode/ZIP</label>
+			<label index="tx_hypestore_domain_model_depot.city">City</label>
+			<label index="tx_hypestore_domain_model_depot.country">Country</label>
+			<label index="tx_hypestore_domain_model_depot.stocks">Stocks</label>
+			<label index="tx_hypestore_domain_model_depot.states">States</label>
+			
+			<label index="tx_hypestore_domain_model_attribute">Attribute</label>
+			<label index="tx_hypestore_domain_model_attribute.title">Title</label>
+			<label index="tx_hypestore_domain_model_attribute.unit">Unit</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.0">Integer</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.1">Float</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.2">String</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.3">Boolean</label>
+			<label index="tx_hypestore_domain_model_attribute.type">Type</label>
+			
+			<label index="tx_hypestore_domain_model_cart_item">Cart item</label>
+			<label index="tx_hypestore_domain_model_cart_item.customer">Customer</label>
+			<label index="tx_hypestore_domain_model_cart_item.product">Product</label>
+			<label index="tx_hypestore_domain_model_cart_item.quantity">Quantity</label>
+			
+			<label index="tx_hypestore_domain_model_customer_address">Customer address</label>
+			<label index="tx_hypestore_domain_model_customer_address.customer">Customer</label>
+			<label index="tx_hypestore_domain_model_customer_address.title">Title</label>
+			<label index="tx_hypestore_domain_model_customer_address.name">Name</label>
+			<label index="tx_hypestore_domain_model_customer_address.company">Company</label>
+			<label index="tx_hypestore_domain_model_customer_address.street">Street</label>
+			<label index="tx_hypestore_domain_model_customer_address.stair">Stair</label>
+			<label index="tx_hypestore_domain_model_customer_address.floor">Floor</label>
+			<label index="tx_hypestore_domain_model_customer_address.door">Door</label>
+			<label index="tx_hypestore_domain_model_customer_address.postcode">Postcode</label>
+			<label index="tx_hypestore_domain_model_customer_address.city">City</label>
+			<label index="tx_hypestore_domain_model_customer_address.country">Country</label>
+			<label index="tx_hypestore_domain_model_customer_address.telephone_number">Telephone number</label>
+			
+			<label index="fe_users.tx_hypestore_domain_model_addresses">Addresses</label>
+			<label index="fe_users.tx_hypestore_domain_model_cart_items">Cart items</label>
+		</languageKey>
+		
+		<languageKey index="de" type="array">
+			<label index="tx_hypestore.tabs.details">Details</label>
+			<label index="tx_hypestore.tabs.media">Medien</label>
+			<label index="tx_hypestore.tabs.stocks">Lagerbestände</label>
+			<label index="tx_hypestore.tabs.states">Zustände</label>
+			<label index="tx_hypestore.tabs.events">Ereignisse</label>
+			<label index="tx_hypestore.tabs.units">Anfrageeinheiten</label>
+			<label index="tx_hypestore.tabs.address">Adresse</label>
+			<label index="tx_hypestore.tabs.attributes">Eigenschaften</label>
+			<label index="tx_hypestore.tabs.prices">Preise</label>
+			<label index="tx_hypestore.tabs.relations">Verknüpfungen</label>
+			
+			<label index="tx_hypestore_domain_model_category">Kategorie</label>
+			<label index="tx_hypestore_domain_model_category.title">Titel</label>
+			<label index="tx_hypestore_domain_model_category.subtitle">Untertitel</label>
+			<label index="tx_hypestore_domain_model_category.introduction">Kurztext</label>
+			<label index="tx_hypestore_domain_model_category.description">Beschreibung</label>
+			<label index="tx_hypestore_domain_model_category.images">Bilder</label>
+			<label index="tx_hypestore_domain_model_category.categories">Unterkategorien</label>
+			<label index="tx_hypestore_domain_model_category.products">Produkte</label>
+			
+			<label index="tx_hypestore_domain_model_product">Produkt</label>
+			<label index="tx_hypestore_domain_model_product.title">Titel</label>
+			<label index="tx_hypestore_domain_model_product.subtitle">Untertitel</label>
+			<label index="tx_hypestore_domain_model_product.identifier">Kennung</label>
+			<label index="tx_hypestore_domain_model_product.introduction">Kurztext</label>
+			<label index="tx_hypestore_domain_model_product.description">Beschreibung</label>
+			<label index="tx_hypestore_domain_model_product.images">Bilder</label>
+			<label index="tx_hypestore_domain_model_product.files">Dateien</label>
+			<label index="tx_hypestore_domain_model_product.flat_price">Preis</label>
+			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Mindestbestellmenge</label>
+			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
+			<label index="tx_hypestore_domain_model_product.scaled_prices">Preise</label>
+			<label index="tx_hypestore_domain_model_product.related_products">Ähnliche Produkte</label>
+			<label index="tx_hypestore_domain_model_product.attributes">Eigenschaften</label>
+			<label index="tx_hypestore_domain_model_product.stock_threshold">Mindestbestand</label>
+			<label index="tx_hypestore_domain_model_product.stock_unit">Einheit</label>
+			<label index="tx_hypestore_domain_model_product.stocks">Lagerbestände</label>
+			<label index="tx_hypestore_domain_model_product.states">Zustände</label>
+			<label index="tx_hypestore_domain_model_product.events">Ereignisse</label>
+			<label index="tx_hypestore_domain_model_product.categories">Kategorien</label>
+			
+			<label index="tx_hypestore_domain_model_product_price">Preis</label>
+			<label index="tx_hypestore_domain_model_product_price.product">Produkt</label>
+			<label index="tx_hypestore_domain_model_product_price.quantity">Menge</label>
+			<label index="tx_hypestore_domain_model_product_price.value">Wert</label>
+			
+			<label index="tx_hypestore_domain_model_product_stock">Lagerbestand</label>
+			<label index="tx_hypestore_domain_model_product_stock.depot">Depot</label>
+			<label index="tx_hypestore_domain_model_product_stock.product">Produkt</label>
+			<label index="tx_hypestore_domain_model_product_stock.quantity">Anzahl</label>
+			
+			<label index="tx_hypestore_domain_model_product_state">Produktzustand</label>
+			<label index="tx_hypestore_domain_model_product_state.product">Produkt</label>
+			<label index="tx_hypestore_domain_model_product_state.depot">Depot</label>
+			<label index="tx_hypestore_domain_model_product_state.quantity">Anzahl</label>
+			<label index="tx_hypestore_domain_model_product_state.disposal_date">Startdatum</label>
+			<label index="tx_hypestore_domain_model_product_state.return_date">Enddatum</label>
+			<label index="tx_hypestore_domain_model_product_state.type">Grund</label>
+			<label index="tx_hypestore_domain_model_product_state.type.I.0">Reparatur</label>
+			<label index="tx_hypestore_domain_model_product_state.type.I.1">Wartung</label>
+			<label index="tx_hypestore_domain_model_product_state.type.I.2">Sonstiges</label>
+			
+			<label index="tx_hypestore_domain_model_product_event">Produktereignis</label>
+			<label index="tx_hypestore_domain_model_product_event.product">Produkt</label>
+			<label index="tx_hypestore_domain_model_product_event.quantity">Anzahl</label>
+			<label index="tx_hypestore_domain_model_product_event.type">Vorgang</label>
+			<label index="tx_hypestore_domain_model_product_event.type.I.0">bestellt</label>
+			<label index="tx_hypestore_domain_model_product_event.type.I.1">geliefert</label>
+			<label index="tx_hypestore_domain_model_product_event.type.I.2">retourniert</label>
+			
+			<label index="tx_hypestore_domain_model_product_attribute">Produkteigenschaft</label>
+			<label index="tx_hypestore_domain_model_product_attribute.product">Produkt</label>
+			<label index="tx_hypestore_domain_model_product_attribute.attribute">Eigenschaft</label>
+			<label index="tx_hypestore_domain_model_product_attribute.value">Wert</label>
+			
+			<label index="tx_hypestore_domain_model_depot">Depot</label>
+			<label index="tx_hypestore_domain_model_depot.title">Titel</label>
+			<label index="tx_hypestore_domain_model_depot.street">Straße</label>
+			<label index="tx_hypestore_domain_model_depot.postcode">Postleitzahl</label>
+			<label index="tx_hypestore_domain_model_depot.city">Ort/Stadt</label>
+			<label index="tx_hypestore_domain_model_depot.country">Land</label>
+			<label index="tx_hypestore_domain_model_depot.stocks">Lagerbestände</label>
+			<label index="tx_hypestore_domain_model_depot.states">Zustände</label>
+			
+			<label index="tx_hypestore_domain_model_attribute">Eigenschaft</label>
+			<label index="tx_hypestore_domain_model_attribute.title">Titel</label>
+			<label index="tx_hypestore_domain_model_attribute.unit">Einheit</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.0">Ganzzahl (int)</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.1">Fließkommazahl (float)</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.2">Zeichenkette (string)</label>
+			<label index="tx_hypestore_domain_model_attribute.type.I.3">Logischer Wert (bool)</label>
+			<label index="tx_hypestore_domain_model_attribute.type">Typ</label>
+			
+			<label index="tx_hypestore_domain_model_cart_item">Warenkorb Produkt</label>
+			<label index="tx_hypestore_domain_model_cart_item.customer">Kunde</label>
+			<label index="tx_hypestore_domain_model_cart_item.product">Produkt</label>
+			<label index="tx_hypestore_domain_model_cart_item.quantity">Anzahl</label>
+			
+			<label index="tx_hypestore_domain_model_customer_address">Kunden Adresse</label>
+			<label index="tx_hypestore_domain_model_customer_address.customer">Kunde</label>
+			<label index="tx_hypestore_domain_model_customer_address.title">Bezeichnung</label>
+			<label index="tx_hypestore_domain_model_customer_address.name">Name</label>
+			<label index="tx_hypestore_domain_model_customer_address.company">Unternehmen</label>
+			<label index="tx_hypestore_domain_model_customer_address.street">Straße</label>
+			<label index="tx_hypestore_domain_model_customer_address.stair">Stiege</label>
+			<label index="tx_hypestore_domain_model_customer_address.floor">Stockwerk</label>
+			<label index="tx_hypestore_domain_model_customer_address.door">Tür</label>
+			<label index="tx_hypestore_domain_model_customer_address.postcode">Postleitzahl</label>
+			<label index="tx_hypestore_domain_model_customer_address.city">Stadt</label>
+			<label index="tx_hypestore_domain_model_customer_address.country">Land</label>
+			<label index="tx_hypestore_domain_model_customer_address.telephone_number">Telefonnummer</label>
+			
+			<label index="fe_users.tx_hypestore_domain_model_addresses">Adressen</label>
+			<label index="fe_users.tx_hypestore_domain_model_cart_items">Warenkorb</label>
+		</languageKey>
+	</data>
+</T3locallang>

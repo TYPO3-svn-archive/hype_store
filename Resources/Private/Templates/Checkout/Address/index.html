@@ -1,0 +1,23 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:layout name="default" />
+
+<f:section name="content">
+	<h2>Address</h2>
+	
+	<f:for each="{customer.addresses}" as="address">
+		<p>
+			{address.title}<br />
+			{address.name}<br />
+			{address.company}<br />
+			{address.street}<br />
+			{address.stair}<br />
+			{address.floor}<br />
+			{address.door}<br />
+			{address.postcode}<br />
+			{address.city}<br />
+			{address.country}<br />
+			{address.phoneNumber}
+		</p>
+	</f:for>
+</f:section>

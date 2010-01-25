@@ -1,0 +1,45 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:layout name="default" />
+
+<f:section name="content">
+	<!-- customer.cartItems -->
+	<f:if condition="{cartItems}">
+		<f:then>
+			<div class="cart_items">
+				<h2>Products</h2>
+				
+				<f:form name="customer" action="update">
+					<ul>
+						<f:for each="{cartItems}" as="cartItem">
+							<li>
+								<p>
+									<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: cartItem.product}">{cartItem.product.title}</f:link.action>
+									&times; <f:form.textbox name="cartItems[{cartItem.uid}][quantity]" value="{cartItem.quantity}" size="2"/>
+									<f:if condition="{cartItem.product.flatPrice}"> {f:translate(key: 'product.stock_unit.I.{cartItem.product.stockUnit}')} á <em>{cartItem.price->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> = <em>{cartItem.priceSum->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></f:if>
+									<f:if condition="{cartItem.product.introduction}"><br />{cartItem.product.introduction}</f:if>
+									
+									<br /><f:link.action action="remove" arguments="{cartItem: cartItem}">Remove {cartItem.product.title} from the cart.</f:link.action>
+									
+									<f:form.hidden name="cartItems[{cartItem.uid}][__identity]" value="{cartItem.uid}"/>
+								</p>
+							</li>
+						</f:for>
+					</ul>
+					
+					<p><f:form.submit name="submit" value="Update cart"/></p>
+				</f:form>
+			</div>
+			
+			<p class="totalPrice"><strong>Total sum:</strong> <em>{totalPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> including 20% VAT</p>
+			
+			<f:if condition="{settings.common.feature.checkout}">
+				<f:link.action pluginName="Checkout" controller="Checkout" pageUid="{settings.view.checkout.pid}">Order products &rsaquo;</f:link.action>
+			</f:if>
+		</f:then>
+		
+		<f:else>
+			<p>There are no products in your cart yet.</p>
+		</f:else>
+	</f:if>
+</f:section>

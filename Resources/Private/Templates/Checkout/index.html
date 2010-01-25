@@ -1,0 +1,22 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:layout name="default" />
+
+<f:section name="content">
+	
+	<f:for each="{steps}" as="step">
+		<f:if condition="{step.isRequired}">
+			<f:if condition="{step.isValid}">
+				<f:then>
+					<f:link.action arguments="{step: step.identifier}">{step.name}</f:link.action><br />
+				</f:then>
+				
+				<f:else>
+					{step.name}<br />
+				</f:else>
+			</f:if>
+		</f:if>
+	</f:for>
+	
+	<pre>{section}</pre>
+</f:section>
