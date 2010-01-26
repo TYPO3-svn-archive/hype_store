@@ -124,6 +124,11 @@ plugin.tx_hypestore {
 				
 				action {
 					index {
+						common {
+							showProducts = {$plugin.tx_hypestore.settings.view.category.action.index.common.showProducts}
+							showSubcategories = {$plugin.tx_hypestore.settings.view.category.action.index.common.showSubcategories}
+						}
+						
 						field {
 							images {
 								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.field.images.maxWidth}
@@ -153,6 +158,11 @@ plugin.tx_hypestore {
 					}
 					
 					list {
+						common {
+							showProducts = {$plugin.tx_hypestore.settings.view.category.action.list.common.showProducts}
+							showSubcategories = {$plugin.tx_hypestore.settings.view.category.action.list.common.showSubcategories}
+						}
+						
 						field {
 							images {
 								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.field.images.maxWidth}

@@ -48,6 +48,11 @@ plugin.tx_hypestore {
 				
 				action {
 					index {
+						common {
+							showProducts = 1
+							showSubcategories = 1
+						}
+						
 						field {
 							images {
 								maxWidth = 240
@@ -77,6 +82,11 @@ plugin.tx_hypestore {
 					}
 					
 					list {
+						common {
+							showProducts = 1
+							showSubcategories = 1
+						}
+						
 						field {
 							images {
 								maxWidth = 120

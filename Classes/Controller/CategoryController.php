@@ -36,16 +36,6 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	protected $categoryRepository;
 	
 	/**
-	 * Initializes the view before invoking an action method.
-	 *
-	 * @param Tx_Extbase_View_ViewInterface $view The view to be initialized
-	 * @return void
-	 */
-	public function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-		$this->view->assign('settings', $this->settings);
-	}
-	
-	/**
 	 * Initializes the current action
 	 *
 	 * @return void
@@ -54,6 +44,21 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 		
 		# instantiate the category repository
 		$this->categoryRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CategoryRepository');
+		
+		# prepare product pid (flexform hack)
+		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
+			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
+			: $this->settings['view']['product']['pid'];
+	}
+	
+	/**
+	 * Initializes the view before invoking an action method.
+	 *
+	 * @param Tx_Extbase_View_ViewInterface $view The view to be initialized
+	 * @return void
+	 */
+	public function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
+		$view->assign('settings', $this->settings);
 	}
 	
 	/**
@@ -63,16 +68,15 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	 */
 	public function indexAction() {
 		
-		# get categories to show
-		//if($this->settings['view']['category']['pid']) {
-		//	$categories = $this->categoryRepository->findbyPid($this->settings['view']['category']['pid']);
-		//} else {
+		# get categories
+		if($this->settings['view']['category']['uid']) {
+			$categories = $this->categoryRepository->findByUid((int)$this->settings['view']['category']['uid'])->getCategories();
+		} else {
 			$categories = $this->categoryRepository->findMainCategories();
-		//}
+		}
 		
 		# assign categories
 		$this->view->assign('categories', $categories);
-		
 	}
 	
 	/**

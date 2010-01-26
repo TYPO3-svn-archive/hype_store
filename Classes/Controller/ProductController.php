@@ -36,22 +36,39 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 	protected $productRepository;
 	
 	/**
+	 * Initializes the current action
+	 *
+	 * @return void
+	 */
+	public function initializeAction() {
+		
+		# initialize product repository
+		$this->productRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_ProductRepository');
+		
+		# prepare category pid (flexform hack)
+		$this->settings['view']['category']['pid'] = (strpos($this->settings['view']['category']['pid'], '_')) > 0
+			? substr($this->settings['view']['category']['pid'], strpos($this->settings['view']['category']['pid'], '_') + 1)
+			: $this->settings['view']['category']['pid'];
+		
+		# prepare cart pid (flexform hack)
+		$this->settings['view']['cart']['pid'] = (strpos($this->settings['view']['cart']['pid'], '_')) > 0
+			? substr($this->settings['view']['cart']['pid'], strpos($this->settings['view']['cart']['pid'], '_') + 1)
+			: $this->settings['view']['cart']['pid'];
+		
+		# prepare wishlist pid (flexform hack)
+		$this->settings['view']['wishlist']['pid'] = (strpos($this->settings['view']['wishlist']['pid'], '_')) > 0
+			? substr($this->settings['view']['wishlist']['pid'], strpos($this->settings['view']['wishlist']['pid'], '_') + 1)
+			: $this->settings['view']['wishlist']['pid'];
+	}
+	
+	/**
 	 * Initializes the view before invoking an action method.
 	 *
 	 * @param Tx_Extbase_View_ViewInterface $view The view to be initialized
 	 * @return void
 	 */
 	public function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-		$this->view->assign('settings', $this->settings);
-	}
-	
-	/**
-	 * Initializes the current action
-	 *
-	 * @return void
-	 */
-	public function initializeAction() {
-		$this->productRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_ProductRepository');
+		$view->assign('settings', $this->settings);
 	}
 	
 	/**
@@ -62,6 +79,12 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 	 * @dontvalidate $product
 	 */
 	public function indexAction(Tx_HypeStore_Domain_Model_Product $product = NULL) {
+		
+		# set a default/fallback product
+		if(!$product && $this->settings['view']['product']['uid']) {
+			$product = $this->productRepository->findByUid((int)$this->settings['view']['product']['uid']);
+		}
+		
 		$this->view->assign('product', $product);
 	}
 }
