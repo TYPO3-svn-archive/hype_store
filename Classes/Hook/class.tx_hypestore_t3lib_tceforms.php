@@ -43,21 +43,19 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 		
 		//print $field;
 		foreach($records as $key => $record) {
-			//if($record[$field] > 0) {
-				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $record['uid']);
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $record['uid']);
+			
+			if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
 				
-				if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
+				$subcategories = array();
+				while($mm = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 					
-					$subcategories = array();
-					while($mm = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-						
-						$subcategory = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $fieldValue['config']['foreign_table'], 'uid = ' . $mm['uid_foreign']);
-						$subcategory = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($subcategory);
-						
-						unset($records[$subcategory['uid']]);
-					}
+					$subcategory = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $fieldValue['config']['foreign_table'], 'uid = ' . $mm['uid_foreign']);
+					$subcategory = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($subcategory);
+					
+					unset($records[$subcategory['uid']]);
 				}
-			//}
+			}
 		}
 		
 		return $records;
@@ -90,10 +88,14 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 			} else $icon = '';
 			
 			$prefix = '';
-			for($i = 0; $i < $level; $i++)
-				$prefix .= $fieldValue['config']['indent_sign'];
 			
-			$prefix .= ' ';
+			if($level > 0) {
+				for($i = 0; $i < $level; $i++) {
+					$prefix .= $fieldValue['config']['indent_sign'];
+				}
+				
+				$prefix .= '› ';
+			}
 			
 			$items[] = array(
 				$prefix . $lPrefix . $record['title'],
@@ -101,31 +103,24 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 				$icon
 			);
 			
-			$parentField = ($fieldValue['config']['MM_opposite_field'])
-				? $fieldValue['config']['MM_opposite_field']
-				: $field;
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $record['uid'], 'sorting ASC');
 			
-			if($record[$parentField] > 0) {
-				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $record['uid']);
+			if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
 				
-				if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
+				$subcategories = array();
+				while($mm = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 					
-					$subcategories = array();
-					while($mm = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-						
-						$subcategory = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $fieldValue['config']['foreign_table'], 'uid = ' . $mm['uid_foreign']);
-						$subcategory = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($subcategory);
-						
-						array_push($subcategories, $subcategory);
-					}
+					$subcategory = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $fieldValue['config']['foreign_table'], 'uid = ' . $mm['uid_foreign']);
+					$subcategory = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($subcategory);
 					
-					$items = array_merge($items, $this->buildTableTree($fieldValue, $field, $subcategories, $level + 1));
+					array_push($subcategories, $subcategory);
 				}
+				
+				$items = array_merge($items, $this->buildTableTree($fieldValue, $field, $subcategories, $level + 1));
 			}
 		}
 		
 		return $items;
 	}
-	
 }
 ?>

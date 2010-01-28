@@ -174,7 +174,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 				'form_type' => 'user',
 				'userFunc' => 'tx_hypestore_tca_field->categories',
 				'user_type' => 'tree',
-				'indent_sign' => ' ›',
+				'indent_sign' => ' ',
 				
 				'allowed' => 'tx_hypestore_domain_model_category',
 				'wizards' => array(
@@ -203,7 +203,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 				'form_type' => 'user',
 				'userFunc' => 'tx_hypestore_tca_field->categories',
 				'user_type' => 'tree',
-				'indent_sign' => ' ›',
+				'indent_sign' => ' ',
 				
 				'allowed' => 'tx_hypestore_domain_model_category',
 				'wizards' => array(
@@ -386,7 +386,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'form_type' => 'user',
 				'userFunc' => 'tx_hypestore_tca_field->categories',
 				'user_type' => 'tree',
-				'indent_sign' => ' ›',
+				'indent_sign' => ' ',
 				
 				'allowed' => 'tx_hypestore_domain_model_category',
 				'wizards' => array(

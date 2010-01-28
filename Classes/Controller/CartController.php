@@ -43,7 +43,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
 	 */
-	protected $customer = NULL;
+	protected $customer;
 	
 	/**
 	 * Initializes the current action
@@ -72,7 +72,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 		
 		# load an unknown user
 		} else {
-			
+			$this->customer = NULL;
 		}
 	}
 	
