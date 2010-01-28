@@ -22,6 +22,7 @@ CREATE TABLE tx_hypestore_domain_model_category (
 	introduction text,
 	description text,
 	images text,
+	parent_categories int(11) DEFAULT '0' NOT NULL,
 	categories int(11) DEFAULT '0' NOT NULL,
 	products int(11) DEFAULT '0' NOT NULL,
 	

@@ -69,6 +69,12 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Category>
 	 * @lazy
 	 */
+	protected $parentCategories;
+	
+	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Category>
+	 * @lazy
+	 */
 	protected $categories;
 	
 	/**
@@ -211,6 +217,54 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 		}
 		
 		return explode(',', $this->images);
+	}
+	
+	/**
+	 * Setter for parentCategories
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $categories
+	 * @return void
+	 */
+	public function setParentCategories(Tx_Extbase_Persistence_ObjectStorage $categories) {
+		$this->parentCategories = clone $categories;
+	}
+	
+	/**
+	 * Adds a parentCategory
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Category $category
+	 * @return void
+	 */
+	public function addParentCategory(Tx_HypeStore_Domain_Model_Category $category) {
+		$this->parentCategories->attach($category);
+	}
+	
+	/**
+	 * Removes a parentCategory
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Category $category
+	 * @return void
+	 */
+	public function removeParentCategory(Tx_HypeStore_Domain_Model_Category $category) {
+		$this->parentCategories->detach($category);
+	}
+	
+	/**
+	 * Remove all parentCategories
+	 *
+	 * @return void
+	 */
+	public function removeParentCategories() {
+		$this->parentCategories = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+	
+	/**
+	 * Getter for parentCategories
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getParentCategories() {
+		return clone $this->parentCategories;
 	}
 	
 	/**

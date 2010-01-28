@@ -107,13 +107,13 @@
 		</f:if>
 		
 		<!-- product.stockQuantity -->
-		<f:if condition="{product.stockQuantity} > 0">
+		<f:if condition="{product.stock} > 0">
 			<f:then>
-				<p class="stock_status">Product is probably in stock! ({product.stockQuantity})</p>
+				<p class="stock">Product is probably in stock! ({product.stock})</p>
 			</f:then>
 			
 			<f:else>
-				<p class="stock_status">Product is out of stock!</p>
+				<p class="stock">Product is out of stock!</p>
 			</f:else>
 		</f:if>
 		
@@ -130,10 +130,10 @@
 				<ul>
 					<f:for each="{product.relatedProducts}" as="relatedProduct">
 						<li>
-							<h4><f:link.action arguments="{product: relatedProduct}" class="title">{relatedProduct.title}</f:link.action></h4>
+							<h4><f:link.action arguments="{product: relatedProduct, path: relatedProduct.rootline}" class="title">{relatedProduct.title}</f:link.action></h4>
 								
 							<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{relatedProduct.images.0}')}">
-								<f:link.action arguments="{product: relatedProduct}" class="image">
+								<f:link.action arguments="{product: relatedProduct, path: relatedProduct.rootline}" class="image">
 									<f:image src="{settings.object.product.field.images.path}{relatedProduct.images.0}" maxHeight="60" alt="" />
 								</f:link.action>
 							</f:if>

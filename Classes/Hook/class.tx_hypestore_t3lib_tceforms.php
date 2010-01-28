@@ -41,8 +41,9 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 	
 	public function getMainRecords($fieldValue, $field, $records) {
 		
+		//print $field;
 		foreach($records as $key => $record) {
-			if($record[$field] > 0) {
+			//if($record[$field] > 0) {
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $record['uid']);
 				
 				if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
@@ -56,7 +57,7 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 						unset($records[$subcategory['uid']]);
 					}
 				}
-			}
+			//}
 		}
 		
 		return $records;
@@ -100,7 +101,11 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 				$icon
 			);
 			
-			if($record[$field] > 0) {
+			$parentField = ($fieldValue['config']['MM_opposite_field'])
+				? $fieldValue['config']['MM_opposite_field']
+				: $field;
+			
+			if($record[$parentField] > 0) {
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $record['uid']);
 				
 				if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
@@ -123,5 +128,4 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 	}
 	
 }
-
 ?>

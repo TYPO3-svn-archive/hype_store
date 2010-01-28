@@ -54,7 +54,6 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	
 	/**
 	 * Constructor
-	 *
 	 */
 	public function __construct() {
 	}
@@ -67,13 +66,14 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	public function initializeObject() {
 		
 		# initialize the price calculation service
-		$this->priceCalculationService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_PriceCalculationService');
+		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
 	
 	/**
 	 * Setter for customer
 	 *
-	 * @return Tx_HypeStore_Domain_Model_Customer
+	 * @param Tx_HypeStore_Domain_Model_Customer
+	 * @return void
 	 */
 	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
 		$this->customer = clone $customer;
@@ -132,12 +132,10 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	
 	
 	
-	
-	
-	/* Service Methods */
+	/* Service methods */
 	
 	public function getPrice() {
-		return $this->priceCalculationService->getPrice($this);
+		return $this->productService->getPrice($this->getProduct(), $this->getQuantity());
 	}
 	
 	/**
@@ -146,12 +144,12 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	 * @return float
 	 */
 	public function getPriceSum() {
-		return $this->priceCalculationService->getPriceSum($this);
+		return $this->getPrice() * $this->getQuantity();
 	}
 	
 	
 	
-	
+	/* Magic methods */
 	
 	/**
 	 * Returns as a formatted string
@@ -159,7 +157,7 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->getAttribute()->getTitle() . ': ' . $this->getValue();
+		return $this->getProduct()->getTitle();
 	}
 }
 ?>

@@ -12,7 +12,7 @@ require_once(t3lib_extMgm::extPath('hype_store') . 'Classes/Hook/class.tx_hypest
 $TCA['tx_hypestore_domain_model_category'] = array(
     'ctrl' => $TCA['tx_hypestore_domain_model_category']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,introduction,description,images,categories,products'
+        'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,introduction,description,images,parent_categories,categories,products'
     ),
     'feInterface' => $TCA['tx_hypestore_domain_model_category']['feInterface'],
     'columns' => array(
@@ -157,6 +157,36 @@ $TCA['tx_hypestore_domain_model_category'] = array(
                 'maxitems' => 999999,
             ),
         ),
+		'parent_categories' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_category.parent_categories',
+            'config' => array(
+                'type' => 'select',
+                'foreign_table' => 'tx_hypestore_domain_model_category',
+                //'foreign_table_where' => 'AND tx_hypestore_domain_model_category.uid != ###THIS_UID###',
+                'size' => 15,
+				'autoSizeMax' => 30,
+                'minitems' => 0,
+                'maxitems' => 999999,
+				'MM' => 'tx_hypestore_relation_category_category',
+				'MM_opposite_field' => 'categories',
+				
+				'form_type' => 'user',
+				'userFunc' => 'tx_hypestore_tca_field->categories',
+				'user_type' => 'tree',
+				'indent_sign' => ' ›',
+				
+				'allowed' => 'tx_hypestore_domain_model_category',
+				'wizards' => array(
+					'suggest' => array(
+						'type' => 'suggest',
+						'default' => array(
+							'searchWholePhrase' => 1,
+						),
+					),
+				),
+            ),
+        ),
 		'categories' => array(
             'exclude' => 1,
             'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_category.categories',
@@ -217,7 +247,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;2-2-2, subtitle, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
 			
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media, images,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations, categories, products;;;;1-1-1
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations, parent_categories, categories, products;;;;1-1-1
 		'),
     ),
     'palettes' => array(

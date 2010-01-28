@@ -173,7 +173,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	public function initializeObject() {
 		
 		# initialize the price calculation service
-		$this->stockCalculationService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_StockCalculationService');
+		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
 	
 	/**
@@ -808,22 +808,33 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	
 	
 	
-	
-	
-	/* Service Methods */
+	/* Service methods */
 	
 	/**
 	 * Gets the calculated stock quantity
 	 *
-	 * @return bool
+	 * @return int
 	 */
-	public function getStockQuantity() {
-		return $this->stockCalculationService->getStockQuantity($this);
+	public function getStock() {
+		return $this->productService->getStock($this);
+	}
+	
+	/**
+	 * Returns all rootlines for this product
+	 *
+	 * @return array
+	 */
+	public function getRootlines() {
+		return $this->productService->getRootlines($this);
+	}
+	
+	public function getRootline() {
+		return array_shift($this->getRootlines())->__toString();
 	}
 	
 	
 	
-	
+	/* Magic methods */
 	
 	/**
 	 * Returns as a formatted string

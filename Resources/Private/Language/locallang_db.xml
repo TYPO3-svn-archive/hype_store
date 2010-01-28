@@ -24,7 +24,8 @@
 			<label index="tx_hypestore_domain_model_category.introduction">Introduction</label>
 			<label index="tx_hypestore_domain_model_category.description">Description</label>
 			<label index="tx_hypestore_domain_model_category.images">Images</label>
-			<label index="tx_hypestore_domain_model_category.categories">Subcategories</label>
+			<label index="tx_hypestore_domain_model_category.parent_categories">Parent categories</label>
+			<label index="tx_hypestore_domain_model_category.categories">Child categories</label>
 			<label index="tx_hypestore_domain_model_category.products">Products</label>
 			
 			<label index="tx_hypestore_domain_model_product">Product</label>
@@ -142,7 +143,8 @@
 			<label index="tx_hypestore_domain_model_category.introduction">Kurztext</label>
 			<label index="tx_hypestore_domain_model_category.description">Beschreibung</label>
 			<label index="tx_hypestore_domain_model_category.images">Bilder</label>
-			<label index="tx_hypestore_domain_model_category.categories">Unterkategorien</label>
+			<label index="tx_hypestore_domain_model_category.parent_categories">Übergeordnete Kategorien</label>
+			<label index="tx_hypestore_domain_model_category.categories">Untergeordnete Kategorien</label>
 			<label index="tx_hypestore_domain_model_category.products">Produkte</label>
 			
 			<label index="tx_hypestore_domain_model_product">Produkt</label>

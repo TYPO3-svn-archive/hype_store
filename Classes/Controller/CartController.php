@@ -59,7 +59,12 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
 		
 		# initialize the price calculation service
-		$this->priceCalculationService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_PriceCalculationService');
+		$this->cartService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_CartService');
+		
+		# prepare product pid (flexform hack)
+		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
+			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
+			: $this->settings['view']['product']['pid'];
 		
 		# load a known user
 		if($GLOBALS['TSFE']->fe_user->user) {
@@ -90,7 +95,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 		
 		if($this->customer) {
 			$this->view->assign('cartItems', $this->customer->getCartItems());
-			$this->view->assign('totalPrice', $this->priceCalculationService->getPriceTotal($this->customer->getCartItems()));
+			$this->view->assign('totalPrice', $this->cartService->getTotalPrice($this->customer->getCartItems()));
 		}
 	}
 	
