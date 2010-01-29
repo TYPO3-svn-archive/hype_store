@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
+*  (c) 2010 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,32 +23,8 @@
 ***************************************************************/
 
 /**
- * A repository for Categories
+ * A repository for Manufacturers
  */
-class Tx_HypeStore_Domain_Repository_CategoryRepository extends Tx_Extbase_Persistence_Repository {
-	
-	protected $referencedCategories = array();
-	
-	public function findMainCategories() {
-		$categories = $this->findAll();
-		
-		foreach($categories as $category) {
-			$subcategories = $category->getCategories();
-			
-			foreach($subcategories as $subcategory) {
-				if(!in_array($subcategory->getUid(), $this->referencedCategories)) {
-					array_push($this->referencedCategories, $subcategory->getUid());
-				}
-			}
-		}
-		
-		foreach($categories as $key => $category) {
-			if(in_array($category->getUid(), $this->referencedCategories)) {
-				unset($categories[$key]);
-			}
-		}
-		
-		return $categories;
-	}
+class Tx_HypeStore_Domain_Repository_ManufacturerRepository extends Tx_Extbase_Persistence_Repository {			
 }
 ?>

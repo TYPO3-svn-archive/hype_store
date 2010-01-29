@@ -66,11 +66,6 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	protected $description;
 	
 	/**
-	 * @var DateTime
-	 */
-	protected $versionDate;
-	
-	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Category>
 	 * @lazy
 	 */
@@ -93,6 +88,11 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @validate String
 	 */
 	protected $files;
+	
+	/**
+	 * @var Tx_HypeStore_Domain_Model_Manufacturer
+	 */
+	protected $manufacturer;
 	
 	/**
 	 * @var float
@@ -269,25 +269,6 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 */
 	public function getDescription() {
 		return $this->description;
-	}
-	
-	/**
-	 * Setter for versionDate
-	 *
-	 * @param DateTime $date
-	 * @return void
-	 */
-	public function setVersionDate(DateTime $date) {
-		$this->versionDate = $date;
-	}
-	
-	/**
-	 * Getter for date
-	 *
-	 * @return DateTime
-	 */
-	public function getVersionDate() {
-		return $this->versionDate;
 	}
 	
 	/**
@@ -488,6 +469,25 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 		}
 		
 		return explode(',', $this->files);
+	}
+	
+	/**
+	 * Setter for manufacturer
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Manufacturer $manufacturer
+	 * @return void
+	 */
+	public function setManufacturer(Tx_HypeStore_Domain_Model_Manufacturer $manufacturer) {
+		$this->manufacturer = clone $manufacturer;
+	}
+	
+	/**
+	 * Getter for manufacturer
+	 *
+	 * @return Tx_HypeStore_Domain_Model_Manufacturer
+	 */
+	public function getManufacturer() {
+		return $this->manufacturer;
 	}
 	
 	/**

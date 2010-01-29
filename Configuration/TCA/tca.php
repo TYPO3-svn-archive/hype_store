@@ -258,7 +258,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 $TCA['tx_hypestore_domain_model_product'] = array(
     'ctrl' => $TCA['tx_hypestore_domain_model_product']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,categories,introduction,description,version_date,images,files,minimum_order_quantity,flat_price,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks,states,events'
+        'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,categories,introduction,description,images,files,manufacturer,minimum_order_quantity,flat_price,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks,states,events'
     ),
     'feInterface' => $TCA['tx_hypestore_domain_model_product']['feInterface'],
     'columns' => array(
@@ -426,18 +426,6 @@ $TCA['tx_hypestore_domain_model_product'] = array(
                 ),
             ),
         ),
-		'version_date' => array(
-			'exclude' => 1,
-            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.version_date',
-            'config' => array(
-                'type'     => 'input',
-                'size'     => '8',
-                'max'      => '20',
-                'eval'     => 'date',
-                'checkbox' => '0',
-                'default'  => '0'
-            ),
-		),
         'images' => array(
             'exclude' => 0,
             'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.images',
@@ -467,6 +455,21 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'autoSizeMax' => 15,
                 'minitems' => 0,
                 'maxitems' => 100,
+            ),
+        ),
+		'manufacturer' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.manufacturer',
+            'config' => array(
+                'type' => 'select',
+                'foreign_table' => 'tx_hypestore_domain_model_manufacturer',
+                //'foreign_table_where' => 'ORDER BY tx_hypestore_domain_model_category.categories DESC, tx_hypestore_domain_model_category.title ASC',
+                'size' => 1,
+                'minitems' => 0,
+                'maxitems' => 1,
+				'items' => array(
+					array('', NULL),
+				),
             ),
         ),
 		'minimum_order_quantity' => array(
@@ -621,7 +624,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
     ),
     'types' => array(
         '0' => array('showitem' => '
-			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;2-2-2, subtitle, identifier, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, version_date;;;;1-1-1,
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;2-2-2, subtitle, identifier, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, manufacturer;;;;1-1-1,
 			
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
@@ -1981,6 +1984,314 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
     'types' => array(
         '0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1,customer,title,name,company,street,stair,floor,door,postcode,city,country,telephone_number
+		'),
+    ),
+    'palettes' => array(
+        '1' => array('showitem' => 'starttime, endtime, fe_group'),
+    ),
+);
+
+$TCA['tx_hypestore_domain_model_order'] = array(
+    'ctrl' => $TCA['tx_hypestore_domain_model_order']['ctrl'],
+    'interface' => array(
+        'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,customer,items'
+    ),
+    'feInterface' => $TCA['tx_hypestore_domain_model_order']['feInterface'],
+    'columns' => array(
+        'sys_language_uid' => array(
+            'exclude' => 1,
+            'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+            'config' => array(
+                'type'                => 'select',
+                'foreign_table'       => 'sys_language',
+                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'items' => array(
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0),
+                ),
+            ),
+        ),
+        'l10n_parent' => array(
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude'     => 1,
+            'label'       => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+            'config'      => array(
+                'type'  => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+                'foreign_table'       => 'tx_hypestore_domain_model_depot',
+                'foreign_table_where' => 'AND tx_hypestore_domain_model_depot.pid=###CURRENT_PID### AND tx_hypestore_domain_model_depot.sys_language_uid IN (-1,0)',
+            ),
+        ),
+        'l10n_diffsource' => array(
+            'config' => array(
+                'type' => 'passthrough'
+            ),
+        ),
+        'hidden' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+            'config'  => array(
+                'type'    => 'check',
+                'default' => '0'
+            ),
+        ),
+        'starttime' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
+            'config'  => array(
+                'type'     => 'input',
+                'size'     => '8',
+                'max'      => '20',
+                'eval'     => 'date',
+                'default'  => '0',
+                'checkbox' => '0'
+            ),
+        ),
+        'endtime' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
+            'config'  => array(
+                'type'     => 'input',
+                'size'     => '8',
+                'max'      => '20',
+                'eval'     => 'date',
+                'checkbox' => '0',
+                'default'  => '0',
+                'range'    => array(
+                    'upper' => mktime(3, 14, 7, 1, 19, 2038),
+                    'lower' => mktime(0, 0, 0, date('m')-1, date('d'), date('Y')),
+                ),
+            ),
+        ),
+        'fe_group' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
+            'config'  => array(
+                'type'  => 'select',
+                'items' => array(
+                    array('', 0),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--'),
+                ),
+                'foreign_table' => 'fe_groups'
+            ),
+        ),
+		'customer' => array(
+			'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_order.customer',
+            'config' => array (
+                'type' => 'select',
+                'foreign_table' => 'fe_users',
+                //'foreign_table_where' => 'ORDER BY fe_users.title',
+                'size' => 1,
+                'minitems' => 1,
+                'maxitems' => 1,
+            ),
+		),
+    ),
+    'types' => array(
+        '0' => array('showitem' => '
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, customer, items
+		'),
+    ),
+    'palettes' => array(
+        '1' => array('showitem' => 'starttime, endtime, fe_group'),
+    ),
+);
+
+$TCA['tx_hypestore_domain_model_manufacturer'] = array(
+    'ctrl' => $TCA['tx_hypestore_domain_model_manufacturer']['ctrl'],
+    'interface' => array(
+        'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,street,postcode,city,country,telephone,telefax,email,website,products'
+    ),
+    'feInterface' => $TCA['tx_hypestore_domain_model_manufacturer']['feInterface'],
+    'columns' => array(
+        'sys_language_uid' => array(
+            'exclude' => 1,
+            'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+            'config' => array(
+                'type'                => 'select',
+                'foreign_table'       => 'sys_language',
+                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'items' => array(
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0),
+                ),
+            ),
+        ),
+        'l10n_parent' => array(
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude'     => 1,
+            'label'       => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+            'config'      => array(
+                'type'  => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+                'foreign_table'       => 'tx_hypestore_domain_model_depot',
+                'foreign_table_where' => 'AND tx_hypestore_domain_model_depot.pid=###CURRENT_PID### AND tx_hypestore_domain_model_depot.sys_language_uid IN (-1,0)',
+            ),
+        ),
+        'l10n_diffsource' => array(
+            'config' => array(
+                'type' => 'passthrough'
+            ),
+        ),
+        'hidden' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+            'config'  => array(
+                'type'    => 'check',
+                'default' => '0'
+            ),
+        ),
+        'starttime' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
+            'config'  => array(
+                'type'     => 'input',
+                'size'     => '8',
+                'max'      => '20',
+                'eval'     => 'date',
+                'default'  => '0',
+                'checkbox' => '0'
+            ),
+        ),
+        'endtime' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
+            'config'  => array(
+                'type'     => 'input',
+                'size'     => '8',
+                'max'      => '20',
+                'eval'     => 'date',
+                'checkbox' => '0',
+                'default'  => '0',
+                'range'    => array(
+                    'upper' => mktime(3, 14, 7, 1, 19, 2038),
+                    'lower' => mktime(0, 0, 0, date('m')-1, date('d'), date('Y')),
+                ),
+            ),
+        ),
+        'fe_group' => array(
+            'exclude' => 1,
+            'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
+            'config'  => array(
+                'type'  => 'select',
+                'items' => array(
+                    array('', 0),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
+                    array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--'),
+                ),
+                'foreign_table' => 'fe_groups'
+            ),
+        ),
+        'title' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.title',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'required,trim',
+            ),
+        ),
+        'street' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.street',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'trim',
+            ),
+        ),
+        'postcode' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.postcode',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'int',
+            ),
+        ),
+        'city' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.city',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'trim',
+            ),
+        ),
+        'country' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.country',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'trim',
+            ),
+        ),
+		'telephone' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.telephone',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'trim',
+            ),
+        ),
+		'telefax' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.telefax',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'trim',
+            ),
+        ),
+		'email' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.email',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'trim',
+            ),
+        ),
+		'website' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.website',
+            'config' => array(
+                'type' => 'input',
+                'size' => '30',
+                'eval' => 'trim',
+            ),
+        ),
+        'products' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_manufacturer.products',
+            'config' => array(
+				'type'				=> 'inline',
+				'foreign_table'		=> 'tx_hypestore_domain_model_product',
+				'foreign_field'		=> 'manufacturer',
+				'appearance'		=> array(
+					'collapseAll'		=> TRUE,
+					'expandSingle'		=> TRUE,
+				),
+				'minitems'			=> 0,
+				'maxitems'			=> 999999,
+            ),
+        ),
+    ),
+    'types' => array(
+        '0' => array('showitem' => '
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;1-1-1, street;;;;1-1-1, postcode, city, country, telephone;;;;1-1-1, telefax, email, website,
+			
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.products, products
 		'),
     ),
     'palettes' => array(

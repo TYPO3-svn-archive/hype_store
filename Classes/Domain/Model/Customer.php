@@ -44,6 +44,11 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	protected $addresses;
 	
 	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Order>
+	 */
+	protected $orders;
+	
+	/**
 	 * Constructs a new customer
 	 *
 	 * @api
@@ -53,6 +58,7 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 		
 		$this->cartItems = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->addresses = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->orders = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 	
 	/**
@@ -149,6 +155,54 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	 */
 	public function getAddresses() {
 		return clone $this->addresses;
+	}
+	
+	/**
+	 * Setter for orders
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $orders
+	 * @return void
+	 */
+	public function setOrders(Tx_Extbase_Persistence_ObjectStorage $orders) {
+		$this->orders = clone $orders;
+	}
+	
+	/**
+	 * Adds an order
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Order $order
+	 * @return void
+	 */
+	public function addOrder(Tx_HypeStore_Domain_Model_Order $order) {
+		$this->orders->attach($order);
+	}
+	
+	/**
+	 * Removes an order
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Order $order
+	 * @return void
+	 */
+	public function removeOrder(Tx_HypeStore_Domain_Model_Order $order) {
+		$this->orders->detach($order);
+	}
+	
+	/**
+	 * Remove all orders
+	 *
+	 * @return void
+	 */
+	public function removeOrders() {
+		$this->orders = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+	
+	/**
+	 * Getter for orders
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getOrders() {
+		return clone $this->orders;
 	}
 }
 ?>

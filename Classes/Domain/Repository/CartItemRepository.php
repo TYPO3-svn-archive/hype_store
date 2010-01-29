@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -24,9 +23,8 @@
 ***************************************************************/
 
 /**
- * A repository for cart items
+ * A repository for Cart Items
  */
 class Tx_HypeStore_Domain_Repository_CartItemRepository extends Tx_Extbase_Persistence_Repository {
 }
-
 ?>

@@ -17,6 +17,7 @@
 			<label index="tx_hypestore.tabs.attributes">Attributes</label>
 			<label index="tx_hypestore.tabs.prices">Prices</label>
 			<label index="tx_hypestore.tabs.relations">Relations</label>
+			<label index="tx_hypestore.tabs.products">Products</label>
 			
 			<label index="tx_hypestore_domain_model_category">Category</label>
 			<label index="tx_hypestore_domain_model_category.title">Title</label>
@@ -36,6 +37,7 @@
 			<label index="tx_hypestore_domain_model_product.description">Description</label>
 			<label index="tx_hypestore_domain_model_product.images">Images</label>
 			<label index="tx_hypestore_domain_model_product.files">Files</label>
+			<label index="tx_hypestore_domain_model_product.manufacturer">Manufacturer</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Price</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Minimum order quantity</label>
 			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
@@ -107,6 +109,10 @@
 			<label index="tx_hypestore_domain_model_cart_item.product">Product</label>
 			<label index="tx_hypestore_domain_model_cart_item.quantity">Quantity</label>
 			
+			<label index="tx_hypestore_domain_model_order">Order</label>
+			<label index="tx_hypestore_domain_model_order.customer">Customer</label>
+			<label index="tx_hypestore_domain_model_order.items">Items</label>
+			
 			<label index="tx_hypestore_domain_model_customer_address">Customer address</label>
 			<label index="tx_hypestore_domain_model_customer_address.customer">Customer</label>
 			<label index="tx_hypestore_domain_model_customer_address.title">Title</label>
@@ -121,8 +127,21 @@
 			<label index="tx_hypestore_domain_model_customer_address.country">Country</label>
 			<label index="tx_hypestore_domain_model_customer_address.telephone_number">Telephone number</label>
 			
+			<label index="tx_hypestore_domain_model_manufacturer">Manufacturer</label>
+			<label index="tx_hypestore_domain_model_manufacturer.title">Title</label>
+			<label index="tx_hypestore_domain_model_manufacturer.street">Street</label>
+			<label index="tx_hypestore_domain_model_manufacturer.postcode">Postcode/ZIP</label>
+			<label index="tx_hypestore_domain_model_manufacturer.city">City</label>
+			<label index="tx_hypestore_domain_model_manufacturer.country">Country</label>
+			<label index="tx_hypestore_domain_model_manufacturer.telephone">Telephone number</label>
+			<label index="tx_hypestore_domain_model_manufacturer.telefax">Telefax number</label>
+			<label index="tx_hypestore_domain_model_manufacturer.email">E-mail address</label>
+			<label index="tx_hypestore_domain_model_manufacturer.website">Website address</label>
+			<label index="tx_hypestore_domain_model_manufacturer.products">Products</label>
+			
 			<label index="fe_users.tx_hypestore_domain_model_addresses">Addresses</label>
 			<label index="fe_users.tx_hypestore_domain_model_cart_items">Cart items</label>
+			<label index="fe_users.tx_hypestore_domain_model_orders">Orders</label>
 		</languageKey>
 		
 		<languageKey index="de" type="array">
@@ -136,6 +155,7 @@
 			<label index="tx_hypestore.tabs.attributes">Eigenschaften</label>
 			<label index="tx_hypestore.tabs.prices">Preise</label>
 			<label index="tx_hypestore.tabs.relations">Verknüpfungen</label>
+			<label index="tx_hypestore.tabs.products">Produkte</label>
 			
 			<label index="tx_hypestore_domain_model_category">Kategorie</label>
 			<label index="tx_hypestore_domain_model_category.title">Titel</label>
@@ -155,6 +175,7 @@
 			<label index="tx_hypestore_domain_model_product.description">Beschreibung</label>
 			<label index="tx_hypestore_domain_model_product.images">Bilder</label>
 			<label index="tx_hypestore_domain_model_product.files">Dateien</label>
+			<label index="tx_hypestore_domain_model_product.manufacturer">Hersteller</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Preis</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Mindestbestellmenge</label>
 			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
@@ -225,6 +246,10 @@
 			<label index="tx_hypestore_domain_model_cart_item.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_cart_item.quantity">Anzahl</label>
 			
+			<label index="tx_hypestore_domain_model_order">Order</label>
+			<label index="tx_hypestore_domain_model_order.customer">Customer</label>
+			<label index="tx_hypestore_domain_model_order.items">Items</label>
+	
 			<label index="tx_hypestore_domain_model_customer_address">Kunden Adresse</label>
 			<label index="tx_hypestore_domain_model_customer_address.customer">Kunde</label>
 			<label index="tx_hypestore_domain_model_customer_address.title">Bezeichnung</label>
@@ -239,8 +264,21 @@
 			<label index="tx_hypestore_domain_model_customer_address.country">Land</label>
 			<label index="tx_hypestore_domain_model_customer_address.telephone_number">Telefonnummer</label>
 			
+			<label index="tx_hypestore_domain_model_manufacturer">Hersteller</label>
+			<label index="tx_hypestore_domain_model_manufacturer.title">Titel</label>
+			<label index="tx_hypestore_domain_model_manufacturer.street">Straße</label>
+			<label index="tx_hypestore_domain_model_manufacturer.postcode">Postleitzahl</label>
+			<label index="tx_hypestore_domain_model_manufacturer.city">Ort/Stadt</label>
+			<label index="tx_hypestore_domain_model_manufacturer.country">Land</label>
+			<label index="tx_hypestore_domain_model_manufacturer.telephone">Telefonnummer</label>
+			<label index="tx_hypestore_domain_model_manufacturer.telefax">Telefaxnummer</label>
+			<label index="tx_hypestore_domain_model_manufacturer.email">E-Mail Adresse</label>
+			<label index="tx_hypestore_domain_model_manufacturer.website">Website</label>
+			<label index="tx_hypestore_domain_model_manufacturer.products">Produkte</label>
+			
 			<label index="fe_users.tx_hypestore_domain_model_addresses">Adressen</label>
 			<label index="fe_users.tx_hypestore_domain_model_cart_items">Warenkorb</label>
+			<label index="fe_users.tx_hypestore_domain_model_orders">Bestellungen</label>
 		</languageKey>
 	</data>
 </T3locallang>

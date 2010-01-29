@@ -53,12 +53,12 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	title varchar(255) DEFAULT '' NOT NULL,
 	subtitle varchar(255) DEFAULT '' NOT NULL,
 	identifier varchar(255) DEFAULT '' NOT NULL,
-	categories int(11) DEFAULT '0' NOT NULL,
 	introduction text,
 	description text,
-	version_date int(11) DEFAULT '0' NOT NULL,
 	images text,
 	files text,
+	categories int(11) DEFAULT '0' NOT NULL,
+	manufacturer int(11) DEFAULT '0' NOT NULL,
 	minimum_order_quantity int(11) DEFAULT '0' NOT NULL,
 	flat_price double(11,2) DEFAULT '0.00' NOT NULL,
 	scaled_prices int(11) DEFAULT '0' NOT NULL,
@@ -275,6 +275,33 @@ CREATE TABLE tx_hypestore_domain_model_attribute (
 
 
 #
+# Table structure for table 'tx_hypestore_domain_model_order'
+#
+CREATE TABLE tx_hypestore_domain_model_order (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	sys_language_uid int(11) DEFAULT '0' NOT NULL,
+	l10n_parent int(11) DEFAULT '0' NOT NULL,
+	l10n_diffsource mediumtext,
+	sorting int(10) DEFAULT '0' NOT NULL,
+	deleted tinyint(4) DEFAULT '0' NOT NULL,
+	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	starttime int(11) DEFAULT '0' NOT NULL,
+	endtime int(11) DEFAULT '0' NOT NULL,
+	fe_group int(11) DEFAULT '0' NOT NULL,
+	
+	customer int(11) DEFAULT '0' NOT NULL,
+	items int(11) DEFAULT '0' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+
+#
 # Table structure for table 'tx_hypestore_domain_model_cart_item'
 #
 CREATE TABLE tx_hypestore_domain_model_cart_item (
@@ -339,6 +366,41 @@ CREATE TABLE tx_hypestore_domain_model_customer_address (
 
 
 #
+# Table structure for table 'tx_hypestore_domain_model_manufacturer'
+#
+CREATE TABLE tx_hypestore_domain_model_manufacturer (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	sys_language_uid int(11) DEFAULT '0' NOT NULL,
+	l10n_parent int(11) DEFAULT '0' NOT NULL,
+	l10n_diffsource mediumtext,
+	sorting int(10) DEFAULT '0' NOT NULL,
+	deleted tinyint(4) DEFAULT '0' NOT NULL,
+	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	starttime int(11) DEFAULT '0' NOT NULL,
+	endtime int(11) DEFAULT '0' NOT NULL,
+	fe_group int(11) DEFAULT '0' NOT NULL,
+	
+	title varchar(255) DEFAULT '' NOT NULL,
+	street varchar(255) DEFAULT '' NOT NULL,
+	postcode int(11) DEFAULT '0' NOT NULL,
+	city varchar(255) DEFAULT '' NOT NULL,
+	country varchar(255) DEFAULT '' NOT NULL,
+	telephone varchar(255) DEFAULT '' NOT NULL,
+	telefax varchar(255) DEFAULT '' NOT NULL,
+	email varchar(255) DEFAULT '' NOT NULL,
+	website varchar(255) DEFAULT '' NOT NULL,
+	products int(11) DEFAULT '0' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+
+#
 # Table structure for table 'tx_hypestore_relation_category_category'
 #
 
@@ -394,5 +456,6 @@ CREATE TABLE tx_hypestore_relation_product_product (
 #
 CREATE TABLE fe_users (
 	tx_hypestore_domain_model_addresses int(11) DEFAULT '0' NOT NULL,
-	tx_hypestore_domain_model_cart_items int(11) DEFAULT '0' NOT NULL
+	tx_hypestore_domain_model_cart_items int(11) DEFAULT '0' NOT NULL,
+	tx_hypestore_domain_model_orders int(11) DEFAULT '0' NOT NULL
 );

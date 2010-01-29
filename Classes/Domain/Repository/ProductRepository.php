@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -28,5 +27,4 @@
  */
 class Tx_HypeStore_Domain_Repository_ProductRepository extends Tx_Extbase_Persistence_Repository {			
 }
-
 ?>
