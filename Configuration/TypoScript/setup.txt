@@ -9,13 +9,15 @@ config.tx_extbase {
 					
 					columns {
 						tx_hypestore_domain_model_addresses.mapOnProperty = addresses
-						tx_hypestore_domain_model_cart_items.mapOnProperty = cartItems
 						tx_hypestore_domain_model_orders.mapOnProperty = orders
+						tx_hypestore_domain_model_cart_items.mapOnProperty = cartItems
+						tx_hypestore_domain_model_watchlist_items.mapOnProperty = watchlistItems
 					}
 				}
 				
 				columns {
 					cart_items.foreignClass = Tx_HypeStore_Domain_Model_CartItem
+					watchlist_items.foreignClass = Tx_HypeStore_Domain_Model_WatchlistItem
 				}
 			}
 			
@@ -65,6 +67,12 @@ config.tx_extbase {
 			Tx_HypeStore_Domain_Model_CartItem {
 				mapping {
 					tableName = tx_hypestore_domain_model_cart_item
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_WatchlistItem {
+				mapping {
+					tableName = tx_hypestore_domain_model_watchlist_item
 				}
 			}
 			

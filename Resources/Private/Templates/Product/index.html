@@ -18,9 +18,9 @@
 			<p class="identifier">Article-No.: #{product.identifier}</p>
 		</f:if>
 		
-		<!-- product.versionDate -->
-		<f:if condition="{f:format.date(date: '{product.versionDate}', format: 'U')}">
-			<p class="version_date">Version: {product.versionDate->f:format.date(format: 'd.m.Y')}</p>
+		<!-- product.manufacturer -->
+		<f:if condition="{product.manufacturer}">
+			<p class="manufacturer">Manufacturer: {product.manufacturer.title}</p>
 		</f:if>
 		
 		<!-- product.introduction -->

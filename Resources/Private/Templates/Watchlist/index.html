@@ -1,0 +1,34 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:layout name="default" />
+
+<f:section name="content">
+	<!-- customer.watchlistItems -->
+	<f:if condition="{watchlistItems}">
+		<f:then>
+			<div class="watchlist_items">
+				<h2>Watchlist items</h2>
+				
+				<ul>
+					<f:for each="{watchlistItems}" as="watchlistItem">
+						<li>
+							<p>
+								<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: watchlistItem.product, path: watchlistItem.product.rootline}">{watchlistItem.product.title}</f:link.action>
+								<f:if condition="{watchlistItem.product.flatPrice}"> {f:translate(key: 'product.stock_unit.I.{watchlistItem.product.stockUnit}')} á <em>{watchlistItem.price->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> = <em>{watchlistItem.priceSum->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></f:if>
+								<f:if condition="{watchlistItem.product.introduction}"><br />{watchlistItem.product.introduction}</f:if>
+								
+								<br /><f:link.action action="remove" arguments="{watchlistItem: watchlistItem}">Remove {watchlistItem.product.title} from the watchlist.</f:link.action>
+								
+								<f:form.hidden name="watchlistItems[{watchlistItem.uid}][__identity]" value="{watchlistItem.uid}"/>
+							</p>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</f:then>
+		
+		<f:else>
+			<p>There are no products on your watchlist yet.</p>
+		</f:else>
+	</f:if>
+</f:section>

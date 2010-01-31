@@ -36,6 +36,13 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Checkout' => 'index')
 );
 
+# Watchlist plugin
+Tx_Extbase_Utility_Extension::configurePlugin(
+	$_EXTKEY,
+	'Watchlist',
+	array('Watchlist' => 'index'),
+	array('Watchlist' => 'index')
+);
 
 t3lib_extMgm::addPageTSConfig('
 	# ***************************************************************************************

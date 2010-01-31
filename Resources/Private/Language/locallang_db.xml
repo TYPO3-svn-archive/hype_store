@@ -109,6 +109,10 @@
 			<label index="tx_hypestore_domain_model_cart_item.product">Product</label>
 			<label index="tx_hypestore_domain_model_cart_item.quantity">Quantity</label>
 			
+			<label index="tx_hypestore_domain_model_watchlist_item">Watchlist item</label>
+			<label index="tx_hypestore_domain_model_watchlist_item.customer">Customer</label>
+			<label index="tx_hypestore_domain_model_watchlist_item.product">Product</label>
+			
 			<label index="tx_hypestore_domain_model_order">Order</label>
 			<label index="tx_hypestore_domain_model_order.customer">Customer</label>
 			<label index="tx_hypestore_domain_model_order.items">Items</label>
@@ -140,8 +144,9 @@
 			<label index="tx_hypestore_domain_model_manufacturer.products">Products</label>
 			
 			<label index="fe_users.tx_hypestore_domain_model_addresses">Addresses</label>
-			<label index="fe_users.tx_hypestore_domain_model_cart_items">Cart items</label>
 			<label index="fe_users.tx_hypestore_domain_model_orders">Orders</label>
+			<label index="fe_users.tx_hypestore_domain_model_cart_items">Cart items</label>
+			<label index="fe_users.tx_hypestore_domain_model_watchlist_items">Watchlist items</label>
 		</languageKey>
 		
 		<languageKey index="de" type="array">
@@ -246,6 +251,10 @@
 			<label index="tx_hypestore_domain_model_cart_item.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_cart_item.quantity">Anzahl</label>
 			
+			<label index="tx_hypestore_domain_model_watchlist_item">Merkliste Produkt</label>
+			<label index="tx_hypestore_domain_model_watchlist_item.customer">Kunde</label>
+			<label index="tx_hypestore_domain_model_watchlist_item.product">Produkt</label>
+			
 			<label index="tx_hypestore_domain_model_order">Order</label>
 			<label index="tx_hypestore_domain_model_order.customer">Customer</label>
 			<label index="tx_hypestore_domain_model_order.items">Items</label>
@@ -277,8 +286,9 @@
 			<label index="tx_hypestore_domain_model_manufacturer.products">Produkte</label>
 			
 			<label index="fe_users.tx_hypestore_domain_model_addresses">Adressen</label>
-			<label index="fe_users.tx_hypestore_domain_model_cart_items">Warenkorb</label>
 			<label index="fe_users.tx_hypestore_domain_model_orders">Bestellungen</label>
+			<label index="fe_users.tx_hypestore_domain_model_cart_items">Warenkorb</label>
+			<label index="fe_users.tx_hypestore_domain_model_watchlist_items">Merkliste</label>
 		</languageKey>
 	</data>
 </T3locallang>

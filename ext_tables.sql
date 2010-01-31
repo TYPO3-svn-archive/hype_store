@@ -329,6 +329,32 @@ CREATE TABLE tx_hypestore_domain_model_cart_item (
 
 
 #
+# Table structure for table 'tx_hypestore_domain_model_watchlist_item'
+#
+CREATE TABLE tx_hypestore_domain_model_watchlist_item (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	sys_language_uid int(11) DEFAULT '0' NOT NULL,
+	l10n_parent int(11) DEFAULT '0' NOT NULL,
+	l10n_diffsource mediumtext,
+	deleted tinyint(4) DEFAULT '0' NOT NULL,
+	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	starttime int(11) DEFAULT '0' NOT NULL,
+	endtime int(11) DEFAULT '0' NOT NULL,
+	fe_group int(11) DEFAULT '0' NOT NULL,
+	
+	customer int(11) DEFAULT '0' NOT NULL,
+	product int(11) DEFAULT '0' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+
+#
 # Table structure for table 'tx_hypestore_domain_model_customer_address'
 #
 CREATE TABLE tx_hypestore_domain_model_customer_address (
@@ -455,7 +481,8 @@ CREATE TABLE tx_hypestore_relation_product_product (
 # Table structure for table 'fe_users'
 #
 CREATE TABLE fe_users (
-	tx_hypestore_domain_model_addresses int(11) DEFAULT '0' NOT NULL,
+tx_hypestore_domain_model_addresses int(11) DEFAULT '0' NOT NULL,
+	tx_hypestore_domain_model_orders int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_cart_items int(11) DEFAULT '0' NOT NULL,
-	tx_hypestore_domain_model_orders int(11) DEFAULT '0' NOT NULL
+	tx_hypestore_domain_model_watchlist_items int(11) DEFAULT '0' NOT NULL
 );

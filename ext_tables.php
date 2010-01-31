@@ -17,7 +17,7 @@ Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Category', 'Hype Store, 
 Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Product', 'Hype Store, Product');
 Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Cart', 'Hype Store, Cart');
 Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Checkout', 'Hype Store, Checkout');
-
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Watchlist', 'Hype Store, Watchlist');
 
 # Flexforms
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['hypestore_category'] = 'layout,select_key';
@@ -333,6 +333,35 @@ $TCA['tx_hypestore_domain_model_cart_item'] = array(
 );
 
 
+t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_watchlist_item');
+
+$TCA['tx_hypestore_domain_model_watchlist_item'] = array(
+    'ctrl' => array(
+        'title'     => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_watchlist_item',
+        'label'     => 'product',
+        'tstamp'    => 'tstamp',
+        'crdate'    => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'languageField'            => 'sys_language_uid',
+        'transOrigPointerField'    => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'default_sortby' => 'ORDER BY crdate',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
+        ),
+        'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+        'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/watchlist_item.icon.png',
+		
+		'hideTable' => TRUE,
+		'dividers2tabs' => TRUE,
+    ),
+);
+
+
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_customer_address');
 
 $TCA['tx_hypestore_domain_model_customer_address'] = array(
@@ -465,6 +494,22 @@ $columns = array (
 			'maxitems'			=> 999999,
 		),
 	),
+	'tx_hypestore_domain_model_watchlist_items' => array (
+		'exclude' => 1,
+		'label' => "LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:fe_users.tx_hypestore_domain_model_watchlist_items",
+		'config' => array (
+			'type'				=> 'inline',
+			'foreign_table'		=> 'tx_hypestore_domain_model_watchlist_item',
+			'foreign_field'		=> 'customer',
+			//'foreign_label'		=> 'product',
+			'appearance'		=> array(
+				'collapseAll'		=> TRUE,
+				'expandSingle'		=> TRUE,
+			),
+			'minitems'			=> 0,
+			'maxitems'			=> 999999,
+		),
+	),
 	'tx_hypestore_domain_model_orders' => array (
 		'exclude' => 1,
 		'label' => "LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:fe_users.tx_hypestore_domain_model_orders",
@@ -485,7 +530,7 @@ $columns = array (
 
 t3lib_div::loadTCA('fe_users');
 t3lib_extMgm::addTCAcolumns('fe_users', $columns, 1);
-t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;Store,tx_hypestore_domain_model_addresses,tx_hypestore_domain_model_cart_items,tx_hypestore_domain_model_orders');
+t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;Store,tx_hypestore_domain_model_addresses,tx_hypestore_domain_model_orders,tx_hypestore_domain_model_cart_items,tx_hypestore_domain_model_watchlist_items');
 
 //$TCA['fe_users']['ctrl']['label'] = 'name';
 //$TCA['fe_users']['ctrl']['label_alt'] = 'username';

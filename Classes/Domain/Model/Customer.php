@@ -34,11 +34,6 @@
 class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_FrontendUser {
 	
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_CartItem>
-	 */
-	protected $cartItems;
-	
-	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_CustomerAddress>
 	 */
 	protected $addresses;
@@ -49,6 +44,16 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	protected $orders;
 	
 	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_CartItem>
+	 */
+	protected $cartItems;
+	
+	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_WatchlistItem>
+	 */
+	protected $watchlistItems;
+	
+	/**
 	 * Constructs a new customer
 	 *
 	 * @api
@@ -56,57 +61,10 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	public function __construct() {
 		parent::__construct();
 		
-		$this->cartItems = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->addresses = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->orders = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-	
-	/**
-	 * Setter for cart items
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $items
-	 * @return void
-	 */
-	public function setCartItems(Tx_Extbase_Persistence_ObjectStorage $items) {
-		$this->cartItems = clone $items;
-	}
-	
-	/**
-	 * Adds a cart item
-	 *
-	 * @param Tx_HypeStore_Domain_Model_CartItem $item
-	 * @return void
-	 */
-	public function addCartItem(Tx_HypeStore_Domain_Model_CartItem $item) {
-		$this->cartItems->attach($item);
-	}
-	
-	/**
-	 * Removes a cart item
-	 *
-	 * @param Tx_HypeStore_Domain_Model_CartItem $item
-	 * @return void
-	 */
-	public function removeCartItem(Tx_HypeStore_Domain_Model_CartItem $item) {
-		$this->cartItems->detach($item);
-	}
-	
-	/**
-	 * Remove all cart items
-	 *
-	 * @return void
-	 */
-	public function removeCartItems() {
 		$this->cartItems = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-	
-	/**
-	 * Getter for cart items
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getCartItems() {
-		return clone $this->cartItems;
+		$this->watchlistItems = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 	
 	/**
@@ -203,6 +161,115 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	 */
 	public function getOrders() {
 		return clone $this->orders;
+	}
+	
+	/**
+	 * Setter for cart items
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $items
+	 * @return void
+	 */
+	public function setCartItems(Tx_Extbase_Persistence_ObjectStorage $items) {
+		$this->cartItems = clone $items;
+	}
+	
+	/**
+	 * Adds a cart item
+	 *
+	 * @param Tx_HypeStore_Domain_Model_CartItem $item
+	 * @return void
+	 */
+	public function addCartItem(Tx_HypeStore_Domain_Model_CartItem $item) {
+		$this->cartItems->attach($item);
+	}
+	
+	/**
+	 * Removes a cart item
+	 *
+	 * @param Tx_HypeStore_Domain_Model_CartItem $item
+	 * @return void
+	 */
+	public function removeCartItem(Tx_HypeStore_Domain_Model_CartItem $item) {
+		$this->cartItems->detach($item);
+	}
+	
+	/**
+	 * Remove all cart items
+	 *
+	 * @return void
+	 */
+	public function removeCartItems() {
+		$this->cartItems = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+	
+	/**
+	 * Getter for cart items
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getCartItems() {
+		return clone $this->cartItems;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * Setter for watchlist items
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $items
+	 * @return void
+	 */
+	public function setWatchlistItems(Tx_Extbase_Persistence_ObjectStorage $items) {
+		$this->watchlistItems = clone $items;
+	}
+	
+	/**
+	 * Adds a watchlist item
+	 *
+	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
+	 * @return void
+	 */
+	public function addWatchlistItem(Tx_HypeStore_Domain_Model_WatchlistItem $item) {
+		$this->watchlistItems->attach($item);
+	}
+	
+	/**
+	 * Removes a watchlist item
+	 *
+	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
+	 * @return void
+	 */
+	public function removeWatchlistItem(Tx_HypeStore_Domain_Model_WatchlistItem $item) {
+		$this->watchlistItems->detach($item);
+	}
+	
+	/**
+	 * Remove all watchlist items
+	 *
+	 * @return void
+	 */
+	public function removeWatchlistItems() {
+		$this->watchlistItems = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+	
+	/**
+	 * Getter for watchlist items
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getWatchlistItems() {
+		return clone $this->watchlistItems;
 	}
 }
 ?>
