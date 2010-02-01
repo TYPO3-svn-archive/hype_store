@@ -175,6 +175,18 @@ plugin.tx_hypestore {
 					
 				}
 			}
+			
+			watchlist {
+				pid =
+				
+				common {
+					
+				}
+				
+				action {
+					
+				}
+			}
 		}
 	}
 	

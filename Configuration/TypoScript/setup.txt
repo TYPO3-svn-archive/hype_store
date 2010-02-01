@@ -272,6 +272,18 @@ plugin.tx_hypestore {
 					
 				}
 			}
+			
+			watchlist {
+				pid = {$plugin.tx_hypestore.settings.view.watchlist.pid}
+				
+				common {
+					
+				}
+				
+				action {
+					
+				}
+			}
 		}
 	}
 	

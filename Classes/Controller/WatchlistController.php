@@ -50,6 +50,16 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 		# initialize the customer repository
 		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
 		
+		# prepare product pid (flexform hack)
+		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
+			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
+			: $this->settings['view']['product']['pid'];
+		
+		# prepare cart pid (flexform hack)
+		$this->settings['view']['cart']['pid'] = (strpos($this->settings['view']['cart']['pid'], '_')) > 0
+			? substr($this->settings['view']['cart']['pid'], strpos($this->settings['view']['cart']['pid'], '_') + 1)
+			: $this->settings['view']['cart']['pid'];
+		
 		# load a known user
 		if($GLOBALS['TSFE']->fe_user->user) {
 			$this->customer = $this->customerRepository->findByUid((int)$GLOBALS['TSFE']->fe_user->user['uid']);
@@ -119,6 +129,49 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 		}
 		
 		# redirect to the watchlist
+		$this->redirect('index');
+	}
+	
+	/**
+	 * Move action for this controller.
+	 *
+	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
+	 * @dontvalidate $watchlistItem
+	 * @return void
+	 */
+	public function moveAction(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
+		
+		if($this->customer) {
+			
+			# remove the watchlist item
+			$this->customer->removeWatchlistItem($watchlistItem);
+			
+			# and add it to the cart
+			$uri = $this->uriBuilder
+				->reset()
+				->setTargetPageUid($this->settings['view']['cart']['pid'])
+				->uriFor('add', array('product' => $watchlistItem->getProduct()), 'Cart', 'HypeStore', 'Cart');
+			
+			$this->redirectToURI($uri);
+		}
+		
+		$this->redirect('index');
+	}
+	
+	/**
+	 * Remove action for this controller.
+	 *
+	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
+	 * @dontvalidate $watchlistItem
+	 * @return void
+	 */
+	public function removeAction(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
+		
+		if($this->customer) {
+			$this->customer->removeWatchlistItem($watchlistItem);
+			$this->flashMessages->add('The product ' . $watchlistItem->getProduct()->getTitle() . ' was removed from the watchlist.');
+		}
+		
 		$this->redirect('index');
 	}
 }

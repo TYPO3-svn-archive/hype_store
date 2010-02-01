@@ -24,8 +24,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Cart',
-	array('Cart' => 'index,update,add,remove'),
-	array('Cart' => 'index')
+	array('Cart' => 'index,update,add,remove,move'),
+	array('Cart' => 'index,update,add,remove,move')
 );
 
 # Checkout plugin
@@ -40,8 +40,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Watchlist',
-	array('Watchlist' => 'index'),
-	array('Watchlist' => 'index')
+	array('Watchlist' => 'index,add,remove,move'),
+	array('Watchlist' => 'index,add,remove,move')
 );
 
 t3lib_extMgm::addPageTSConfig('

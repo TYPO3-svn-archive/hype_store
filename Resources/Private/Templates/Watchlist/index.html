@@ -14,9 +14,9 @@
 						<li>
 							<p>
 								<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: watchlistItem.product, path: watchlistItem.product.rootline}">{watchlistItem.product.title}</f:link.action>
-								<f:if condition="{watchlistItem.product.flatPrice}"> {f:translate(key: 'product.stock_unit.I.{watchlistItem.product.stockUnit}')} á <em>{watchlistItem.price->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> = <em>{watchlistItem.priceSum->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></f:if>
 								<f:if condition="{watchlistItem.product.introduction}"><br />{watchlistItem.product.introduction}</f:if>
 								
+								<br /><f:link.action action="move" arguments="{watchlistItem: watchlistItem}">Move {watchlistItem.product.title} to the cart.</f:link.action>
 								<br /><f:link.action action="remove" arguments="{watchlistItem: watchlistItem}">Remove {watchlistItem.product.title} from the watchlist.</f:link.action>
 								
 								<f:form.hidden name="watchlistItems[{watchlistItem.uid}][__identity]" value="{watchlistItem.uid}"/>

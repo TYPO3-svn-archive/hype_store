@@ -66,6 +66,11 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
 			: $this->settings['view']['product']['pid'];
 		
+		# prepare watchlist pid (flexform hack)
+		$this->settings['view']['watchlist']['pid'] = (strpos($this->settings['view']['watchlist']['pid'], '_')) > 0
+			? substr($this->settings['view']['watchlist']['pid'], strpos($this->settings['view']['watchlist']['pid'], '_') + 1)
+			: $this->settings['view']['watchlist']['pid'];
+		
 		# load a known user
 		if($GLOBALS['TSFE']->fe_user->user) {
 			$this->customer = $this->customerRepository->findByUid((int)$GLOBALS['TSFE']->fe_user->user['uid']);
@@ -123,7 +128,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 					$this->customer->removeCartItem($cartItem);
 					
 					# add message: cart item was removed
-					$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' has been removed due to a entered quantity of zero.');
+					$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' was removed due to a quantity of zero.');
 					
 				# reset the quantity to the minimum if too low
 				} else if($cartItem->getQuantity() < $cartItem->getProduct()->getMinimumOrderQuantity()) {
@@ -132,7 +137,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 					$cartItem->setQuantity($cartItem->getProduct()->getMinimumOrderQuantity());
 					
 					# add message: cart item was removed
-					$this->flashMessages->add('The quantity of the product ' . $cartItem->getProduct()->getTitle() . ' was corrected to the minimum order quantity.');
+					$this->flashMessages->add('The quantity of the product ' . $cartItem->getProduct()->getTitle() . ' was raised to the minimum order quantity.');
 				}
 			}
 			
@@ -193,10 +198,36 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			}
 			
 			# display a success message
-			$this->flashMessages->add('The product ' . $product->getTitle() . ' was added.');
+			$this->flashMessages->add('The product ' . $product->getTitle() . ' was added to the cart.');
 		}
 		
 		# redirect to the cart
+		$this->redirect('index');
+	}
+	
+	/**
+	 * Move action for this controller.
+	 *
+	 * @param Tx_HypeStore_Domain_Model_CartItem $cartItem
+	 * @dontvalidate $cartItem
+	 * @return void
+	 */
+	public function moveAction(Tx_HypeStore_Domain_Model_CartItem $cartItem) {
+		
+		if($this->customer) {
+			
+			# remove the watchlist item
+			$this->customer->removeCartItem($cartItem);
+			
+			# and add it to the cart
+			$uri = $this->uriBuilder
+				->reset()
+				->setTargetPageUid($this->settings['view']['watchlist']['pid'])
+				->uriFor('add', array('product' => $cartItem->getProduct()), 'Watchlist', 'HypeStore', 'Watchlist');
+			
+			$this->redirectToURI($uri);
+		}
+		
 		$this->redirect('index');
 	}
 	
@@ -211,7 +242,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 		
 		if($this->customer) {
 			$this->customer->removeCartItem($cartItem);
-			$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' was removed.');
+			$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' was removed from the cart.');
 		}
 		
 		$this->redirect('index');

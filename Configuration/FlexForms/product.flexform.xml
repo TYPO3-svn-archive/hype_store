@@ -57,9 +57,9 @@
 						</TCEforms>
 					</settings.view.cart.pid>
 					
-					<settings.view.wishlist.pid>
+					<settings.view.watchlist.pid>
 						<TCEforms>
-							<label>Wishlist page</label>
+							<label>Watchlist page</label>
 							
 							<config>
 								<type>group</type>
@@ -71,7 +71,7 @@
 								<prepend_tname>0</prepend_tname>
 							</config>
 						</TCEforms>
-					</settings.view.wishlist.pid>
+					</settings.view.watchlist.pid>
 				</el>
 			</ROOT>
 		</sDEF>
