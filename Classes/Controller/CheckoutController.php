@@ -95,7 +95,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 		$this->registerSteps();
 		
 		# order steps based on their dependencies
-		$this->orderSteps();
+		$this->sortSteps();
 		
 		# determines the current step
 		$this->determineCurrentStep();
@@ -142,11 +142,11 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	}
 	
 	/**
-	 * Orders all registered steps (using topological sorting).
+	 * Sorts all registered steps (using topological sorting).
 	 *
 	 * @return void
 	 */
-	protected function orderSteps() {
+	protected function sortSteps() {
 		
 		# define empty stack
 		$steps = new Tx_Extbase_Persistence_ObjectStorage;
@@ -156,11 +156,11 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 		# loop through all steps
 		while($step = array_pop($temp)) {
 			
-			if($dependencies = $step->getDependencies()) {
+			if($step->hasDependencies()) {
 				
 				$isSatisfied = TRUE;
 				
-				foreach($dependencies as $dependency) {
+				foreach($step->getDependencies() as $dependency) {
 					if(!$steps->contains($dependency)) {
 						$isSatisfied = FALSE;
 						break;
@@ -228,6 +228,11 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 		
 		$this->prepareCurrentStep();
 		
+		$this->view->assign('section', $this->currentStep->processRequest($this->request, $this->response));
+	}
+	
+	public function validateAction() {
+		$this->prepareCurrentStep();
 		$this->view->assign('section', $this->currentStep->processRequest($this->request, $this->response));
 	}
 	

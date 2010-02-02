@@ -32,8 +32,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Checkout',
-	array('Checkout' => 'index'),
-	array('Checkout' => 'index')
+	array('Checkout' => 'index,validate'),
+	array('Checkout' => 'index,validate')
 );
 
 # Watchlist plugin

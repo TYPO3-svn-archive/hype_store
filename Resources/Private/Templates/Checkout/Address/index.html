@@ -17,7 +17,8 @@
 			{address.postcode}<br />
 			{address.city}<br />
 			{address.country}<br />
-			{address.phoneNumber}
+			{address.phoneNumber}<br />
+			<f:link.action action="validate" arguments="{address: address}">Send to {address.title}.</f:link.action>
 		</p>
 	</f:for>
 </f:section>

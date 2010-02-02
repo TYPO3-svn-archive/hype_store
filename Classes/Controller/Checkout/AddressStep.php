@@ -36,7 +36,7 @@ class Tx_HypeStore_Controller_Checkout_AddressStep extends Tx_HypeStore_Controll
 	protected $customerRepository;
 	
 	public function isValid() {
-		return FALSE;
+		return ($GLOBALS['TSFE']->fe_user->getKey('ses', 'tx_hypestore_checkout.address'));
 	}
 	
 	public function needsValidation() {
@@ -64,6 +64,22 @@ class Tx_HypeStore_Controller_Checkout_AddressStep extends Tx_HypeStore_Controll
 	
 	public function indexAction() {
 		$this->view->assign('customer', $this->customer);
+	}
+
+	/**
+	 * Validates the current step
+	 *
+	 * @param Tx_HypeStore_Domain_Model_CustomerAddress $address
+	 * @return void
+	 */
+	public function validateAction(Tx_HypeStore_Domain_Model_CustomerAddress $address = NULL) {
+		 
+		 if($address) {
+			$GLOBALS['TSFE']->fe_user->setKey('ses', 'tx_hypestore_checkout.address', serialize($address));
+			$GLOBALS['TSFE']->fe_user->storeSessionData();
+		 }
+		 
+		 $this->redirect('index');
 	}
 }
 ?>

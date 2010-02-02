@@ -53,7 +53,7 @@ abstract class Tx_HypeStore_Controller_Checkout_AbstractStep extends Tx_Extbase_
 		
 		$extbaseFrameworkConfiguration = Tx_Extbase_Dispatcher::getExtbaseFrameworkConfiguration();
 		
-		if (isset($extbaseFrameworkConfiguration['view']['templateRootPath']) && strlen($extbaseFrameworkConfiguration['view']['templateRootPath']) > 0) {
+		if(isset($extbaseFrameworkConfiguration['view']['templateRootPath']) && strlen($extbaseFrameworkConfiguration['view']['templateRootPath']) > 0) {
 			$view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath'] . 'Checkout/' .ucfirst($this->getName()) . '/' . strtolower($this->request->getControllerActionName())) . '.html');
 		} else {
 			$view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName('typo3conf/ext/hype_store/Resources/Private/Templates/Checkout/' .ucfirst($this->getName())  . '/' . strtolower($this->request->getControllerActionName())) . '.html');
