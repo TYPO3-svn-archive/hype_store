@@ -41,6 +41,7 @@ class Tx_HypeStore_Domain_Service_CartService implements t3lib_singleton {
 	 * @return float
 	 */
 	public function getTotalPrice(Tx_Extbase_Persistence_ObjectStorage $cartItems) {
+		
 		$price = 0;
 		
 		foreach($cartItems as $cartItem) {

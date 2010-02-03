@@ -39,6 +39,7 @@
 			<label index="tx_hypestore_domain_model_product.files">Files</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Manufacturer</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Price</label>
+			<label index="tx_hypestore_domain_model_product.tax">Tax</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Minimum order quantity</label>
 			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
 			<label index="tx_hypestore_domain_model_product.scaled_prices">Prices</label>
@@ -182,6 +183,7 @@
 			<label index="tx_hypestore_domain_model_product.files">Dateien</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Hersteller</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Preis</label>
+			<label index="tx_hypestore_domain_model_product.tax">Steuersatz</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Mindestbestellmenge</label>
 			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
 			<label index="tx_hypestore_domain_model_product.scaled_prices">Preise</label>

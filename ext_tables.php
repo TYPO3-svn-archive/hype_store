@@ -538,7 +538,7 @@ $columns = array(
 
 t3lib_div::loadTCA('fe_users');
 t3lib_extMgm::addTCAcolumns('fe_users', $columns, 1);
-t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;Store,tx_hypestore_domain_model_addresses,tx_hypestore_domain_model_orders,tx_hypestore_domain_model_cart_items,tx_hypestore_domain_model_watchlist_items', '', 'after:image');
+t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;Store,tx_hypestore_domain_model_addresses,tx_hypestore_domain_model_orders;;;;1-1-1,tx_hypestore_domain_model_cart_items;;;;1-1-1,tx_hypestore_domain_model_watchlist_items;;;;1-1-1', '', 'after:image');
 
 //$TCA['fe_users']['ctrl']['label'] = 'name';
 //$TCA['fe_users']['ctrl']['label_alt'] = 'username';

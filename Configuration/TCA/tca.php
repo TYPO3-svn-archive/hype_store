@@ -150,7 +150,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size' => 10240,
 				'uploadfolder' => 'uploads/hype/store/category/images',
-				'size' => 3,
+				'size' => 5,
 				'autoSizeMax' => 10,
 				'minitems' => 0,
 				'maxitems' => 999999,
@@ -163,8 +163,8 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 				'type' => 'select',
 				'foreign_table' => 'tx_hypestore_domain_model_category',
 				//'foreign_table_where' => 'AND tx_hypestore_domain_model_category.uid != ###THIS_UID###',
-				'size' => 5,
-				'autoSizeMax' => 25,
+				'size' => 10,
+				'autoSizeMax' => 20,
 				'minitems' => 0,
 				'maxitems' => 999999,
 				'MM' => 'tx_hypestore_relation_category_category',
@@ -258,7 +258,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 $TCA['tx_hypestore_domain_model_product'] = array(
 	'ctrl' => $TCA['tx_hypestore_domain_model_product']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,categories,introduction,description,images,files,manufacturer,minimum_order_quantity,flat_price,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks,states,events'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,categories,introduction,description,images,files,manufacturer,flat_price,tax,minimum_order_quantity,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks,states,events'
 	),
 	'feInterface' => $TCA['tx_hypestore_domain_model_product']['feInterface'],
 	'columns' => array(
@@ -435,7 +435,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size' => 10240,
 				'uploadfolder' => 'uploads/hype/store/product/images',
-				'size' => 3,
+				'size' => 5,
 				'autoSizeMax' => 10,
 				'minitems' => 0,
 				'maxitems' => 999999,
@@ -452,7 +452,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'disallowed' => 'php,php3',
 				'max_size' => 10240,
 				'uploadfolder' => 'uploads/hype/store/product/files',
-				'size' => 3,
+				'size' => 5,
 				'autoSizeMax' => 10,
 				'minitems' => 0,
 				'maxitems' => 100,
@@ -491,6 +491,16 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'size' => '5',
 				'eval' => 'double2',
 				'range' => array('lower' => 0),
+			),
+		),
+		'tax' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.tax',
+			'config' => array(
+				'type' => 'input',
+				'size' => '5',
+				'eval' => 'int',
+				'range' => array('lower' => 0, 'upper' => 100),
 			),
 		),
 		'scaled_prices' => array(
@@ -634,11 +644,11 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 	),
 	'types' => array(
 		'0' => array('showitem' => '
-			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, manufacturer;;;;1-1-1,
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, manufacturer;;;;1-1-1,
 			
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.states,		states,
@@ -647,7 +657,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 	),
 	'palettes' => array(
 		'1' => array('showitem' => 'starttime, endtime, fe_group'),
-		'2' => array('showitem' => 'subtitle, identifier'),
+		'2' => array('showitem' => 'subtitle'),
 	),
 );
 
@@ -782,7 +792,7 @@ $TCA['tx_hypestore_domain_model_product_state'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => '5',
-				'eval' => 'int,required',
+				'eval' => 'required,int',
 				'range' => array('lower' => 0),
 			),
 		),
@@ -1382,7 +1392,7 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.unit',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '5',
 				'eval' => 'trim',
 			),
 		),
@@ -1646,7 +1656,7 @@ $TCA['tx_hypestore_domain_model_product_price'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_price.quantity',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '5',
 				'eval' => 'required,int',
 				'range' => array('lower' => 0),
 			),
@@ -1656,7 +1666,7 @@ $TCA['tx_hypestore_domain_model_product_price'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_price.value',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '5',
 				'eval' => 'required,double2',
 				'range' => array('lower' => 0),
 			),
@@ -1788,7 +1798,7 @@ $TCA['tx_hypestore_domain_model_cart_item'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_cart_item.quantity',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '5',
 				'eval' => 'required,int',
 				'range' => array('lower' => 0),
 			),

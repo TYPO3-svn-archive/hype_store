@@ -16,7 +16,7 @@
 								<p>
 									<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: cartItem.product, path: cartItem.product.rootline}">{cartItem.product.title}</f:link.action>
 									&times; <f:form.textbox name="cartItems[{cartItem.uid}][quantity]" value="{cartItem.quantity}" size="2"/>
-									<f:if condition="{cartItem.product.flatPrice}"> {f:translate(key: 'product.stock_unit.I.{cartItem.product.stockUnit}')} á <em>{cartItem.price->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> = <em>{cartItem.priceSum->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></f:if>
+									<f:if condition="{cartItem.product.grossPrice}"> {f:translate(key: 'product.stock_unit.I.{cartItem.product.stockUnit}')} á <em>{cartItem.price->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> = <em>{cartItem.priceSum->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></f:if>
 									<f:if condition="{cartItem.product.introduction}"><br />{cartItem.product.introduction}</f:if>
 									
 									<br /><f:link.action action="move" arguments="{cartItem: cartItem}">Move <em>{cartItem.product.title}</em> to the watchlist.</f:link.action>
@@ -32,7 +32,7 @@
 				</f:form>
 			</div>
 			
-			<p class="totalPrice"><strong>Total sum:</strong> <em>{totalPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> including 20% VAT</p>
+			<p class="totalPrice"><strong>Total sum:</strong> <em>{totalPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> including VAT</p>
 			
 			<f:if condition="{settings.common.feature.checkout}">
 				<f:link.action pluginName="Checkout" controller="Checkout" pageUid="{settings.view.checkout.pid}">Order products &rsaquo;</f:link.action>

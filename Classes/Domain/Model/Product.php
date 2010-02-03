@@ -98,7 +98,13 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @var float
 	 */
 	protected $flatPrice;
-	
+
+	/**
+	 * @var int
+	 * validate Integer
+	 */
+	protected $tax;
+
 	/**
 	 * @var integer
 	 */
@@ -508,6 +514,25 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	public function getFlatPrice() {
 		return $this->flatPrice;
 	}
+
+	/**
+	 * Setter for tax
+	 *
+	 * @param int $tax
+	 * @return void
+	 */
+	public function setTax($tax) {
+		$this->tax = $tax;
+	}
+
+	/**
+	 * Getter for tax
+	 *
+	 * @return int
+	 */
+	public function getTax() {
+		return $this->tax;
+	}
 	
 	/**
 	 * Setter for minimum order quantity
@@ -809,7 +834,16 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	
 	
 	/* Service methods */
-	
+
+	/**
+	 * Gets the calculated gross price
+	 *
+	 * @return double
+	 */
+	public function getGrossPrice() {
+		return $this->productService->getPrice($this);
+	}
+
 	/**
 	 * Gets the calculated stock quantity
 	 *

@@ -133,7 +133,6 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	
 	
 	/* Service methods */
-	
 	public function getPrice() {
 		return $this->productService->getPrice($this->getProduct(), $this->getQuantity());
 	}

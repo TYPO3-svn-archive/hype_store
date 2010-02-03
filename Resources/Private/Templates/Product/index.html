@@ -67,11 +67,11 @@
 			</dl>
 		</f:if>
 		
-		<!-- product.flatPrice -->
+		<!-- product.grossPrice -->
 		<f:if condition="{product.flatPrice}">
 			<dl class="flat_price">
-				<dt>Price including. 20% VAT</dt>
-				<dd><em>{product.flatPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+				<dt>Price<f:if condition="{product.tax}"> incl. {product.tax}% VAT</f:if></dt>
+				<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
 			</dl>
 		</f:if>
 		
@@ -83,7 +83,7 @@
 				<ul>
 					<f:for each="{product.scaledPrices}" as="price">
 						<li>
-							Price for {price.quantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}: <em>{price.value->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em><br />
+							Price for {price.quantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}: <em>{price.grossValue->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em><br />
 							<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product, quantity: price.quantity}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {price.quantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em> into the cart.</f:link.action>
 						</li>
 					</f:for>

@@ -61,6 +61,7 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	manufacturer int(11) DEFAULT '0' NOT NULL,
 	minimum_order_quantity int(11) DEFAULT '0' NOT NULL,
 	flat_price double(11,2) DEFAULT '0.00' NOT NULL,
+	tax int(2) DEFAULT '0' NOT NULL,
 	scaled_prices int(11) DEFAULT '0' NOT NULL,
 	attributes int(11) DEFAULT '0' NOT NULL,
 	related_products int(11) DEFAULT '0' NOT NULL,

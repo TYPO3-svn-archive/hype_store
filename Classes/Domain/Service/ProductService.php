@@ -42,16 +42,22 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 	 * @return float
 	 */
 	public function getPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1) {
-		
+
+		# get flat price
 		$price = $product->getFlatPrice();
-		
+
+		# get the "best price" if a scaled price matches the given quantity
 		foreach($product->getScaledPrices() as $scaledPrice) {
 			if($quantity >= $scaledPrice->getQuantity()) {
 				$price = min($price, $scaledPrice->getValue());
 			}
 		}
 		
-		return $price;
+		# add tax
+		$price = $price + ($price * ($product->getTax() / 100));
+		
+		# return a rounded price for correct quantity calculation
+		return round($price, 2);
 	}
 	
 	/**
@@ -63,6 +69,7 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 	public function getStock(Tx_HypeStore_Domain_Model_Product $product) {
 		
 		$quantity = 0;
+		
 		foreach($product->getStocks() as $stock) {
 			$quantity += $stock->getQuantity();
 		}

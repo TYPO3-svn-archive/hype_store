@@ -49,15 +49,25 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
-	 * @lazy
 	 */
 	protected $product;
 	
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
-		
+	//public function __construct() {
+	//
+	//}
+
+	/**
+	 * Initialization
+	 *
+	 * return void
+	 */
+	public function initializeObject() {
+
+		# initialize the price calculation service
+		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
 	
 	/**
@@ -116,6 +126,21 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	public function getProduct() {
 		return $this->product;
 	}
+	
+	
+	
+	/* Service methods */
+	
+	/**
+	 * Gets the calculated gross price
+	 *
+	 * @return double
+	 */
+	public function getGrossValue() {
+		return $this->productService->getPrice($this->getProduct(), $this->getQuantity());
+	}
+	
+	
 	
 	/**
 	 * Returns as a formatted string
