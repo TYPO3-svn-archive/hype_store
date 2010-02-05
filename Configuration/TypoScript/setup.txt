@@ -109,9 +109,14 @@ plugin.tx_hypestore {
 				name = {$plugin.tx_hypestore.settings.common.currency.name}
 			}
 			
+			tax {
+				value = {$plugin.tx_hypestore.settings.common.tax.value}
+			}
+			
 			feature {
 				cart = {$plugin.tx_hypestore.settings.common.feature.cart}
 				checkout = {$plugin.tx_hypestore.settings.common.feature.checkout}
+				watchlist = {$plugin.tx_hypestore.settings.common.feature.watchlist}
 			}
 		}
 		

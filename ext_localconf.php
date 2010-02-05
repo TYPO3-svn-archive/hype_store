@@ -44,6 +44,14 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Watchlist' => 'index,add,remove,move')
 );
 
+# Address plugin
+Tx_Extbase_Utility_Extension::configurePlugin(
+	$_EXTKEY,
+	'Address',
+	array('Address' => 'index,create,edit,save,delete'),
+	array('Address' => 'index,create,edit,save,delete')
+);
+
 t3lib_extMgm::addPageTSConfig('
 	# ***************************************************************************************
 	# CONFIGURATION of RTE in table "tx_hypestore_category", field "description"

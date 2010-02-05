@@ -18,6 +18,7 @@ Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Product', 'Hype Store, P
 Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Cart', 'Hype Store, Cart');
 Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Checkout', 'Hype Store, Checkout');
 Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Watchlist', 'Hype Store, Watchlist');
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Address', 'Hype Store, Address');
 
 # Flexforms
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['hypestore_category'] = 'layout,select_key';

@@ -12,9 +12,14 @@ plugin.tx_hypestore {
 				name = Euro
 			}
 			
+			tax {
+				value = 20
+			}
+			
 			feature {
 				cart = 1
 				checkout = 1
+				watchlist = 1
 			}
 		}
 		

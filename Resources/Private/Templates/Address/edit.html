@@ -1,0 +1,55 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:layout name="default" />
+
+<f:section name="content">
+
+	<f:form name="address" object="{address}" action="save">
+		<fieldset>
+			<f:if condition="{address}">
+				<f:then>
+					<legend>Edit {address.title}</legend>
+				</f:then>
+				
+				<f:else>
+					<legend>Create new address</legend>
+				</f:else>
+			</f:if>
+
+			<label for="">Title</label>
+			<f:form.textbox property="title"/><br />
+
+			<label for="">Name</label>
+			<f:form.textbox property="name"/><br />
+
+			<label for="">Company</label>
+			<f:form.textbox property="company"/><br />
+
+			<label for="">Street</label>
+			<f:form.textbox property="street"/><br />
+
+			<label for="">Stair</label>
+			<f:form.textbox property="stair"/><br />
+
+			<label for="">Floor</label>
+			<f:form.textbox property="floor"/><br />
+
+			<label for="">Door</label>
+			<f:form.textbox property="door"/><br />
+
+			<label for="">Postcode</label>
+			<f:form.textbox property="postcode"/><br />
+
+			<label for="">City</label>
+			<f:form.textbox property="city"/><br />
+
+			<label for="">Country</label>
+			<f:form.textbox property="country"/><br />
+
+			<label for="">Telephone</label>
+			<f:form.textbox property="telephoneNumber"/><br />
+			
+			<f:form.submit value="Save address"/>
+		</fieldset>
+	</f:form>
+</f:section>

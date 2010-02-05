@@ -1,0 +1,41 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:layout name="default" />
+
+<f:section name="content">
+	<!-- addresses -->
+	<f:if condition="{addresses}">
+		<f:then>
+			<div class="addresses">
+				<h2>Adresses</h2>
+
+				<f:for each="{addresses}" as="address">
+					<div class="address">
+						<p>
+							<strong>{address.title}</strong><br />
+							<f:if condition="{address.name}">{address.name}<br /></f:if>
+							<f:if condition="{address.company}">{address.company}<br /></f:if>
+							<f:if condition="{address.street}">{address.street}<f:if condition="{address.door}"> / {address.door}</f:if><br /></f:if>
+							<f:if condition="{address.stair}">Stair: {address.stair}<br /></f:if>
+							<f:if condition="{address.floor}">Floor: {address.floor}<br /></f:if>
+							<f:if condition="{address.city}"><f:if condition="{address.postcode}">{address.postcode}</f:if> {address.city}<br /></f:if>
+							<f:if condition="{address.country}">Country: {address.country}<br /></f:if>
+							<f:if condition="{address.telephoneNumber}">Telephone: {address.telephoneNumber}</f:if>
+						</p>
+						
+						<p>
+							<f:link.action action="edit" arguments="{address: address}">Edit address</f:link.action>
+							<f:link.action action="delete" arguments="{address: address}">Delete address</f:link.action>
+						</p>
+					</div>
+				</f:for>
+			</div>
+		</f:then>
+
+		<f:else>
+			<p>There are no addresses defined.</p>
+		</f:else>
+	</f:if>
+	
+	<p><f:link.action action="create">Add new address</f:link.action></p>
+</f:section>

@@ -2032,6 +2032,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 				'size' => 1,
 				'minitems' => 1,
 				'maxitems' => 1,
+				'eval' => 'required',
 			),
 		),
 		'title' => array(
@@ -2040,7 +2041,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'trim',
+				'eval' => 'required,trim',
 			),
 		),
 		'name' => array(
@@ -2049,7 +2050,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'trim',
+				'eval' => 'required,trim',
 			),
 		),
 		'company' => array(
@@ -2067,7 +2068,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'trim',
+				'eval' => 'required,trim',
 			),
 		),
 		'stair' => array(
@@ -2075,7 +2076,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_customer_address.stair',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '3',
 				'eval' => 'trim',
 			),
 		),
@@ -2084,7 +2085,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_customer_address.floor',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '3',
 				'eval' => 'trim',
 			),
 		),
@@ -2093,7 +2094,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_customer_address.door',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '3',
 				'eval' => 'trim',
 			),
 		),
@@ -2102,7 +2103,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_customer_address.postcode',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '5',
 				'eval' => 'trim',
 			),
 		),
@@ -2112,7 +2113,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'trim',
+				'eval' => 'required,trim',
 			),
 		),
 		'country' => array(
@@ -2121,7 +2122,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'trim',
+				'eval' => 'required,trim',
 			),
 		),
 		'telephone_number' => array(
@@ -2136,11 +2137,13 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 	),
 	'types' => array(
 		'0' => array('showitem' => '
-			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1,customer,title,name,company,street,stair,floor,door,postcode,city,country,telephone_number
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1,customer,title,name;;;;1-1-1,company,street;;2;;,city;;3;;,country,telephone_number;;;;1-1-1
 		'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => 'starttime, endtime, fe_group'),
+		'2' => array('showitem' => 'stair, floor, door'),
+		'3' => array('showitem' => 'postcode'),
 	),
 );
 
