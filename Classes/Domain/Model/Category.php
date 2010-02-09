@@ -94,6 +94,17 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	}
 	
 	/**
+	 * Initialization
+	 *
+	 * return void
+	 */
+	public function initializeObject() {
+		
+		# initialize the category service
+		$this->categoryService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_CategoryService');
+	}
+	
+	/**
 	 * Setter for title
 	 *
 	 * @param string $title
@@ -375,6 +386,21 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 		}
 		
 		return clone $this->products;
+	}
+
+
+
+	/* Custom getter methods */
+
+	/**
+	 * Returns all descendent products
+	 *
+	 * @return array
+	 */
+	public function getDescendentProducts() {
+
+		# get the desdendent products from the service
+		return $this->categoryService->getDescendentProducts($this);
 	}
 	
 	

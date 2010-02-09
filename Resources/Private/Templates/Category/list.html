@@ -55,6 +55,38 @@
 					</ul>
 				</div>
 			</f:if>
+
+			<!-- category.descendentProducts -->
+			<f:if condition="{category.descendentProducts}">
+				<div class="products">
+					<h2>Produkte (Nachfahren)</h2>
+
+					<ul>
+						<f:for each="{category.descendentProducts}" as="product">
+							<li>
+								<!-- product.title -->
+								<h3><f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{product.rootline}'}">{product.title}</f:link.action></h3>
+
+								<!-- product.introduction -->
+								<f:if condition="{product.introduction}">
+									<p class="introduction">{product.introduction->f:format.nl2br()}</p>
+								</f:if>
+								
+								<!-- product.images -->
+								<f:if condition="{product.images}">
+									<f:for each="{product.images}" as="image">
+										<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{image}')}">
+											<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{product.rootline}'}">
+												<f:image src="{settings.object.product.field.images.path}{image}" maxWidth="{settings.view.category.action.list.object.product.field.images.maxWidth}" maxHeight="{settings.view.category.action.list.object.product.field.images.maxHeight}" alt="{product.title}" />
+											</f:link.action>
+										</f:if>
+									</f:for>
+								</f:if>
+							</li>
+						</f:for>
+					</ul>
+				</div>
+			</f:if>
 			
 			<!-- category.categories -->
 			<f:if condition="{category.categories}">
@@ -110,7 +142,7 @@
 		</f:then>
 		
 		<f:else>
-			<p>Keine Kategorie verfügbar.</p>
+			<p>Keine Kategorie verfï¿½gbar.</p>
 		</f:else>
 	</f:if>
 </f:section>

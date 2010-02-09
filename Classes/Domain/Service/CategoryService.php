@@ -48,5 +48,28 @@ class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 			return $category;
 		}
 	}
+	
+	/**
+	 * Returns the descendent products of the given and all child categories
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Category $category
+	 * @return array
+	 */
+	public function getDescendentProducts(Tx_HypeStore_Domain_Model_Category $category) {
+
+		# get direct products
+		$products = $category->getProducts()->toArray();
+
+		if(count($category->getCategories()) > 0) {
+
+			foreach($category->getCategories() as $childCategory) {
+				$products = $this->getDescendentProducts($childCategory) + $products;
+			}
+
+			return $products;
+		} else {
+			return $products;
+		}
+	}
 }
 ?>
