@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * A customer address
+ * Customer Address
  *
  * @package HypeStore
  * @subpackage Domain\Model
@@ -111,7 +111,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	 * @param Tx_HypeStore_Domain_Model_Customer $customer
 	 */
 	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
-		$this->customer = clone $customer;
+		$this->customer = $customer;
 	}
 	
 	/**
@@ -124,7 +124,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 			$this->customer->_loadRealInstance();
 		}
 		
-		return clone $this->customer;
+		return $this->customer;
 	}
 	
 	/**

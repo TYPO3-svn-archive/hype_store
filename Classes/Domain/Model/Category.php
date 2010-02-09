@@ -43,7 +43,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	
 	/**
 	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
+	 * @validate StringLength(minimum = 0, maximum = 255)
 	 */
 	protected $subtitle;
 	
@@ -87,6 +87,8 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * Constructor
 	 */
 	public function __construct() {
+		parent::__construct();
+		
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->products = new Tx_Extbase_Persistence_ObjectStorage();
 	}
@@ -264,6 +266,10 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getParentCategories() {
+		if($this->parentCategories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->parentCategories->_loadRealInstance();
+		}
+		
 		return clone $this->parentCategories;
 	}
 	
@@ -312,6 +318,10 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getCategories() {
+		if($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->categories->_loadRealInstance();
+		}
+		
 		return clone $this->categories;
 	}
 	
@@ -360,8 +370,16 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getProducts() {
+		if($this->products instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->products->_loadRealInstance();
+		}
+		
 		return clone $this->products;
 	}
+	
+	
+	
+	/* Magic methods */
 	
 	/**
 	 * Returns as a formatted string

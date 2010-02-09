@@ -43,7 +43,7 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	
 	/**
 	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
+	 * @validate StringLength(minimum = 0, maximum = 255)
 	 */
 	protected $unit;
 	
@@ -57,7 +57,7 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	 * Constructor
 	 */
 	public function __construct() {
-		
+		parent::__construct();
 	}
 	
 	/**
@@ -116,6 +116,10 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	public function getType() {
 		return $this->type;
 	}
+	
+	
+	
+	/* Magic methods */
 	
 	/**
 	 * Returns as a formatted string

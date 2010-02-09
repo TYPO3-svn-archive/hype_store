@@ -56,7 +56,7 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	 * Constructor
 	 */
 	public function __construct() {
-		
+		parent::__construct();
 	}
 	
 	/**
@@ -113,8 +113,16 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	 * @return Tx_HypeStore_Domain_Model_Product
 	 */
 	public function getProduct() {
+		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->product->_loadRealInstance();
+		}
+		
 		return $this->product;
 	}
+	
+	
+	
+	/* Magic methods */
 	
 	/**
 	 * Returns as a formatted string
@@ -122,23 +130,7 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->getAttribute()->getTitle() . ': ' . $this->getValue();
+		return $this->getAttribute()->getTitle();
 	}
-	
-	
-	
-	
-	
-	/**
-	 * Returns the blog this post is part of
-	 *
-	 * @return Tx_BlogExample_Domain_Model_Blog The blog this post is part of
-	 */
-	/*public function getBlog() {
-		if ($this->blog instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->blog->_loadRealInstance();
-		}
-		return $this->blog;
-	}*/
 }
 ?>

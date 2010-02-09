@@ -49,16 +49,10 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
+	 * @lazy
 	 */
 	protected $product;
 	
-	/**
-	 * Constructor
-	 */
-	//public function __construct() {
-	//
-	//}
-
 	/**
 	 * Initialization
 	 *
@@ -124,6 +118,10 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	 * @return Tx_HypeStore_Domain_Model_Product
 	 */
 	public function getProduct() {
+		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->product->_loadRealInstance();
+		}
+		
 		return $this->product;
 	}
 	
@@ -132,7 +130,7 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	/* Service methods */
 	
 	/**
-	 * Gets the calculated gross price
+	 * Gets the calculated gross value
 	 *
 	 * @return double
 	 */
@@ -142,13 +140,15 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	
 	
 	
+	/* Magic methods */
+	
 	/**
 	 * Returns as a formatted string
 	 *
 	 * @return string
 	 */
 	public function __toString() {
-		//return (string)$this->getValue();
+		return (string)$this->getValue();
 	}
 }
 ?>

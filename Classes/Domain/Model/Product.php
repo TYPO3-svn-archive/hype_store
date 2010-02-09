@@ -43,7 +43,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	
 	/**
 	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
+	 * @validate StringLength(minimum = 0, maximum = 255)
 	 */
 	protected $subtitle;
 	
@@ -91,6 +91,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Manufacturer
+	 * @lazy
 	 */
 	protected $manufacturer;
 	
@@ -159,6 +160,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * Constructor
 	 */
 	public function __construct() {
+		parent::__construct();
 		
 		$this->categories		= new Tx_Extbase_Persistence_ObjectStorage();
 		$this->relatedProducts	= new Tx_Extbase_Persistence_ObjectStorage();
@@ -167,7 +169,6 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 		$this->stocks			= new Tx_Extbase_Persistence_ObjectStorage();
 		$this->states			= new Tx_Extbase_Persistence_ObjectStorage();
 		$this->events			= new Tx_Extbase_Persistence_ObjectStorage();
-		
 		$this->date				= new DateTime();
 	}
 	
@@ -322,6 +323,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getCategories() {
+		if($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->categories->_loadRealInstance();
+		}
+		
 		return clone $this->categories;
 	}
 	
@@ -370,6 +375,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getRelatedProducts() {
+		if($this->relatedProducts instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->relatedProducts->_loadRealInstance();
+		}
+		
 		return clone $this->relatedProducts;
 	}
 	
@@ -484,7 +493,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function setManufacturer(Tx_HypeStore_Domain_Model_Manufacturer $manufacturer) {
-		$this->manufacturer = clone $manufacturer;
+		$this->manufacturer = $manufacturer;
 	}
 	
 	/**
@@ -493,6 +502,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_HypeStore_Domain_Model_Manufacturer
 	 */
 	public function getManufacturer() {
+		if($this->manufacturer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->manufacturer->_loadRealInstance();
+		}
+		
 		return $this->manufacturer;
 	}
 	
@@ -598,6 +611,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getScaledPrices() {
+		if($this->scaledPrices instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->scaledPrices->_loadRealInstance();
+		}
+		
 		return clone $this->scaledPrices;
 	}
 	
@@ -646,6 +663,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getAttributes() {
+		if($this->attributes instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->attributes->_loadRealInstance();
+		}
+		
 		return clone $this->attributes;
 	}
 	
@@ -732,6 +753,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getStocks() {
+		if($this->stocks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->stocks->_loadRealInstance();
+		}
+		
 		return clone $this->stocks;
 	}
 	
@@ -780,6 +805,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getStates() {
+		if($this->states instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->states->_loadRealInstance();
+		}
+		
 		return clone $this->states;
 	}
 	
@@ -828,6 +857,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getEvents() {
+		if($this->events instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->events->_loadRealInstance();
+		}
+		
 		return clone $this->events;
 	}
 	
@@ -843,7 +876,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	public function getGrossPrice() {
 		return $this->productService->getPrice($this);
 	}
-
+	
 	/**
 	 * Gets the calculated stock quantity
 	 *
@@ -862,6 +895,11 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 		return $this->productService->getRootlines($this);
 	}
 	
+	/**
+	 * Returns the first rootline of this product
+	 *
+	 * @return array
+	 */
 	public function getRootline() {
 		return array_shift($this->getRootlines())->__toString();
 	}

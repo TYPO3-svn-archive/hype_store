@@ -37,6 +37,7 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 	
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
+	 * @lazy
 	 */
 	protected $customer;
 	
@@ -47,7 +48,7 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return void
 	 */
 	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
-		$this->customer = clone $customer;
+		$this->customer = $customer;
 	}
 	
 	/**
@@ -56,7 +57,24 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return Tx_HypeStore_Domain_Model_Customer
 	 */
 	public function getCustomer() {
-		return clone $this->customer;
+		if($this->customer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->customer->_loadRealInstance();
+		}
+		
+		return $this->customer;
+	}
+	
+	
+	
+	/* Magic methods */
+	
+	/**
+	 * Returns as a formatted string
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return '';
 	}
 }
 ?>

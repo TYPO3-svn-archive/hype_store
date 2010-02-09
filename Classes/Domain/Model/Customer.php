@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * A customer
+ * Customer
  *
  * @package HypeStore
  * @subpackage Domain\Model
@@ -35,28 +35,34 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_CustomerAddress>
+	 * @lazy
+	 * @cascade remove
 	 */
 	protected $addresses;
 	
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Order>
+	 * @lazy
+	 * @cascade remove
 	 */
 	protected $orders;
 	
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_CartItem>
+	 * @lazy
+	 * @cascade remove
 	 */
 	protected $cartItems;
 	
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_WatchlistItem>
+	 * @lazy
+	 * @cascade remove
 	 */
 	protected $watchlistItems;
 	
 	/**
-	 * Constructs a new customer
-	 *
-	 * @api
+	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
@@ -112,6 +118,10 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getAddresses() {
+		if($this->addresses instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->addresses->_loadRealInstance();
+		}
+		
 		return clone $this->addresses;
 	}
 	
@@ -160,6 +170,10 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getOrders() {
+		if($this->orders instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->orders->_loadRealInstance();
+		}
+		
 		return clone $this->orders;
 	}
 	
@@ -208,21 +222,12 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getCartItems() {
+		if($this->cartItems instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->cartItems->_loadRealInstance();
+		}
+		
 		return clone $this->cartItems;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/**
 	 * Setter for watchlist items
@@ -269,6 +274,10 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_Fronten
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getWatchlistItems() {
+		if($this->watchlistItems instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->watchlistItems->_loadRealInstance();
+		}
+		
 		return clone $this->watchlistItems;
 	}
 }

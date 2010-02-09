@@ -73,6 +73,8 @@ class Tx_HypeStore_Domain_Model_ProductState extends Tx_Extbase_DomainObject_Abs
 	 * Constructor
 	 */
 	public function __construct() {
+		parent::__construct();
+		
 		$this->disposalDate = new DateTime;
 		$this->returnDate = new DateTime;
 	}
@@ -93,6 +95,10 @@ class Tx_HypeStore_Domain_Model_ProductState extends Tx_Extbase_DomainObject_Abs
 	 * @return Tx_HypeStore_Domain_Model_Product
 	 */
 	public function getProduct() {
+		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->product->_loadRealInstance();
+		}
+		
 		return $this->product;
 	}
 	
@@ -112,6 +118,10 @@ class Tx_HypeStore_Domain_Model_ProductState extends Tx_Extbase_DomainObject_Abs
 	 * @return Tx_HypeStore_Domain_Model_Depot
 	 */
 	public function getDepot() {
+		if($this->depot instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->depot->_loadRealInstance();
+		}
+		
 		return $this->depot;
 	}
 	
@@ -193,13 +203,17 @@ class Tx_HypeStore_Domain_Model_ProductState extends Tx_Extbase_DomainObject_Abs
 		return $this->type;
 	}
 	
+	
+	
+	/* Magic methods */
+	
 	/**
 	 * Returns as a formatted string
 	 *
 	 * @return string
 	 */
 	public function __toString() {
-		//return (string)$this->getValue();
+		return (string)$this->getType();
 	}
 }
 ?>

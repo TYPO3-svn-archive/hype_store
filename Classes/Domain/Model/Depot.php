@@ -68,12 +68,14 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_DepotStock>
 	 * @lazy
+	 * @cascade remove
 	 */
 	protected $stocks;
 	
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductState>
 	 * @lazy
+	 * @cascade remove
 	 */
 	protected $states;
 	
@@ -81,6 +83,8 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * Constructor
 	 */
 	public function __construct() {
+		parent::__construct();
+		
 		$this->stocks = new Tx_Extbase_Persistence_ObjectStorage;
 		$this->states = new Tx_Extbase_Persistence_ObjectStorage;
 	}
@@ -225,6 +229,10 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getStocks() {
+		if($this->stocks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->stocks->_loadRealInstance();
+		}
+		
 		return clone $this->stocks;
 	}
 	
@@ -273,8 +281,16 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getStates() {
+		if($this->states instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->states->_loadRealInstance();
+		}
+		
 		return clone $this->states;
 	}
+	
+	
+	
+	/* Magic methods */
 	
 	/**
 	 * Returns as a formatted string
