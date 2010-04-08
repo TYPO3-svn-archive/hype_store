@@ -33,6 +33,7 @@
 			<label index="tx_hypestore_domain_model_product.title">Title</label>
 			<label index="tx_hypestore_domain_model_product.subtitle">Subtitle</label>
 			<label index="tx_hypestore_domain_model_product.identifier">Identifier</label>
+			<label index="tx_hypestore_domain_model_product.gtin">GTIN (Global Trade Item Number)</label>
 			<label index="tx_hypestore_domain_model_product.introduction">Introduction</label>
 			<label index="tx_hypestore_domain_model_product.description">Description</label>
 			<label index="tx_hypestore_domain_model_product.images">Images</label>
@@ -177,6 +178,7 @@
 			<label index="tx_hypestore_domain_model_product.title">Titel</label>
 			<label index="tx_hypestore_domain_model_product.subtitle">Untertitel</label>
 			<label index="tx_hypestore_domain_model_product.identifier">Kennung</label>
+			<label index="tx_hypestore_domain_model_product.gtin">GTIN (Global Trade Item Number)</label>
 			<label index="tx_hypestore_domain_model_product.introduction">Kurztext</label>
 			<label index="tx_hypestore_domain_model_product.description">Beschreibung</label>
 			<label index="tx_hypestore_domain_model_product.images">Bilder</label>

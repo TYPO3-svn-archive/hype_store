@@ -1,6 +1,6 @@
 includeLibs.tx_hypestore_menu = EXT:hype_store/Classes/Hook/class.tx_hypestore_menu.php
 
-config.tx_extbase {
+plugin.tx_hypestore {
 	persistence {
 		classes {
 			Tx_HypeStore_Domain_Model_Customer {
@@ -92,10 +92,6 @@ config.tx_extbase {
 }
 
 plugin.tx_hypestore {
-	persistence {
-		storagePid = 
-	}
-	
 	settings {
 		
 		common {

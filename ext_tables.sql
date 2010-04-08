@@ -53,6 +53,7 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	title varchar(255) DEFAULT '' NOT NULL,
 	subtitle varchar(255) DEFAULT '' NOT NULL,
 	identifier varchar(255) DEFAULT '' NOT NULL,
+	gtin bigint(14) DEFAULT '0' NOT NULL,
 	introduction text,
 	description text,
 	images text,

@@ -55,18 +55,18 @@
 					</ul>
 				</div>
 			</f:if>
-
+			
 			<!-- category.descendentProducts -->
 			<f:if condition="{category.descendentProducts}">
 				<div class="products">
 					<h2>Produkte (Nachfahren)</h2>
-
+					
 					<ul>
 						<f:for each="{category.descendentProducts}" as="product">
 							<li>
 								<!-- product.title -->
 								<h3><f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{product.rootline}'}">{product.title}</f:link.action></h3>
-
+								
 								<!-- product.introduction -->
 								<f:if condition="{product.introduction}">
 									<p class="introduction">{product.introduction->f:format.nl2br()}</p>

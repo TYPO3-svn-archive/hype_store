@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
+*  (c) 2010 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -101,13 +101,14 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	protected $flatPrice;
 
 	/**
-	 * @var int
+	 * @var integer
 	 * validate Integer
 	 */
 	protected $tax;
 
 	/**
 	 * @var integer
+	 * validate Integer
 	 */
 	protected $minimumOrderQuantity;
 	
@@ -127,16 +128,18 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	
 	/**
 	 * @var integer
+	 * validate Integer
 	 */
 	protected $stockThreshold;
 	
 	/**
 	 * @var integer
+	 * validate Integer
 	 */
 	protected $stockUnit;
 	
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_DepotStock>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductStock>
 	 * @lazy
 	 * @cascade remove
 	 */
@@ -885,9 +888,9 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	public function getStock() {
 		return $this->productService->getStock($this);
 	}
-
-
-
+	
+	
+	
 	/* Service methods */
 
 	/**
