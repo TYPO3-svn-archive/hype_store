@@ -25,6 +25,31 @@
 /**
  * A repository for Products
  */
-class Tx_HypeStore_Domain_Repository_ProductRepository extends Tx_Extbase_Persistence_Repository {			
+class Tx_HypeStore_Domain_Repository_ProductRepository extends Tx_Extbase_Persistence_Repository {
+	
+	/**
+	 * Finds all products which are assigned to at least one of the given categories
+	 *
+	 * @param array $categories
+	 * @return array
+	 */
+	public function findWithCategories($categories) {
+		
+		# create a new query
+		$query = $this->createQuery();
+		$query->setOrderings(array('title' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING));
+		
+		# chain constraints
+		$constraints = array();
+		foreach($categories as $category) {
+			array_push($constraints, $query->contains('categories', $category));
+		}
+		
+		# apply constraints
+		$query->matching($query->logicalOr($constraints));
+		
+		# return results
+		return $query->execute();
+	}
 }
 ?>

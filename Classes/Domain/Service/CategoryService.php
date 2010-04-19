@@ -28,6 +28,14 @@
 class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 	
 	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		# instantiate the product repository
+		$this->productRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_ProductRepository');
+	}
+	
+	/**
 	 * Determines the existing rootlines for a given category
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
@@ -50,26 +58,43 @@ class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 	}
 	
 	/**
-	 * Returns the descendent products of the given and all child categories
+	 * Returns all descendent categories of the given category
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Category $category
+	 * @return array
+	 */
+	public function getDescendentCategories(Tx_HypeStore_Domain_Model_Category $category) {
+		
+		# get direct categories
+		$categories = $category->getCategories()->toArray();
+		
+		if(count($categories) > 0) {
+			foreach($categories as $childCategory) {
+				$categories = $this->getDescendentCategories($childCategory) + $categories;
+			}
+			
+			return $categories;
+		} else {
+			return $categories;
+		}
+	}
+	
+	/**
+	 * Returns all products of the given and all descendent categories
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return array
 	 */
 	public function getDescendentProducts(Tx_HypeStore_Domain_Model_Category $category) {
-
-		# get direct products
-		$products = $category->getProducts()->toArray();
-
-		if(count($category->getCategories()) > 0) {
-
-			foreach($category->getCategories() as $childCategory) {
-				$products = $this->getDescendentProducts($childCategory) + $products;
-			}
-
-			return $products;
-		} else {
-			return $products;
+		
+		# get all categories
+		$categories = array($category) + $this->getDescendentCategories($category) ;
+		
+		if(count($categories) > 0) {
+			return $this->productRepository->findWithCategories($categories);
 		}
+		
+		return NULL;
 	}
 }
 ?>
