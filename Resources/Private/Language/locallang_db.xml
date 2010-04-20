@@ -10,8 +10,7 @@
 			<label index="tx_hypestore.tabs.details">Details</label>
 			<label index="tx_hypestore.tabs.media">Media</label>
 			<label index="tx_hypestore.tabs.stocks">Stocks</label>
-			<label index="tx_hypestore.tabs.states">States</label>
-			<label index="tx_hypestore.tabs.events">Events</label>
+			<label index="tx_hypestore.tabs.articles">Articles</label>
 			<label index="tx_hypestore.tabs.units">Request units</label>
 			<label index="tx_hypestore.tabs.address">Address</label>
 			<label index="tx_hypestore.tabs.attributes">Attributes</label>
@@ -34,54 +33,51 @@
 			<label index="tx_hypestore_domain_model_product.subtitle">Subtitle</label>
 			<label index="tx_hypestore_domain_model_product.identifier">Identifier</label>
 			<label index="tx_hypestore_domain_model_product.gtin">GTIN (Global Trade Item Number)</label>
+			<label index="tx_hypestore_domain_model_product.type">Type</label>
+			<label index="tx_hypestore_domain_model_product.type.0"></label>
+			<label index="tx_hypestore_domain_model_product.type.1">Book</label>
 			<label index="tx_hypestore_domain_model_product.introduction">Introduction</label>
 			<label index="tx_hypestore_domain_model_product.description">Description</label>
 			<label index="tx_hypestore_domain_model_product.images">Images</label>
 			<label index="tx_hypestore_domain_model_product.files">Files</label>
+			<label index="tx_hypestore_domain_model_product.articles">Articles</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Manufacturer</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Price</label>
-			<label index="tx_hypestore_domain_model_product.tax">Tax</label>
+			<label index="tx_hypestore_domain_model_product.tax_group">Tax group</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Minimum order quantity</label>
-			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
 			<label index="tx_hypestore_domain_model_product.scaled_prices">Prices</label>
 			<label index="tx_hypestore_domain_model_product.related_products">Related Products</label>
 			<label index="tx_hypestore_domain_model_product.attributes">Attributes</label>
 			<label index="tx_hypestore_domain_model_product.stock_threshold">Stock treshold</label>
 			<label index="tx_hypestore_domain_model_product.stock_unit">Unit</label>
 			<label index="tx_hypestore_domain_model_product.stocks">Stocks</label>
-			<label index="tx_hypestore_domain_model_product.states">States</label>
-			<label index="tx_hypestore_domain_model_product.events">Events</label>
 			<label index="tx_hypestore_domain_model_product.categories">Categories</label>
+			
+			<label index="tx_hypestore_domain_model_article">Article</label>
+			<label index="tx_hypestore_domain_model_article.identifier">Identifier</label>
+			<label index="tx_hypestore_domain_model_article.gtin">GTIN (Global Trade Item Number)</label>
+			<label index="tx_hypestore_domain_model_article.images">Images</label>
+			<label index="tx_hypestore_domain_model_article.files">Files</label>
+			<label index="tx_hypestore_domain_model_article.flat_price">Price</label>
+			<label index="tx_hypestore_domain_model_article.tax_group">Tax group</label>
+			<label index="tx_hypestore_domain_model_article.minimum_order_quantity">Minimum order quantity</label>
+			<label index="tx_hypestore_domain_model_article.scaled_prices">Prices</label>
+			<label index="tx_hypestore_domain_model_article.attributes">Attributes</label>
+			<label index="tx_hypestore_domain_model_article.stock_threshold">Stock treshold</label>
+			<label index="tx_hypestore_domain_model_article.stocks">Stocks</label>
 			
 			<label index="tx_hypestore_domain_model_product_price">Price</label>
 			<label index="tx_hypestore_domain_model_product_price.product">Product</label>
 			<label index="tx_hypestore_domain_model_product_price.quantity">Quantity</label>
 			<label index="tx_hypestore_domain_model_product_price.value">Value</label>
 			
+			<label index="tx_hypestore_domain_model_tax_group">Tax group</label>
+			<label index="tx_hypestore_domain_model_tax_group.value">Value</label>
+			
 			<label index="tx_hypestore_domain_model_product_stock">Stock</label>
 			<label index="tx_hypestore_domain_model_product_stock.depot">Depot</label>
 			<label index="tx_hypestore_domain_model_product_stock.product">Product</label>
 			<label index="tx_hypestore_domain_model_product_stock.quantity">Quantity</label>
-			
-			<label index="tx_hypestore_domain_model_product_state">Product state</label>
-			<label index="tx_hypestore_domain_model_product_state.product">Product</label>
-			<label index="tx_hypestore_domain_model_product_state.depot">Depot</label>
-			<label index="tx_hypestore_domain_model_product_state.quantity">Quantity</label>
-			<label index="tx_hypestore_domain_model_product_state.disposal_date">Start date</label>
-			<label index="tx_hypestore_domain_model_product_state.return_date">End date</label>
-			<label index="tx_hypestore_domain_model_product_state.type">Reason</label>
-			<label index="tx_hypestore_domain_model_product_state.type.I.0">Repair</label>
-			<label index="tx_hypestore_domain_model_product_state.type.I.1">Maintenance</label>
-			<label index="tx_hypestore_domain_model_product_state.type.I.2">Other</label>
-			
-			<label index="tx_hypestore_domain_model_product_event">Product event</label>
-			<label index="tx_hypestore_domain_model_product_event.product">Product</label>
-			<label index="tx_hypestore_domain_model_product_event.quantity">Quantity</label>
-			<label index="tx_hypestore_domain_model_product_event.date">Date</label>
-			<label index="tx_hypestore_domain_model_product_event.type">Action</label>
-			<label index="tx_hypestore_domain_model_product_event.type.I.0">ordered</label>
-			<label index="tx_hypestore_domain_model_product_event.type.I.1">delivered</label>
-			<label index="tx_hypestore_domain_model_product_event.type.I.2">returned</label>
 			
 			<label index="tx_hypestore_domain_model_product_attribute">Product value</label>
 			<label index="tx_hypestore_domain_model_product_attribute.product">Product</label>
@@ -155,8 +151,7 @@
 			<label index="tx_hypestore.tabs.details">Details</label>
 			<label index="tx_hypestore.tabs.media">Medien</label>
 			<label index="tx_hypestore.tabs.stocks">Lagerbestände</label>
-			<label index="tx_hypestore.tabs.states">Zustände</label>
-			<label index="tx_hypestore.tabs.events">Ereignisse</label>
+			<label index="tx_hypestore.tabs.articles">Artikel</label>
 			<label index="tx_hypestore.tabs.units">Anfrageeinheiten</label>
 			<label index="tx_hypestore.tabs.address">Adresse</label>
 			<label index="tx_hypestore.tabs.attributes">Eigenschaften</label>
@@ -179,53 +174,51 @@
 			<label index="tx_hypestore_domain_model_product.subtitle">Untertitel</label>
 			<label index="tx_hypestore_domain_model_product.identifier">Kennung</label>
 			<label index="tx_hypestore_domain_model_product.gtin">GTIN (Global Trade Item Number)</label>
+			<label index="tx_hypestore_domain_model_product.type">Typ</label>
+			<label index="tx_hypestore_domain_model_product.type.0"></label>
+			<label index="tx_hypestore_domain_model_product.type.1">Buch</label>
 			<label index="tx_hypestore_domain_model_product.introduction">Kurztext</label>
 			<label index="tx_hypestore_domain_model_product.description">Beschreibung</label>
 			<label index="tx_hypestore_domain_model_product.images">Bilder</label>
 			<label index="tx_hypestore_domain_model_product.files">Dateien</label>
+			<label index="tx_hypestore_domain_model_product.articles">Artikel</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Hersteller</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Preis</label>
-			<label index="tx_hypestore_domain_model_product.tax">Steuersatz</label>
+			<label index="tx_hypestore_domain_model_product.tax">Steuergruppe</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Mindestbestellmenge</label>
-			<label index="tx_hypestore_domain_model_product.version_date">Version</label>
-			<label index="tx_hypestore_domain_model_product.scaled_prices">Preise</label>
+			<label index="tx_hypestore_domain_model_product.scaled_prices">Staffelpreise</label>
 			<label index="tx_hypestore_domain_model_product.related_products">Ähnliche Produkte</label>
 			<label index="tx_hypestore_domain_model_product.attributes">Eigenschaften</label>
 			<label index="tx_hypestore_domain_model_product.stock_threshold">Mindestbestand</label>
 			<label index="tx_hypestore_domain_model_product.stock_unit">Einheit</label>
-			<label index="tx_hypestore_domain_model_product.stocks">Lagerbestände</label>
-			<label index="tx_hypestore_domain_model_product.states">Zustände</label>
-			<label index="tx_hypestore_domain_model_product.events">Ereignisse</label>
+			<label index="tx_hypestore_domain_model_product.stocks">Lagerstände</label>
 			<label index="tx_hypestore_domain_model_product.categories">Kategorien</label>
+			
+			<label index="tx_hypestore_domain_model_article">Artikel</label>
+			<label index="tx_hypestore_domain_model_article.identifier">Kennung</label>
+			<label index="tx_hypestore_domain_model_article.gtin">GTIN (Global Trade Item Number)</label>
+			<label index="tx_hypestore_domain_model_article.images">Bilder</label>
+			<label index="tx_hypestore_domain_model_article.files">Dateien</label>
+			<label index="tx_hypestore_domain_model_article.flat_price">Preis</label>
+			<label index="tx_hypestore_domain_model_article.tax_group">Steuergruppe</label>
+			<label index="tx_hypestore_domain_model_article.minimum_order_quantity">Mindestbestellmenge</label>
+			<label index="tx_hypestore_domain_model_article.scaled_prices">Staffelpreise</label>
+			<label index="tx_hypestore_domain_model_article.attributes">Eigenschaften</label>
+			<label index="tx_hypestore_domain_model_article.stock_threshold">Mindestbestand</label>
+			<label index="tx_hypestore_domain_model_article.stocks">Lagerstände</label>
 			
 			<label index="tx_hypestore_domain_model_product_price">Preis</label>
 			<label index="tx_hypestore_domain_model_product_price.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_product_price.quantity">Menge</label>
 			<label index="tx_hypestore_domain_model_product_price.value">Wert</label>
 			
+			<label index="tx_hypestore_domain_model_tax_group">Steuergruppe</label>
+			<label index="tx_hypestore_domain_model_tax_group.value">Wert</label>
+			
 			<label index="tx_hypestore_domain_model_product_stock">Lagerbestand</label>
 			<label index="tx_hypestore_domain_model_product_stock.depot">Depot</label>
 			<label index="tx_hypestore_domain_model_product_stock.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_product_stock.quantity">Anzahl</label>
-			
-			<label index="tx_hypestore_domain_model_product_state">Produktzustand</label>
-			<label index="tx_hypestore_domain_model_product_state.product">Produkt</label>
-			<label index="tx_hypestore_domain_model_product_state.depot">Depot</label>
-			<label index="tx_hypestore_domain_model_product_state.quantity">Anzahl</label>
-			<label index="tx_hypestore_domain_model_product_state.disposal_date">Startdatum</label>
-			<label index="tx_hypestore_domain_model_product_state.return_date">Enddatum</label>
-			<label index="tx_hypestore_domain_model_product_state.type">Grund</label>
-			<label index="tx_hypestore_domain_model_product_state.type.I.0">Reparatur</label>
-			<label index="tx_hypestore_domain_model_product_state.type.I.1">Wartung</label>
-			<label index="tx_hypestore_domain_model_product_state.type.I.2">Sonstiges</label>
-			
-			<label index="tx_hypestore_domain_model_product_event">Produktereignis</label>
-			<label index="tx_hypestore_domain_model_product_event.product">Produkt</label>
-			<label index="tx_hypestore_domain_model_product_event.quantity">Anzahl</label>
-			<label index="tx_hypestore_domain_model_product_event.type">Vorgang</label>
-			<label index="tx_hypestore_domain_model_product_event.type.I.0">bestellt</label>
-			<label index="tx_hypestore_domain_model_product_event.type.I.1">geliefert</label>
-			<label index="tx_hypestore_domain_model_product_event.type.I.2">retourniert</label>
 			
 			<label index="tx_hypestore_domain_model_product_attribute">Produkteigenschaft</label>
 			<label index="tx_hypestore_domain_model_product_attribute.product">Produkt</label>

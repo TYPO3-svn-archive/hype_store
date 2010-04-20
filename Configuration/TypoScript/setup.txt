@@ -3,6 +3,34 @@ includeLibs.tx_hypestore_menu = EXT:hype_store/Classes/Hook/class.tx_hypestore_m
 plugin.tx_hypestore {
 	persistence {
 		classes {
+			Tx_HypeStore_Domain_Model_Product {
+				mapping {
+					tableName = tx_hypestore_domain_model_product
+					recordType = default
+				}
+				
+				subclasses {
+					Book = Book
+				} 
+				
+				columns {
+					attributes.foreignClass = Tx_HypeStore_Domain_Model_ProductAttribute
+					scaled_prices.foreignClass = Tx_HypeStore_Domain_Model_ProductPrice
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_Product_Book {
+				mapping {
+					tableName = tx_hypestore_domain_model_product
+					recordType = book
+				}
+				
+				columns {
+					attributes.foreignClass = Tx_HypeStore_Domain_Model_ProductAttribute
+					scaled_prices.foreignClass = Tx_HypeStore_Domain_Model_ProductPrice
+				}
+			}
+			
 			Tx_HypeStore_Domain_Model_Customer {
 				mapping {
 					tableName = fe_users
@@ -27,16 +55,15 @@ plugin.tx_hypestore {
 				}
 			}
 			
-			Tx_HypeStore_Domain_Model_Product {
-				columns {
-					attributes.foreignClass = Tx_HypeStore_Domain_Model_ProductAttribute
-					scaled_prices.foreignClass = Tx_HypeStore_Domain_Model_ProductPrice
-				}
-			}
-			
 			Tx_HypeStore_Domain_Model_ProductPrice {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_price
+				}
+			}
+			
+			Tx_HypeStore_Domain_Model_TaxGroup {
+				mapping {
+					tableName = tx_hypestore_domain_model_tax_group
 				}
 			}
 			

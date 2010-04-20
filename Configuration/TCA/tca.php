@@ -258,7 +258,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 $TCA['tx_hypestore_domain_model_product'] = array(
 	'ctrl' => $TCA['tx_hypestore_domain_model_product']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,gtin,categories,introduction,description,images,files,manufacturer,flat_price,tax,minimum_order_quantity,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks,states,events'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,gtin,categories,introduction,description,images,files,articles,manufacturer,flat_price,tax_group,minimum_order_quantity,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks'
 	),
 	'feInterface' => $TCA['tx_hypestore_domain_model_product']['feInterface'],
 	'columns' => array(
@@ -369,6 +369,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'size' => '30',
 				'eval' => 'required,trim',
 			),
+			'displayCond' => 'FIELD:articles:REQ:false',
 		),
 		'gtin' => array(
 			'exclude' => 1,
@@ -378,6 +379,19 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'size' => '10',
 				'max' => '14',
 				'eval' => 'num,nospace,unique,trim',
+			),
+			'displayCond' => 'FIELD:articles:REQ:false',
+		),
+		'type' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.type',
+			'config' => array(
+				'type' => 'select',
+				'default' => 'default',
+				'items' => array(
+					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.type.0', 'default',),
+					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.type.1', 'book', 'EXT:hype_store/Configuration/TCA/Icons/Product/book.icon.png'),
+				),
 			),
 		),
 		'categories' => array(
@@ -468,6 +482,24 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'maxitems' => 100,
 			),
 		),
+		'articles' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.articles',
+			'config' => array(
+				'type'						=> 'inline',
+				'foreign_table'				=> 'tx_hypestore_domain_model_article',
+				'foreign_field'				=> 'product',
+				'foreign_label'				=> 'identifier',
+				'foreign_default_sortby'	=> 'identifier',
+				//'foreign_unique'	=> 'quantity',
+				'appearance'		=> array(
+					'collapseAll'		=> TRUE,
+					'expandSingle'		=> TRUE,
+				),
+				'minitems'			=> 0,
+				'maxitems'			=> 999999,
+			),
+		),
 		'manufacturer' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.manufacturer',
@@ -503,14 +535,18 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'range' => array('lower' => 0),
 			),
 		),
-		'tax' => array(
+		'tax_group' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.tax',
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.tax_group',
 			'config' => array(
-				'type' => 'input',
-				'size' => '5',
-				'eval' => 'int',
-				'range' => array('lower' => 0, 'upper' => 100),
+				'type' => 'select',
+				'foreign_table' => 'tx_hypestore_domain_model_tax_group',
+				'size' => 1,
+				'minitems' => 1,
+				'maxitems' => 1,
+				'items' => array(
+					array('', NULL),
+				),
 			),
 		),
 		'scaled_prices' => array(
@@ -616,33 +652,265 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'minitems'					=> 0,
 				'maxitems'					=> 999999,
 			),
+			'displayCond' => 'FIELD:articles:REQ:false',
 		),
-		'states' => array(
+	),
+	'types' => array(
+		'default' => array('showitem' => '
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, manufacturer;;;;1-1-1,
+			
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,		articles,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax_group, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
+		'),
+		
+		'book' => array('showitem' => '
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
+			
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,		articles,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax_group, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
+		'),
+	),
+	'palettes' => array(
+		'1' => array('showitem' => 'starttime, endtime, fe_group'),
+		'2' => array('showitem' => 'subtitle'),
+	),
+);
+
+$TCA['tx_hypestore_domain_model_article'] = array(
+	'ctrl' => $TCA['tx_hypestore_domain_model_article']['ctrl'],
+	'interface' => array(
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,product,identifier,gtin,images,files,flat_price,tax_group,minimum_order_quantity,scaled_prices,attributes,stock_threshold,stocks'
+	),
+	'feInterface' => $TCA['tx_hypestore_domain_model_article']['feInterface'],
+	'columns' => array(
+		'sys_language_uid' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.states',
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.language',
 			'config' => array(
-				'type'						=> 'inline',
-				'foreign_table'				=> 'tx_hypestore_domain_model_product_state',
-				'foreign_field'				=> 'product',
-				'foreign_label'				=> 'type',
-				'foreign_default_sortby'	=> 'type',
-				'appearance'				=> array(
-					'collapseAll'				=> TRUE,
-					'expandSingle'			=> TRUE,
+				'type'				=> 'select',
+				'foreign_table'		=> 'sys_language',
+				'foreign_table_where' => 'ORDER BY sys_language.title',
+				'items' => array(
+					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0),
 				),
-				'minitems'					=> 0,
-				'maxitems'					=> 999999,
 			),
 		),
-		'events' => array(
+		'l10n_parent' => array(
+			'displayCond' => 'FIELD:sys_language_uid:>:0',
+			'exclude'	=> 1,
+			'label'		=> 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'config'		=> array(
+				'type'	=> 'select',
+				'items' => array(
+					array('', 0),
+				),
+				'foreign_table'		=> 'tx_hypestore_domain_model_product',
+				'foreign_table_where' => 'AND tx_hypestore_domain_model_product.pid=###CURRENT_PID### AND tx_hypestore_domain_model_product.sys_language_uid IN (-1,0)',
+			),
+		),
+		'l10n_diffsource' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'hidden' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.events',
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'config'	=> array(
+				'type'	=> 'check',
+				'default' => '0'
+			),
+		),
+		'starttime' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
+			'config'	=> array(
+				'type'	=> 'input',
+				'size'	=> '8',
+				'max'		=> '20',
+				'eval'	=> 'date',
+				'default'	=> '0',
+				'checkbox' => '0'
+			),
+		),
+		'endtime' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
+			'config'	=> array(
+				'type'	=> 'input',
+				'size'	=> '8',
+				'max'		=> '20',
+				'eval'	=> 'date',
+				'checkbox' => '0',
+				'default'	=> '0',
+				'range'	=> array(
+					'upper' => mktime(3, 14, 7, 1, 19, 2038),
+					'lower' => mktime(0, 0, 0, date('m')-1, date('d'), date('Y')),
+				),
+			),
+		),
+		'fe_group' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
+			'config'	=> array(
+				'type'	=> 'select',
+				'items' => array(
+					array('', 0),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--'),
+				),
+				'foreign_table' => 'fe_groups'
+			),
+		),
+		'product' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.product',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'tx_hypestore_domain_model_product',
+				'foreign_table_where' => 'ORDER BY tx_hypestore_domain_model_product.title',
+				'size' => 1,
+				'minitems' => 1,
+				'maxitems' => 1,
+			),
+		),
+		'identifier' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.identifier',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30',
+				'eval' => 'required,trim',
+			),
+		),
+		'gtin' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.gtin',
+			'config' => array(
+				'type' => 'input',
+				'size' => '10',
+				'max' => '14',
+				'eval' => 'num,nospace,unique,trim',
+			),
+		),
+		'images' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.images',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'file',
+				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+				'max_size' => 10240,
+				'uploadfolder' => 'uploads/hype/store/product/images',
+				'size' => 5,
+				'autoSizeMax' => 10,
+				'minitems' => 0,
+				'maxitems' => 999999,
+				'show_thumbs' => TRUE,
+			),
+		),
+		'files' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.files',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'file',
+				'allowed' => '',
+				'disallowed' => 'php,php3',
+				'max_size' => 10240,
+				'uploadfolder' => 'uploads/hype/store/product/files',
+				'size' => 5,
+				'autoSizeMax' => 10,
+				'minitems' => 0,
+				'maxitems' => 100,
+			),
+		),
+		'minimum_order_quantity' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.minimum_order_quantity',
+			'config' => array(
+				'type' => 'input',
+				'size' => '5',
+				'eval' => 'int',
+				'range' => array('lower' => 0),
+			),
+		),
+		'flat_price' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.flat_price',
+			'config' => array(
+				'type' => 'input',
+				'size' => '5',
+				'eval' => 'double2',
+				'range' => array('lower' => 0),
+			),
+		),
+		'scaled_prices' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.scaled_prices',
 			'config' => array(
 				'type'						=> 'inline',
-				'foreign_table'				=> 'tx_hypestore_domain_model_product_event',
+				'foreign_table'				=> 'tx_hypestore_domain_model_product_price',
 				'foreign_field'				=> 'product',
-				'foreign_label'				=> 'type',
-				'foreign_default_sortby'	=> 'type',
+				'foreign_label'				=> 'value',
+				'foreign_default_sortby'	=> 'value',
+				//'foreign_unique'	=> 'quantity',
+				'appearance'		=> array(
+					'collapseAll'		=> TRUE,
+					'expandSingle'		=> TRUE,
+				),
+				'minitems'			=> 0,
+				'maxitems'			=> 999999,
+			),
+		),
+		'attributes' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.attributes',
+			'config' => array(
+				'type'						=> 'inline',
+				'foreign_table'				=> 'tx_hypestore_domain_model_product_attribute',
+				'foreign_field'				=> 'product',
+				'foreign_label'				=> 'attribute',
+				'foreign_default_sortby'	=> 'attribute',
+				//'foreign_unique'	=> 'attribute',
+				'appearance'		=> array(
+					'collapseAll'		=> TRUE,
+					'expandSingle'		=> TRUE,
+				),
+				'minitems'			=> 0,
+				'maxitems'			=> 999999,
+			),
+		),
+		'stock_threshold' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.stock_threshold',
+			'config' => array(
+				'type' => 'input',
+				'size' => '5',
+				'eval' => 'int',
+				'range' => array('lower' => 0),
+			),
+		),
+		'stocks' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.stocks',
+			'config' => array(
+				'type'						=> 'inline',
+				'foreign_table'				=> 'tx_hypestore_domain_model_product_stock',
+				'foreign_field'				=> 'product',
+				'foreign_label'				=> 'depot',
+				'foreign_default_sortby'	=> 'depot',
+				//'foreign_unique'	=> 'depot',
 				'appearance'				=> array(
 					'collapseAll'				=> TRUE,
 					'expandSingle'				=> TRUE,
@@ -654,15 +922,13 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 	),
 	'types' => array(
 		'0' => array('showitem' => '
-			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, manufacturer;;;;1-1-1,
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin,
 			
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax_group, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.states,		states,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.events,		events
 		'),
 	),
 	'palettes' => array(
@@ -671,324 +937,10 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 	),
 );
 
-$TCA['tx_hypestore_domain_model_product_state'] = array(
-	'ctrl' => $TCA['tx_hypestore_domain_model_product_state']['ctrl'],
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,product,depot,quantity,disposal_date,return_date,type'
-	),
-	'feInterface' => $TCA['tx_hypestore_domain_model_product_state']['feInterface'],
-	'columns' => array(
-		'sys_language_uid' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => array(
-				'type'				=> 'select',
-				'foreign_table'		=> 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0),
-				),
-			),
-		),
-		'l10n_parent' => array(
-			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude'	=> 1,
-			'label'		=> 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
-			'config'		=> array(
-				'type'	=> 'select',
-				'items' => array(
-					array('', 0),
-				),
-				'foreign_table'		=> 'tx_hypestore_state',
-				'foreign_table_where' => 'AND tx_hypestore_domain_model_product_state.pid=###CURRENT_PID### AND tx_hypestore_domain_model_product_state.sys_language_uid IN (-1,0)',
-			),
-		),
-		'l10n_diffsource' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
-		'hidden' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-			'config'	=> array(
-				'type'	=> 'check',
-				'default' => '0'
-			),
-		),
-		'starttime' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
-			'config'	=> array(
-				'type'	=> 'input',
-				'size'	=> '8',
-				'max'		=> '20',
-				'eval'	=> 'date',
-				'default'	=> '0',
-				'checkbox' => '0'
-			),
-		),
-		'endtime' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
-			'config'	=> array(
-				'type'	=> 'input',
-				'size'	=> '8',
-				'max'		=> '20',
-				'eval'	=> 'date',
-				'checkbox' => '0',
-				'default'	=> '0',
-				'range'	=> array(
-					'upper' => mktime(3, 14, 7, 1, 19, 2038),
-					'lower' => mktime(0, 0, 0, date('m')-1, date('d'), date('Y')),
-				),
-			),
-		),
-		'fe_group' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
-			'config'	=> array(
-				'type'	=> 'select',
-				'items' => array(
-					array('', 0),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--'),
-				),
-				'foreign_table' => 'fe_groups'
-			),
-		),
-		'product' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.product',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_hypestore_domain_model_product',
-				'foreign_table_where' => 'ORDER BY tx_hypestore_domain_model_product.uid',
-				'size' => 1,
-				'minitems' => 0,
-				'maxitems' => 1,
-			),
-		),
-		'depot' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.depot',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_hypestore_domain_model_depot',
-				'foreign_table_where' => 'ORDER BY tx_hypestore_domain_model_depot.uid',
-				'size' => 1,
-				'minitems' => 0,
-				'maxitems' => 1,
-			),
-		),
-		'type' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.type',
-			'config' => array(
-				'type'	=> 'select',
-				'items' => array(
-					array('', 0),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.type.I.0', 1),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.type.I.1', 2),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.type.I.2', 3),
-				),
-			),
-		),
-		'quantity' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.quantity',
-			'config' => array(
-				'type' => 'input',
-				'size' => '5',
-				'eval' => 'required,int',
-				'range' => array('lower' => 0),
-			),
-		),
-		'disposal_date' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.disposal_date',
-			'config' => array(
-				'type'	=> 'input',
-				'size'	=> '8',
-				'max'		=> '20',
-				'eval'	=> 'datetime',
-				'checkbox' => '0',
-				'default'	=> '0'
-			),
-		),
-		'return_date' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_state.return_date',
-			'config' => array(
-				'type'	=> 'input',
-				'size'	=> '8',
-				'max'		=> '20',
-				'eval'	=> 'datetime',
-				'checkbox' => '0',
-				'default'	=> '0'
-			),
-		),
-	),
-	'types' => array(
-		//'0' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product;;;;1-1-1, depot;;;;1-1-1, amount, date_from;;;;1-1-1, date_end, reason;;;;1-1-1'),
-		'0' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, product;;;;1-1-1, depot;;;;1-1-1, type;;;;1-1-1, quantity, disposal_date;;;;1-1-1, return_date'),
-	),
-	'palettes' => array(
-		'1' => array('showitem' => 'starttime, endtime, fe_group'),
-	),
-);
-
-$TCA['tx_hypestore_domain_model_product_event'] = array(
-	'ctrl' => $TCA['tx_hypestore_domain_model_product_event']['ctrl'],
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,product,date,quantity,type'
-	),
-	'feInterface' => $TCA['tx_hypestore_domain_model_product_event']['feInterface'],
-	'columns' => array(
-		'sys_language_uid' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => array(
-				'type'				=> 'select',
-				'foreign_table'		=> 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0),
-				),
-			),
-		),
-		'l10n_parent' => array(
-			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude'	=> 1,
-			'label'		=> 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
-			'config'		=> array(
-				'type'	=> 'select',
-				'items' => array(
-					array('', 0),
-				),
-				'foreign_table'		=> 'tx_hypestore_event',
-				'foreign_table_where' => 'AND tx_hypestore_domain_model_product_event.pid=###CURRENT_PID### AND tx_hypestore_domain_model_product_event.sys_language_uid IN (-1,0)',
-			),
-		),
-		'l10n_diffsource' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
-		'hidden' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-			'config'	=> array(
-				'type'	=> 'check',
-				'default' => '0'
-			),
-		),
-		'starttime' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
-			'config'	=> array(
-				'type'	=> 'input',
-				'size'	=> '8',
-				'max'		=> '20',
-				'eval'	=> 'date',
-				'default'	=> '0',
-				'checkbox' => '0'
-			),
-		),
-		'endtime' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
-			'config'	=> array(
-				'type'	=> 'input',
-				'size'	=> '8',
-				'max'		=> '20',
-				'eval'	=> 'date',
-				'checkbox' => '0',
-				'default'	=> '0',
-				'range'	=> array(
-					'upper' => mktime(3, 14, 7, 1, 19, 2038),
-					'lower' => mktime(0, 0, 0, date('m')-1, date('d'), date('Y')),
-				),
-			),
-		),
-		'fe_group' => array(
-			'exclude' => 1,
-			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
-			'config'	=> array(
-				'type'	=> 'select',
-				'items' => array(
-					array('', 0),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--'),
-				),
-				'foreign_table' => 'fe_groups'
-			),
-		),
-		'product' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_event.product',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_hypestore_domain_model_product',
-				'foreign_table_where' => 'ORDER BY tx_hypestore_domain_model_product.uid',
-				'size' => 1,
-				'minitems' => 0,
-				'maxitems' => 1,
-			),
-		),
-		'date' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_event.date',
-			'config' => array(
-				'type'	=> 'input',
-				'size'	=> '8',
-				'max'		=> '20',
-				'eval'	=> 'datetime',
-				'checkbox' => '0',
-				'default'	=> time(),
-			),
-		),
-		'quantity' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_event.quantity',
-			'config' => array(
-				'type' => 'input',
-				'size' => '5',
-				'eval' => 'required,int',
-				'range' => array('lower' => 0),
-			),
-		),
-		'type' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_event.type',
-			'config' => array(
-				'type' => 'select',
-				'items' => array(
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_event.type.I.0', '0'),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_event.type.I.1', '1'),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_event.type.I.2', '2'),
-				),
-				'size' => 1,
-				'maxitems' => 1,
-			),
-		),
-	),
-	'types' => array(
-		'0' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, date, quantity, type'),
-	),
-	'palettes' => array(
-		'1' => array('showitem' => 'starttime, endtime, fe_group'),
-	),
-);
-
 $TCA['tx_hypestore_domain_model_depot'] = array(
 	'ctrl' => $TCA['tx_hypestore_domain_model_depot']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,street,postcode,city,country,stocks,states'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,street,postcode,city,country,stocks'
 	),
 	'feInterface' => $TCA['tx_hypestore_domain_model_depot']['feInterface'],
 	'columns' => array(
@@ -1136,30 +1088,12 @@ $TCA['tx_hypestore_domain_model_depot'] = array(
 				'maxitems'					=> 999999,
 			),
 		),
-		'states' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_depot.states',
-			'config' => array(
-				'type'						=> 'inline',
-				'foreign_table'				=> 'tx_hypestore_domain_model_product_state',
-				'foreign_field'				=> 'depot',
-				'foreign_label'				=> 'type',
-				'foreign_default_sortby'	=> 'type',
-				'appearance'				=> array(
-					'collapseAll'				=> TRUE,
-					'expandSingle'				=> TRUE,
-				),
-				'minitems'					=> 0,
-				'maxitems'					=> 999999,
-			),
-		),
 	),
 	'types' => array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;2-2-2, street;;;;3-3-3, postcode, city, country,
 			
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks, stocks,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.states, states
 		'),
 	),
 	'palettes' => array(
@@ -1685,6 +1619,113 @@ $TCA['tx_hypestore_domain_model_product_price'] = array(
 	'types' => array(
 		//'0' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, quantity, value'),
 		'0' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, product, quantity, value'),
+	),
+	'palettes' => array(
+		'1' => array('showitem' => 'starttime, endtime, fe_group'),
+	),
+);
+
+$TCA['tx_hypestore_domain_model_tax_group'] = array(
+	'ctrl' => $TCA['tx_hypestore_domain_model_tax_group']['ctrl'],
+	'interface' => array(
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,value'
+	),
+	'feInterface' => $TCA['tx_hypestore_domain_model_tax_group']['feInterface'],
+	'columns' => array(
+		'sys_language_uid' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+			'config' => array(
+				'type'				=> 'select',
+				'foreign_table'		=> 'sys_language',
+				'foreign_table_where' => 'ORDER BY sys_language.title',
+				'items' => array(
+					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0),
+				),
+			),
+		),
+		'l10n_parent' => array(
+			'displayCond' => 'FIELD:sys_language_uid:>:0',
+			'exclude'	=> 1,
+			'label'		=> 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'config'		=> array(
+				'type'	=> 'select',
+				'items' => array(
+					array('', 0),
+				),
+				'foreign_table'		=> 'tx_hypestore_domain_model_product_price',
+				'foreign_table_where' => 'AND tx_hypestore_domain_model_product_price.pid=###CURRENT_PID### AND tx_hypestore_domain_model_product_price.sys_language_uid IN (-1,0)',
+			),
+		),
+		'l10n_diffsource' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'hidden' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'config'	=> array(
+				'type'	=> 'check',
+				'default' => '0'
+			),
+		),
+		'starttime' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
+			'config'	=> array(
+				'type'	=> 'input',
+				'size'	=> '8',
+				'max'		=> '20',
+				'eval'	=> 'date',
+				'default'	=> '0',
+				'checkbox' => '0'
+			),
+		),
+		'endtime' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
+			'config'	=> array(
+				'type'	=> 'input',
+				'size'	=> '8',
+				'max'		=> '20',
+				'eval'	=> 'date',
+				'checkbox' => '0',
+				'default'	=> '0',
+				'range'	=> array(
+					'upper' => mktime(3, 14, 7, 1, 19, 2038),
+					'lower' => mktime(0, 0, 0, date('m')-1, date('d'), date('Y')),
+				),
+			),
+		),
+		'fe_group' => array(
+			'exclude' => 1,
+			'label'	=> 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
+			'config'	=> array(
+				'type'	=> 'select',
+				'items' => array(
+					array('', 0),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--'),
+				),
+				'foreign_table' => 'fe_groups'
+			),
+		),
+		'value' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_tax_group.value',
+			'config' => array(
+				'type' => 'input',
+				'size' => '5',
+				'eval' => 'required,double2',
+				'range' => array('lower' => 0),
+			),
+		),
+	),
+	'types' => array(
+		'0' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, value'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => 'starttime, endtime, fe_group'),

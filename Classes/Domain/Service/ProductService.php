@@ -74,22 +74,7 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 			$quantity += $stock->getQuantity();
 		}
 		
-		foreach($product->getStates() as $state) {
-			
-			switch(TRUE) {
-				
-				case !$state->getDisposalDate() && !$state->getReturnDate():
-				case !$state->getDisposalDate() && $state->getReturnDate() && $state->getReturnDate()->format('U') >= time():
-				case $state->getDisposalDate() && $state->getDisposalDate()->format('U') <= time() && !$state->getReturnDate():
-				case $state->getDisposalDate() && $state->getDisposalDate()->format('U') <= time() && $state->getReturnDate() && $state->getReturnDate()->format('U') >= time():
-					
-					$quantity -= $state->getQuantity();
-					
-				break;
-			}
-		}
-		
-		return max(0, $quantity);
+		return $quantity;
 	}
 	
 	/**
