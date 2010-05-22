@@ -43,18 +43,17 @@ class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 	 */
 	public function getRootlines(Tx_HypeStore_Domain_Model_Category $category) {
 		
+		$rootlines = array($category->getUid() => $category);
+		
 		if(count($category->getParentCategories()) > 0) {
-			
-			$rootlines = array($category->getUid() => $category);
-			
-			foreach($category->getParentCategories() as $category) {
-				$rootlines = array($category->getUid() => $this->getRootlines($category)) + $rootlines;
+			foreach($category->getParentCategories() as $subcategory) {
+				if(count($subcategory->getParentCategories()) > 0) {
+					$rootlines = array($subcategory->getUid() => $this->getRootlines($subcategory)) + $rootlines;
+				}
 			}
-			
-			return new Tx_HypeStore_Rootline($rootlines);
-		} else {
-			return $category;
 		}
+		
+		return new Tx_HypeStore_Rootline($rootlines);
 	}
 	
 	/**

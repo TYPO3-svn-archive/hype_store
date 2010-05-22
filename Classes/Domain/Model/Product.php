@@ -894,7 +894,11 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return array
 	 */
 	public function getRootline() {
-		return array_shift($this->getRootlines())->__toString();
+		if(count($this->getRootlines()) > 0) {
+			return array_shift($this->getRootlines())->__toString();
+		}
+		
+		return NULL;
 	}
 	
 	

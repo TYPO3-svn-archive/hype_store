@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
+*  (c) 2010 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -75,8 +75,8 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 	 * Index action for this controller.
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @return string
 	 * @dontvalidate $product
+	 * @return string
 	 */
 	public function indexAction(Tx_HypeStore_Domain_Model_Product $product = NULL) {
 		
@@ -85,6 +85,12 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 			$product = $this->productRepository->findByUid((int)$this->settings['view']['product']['uid']);
 		}
 		
+		# overload document title
+		if($this->settings['view']['product']['common']['overrideDocumentTitle']) {
+			Tx_Hype_Utility_Document::setTitle($product->getTitle());
+		}
+		
+		# assign the product to the view
 		$this->view->assign('product', $product);
 	}
 }

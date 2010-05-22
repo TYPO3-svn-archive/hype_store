@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Book
+ * Car
  *
  * @package HypeStore
  * @subpackage Domain/Model/Product
@@ -33,7 +33,7 @@
  * @scope prototype
  * @entity
  */
-class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_Product {
+class Tx_HypeStore_Domain_Model_Product_Car extends Tx_HypeStore_Domain_Model_Product {
 	
 }
 ?>

@@ -6,9 +6,10 @@ if(!defined('TYPO3_MODE'))
 
 
 require_once(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hook/class.tx_hypestore_tca_label.php');
+require_once(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Utility/Tca.php');
 
 
-# add default setup & constants
+# TypoScript
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', 'Hype Store');
 
 
@@ -42,7 +43,9 @@ t3lib_extMgm::addPiFlexFormValue('hypestore_watchlist', 'FILE:EXT:' . $_EXTKEY .
 $GLOBALS['TYPO3_CONF_VARS']['BE']['XCLASS']['t3lib/class.t3lib_tceforms.php'] = t3lib_extMgm::extPath($_EXTKEY) . '/Classes/Hook/class.tx_hypestore_t3lib_tceforms.php';
 
 
-# Tables
+# TABLES
+
+# Category
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_category');
 $TCA['tx_hypestore_domain_model_category'] = array(
 	'ctrl' => array(
@@ -73,6 +76,46 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 	),
 );
 
+# Product type
+t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_product_type');
+$TCA['tx_hypestore_domain_model_product_type'] = array(
+	'ctrl' => array(
+		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_type',
+		'label'	 => 'title',
+		//'label_alt' => 'keyword',
+		//'label_alt_force' => TRUE,
+		'tstamp'	=> 'tstamp',
+		'crdate'	=> 'crdate',
+		'cruser_id' => 'cruser_id',
+		'languageField'			=> 'sys_language_uid',
+		'transOrigPointerField'	=> 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		//'sortby' => 'sorting',
+		'default_sortby' => 'title',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+			'fe_group' => 'fe_group',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/product_type.icon.png',
+		
+		'dividers2tabs' => TRUE,
+		'thumbnail' => 'icon',
+		'adminOnly' => TRUE,
+		'is_static' => TRUE,
+		'typeicon_column' => 'keyword',
+		'typeicons' => array(
+			'apparel' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/apparel.icon.png',
+			'book' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/book.icon.png',
+			'car' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/car.icon.png',
+		),
+	),
+);
+
+# Product
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_product');
 $TCA['tx_hypestore_domain_model_product'] = array(
 	'ctrl' => array(
@@ -103,11 +146,17 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 		'type'		=> 'type',
 		'typeicon_column' => 'type',
 		'typeicons' => array(
+			'apparel' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/apparel.icon.png',
 			'book' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/book.icon.png',
+			'car' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/car.icon.png',
 		),
 	),
 );
+$TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['1'] = $TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['book'];
+$TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['2'] = $TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['car'];
+$TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['3'] = $TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['apparel'];
 
+# Article
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_article');
 $TCA['tx_hypestore_domain_model_article'] = array(
 	'ctrl' => array(
@@ -133,12 +182,20 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/article.icon.png',
 		
-		'hideTable' => TRUE,
+		//'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 		'thumbnail' => 'images',
+		'type'		=> 'type',
+		'typeicon_column' => 'type',
+		'typeicons' => array(
+			'apparel' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/apparel.icon.png',
+			'book' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/book.icon.png',
+			'car' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/car.icon.png',
+		),
 	),
 );
 
+# Product attribute
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_product_attribute');
 $TCA['tx_hypestore_domain_model_product_attribute'] = array(
 	'ctrl' => array(
@@ -166,6 +223,7 @@ $TCA['tx_hypestore_domain_model_product_attribute'] = array(
 	),
 );
 
+# Product price
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_product_price');
 $TCA['tx_hypestore_domain_model_product_price'] = array(
 	'ctrl' => array(
@@ -194,6 +252,7 @@ $TCA['tx_hypestore_domain_model_product_price'] = array(
 	),
 );
 
+# Tax group
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_tax_group');
 $TCA['tx_hypestore_domain_model_tax_group'] = array(
 	'ctrl' => array(
@@ -221,6 +280,7 @@ $TCA['tx_hypestore_domain_model_tax_group'] = array(
 	),
 );
 
+# Product stock
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_product_stock');
 $TCA['tx_hypestore_domain_model_product_stock'] = array(
 	'ctrl' => array(
@@ -248,6 +308,7 @@ $TCA['tx_hypestore_domain_model_product_stock'] = array(
 	),
 );
 
+# Depot
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_depot');
 $TCA['tx_hypestore_domain_model_depot'] = array(
 	'ctrl' => array(
@@ -274,6 +335,7 @@ $TCA['tx_hypestore_domain_model_depot'] = array(
 	),
 );
 
+# Attribute
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_attribute');
 $TCA['tx_hypestore_domain_model_attribute'] = array(
 	'ctrl' => array(
@@ -300,6 +362,7 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 	),
 );
 
+# Cart item
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_cart_item');
 $TCA['tx_hypestore_domain_model_cart_item'] = array(
 	'ctrl' => array(
@@ -327,6 +390,7 @@ $TCA['tx_hypestore_domain_model_cart_item'] = array(
 	),
 );
 
+# Watchlist item
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_watchlist_item');
 $TCA['tx_hypestore_domain_model_watchlist_item'] = array(
 	'ctrl' => array(
@@ -354,6 +418,7 @@ $TCA['tx_hypestore_domain_model_watchlist_item'] = array(
 	),
 );
 
+# Customer address
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_customer_address');
 $TCA['tx_hypestore_domain_model_customer_address'] = array(
 	'ctrl' => array(
@@ -385,6 +450,7 @@ $TCA['tx_hypestore_domain_model_customer_address'] = array(
 	),
 );
 
+# Order
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_order');
 $TCA['tx_hypestore_domain_model_order'] = array(
 	'ctrl' => array(
@@ -416,6 +482,7 @@ $TCA['tx_hypestore_domain_model_order'] = array(
 	),
 );
 
+# Manufacturer
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_manufacturer');
 $TCA['tx_hypestore_domain_model_manufacturer'] = array(
 	'ctrl' => array(
@@ -572,5 +639,12 @@ if(TYPO3_MODE == 'BE') {
 		'icon' => TRUE,
 	);
 }
+
+# Page icons
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_category', 'tx_hypestore_category', 'EXT:hype_store/Configuration/TCA/Icons/category.icon.png');
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product', 'tx_hypestore_product', 'EXT:hype_store/Configuration/TCA/Icons/product.icon.png');
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_tax_group', 'tx_hypestore_tax_group', 'EXT:hype_store/Configuration/TCA/Icons/tax-group.icon.png');
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_depot', 'tx_hypestore_depot', 'EXT:hype_store/Configuration/TCA/Icons/depot.icon.png');
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_order', 'tx_hypestore_order', 'EXT:hype_store/Configuration/TCA/Icons/order.icon.png');
 
 ?>

@@ -65,20 +65,15 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	protected $files;
 	
 	/**
-	 * @var float
-	 */
-	protected $flatPrice;
-
-	/**
-	 * @var Tx_HypeStore_Domain_Model_TaxGroup
-	 */
-	protected $taxGroup;
-
-	/**
 	 * @var integer
 	 * validate Integer
 	 */
 	protected $minimumOrderQuantity;
+	
+	/**
+	 * @var float
+	 */
+	protected $flatPrice;
 	
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductPrice>
@@ -272,44 +267,6 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	}
 	
 	/**
-	 * Setter for flat price
-	 *
-	 * @param float $price
-	 * @return void
-	 */
-	public function setFlatPrice($price) {
-		$this->flatPrice = $price;
-	}
-	
-	/**
-	 * Getter for flat price
-	 *
-	 * @return string
-	 */
-	public function getFlatPrice() {
-		return $this->flatPrice;
-	}
-
-	/**
-	 * Setter for taxGroup
-	 *
-	 * @param int $tax
-	 * @return void
-	 */
-	public function setTaxGroup($group) {
-		$this->taxGroup = $group;
-	}
-
-	/**
-	 * Getter for taxGroup
-	 *
-	 * @return int
-	 */
-	public function getTaxGroup() {
-		return $this->taxGroup;
-	}
-	
-	/**
 	 * Setter for minimum order quantity
 	 *
 	 * @param float $quantity
@@ -326,6 +283,25 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	 */
 	public function getMinimumOrderQuantity() {
 		return $this->minimumOrderQuantity;
+	}
+	
+	/**
+	 * Setter for flat price
+	 *
+	 * @param float $price
+	 * @return void
+	 */
+	public function setFlatPrice($price) {
+		$this->flatPrice = $price;
+	}
+	
+	/**
+	 * Getter for flat price
+	 *
+	 * @return string
+	 */
+	public function getFlatPrice() {
+		return $this->flatPrice;
 	}
 	
 	/**

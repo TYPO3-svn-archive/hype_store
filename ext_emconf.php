@@ -23,7 +23,12 @@ $EM_CONF[$_EXTKEY] = array(
 	'module' => '',
 	'state' => 'alpha',
 	'uploadfolder' => 0,
-	'createDirs' => 'uploads/hype/store/category/images,uploads/hype/store/product/images,uploads/hype/store/product/files',
+	'createDirs' => '
+		uploads/hype/store/category/images,
+		uploads/hype/store/product/images,
+		uploads/hype/store/product/files,
+		uploads/hype/store/article/images,
+		uploads/hype/store/article/files',
 	'modify_tables' => '',
 	'clearcacheonload' => 0,
 	'lockType' => '',

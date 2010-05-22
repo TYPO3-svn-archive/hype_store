@@ -51,6 +51,10 @@ plugin.tx_hypestore {
 			category {
 				pid =
 				
+				common {
+					overrideDocumentTitle = 1
+				}
+				
 				action {
 					index {
 						common {
@@ -124,6 +128,10 @@ plugin.tx_hypestore {
 			
 			product {
 				pid = 
+				
+				common {
+					overrideDocumentTitle = 1
+				}
 				
 				action {
 					index {

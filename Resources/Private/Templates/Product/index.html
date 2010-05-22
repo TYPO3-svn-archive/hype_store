@@ -5,120 +5,14 @@
 <f:section name="content">
 	<f:if condition="{product}">
 		
-		<!-- product.title -->
-		<h1 class="title">{product.title}</h1>
+		<!-- Product details -->
+		<f:render partial="Product/Product/{product.type}.html" arguments="{product: product, settings: settings}"/>
 		
-		<!-- product.subtitle -->
-		<f:if condition="{product.subtitle}">
-			<h2 class="subtitle">{product.subtitle}</h2>
-		</f:if>
-		
-		<!-- product.identifier -->
-		<f:if condition="{product.identifier}">
-			<p class="identifier">Article-No.: #{product.identifier}</p>
-		</f:if>
-		
-		<!-- product.manufacturer -->
-		<f:if condition="{product.manufacturer}">
-			<p class="manufacturer">Manufacturer: {product.manufacturer.title}</p>
-		</f:if>
-		
-		<!-- product.introduction -->
-		<f:if condition="{product.introduction}">
-			<p class="introduction">{product.introduction->f:format.nl2br()}</p>
-		</f:if>
-		
-		<!-- product.images -->
-		<f:if condition="{product.images}">
-			<p class="images">
-				<f:for each="{product.images}" as="image">
-					<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{image}')}">
-						<f:image src="{settings.object.product.field.images.path}{image}" maxWidth="{settings.view.product.action.index.field.images.maxWidth}" maxHeight="{settings.view.product.action.index.field.images.maxHeight}" alt="" />
-					</f:if>
-				</f:for>
-			</p>
-		</f:if>
-		
-		<!-- product.description -->
-		<f:if condition="{product.description}">
-			<div class="description">{product.description->f:format.html()}</div>
-		</f:if>
-		
-		<hr />
-		
-		<!-- product.attributes -->
-		<f:if condition="{product.attributes}">
-			<div class="attributes">
-				<h3>Attributes</h3>
-				
-				<ul>
-					<f:for each="{product.attributes}" as="attribute">
-						<li>{attribute.attribute.title}: <em>{attribute.value} <f:if condition="{attribute.attribute.unit}">{attribute.attribute.unit}</f:if></em></li>
-					</f:for>
-				</ul>
-			</div>
-		</f:if>
-		
-		<!-- product.minimumOrderQuantity -->
-		<f:if condition="{product.minimumOrderQuantity}">
-			<dl class="minimum_order_quantity">
-				<dt>Minimum order quantity</dt>
-				<dd><em>{product.minimumOrderQuantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em></dd>
-			</dl>
-		</f:if>
-		
-		<!-- product.grossPrice -->
-		<f:if condition="{product.flatPrice}">
-			<dl class="flat_price">
-				<dt>Price<f:if condition="{product.tax}"> incl. {product.tax}% VAT</f:if></dt>
-				<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
-			</dl>
-		</f:if>
-		
-		<!-- product.scaledPrices -->
-		<f:if condition="{product.scaledPrices}">
-			<div class="scaled_prices">
-				<h3>Scaled prices</h3>
-				
-				<ul>
-					<f:for each="{product.scaledPrices}" as="price">
-						<li>
-							Price for {price.quantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}: <em>{price.grossValue->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em><br />
-							<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product, quantity: price.quantity}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {price.quantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em> into the cart.</f:link.action>
-						</li>
-					</f:for>
-				</ul>
-			</div>
-		</f:if>
-		
-		<!-- product.files -->
-		<f:if condition="{product.files}">
-			<div class="files">
-				<h3>Attached files</h3>
-				
-				<ul>
-					<f:for each="{product.files}" as="file">
-						<f:if condition="{h:file.exists(path: '{settings.object.product.field.files.path}{file}')}">
-							<li><f:link.external uri="{settings.object.product.field.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.field.files.path}{file}')}</li>
-						</f:if>
-					</f:for>
-				</ul>
-			</div>
-		</f:if>
-		
-		<!-- product.stockQuantity -->
-		<f:if condition="{product.stock} > 0">
-			<f:then>
-				<p class="stock">Product is probably in stock! ({product.stock})</p>
-			</f:then>
-			
-			<f:else>
-				<p class="stock">Product is out of stock!</p>
-			</f:else>
-		</f:if>
-		
-		<!-- WISHLIST / SHOPPING CART -->
-		<f:render partial="Product/interaction" arguments="{product: product, settings: settings}"/>
+		<!-- functions -->
+		<p class="section section_functions">
+			<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {product.title}</em> into the cart.</f:link.action><br />
+			<f:link.action pluginName="Watchlist" controller="Watchlist" action="add" arguments="{product: product}" pageUid="{settings.view.watchlist.pid}" class="watchlist"><em>Set {product.title}</em> on the watchlist.</f:link.action>
+		</p>
 		
 		<!-- product.relatedProducts -->
 		<f:if condition="{product.relatedProducts}">

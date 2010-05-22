@@ -3,6 +3,12 @@ includeLibs.tx_hypestore_menu = EXT:hype_store/Classes/Hook/class.tx_hypestore_m
 plugin.tx_hypestore {
 	persistence {
 		classes {
+			Tx_HypeStore_Domain_Model_Category {
+				mapping {
+					tableName = tx_hypestore_domain_model_category
+				}
+			}
+			
 			Tx_HypeStore_Domain_Model_Product {
 				mapping {
 					tableName = tx_hypestore_domain_model_product
@@ -10,8 +16,10 @@ plugin.tx_hypestore {
 				}
 				
 				subclasses {
-					Book = Book
-				} 
+					Apparel = Tx_HypeStore_Domain_Model_Product_Apparel
+					Book = Tx_HypeStore_Domain_Model_Product_Book
+					Car = Tx_HypeStore_Domain_Model_Product_Car
+				}
 				
 				columns {
 					attributes.foreignClass = Tx_HypeStore_Domain_Model_ProductAttribute
@@ -19,16 +27,29 @@ plugin.tx_hypestore {
 				}
 			}
 			
-			Tx_HypeStore_Domain_Model_Product_Book {
+			Tx_HypeStore_Domain_Model_Product_Apparel < .Tx_HypeStore_Domain_Model_Product
+			Tx_HypeStore_Domain_Model_Product_Apparel {
 				mapping {
-					tableName = tx_hypestore_domain_model_product
-					recordType = book
+					recordType = apparel
 				}
 				
-				columns {
-					attributes.foreignClass = Tx_HypeStore_Domain_Model_ProductAttribute
-					scaled_prices.foreignClass = Tx_HypeStore_Domain_Model_ProductPrice
+				subclasses >
+			}
+			
+			Tx_HypeStore_Domain_Model_Product_Book < .Tx_HypeStore_Domain_Model_Product
+			Tx_HypeStore_Domain_Model_Product_Book {
+				mapping {
+					recordType = book
 				}
+			}
+			
+			Tx_HypeStore_Domain_Model_Product_Car < .Tx_HypeStore_Domain_Model_Product
+			Tx_HypeStore_Domain_Model_Product_Car {
+				mapping {
+					recordType = car
+				}
+				
+				subclasses >
 			}
 			
 			Tx_HypeStore_Domain_Model_Customer {
@@ -171,6 +192,10 @@ plugin.tx_hypestore {
 			category {
 				pid = {$plugin.tx_hypestore.settings.view.category.pid}
 				
+				common {
+					overrideDocumentTitle = {$plugin.tx_hypestore.settings.view.category.common.overrideDocumentTitle}
+				}
+				
 				action {
 					index {
 						common {
@@ -244,6 +269,10 @@ plugin.tx_hypestore {
 			
 			product {
 				pid = {$plugin.tx_hypestore.settings.view.product.pid}
+				
+				common {
+					overrideDocumentTitle = {$plugin.tx_hypestore.settings.view.product.common.overrideDocumentTitle}
+				}
 				
 				action {
 					index {

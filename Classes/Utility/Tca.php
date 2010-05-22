@@ -23,17 +23,44 @@
 ***************************************************************/
 
 /**
- * Book
- *
- * @package HypeStore
- * @subpackage Domain/Model/Product
- * @version $Id:$
- * @copyright Copyright belongs to the respective authors
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @scope prototype
- * @entity
+ * Tca
  */
-class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_Product {
-	
+class tx_HypeStore_Utility_Tca {
+	public function getArticleType($data, $form) {
+		
+		//ob_start();
+		//print_r($data);
+		//$content = ob_get_contents();
+		//ob_end_clean();
+		
+		//mail('thasmo@gmail.com', 'DEBUG', $content);
+		
+		# get the product uid, if available
+		$uid = $form->inline->inlineStructure['stable'][0]['uid'];
+		
+		# manipulate items if a parent product was found
+		if($uid > 0) {
+			
+			# set product
+			$product = t3lib_BEfunc::getRecord('tx_hypestore_domain_model_product', $uid);
+			
+			# update items
+			foreach($data['items'] as $key => $item) {
+				
+				# determine the product type
+				if($item[1] == $product['type']) {
+					$data['items'] = array($item);
+					break;
+				}
+			}
+			
+			//ob_start();
+			//print_r($data);
+			//$content = ob_get_contents();
+			//ob_end_clean();
+			
+			//mail('thasmo@gmail.com', 'DEBUG', $content);
+		}
+	}
 }
 ?>

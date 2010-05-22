@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
+*  (c) 2010 Thomas "Thasmo" Deinhamer <thasmo@gmail.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -83,23 +83,23 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	 * List action for this controller.
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
-	 * @return string
 	 * @dontvalidate $category
+	 * @return string
 	 */
 	public function listAction(Tx_HypeStore_Domain_Model_Category $category) {
 		
-		# assign the category
-		$this->view->assign('category', $category);
+		# overload document title
+		if($this->settings['view']['category']['common']['overrideDocumentTitle']) {
+			Tx_Hype_Utility_Document::setTitle($category->getTitle());
+		}
 		
 		# assign the path if available
 		if($this->request->hasArgument('path')) {
 			$this->view->assign('path', $this->request->getArgument('path'));
 		}
 		
-		# assign the level if available
-		if($this->request->hasArgument('level')) {
-			$this->view->assign('level', $this->request->getArgument('level'));
-		}
+		# assign the category
+		$this->view->assign('category', $category);
 	}
 }
 ?>
