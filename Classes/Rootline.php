@@ -33,6 +33,18 @@ class Tx_HypeStore_Rootline {
 		$this->rootline = $rootline;
 	}
 	
+	public function setRootline(array $rootline) {
+		$this->rootline = $rootline;
+	}
+	
+	public function getRootline() {
+		return $this->rootline;
+	}
+	
+	public function addCategory($category) {
+		array_push($this->rootline, $category);
+	}
+	
 	public function __toString() {
 		return implode(',', array_keys($this->rootline));
 	}

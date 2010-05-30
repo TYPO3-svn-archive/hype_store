@@ -23,34 +23,32 @@
 ***************************************************************/
 
 class user_hypestore_menu extends tx_hypestore_menu{};
-
 class tx_hypestore_menu {
 	
+	private $prefix;
 	private $level = -1;
 	private $path = array();
 	private $parameters;
 	
 	public function menu($content, $settings) {
-		//print_r($content);
-		//print_r($settings);
-		
 		$this->loadSettings($settings);
-		
-		$categories = $this->getMainCategories();
-		$tree = $this->getTree($categories);
-		
-		//print_r($tree);
-		
-		return $tree;
+		return $this->getDefaultMenu();
 	}
 	
 	public function path($content, $settings) {
-		
 		$this->loadSettings($settings);
-		
+		return $this->getDefaultPath();
+	}
+	
+	public function getDefaultMenu() {
+		$categories = $this->getMainCategories();
+		return $this->getTree($categories);
+	}
+	
+	public function getDefaultPath() {
 		$path = array();
 		
-		foreach($this->parameters['tx_hypestore_category']['path'] as $uid) {
+		foreach($this->parameters['path'] as $uid) {
 			array_push($path, $this->getCategory($uid));
 		}
 		
@@ -82,29 +80,63 @@ class tx_hypestore_menu {
 		# get post and get parameters
 		$this->parameters = t3lib_div::_GET();
 		
+		# set controller prefix
+		if($this->parameters['tx_hypestore_category']) {
+			$this->plugin = 'tx_hypestore_category';
+		} else if($this->parameters['tx_hypestore_product']) {
+			$this->plugin = 'tx_hypestore_product';
+		} else {
+			$this->plugin = 'tx_hypestore_category';
+		}
+		
+		# override controller prefix
+		if($this->settings['prefix']) {
+			$this->prefix = $this->settings['prefix'];
+		} else {
+			$this->prefix = $this->plugin;
+		}
+		
+		# set controller based on prefix
+		if($this->prefix == 'tx_hypestore_category') {
+			$this->controller = 'Category';
+		} else if($this->prefix == 'tx_hypestore_product') {
+			$this->controller = 'Product';
+		}
+		
 		# set modified path depending on the controller
-		if($this->parameters['tx_hypestore_category']['path']) {
-			$path = explode(',', $this->parameters['tx_hypestore_category']['path']);
-		} else if($this->parameters['tx_hypestore_product']['path']) {
-			$path = explode(',', $this->parameters['tx_hypestore_product']['path']);
+		if($this->parameters[$this->plugin]['path']) {
+			$path = explode(',', $this->parameters[$this->plugin]['path']);
+			
+			if(!is_array($path)) {
+				$path = array_merge(array(), $path);
+			}
 		} else {
 			$path = array();
 		}
 		
-		if(!is_array($path)) {
-			$path = array_merge(array(), $path);
-		}
+		$this->parameters['path'] = $path;
 		
-		$this->parameters['tx_hypestore_category']['path'] = $path;
+		# set storage
+		$this->storage = array();
+		
+		if(is_string($settings['storagePage']) && strlen($settings['storagePage']) > 0 && $settings['storageRecursive'] > 0) {
+			$list = array();
+			$explodedPages = t3lib_div::trimExplode(',', $settings['storagePage']);
+			foreach($explodedPages as $pid) {
+				$list[] = trim($GLOBALS['TSFE']->cObj->getTreeList($pid, $settings['storageRecursive']), ',');
+			}
+			
+			$this->storage = array_filter(array_merge(array($settings['storagePage']), $list));
+		}
 	}
 	
 	private function getProduct($uid) {
-		$category = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_domain_model_product', 'uid = ' . (int)$uid);
+		$category = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_domain_model_product', 'uid = ' . (int)$uid . ' AND pid IN(' . implode(',', $this->storage) . ')');
 		$record = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($category);
 		
 		# set correct page uid
 		$record['_uid'] = $record['uid'];
-		$record['uid'] = $GLOBALS['TSFE']->id;
+		$record['uid'] = $this->settings['product.']['pid'] ? (int)$this->settings['product.']['pid'] : $GLOBALS['TSFE']->id;
 		
 		# set address
 		$record['_ADD_GETVARS'] = '&tx_hypestore_product[product]=' . (int)$record['_uid'] . '&tx_hypestore_product[controller]=Product';
@@ -126,7 +158,7 @@ class tx_hypestore_menu {
 	}
 	
 	private function getCategory($uid) {
-		$category = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_domain_model_category', 'uid = ' . (int)$uid);
+		$category = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_domain_model_category', 'uid = ' . (int)$uid . ' AND pid IN(' . implode(',', $this->storage) . ')');
 		$record = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($category);
 		
 		# add path entry
@@ -134,7 +166,7 @@ class tx_hypestore_menu {
 		
 		# set correct page uid
 		$record['_uid'] = $record['uid'];
-		$record['uid'] = $this->settings['pid'] ? (int)$this->settings['pid'] : $GLOBALS['TSFE']->id;
+		$record['uid'] = $this->settings['category.']['pid'] ? (int)$this->settings['category.']['pid'] : $GLOBALS['TSFE']->id;
 		
 		# set address
 		$record['_ADD_GETVARS'] = '&tx_hypestore_category[category]=' . (int)$record['_uid'] . '&tx_hypestore_category[action]=list&tx_hypestore_category[controller]=Category';
@@ -150,7 +182,7 @@ class tx_hypestore_menu {
 		$record['ITEM_STATE'] = 'NO';
 		
 		# update state
-		if($this->parameters['tx_hypestore_category']['path'][count($this->parameters['tx_hypestore_category']['path']) - 1] == $record['_uid']) {
+		if($this->parameters['path'][count($this->parameters['path']) - 1] == $record['_uid']) {
 			# set state to current
 			$record['ITEM_STATE'] = 'CUR';
 		}
@@ -162,26 +194,44 @@ class tx_hypestore_menu {
 	}
 	
 	private function getMainCategories() {
-		$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_domain_model_category', '', '', '', '', '');
 		
-		$categories = array();
-		foreach($rows as $row) {
-			$categories[$row['uid']] = $row;
-		}
-		
-		foreach($categories as $key => $category) {
-
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $category['uid']);
+		if($this->settings['category.']['uid'] > 0) {
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $this->settings['category.']['uid'], '', 'sorting');
+			
+			$categories = array();
 			
 			if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
 				
-				$subcategories = array();
 				while($mm = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 					
-					$subcategory = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_domain_model_category', 'uid = ' . $mm['uid_foreign']);
-					$subcategory = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($subcategory);
+					$category = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_domain_model_category', 'uid = ' . $mm['uid_foreign'] . ' AND pid IN(' . implode(',', $this->storage) . ')', '', 'sorting');
+					$category = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($category);
 					
-					unset($categories[$subcategory['uid']]);
+					$categories[$category['uid']] = $category;
+				}
+			}
+		} else {
+			$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_domain_model_category', 'hidden = 0 AND deleted = 0 AND pid IN(' . implode(',', $this->storage) . ')', '', '', '', '');
+			
+			$categories = array();
+			foreach($rows as $row) {
+				$categories[$row['uid']] = $row;
+			}
+			
+			foreach($categories as $key => $category) {
+	
+				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $category['uid']);
+				
+				if($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
+					
+					$subcategories = array();
+					while($mm = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+						
+						$subcategory = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_hypestore_domain_model_category', 'uid = ' . $mm['uid_foreign'] . ' AND pid IN(' . implode(',', $this->storage) . ')');
+						$subcategory = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($subcategory);
+						
+						unset($categories[$subcategory['uid']]);
+					}
 				}
 			}
 		}
@@ -197,12 +247,19 @@ class tx_hypestore_menu {
 		$tree = array();
 		foreach($records as $record) {
 			
+			# skip if no products available
+			$products = $this->getDescendentProducts($record);
+			
+			if(count($products) == 0) {
+				continue;
+			}
+			
 			# add path entry
 			array_push($this->path, $record['uid']);
 			
 			# set correct page uid
 			$record['_uid'] = $record['uid'];
-			$record['uid'] = $this->settings['pid'] ? (int)$this->settings['pid'] : $GLOBALS['TSFE']->id;
+			$record['uid'] = $this->settings['category.']['pid'] ? (int)$this->settings['category.']['pid'] : $GLOBALS['TSFE']->id;
 			
 			# set address
 			$record['_ADD_GETVARS'] = '&tx_hypestore_category[category]=' . (int)$record['_uid'] . '&tx_hypestore_category[action]=list&tx_hypestore_category[controller]=Category';
@@ -218,22 +275,22 @@ class tx_hypestore_menu {
 			$record['ITEM_STATE'] = 'NO';
 			
 			# update state
-			if($this->parameters['tx_hypestore_category']['path'][count($this->parameters['tx_hypestore_category']['path']) - 1] == $record['_uid']) {
+			if($this->parameters['path'][count($this->parameters['path']) - 1] == $record['_uid']) {
 				# set state to current
 				$record['ITEM_STATE'] = 'CUR';
 			}
 			
 			# set subitems
-			if($this->settings['expAll'] || ($this->parameters['tx_hypestore_category']['path'][$this->level] == $record['_uid'])) {
+			if($this->settings['expAll'] || ($this->parameters['path'][$this->level] == $record['_uid'])) {
 				
-				$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('a.*', 'tx_hypestore_domain_model_category AS b, tx_hypestore_relation_category_category AS r, tx_hypestore_domain_model_category AS a', 'b.uid = r.uid_local AND r.uid_foreign = a.uid AND r.uid_local = ' . $record['_uid']);
+				$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('a.*', 'tx_hypestore_domain_model_category AS b, tx_hypestore_relation_category_category AS r, tx_hypestore_domain_model_category AS a', 'b.uid = r.uid_local AND r.uid_foreign = a.uid AND r.uid_local = ' . $record['_uid'] . ' AND b.pid IN(' . implode(',', $this->storage) . ')');
 				
 				if($GLOBALS['TYPO3_DB']->sql_num_rows($result) > 0) {
 					$categories = array();
 					while($category = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
 						
 						# update state
-						if($this->parameters['tx_hypestore_category']['path'][count($this->parameters['tx_hypestore_category']['path']) - 1] == $category['uid']) {
+						if($this->parameters['path'][count($this->parameters['path']) - 1] == $category['uid']) {
 							# set state to active
 							$record['ITEM_STATE'] = 'ACT';
 						}
@@ -244,6 +301,15 @@ class tx_hypestore_menu {
 					
 					# set submenu
 					$record['_SUB_MENU'] = $this->getTree($categories);
+					
+					# set item state
+					if($record['ITEM_STATE'] == 'CUR') {
+						$record['ITEM_STATE'] = 'CURIFSUB';
+					} else if($record['ITEM_STATE'] == 'ACT') {
+						$record['ITEM_STATE'] = 'ACTIFSUB';
+					} else {
+						$record['ITEM_STATE'] = 'IFSUB';
+					}
 				}
 			}
 			
@@ -261,6 +327,84 @@ class tx_hypestore_menu {
 		$this->level--;
 		
 		return $tree;
+	}
+	
+	public function hasDescendentProducts($category) {
+		
+		# get direct products
+		$products = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_relation_category_product', 'uid_foreign = ' . $category['uid'], '', '', '', '');
+		
+		if(count($products) > 0) {
+			return TRUE;
+		}
+		
+		# get subcategories
+		$records = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $category['uid'], '', '', '', '');
+		
+		if(count($records) == 0) {
+			return FALSE;
+		}
+		
+		$categories = array();
+		foreach($records as $record) {
+			$category = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_domain_model_category', 'uid = ' . $record['uid_foreign'] . ' AND hidden = 0 AND deleted = 0 AND pid IN(' . implode(',', $this->storage) . ')', '', '', '', '');
+			
+			if(count($category) == 1) {
+				array_push($categories, $category[0]);
+			}
+		}
+		
+		foreach($categories as $category) {
+			if($this->hasDescendentProducts($category)) {
+				return TRUE;
+			}
+		}
+		
+		return FALSE;
+	}
+	
+	public function getDescendentProducts($category) {
+		
+		$products = array();
+		
+		# get direct products
+		$records = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_relation_category_product', 'uid_foreign = ' . $category['uid'], '', '', '', '');
+		
+		if(count($records) > 0) {
+			
+			foreach($records as $record) {
+				$product = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_domain_model_product', 'uid = ' . $record['uid_local'] . ' AND hidden = 0 AND deleted = 0 AND pid IN(' . implode(',', $this->storage) . ')', '', '', '', '');
+				
+				if(count($product) == 1) {
+					array_push($products, $product[0]);
+				}
+			}
+		}
+		
+		# get subcategories
+		$records = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_relation_category_category', 'uid_local = ' . $category['uid'], '', '', '', '');
+		
+		if(count($records) > 0) {
+			
+			$categories = array();
+			foreach($records as $record) {
+				$category = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_hypestore_domain_model_category', 'uid = ' . $record['uid_foreign'] . ' AND hidden = 0 AND deleted = 0 AND pid IN(' . implode(',', $this->storage) . ')', '', '', '', '');
+				
+				if(count($category) == 1) {
+					array_push($categories, $category[0]);
+				}
+			}
+			
+			foreach($categories as $category) {
+				$temp = $this->getDescendentProducts($category);
+				
+				foreach($temp as $tmp) {
+					array_push($products, $tmp);
+				}
+			}
+		}
+		
+		return $products;
 	}
 }
 
