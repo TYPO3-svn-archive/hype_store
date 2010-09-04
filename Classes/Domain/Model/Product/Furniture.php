@@ -23,8 +23,17 @@
 ***************************************************************/
 
 /**
- * A repository for Manufacturers
+ * Car
+ *
+ * @package HypeStore
+ * @subpackage Domain/Model/Product
+ * @version $Id:$
+ * @copyright Copyright belongs to the respective authors
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @scope prototype
+ * @entity
  */
-class Tx_HypeStore_Domain_Repository_ManufacturerRepository extends Tx_Extbase_Persistence_Repository {			
+class Tx_HypeStore_Domain_Model_Product_Furniture extends Tx_HypeStore_Domain_Model_Product {
+	
 }
 ?>

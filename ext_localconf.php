@@ -5,6 +5,8 @@ if(!defined('TYPO3_MODE'))
 
 
 
+# PLUGINS
+
 # Category plugin
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
@@ -53,36 +55,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Address' => 'index,create,edit,save,delete')
 );
 
-t3lib_extMgm::addPageTSConfig('
-	# ***************************************************************************************
-	# CONFIGURATION of RTE in table "tx_hypestore_category", field "description"
-	# ***************************************************************************************
-	RTE.config.tx_hypestore_category.description {
-		hidePStyleItems = H1, H4, H5, H6
-		proc.exitHTMLparser_db = 1
-		proc.exitHTMLparser_db {
-			keepNonMatchedTags = 1
-			tags.font.allowedAttribs = color
-			tags.font.rmTagIfNoAttrib = 1
-			tags.font.nesting = global
-		}
-	}
-');
 
-t3lib_extMgm::addPageTSConfig('
-	# ***************************************************************************************
-	# CONFIGURATION of RTE in table "tx_hypestore_product", field "description"
-	# ***************************************************************************************
-	RTE.config.tx_hypestore_product.description {
-		hidePStyleItems = H1, H4, H5, H6
-		proc.exitHTMLparser_db = 1
-		proc.exitHTMLparser_db {
-			keepNonMatchedTags = 1
-			tags.font.allowedAttribs = color
-			tags.font.rmTagIfNoAttrib = 1
-			tags.font.nesting = global
-		}
-	}
-');
 
+# HOOKS
+
+# RealUrl
+//$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$_EXTKEY] = 'EXT:hype_store/Classes/Hook/class.tx_hypestore_realurl_autoconfgen.php:&tx_hypestore_realurl_autoconfgen->addRealURLConfig';
 ?>

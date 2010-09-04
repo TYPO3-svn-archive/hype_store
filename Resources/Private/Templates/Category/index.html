@@ -3,7 +3,7 @@
 <f:layout name="default" />
 
 <f:section name="content">
-	<f:if condition="{categories}">
+	<f:if condition="{f:count(subject: categories)} > 0">
 		<f:then>
 			<f:for each="{categories}" as="category">
 				<div class="category">
@@ -23,7 +23,7 @@
 					</f:if>
 					
 					<!-- category.products -->
-					<f:if condition="{category.products}">
+					<f:if condition="{f:count(subject: category.products)} > 0">
 						<div class="products">
 							<h3>Produkte</h3>
 							
@@ -48,7 +48,7 @@
 					</f:if>
 
 					<!-- category.categories -->
-					<f:if condition="{category.categories}">
+					<f:if condition="{f:count(subject: category.categories)} > 0">
 						<div class="categories">
 							<h3>Unterkategorien</h3>
 							

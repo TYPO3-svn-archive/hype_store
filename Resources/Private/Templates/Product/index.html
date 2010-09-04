@@ -9,13 +9,22 @@
 		<f:render partial="Product/Product/{product.type}.html" arguments="{product: product, settings: settings}"/>
 		
 		<!-- functions -->
-		<p class="section section_functions">
-			<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {product.title}</em> into the cart.</f:link.action><br />
-			<f:link.action pluginName="Watchlist" controller="Watchlist" action="add" arguments="{product: product}" pageUid="{settings.view.watchlist.pid}" class="watchlist"><em>Set {product.title}</em> on the watchlist.</f:link.action>
+		<p class="actions">
+			<f:if condition="{settings.common.feature.cart}">
+			<f:if condition="{settings.view.cart.pid}">
+				<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {product.title}</em> into the cart.</f:link.action><br />
+			</f:if>
+			</f:if>
+			
+			<f:if condition="{settings.common.feature.watchlist}">
+			<f:if condition="{settings.view.watchlist.pid}">
+				<f:link.action pluginName="Watchlist" controller="Watchlist" action="add" arguments="{product: product}" pageUid="{settings.view.watchlist.pid}" class="watchlist"><em>Set {product.title}</em> on the watchlist.</f:link.action>
+			</f:if>
+			</f:if>
 		</p>
 		
 		<!-- product.relatedProducts -->
-		<f:if condition="{product.relatedProducts}">
+		<f:if condition="{f:count(subject: product.relatedProducts)} > 0">
 			<hr />
 			
 			<div class="products related_products">

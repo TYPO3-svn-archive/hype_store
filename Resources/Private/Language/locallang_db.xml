@@ -12,7 +12,6 @@
 			<label index="tx_hypestore.tabs.stocks">Stocks</label>
 			<label index="tx_hypestore.tabs.articles">Articles</label>
 			<label index="tx_hypestore.tabs.units">Request units</label>
-			<label index="tx_hypestore.tabs.address">Address</label>
 			<label index="tx_hypestore.tabs.attributes">Attributes</label>
 			<label index="tx_hypestore.tabs.prices">Prices</label>
 			<label index="tx_hypestore.tabs.relations">Relations</label>
@@ -40,10 +39,10 @@
 			<label index="tx_hypestore_domain_model_product.identifier">Identifier</label>
 			<label index="tx_hypestore_domain_model_product.gtin">GTIN (Global Trade Item Number)</label>
 			<label index="tx_hypestore_domain_model_product.type">Type</label>
-			<label index="tx_hypestore_domain_model_product.type.default"></label>
+			<label index="tx_hypestore_domain_model_product.type.basic"></label>
 			<label index="tx_hypestore_domain_model_product.type.apparel">Apparel (Clothing)</label>
 			<label index="tx_hypestore_domain_model_product.type.book">Book</label>
-			<label index="tx_hypestore_domain_model_product.type.car">Car</label>
+			<label index="tx_hypestore_domain_model_product.type.furniture">Furniture</label>
 			<label index="tx_hypestore_domain_model_product.introduction">Introduction</label>
 			<label index="tx_hypestore_domain_model_product.description">Description</label>
 			<label index="tx_hypestore_domain_model_product.images">Images</label>
@@ -63,17 +62,21 @@
 			
 			<label index="tx_hypestore_domain_model_product.isbn13_number">ISBN 13 number</label>
 			<label index="tx_hypestore_domain_model_product.isbn10_number">ISBN 10 number</label>
+			<label index="tx_hypestore_domain_model_product.author">Author</label>
+			<label index="tx_hypestore_domain_model_product.publisher">Publisher</label>
 			<label index="tx_hypestore_domain_model_product.publication_year">Publication year</label>
+			<label index="tx_hypestore_domain_model_product.editor">Editor</label>
+			<label index="tx_hypestore_domain_model_product.edition">Edition</label>
 			
 			<label index="tx_hypestore_domain_model_article">Article</label>
 			<label index="tx_hypestore_domain_model_article.product">Product</label>
 			<label index="tx_hypestore_domain_model_article.identifier">Identifier</label>
 			<label index="tx_hypestore_domain_model_article.gtin">GTIN (Global Trade Item Number)</label>
 			<label index="tx_hypestore_domain_model_article.type">Type</label>
-			<label index="tx_hypestore_domain_model_article.type.default"></label>
+			<label index="tx_hypestore_domain_model_article.type.basic"></label>
 			<label index="tx_hypestore_domain_model_article.type.apparel">Apparel (Clothing)</label>
 			<label index="tx_hypestore_domain_model_article.type.book">Book</label>
-			<label index="tx_hypestore_domain_model_article.type.car">Car</label>
+			<label index="tx_hypestore_domain_model_article.type.furniture">Furniture</label>
 			<label index="tx_hypestore_domain_model_article.images">Images</label>
 			<label index="tx_hypestore_domain_model_article.files">Files</label>
 			<label index="tx_hypestore_domain_model_article.flat_price">Price</label>
@@ -133,33 +136,8 @@
 			<label index="tx_hypestore_domain_model_order.customer">Customer</label>
 			<label index="tx_hypestore_domain_model_order.items">Items</label>
 			
-			<label index="tx_hypestore_domain_model_customer_address">Customer address</label>
-			<label index="tx_hypestore_domain_model_customer_address.customer">Customer</label>
-			<label index="tx_hypestore_domain_model_customer_address.title">Title</label>
-			<label index="tx_hypestore_domain_model_customer_address.name">Name</label>
-			<label index="tx_hypestore_domain_model_customer_address.company">Company</label>
-			<label index="tx_hypestore_domain_model_customer_address.street">Street</label>
-			<label index="tx_hypestore_domain_model_customer_address.stair">Stair</label>
-			<label index="tx_hypestore_domain_model_customer_address.floor">Floor</label>
-			<label index="tx_hypestore_domain_model_customer_address.door">Door</label>
-			<label index="tx_hypestore_domain_model_customer_address.postcode">Postcode</label>
-			<label index="tx_hypestore_domain_model_customer_address.city">City</label>
-			<label index="tx_hypestore_domain_model_customer_address.country">Country</label>
-			<label index="tx_hypestore_domain_model_customer_address.telephone_number">Telephone number</label>
-			
-			<label index="tx_hypestore_domain_model_manufacturer">Manufacturer</label>
-			<label index="tx_hypestore_domain_model_manufacturer.title">Title</label>
-			<label index="tx_hypestore_domain_model_manufacturer.street">Street</label>
-			<label index="tx_hypestore_domain_model_manufacturer.postcode">Postcode/ZIP</label>
-			<label index="tx_hypestore_domain_model_manufacturer.city">City</label>
-			<label index="tx_hypestore_domain_model_manufacturer.country">Country</label>
-			<label index="tx_hypestore_domain_model_manufacturer.telephone">Telephone number</label>
-			<label index="tx_hypestore_domain_model_manufacturer.telefax">Telefax number</label>
-			<label index="tx_hypestore_domain_model_manufacturer.email">E-mail address</label>
-			<label index="tx_hypestore_domain_model_manufacturer.website">Website address</label>
-			<label index="tx_hypestore_domain_model_manufacturer.products">Products</label>
-			
-			<label index="fe_users.tx_hypestore_domain_model_addresses">Addresses</label>
+			<label index="fe_users.tx_hypestore_domain_model_billing_address">Billing address</label>
+			<label index="fe_users.tx_hypestore_domain_model_shipping_address">Shipping address</label>
 			<label index="fe_users.tx_hypestore_domain_model_orders">Orders</label>
 			<label index="fe_users.tx_hypestore_domain_model_cart_items">Cart items</label>
 			<label index="fe_users.tx_hypestore_domain_model_watchlist_items">Watchlist items</label>
@@ -171,7 +149,6 @@
 			<label index="tx_hypestore.tabs.stocks">Lagerbestände</label>
 			<label index="tx_hypestore.tabs.articles">Artikel</label>
 			<label index="tx_hypestore.tabs.units">Anfrageeinheiten</label>
-			<label index="tx_hypestore.tabs.address">Adresse</label>
 			<label index="tx_hypestore.tabs.attributes">Eigenschaften</label>
 			<label index="tx_hypestore.tabs.prices">Preise</label>
 			<label index="tx_hypestore.tabs.relations">Verknüpfungen</label>
@@ -199,10 +176,10 @@
 			<label index="tx_hypestore_domain_model_product.identifier">Kennung</label>
 			<label index="tx_hypestore_domain_model_product.gtin">GTIN (Global Trade Item Number)</label>
 			<label index="tx_hypestore_domain_model_product.type">Typ</label>
-			<label index="tx_hypestore_domain_model_product.type.default"></label>
+			<label index="tx_hypestore_domain_model_product.type.basic"></label>
 			<label index="tx_hypestore_domain_model_product.type.apparel">Bekleidung</label>
 			<label index="tx_hypestore_domain_model_product.type.book">Buch</label>
-			<label index="tx_hypestore_domain_model_product.type.car">Automobil</label>
+			<label index="tx_hypestore_domain_model_product.type.furniture">Mobiliar</label>
 			<label index="tx_hypestore_domain_model_product.introduction">Kurztext</label>
 			<label index="tx_hypestore_domain_model_product.description">Beschreibung</label>
 			<label index="tx_hypestore_domain_model_product.images">Bilder</label>
@@ -222,17 +199,21 @@
 			
 			<label index="tx_hypestore_domain_model_product.isbn13_number">ISBN 13 Nummer</label>
 			<label index="tx_hypestore_domain_model_product.isbn10_number">ISBN 10 Nummer</label>
+			<label index="tx_hypestore_domain_model_product.author">Autor</label>
+			<label index="tx_hypestore_domain_model_product.publisher">Verlag</label>
 			<label index="tx_hypestore_domain_model_product.publication_year">Erscheinungsjahr</label>
+			<label index="tx_hypestore_domain_model_product.editor">Herausgeber</label>
+			<label index="tx_hypestore_domain_model_product.edition">Ausgabe</label>
 			
 			<label index="tx_hypestore_domain_model_article">Artikel</label>
 			<label index="tx_hypestore_domain_model_article.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_article.identifier">Kennung</label>
 			<label index="tx_hypestore_domain_model_article.gtin">GTIN (Global Trade Item Number)</label>
 			<label index="tx_hypestore_domain_model_article.type">Typ</label>
-			<label index="tx_hypestore_domain_model_article.type.default"></label>
+			<label index="tx_hypestore_domain_model_article.type.basic"></label>
 			<label index="tx_hypestore_domain_model_article.type.apparel">Bekleidung</label>
 			<label index="tx_hypestore_domain_model_article.type.book">Buch</label>
-			<label index="tx_hypestore_domain_model_article.type.car">Automobil</label>
+			<label index="tx_hypestore_domain_model_article.type.furniture">Mobiliar</label>
 			<label index="tx_hypestore_domain_model_article.images">Bilder</label>
 			<label index="tx_hypestore_domain_model_article.files">Dateien</label>
 			<label index="tx_hypestore_domain_model_article.flat_price">Preis</label>
@@ -291,34 +272,9 @@
 			<label index="tx_hypestore_domain_model_order">Order</label>
 			<label index="tx_hypestore_domain_model_order.customer">Customer</label>
 			<label index="tx_hypestore_domain_model_order.items">Items</label>
-	
-			<label index="tx_hypestore_domain_model_customer_address">Kunden Adresse</label>
-			<label index="tx_hypestore_domain_model_customer_address.customer">Kunde</label>
-			<label index="tx_hypestore_domain_model_customer_address.title">Bezeichnung</label>
-			<label index="tx_hypestore_domain_model_customer_address.name">Name</label>
-			<label index="tx_hypestore_domain_model_customer_address.company">Unternehmen</label>
-			<label index="tx_hypestore_domain_model_customer_address.street">Straße</label>
-			<label index="tx_hypestore_domain_model_customer_address.stair">Stiege</label>
-			<label index="tx_hypestore_domain_model_customer_address.floor">Stockwerk</label>
-			<label index="tx_hypestore_domain_model_customer_address.door">Tür</label>
-			<label index="tx_hypestore_domain_model_customer_address.postcode">Postleitzahl</label>
-			<label index="tx_hypestore_domain_model_customer_address.city">Stadt</label>
-			<label index="tx_hypestore_domain_model_customer_address.country">Land</label>
-			<label index="tx_hypestore_domain_model_customer_address.telephone_number">Telefonnummer</label>
 			
-			<label index="tx_hypestore_domain_model_manufacturer">Hersteller</label>
-			<label index="tx_hypestore_domain_model_manufacturer.title">Titel</label>
-			<label index="tx_hypestore_domain_model_manufacturer.street">Straße</label>
-			<label index="tx_hypestore_domain_model_manufacturer.postcode">Postleitzahl</label>
-			<label index="tx_hypestore_domain_model_manufacturer.city">Ort/Stadt</label>
-			<label index="tx_hypestore_domain_model_manufacturer.country">Land</label>
-			<label index="tx_hypestore_domain_model_manufacturer.telephone">Telefonnummer</label>
-			<label index="tx_hypestore_domain_model_manufacturer.telefax">Telefaxnummer</label>
-			<label index="tx_hypestore_domain_model_manufacturer.email">E-Mail Adresse</label>
-			<label index="tx_hypestore_domain_model_manufacturer.website">Website</label>
-			<label index="tx_hypestore_domain_model_manufacturer.products">Produkte</label>
-			
-			<label index="fe_users.tx_hypestore_domain_model_addresses">Adressen</label>
+			<label index="fe_users.tx_hypestore_domain_model_billing_address">Rechnungsadress</label>
+			<label index="fe_users.tx_hypestore_domain_model_shipping_address">Lieferadresse</label>
 			<label index="fe_users.tx_hypestore_domain_model_orders">Bestellungen</label>
 			<label index="fe_users.tx_hypestore_domain_model_cart_items">Warenkorb</label>
 			<label index="fe_users.tx_hypestore_domain_model_watchlist_items">Merkliste</label>

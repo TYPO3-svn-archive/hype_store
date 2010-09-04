@@ -74,7 +74,6 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 		# load a known user
 		if($GLOBALS['TSFE']->fe_user->user) {
 			$this->customer = $this->customerRepository->findByUid((int)$GLOBALS['TSFE']->fe_user->user['uid']);
-		
 		# load an unknown user
 		} else {
 			$this->customer = NULL;
@@ -128,7 +127,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 					$this->customer->removeCartItem($cartItem);
 					
 					# add message: cart item was removed
-					$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' was removed due to a quantity of zero.');
+					$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' was removed due to a quantity of zero or less.');
 					
 				# reset the quantity to the minimum if too low
 				} else if($cartItem->getQuantity() < $cartItem->getProduct()->getMinimumOrderQuantity()) {
@@ -136,7 +135,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 					# set the minimum order quantity for the cart item
 					$cartItem->setQuantity($cartItem->getProduct()->getMinimumOrderQuantity());
 					
-					# add message: cart item was removed
+					# add message: raised to minimum quantity
 					$this->flashMessages->add('The quantity of the product ' . $cartItem->getProduct()->getTitle() . ' was raised to the minimum order quantity.');
 				}
 			}
@@ -155,7 +154,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	 * Add action for this controller.
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @param int $quantity
+	 * @param integer $quantity
 	 * @dontvalidate $product
 	 * @return void
 	 */
@@ -176,21 +175,21 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			if($existingCartItem) {
 				
 				# determine the quantity to add to the cart
-				$quantity = max($quantity, 1);
+				$quantity = max($quantity, 1) + $existingCartItem->getQuantity();
 				
 				# calculate new quantity
-				$existingCartItem->setQuantity($existingCartItem->getQuantity() + $quantity);
+				$existingCartItem->setQuantity($quantity);
 				
 			# if it doesnt, add a new cart item
 			} else {
 				
 				# determine the quantity to add to the cart
-				$quantity = max($product->getMinimumOrderQuantity(), $quantity);
+				$quantity = max($product->getMinimumOrderQuantity(), $quantity, 1);
 				
 				# create a new cart item
-				$cartItem = new Tx_HypeStore_Domain_Model_CartItem;
+				$cartItem = t3lib_div::makeInstance('Tx_HypeStore_Domain_Model_CartItem');
 				$cartItem->setProduct($product);
-				$cartItem->setQuantity(max($product->getMinimumOrderQuantity(), $quantity));
+				$cartItem->setQuantity($quantity);
 				$cartItem->setCustomer($this->customer);
 				
 				# add the new cart item
@@ -201,8 +200,17 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			$this->flashMessages->add('The product ' . $product->getTitle() . ' was added to the cart.');
 		}
 		
-		# redirect to the cart
-		$this->redirect('index');
+		# redirect the user
+		if($referrer = t3lib_div::getIndpEnv('HTTP_REFERER')) {
+			
+			# redirect to the last visited page
+			$this->redirectToURI($referrer);
+			
+		} else {
+			
+			# redirect to the cart
+			$this->redirect('index');
+		}
 	}
 	
 	/**

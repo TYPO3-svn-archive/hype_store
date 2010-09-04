@@ -101,7 +101,8 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	stock_unit int(11) DEFAULT '0' NOT NULL,
 	stocks int(11) DEFAULT '0' NOT NULL,
 	
-	# SPECIFIC
+	# General
+	manufacturer int(11) DEFAULT '0' NOT NULL,
 	
 	# Apparel
 	
@@ -115,10 +116,8 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	editor int(11) DEFAULT '0' NOT NULL,
 	edition int(11) DEFAULT '0' NOT NULL,
 	
-	# Car
-	manufacturer int(11) DEFAULT '0' NOT NULL,
-	manufacture_year int(11) DEFAULT '0' NOT NULL,
-	registration_year int(11) DEFAULT '0' NOT NULL,
+	# Furniture
+	
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -408,78 +407,6 @@ CREATE TABLE tx_hypestore_domain_model_watchlist_item (
 
 
 #
-# Table structure for table 'tx_hypestore_domain_model_customer_address'
-#
-CREATE TABLE tx_hypestore_domain_model_customer_address (
-	uid int(11) NOT NULL auto_increment,
-	pid int(11) DEFAULT '0' NOT NULL,
-	tstamp int(11) DEFAULT '0' NOT NULL,
-	crdate int(11) DEFAULT '0' NOT NULL,
-	cruser_id int(11) DEFAULT '0' NOT NULL,
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumtext,
-	sorting int(10) DEFAULT '0' NOT NULL,
-	deleted tinyint(4) DEFAULT '0' NOT NULL,
-	hidden tinyint(4) DEFAULT '0' NOT NULL,
-	starttime int(11) DEFAULT '0' NOT NULL,
-	endtime int(11) DEFAULT '0' NOT NULL,
-	fe_group int(11) DEFAULT '0' NOT NULL,
-	
-	customer int(11) DEFAULT '0' NOT NULL,
-	title varchar(255) DEFAULT '' NOT NULL,
-	name varchar(255) DEFAULT '' NOT NULL,
-	company varchar(255) DEFAULT '' NOT NULL,
-	street varchar(255) DEFAULT '' NOT NULL,
-	stair varchar(255) DEFAULT '' NOT NULL,
-	floor varchar(255) DEFAULT '' NOT NULL,
-	door varchar(255) DEFAULT '' NOT NULL,
-	postcode varchar(255) DEFAULT '' NOT NULL,
-	city varchar(255) DEFAULT '' NOT NULL,
-	country varchar(255) DEFAULT '' NOT NULL,
-	telephone_number varchar(255) DEFAULT '' NOT NULL,
-	
-	PRIMARY KEY (uid),
-	KEY parent (pid)
-);
-
-
-#
-# Table structure for table 'tx_hypestore_domain_model_manufacturer'
-#
-CREATE TABLE tx_hypestore_domain_model_manufacturer (
-	uid int(11) NOT NULL auto_increment,
-	pid int(11) DEFAULT '0' NOT NULL,
-	tstamp int(11) DEFAULT '0' NOT NULL,
-	crdate int(11) DEFAULT '0' NOT NULL,
-	cruser_id int(11) DEFAULT '0' NOT NULL,
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumtext,
-	sorting int(10) DEFAULT '0' NOT NULL,
-	deleted tinyint(4) DEFAULT '0' NOT NULL,
-	hidden tinyint(4) DEFAULT '0' NOT NULL,
-	starttime int(11) DEFAULT '0' NOT NULL,
-	endtime int(11) DEFAULT '0' NOT NULL,
-	fe_group int(11) DEFAULT '0' NOT NULL,
-	
-	title varchar(255) DEFAULT '' NOT NULL,
-	street varchar(255) DEFAULT '' NOT NULL,
-	postcode int(11) DEFAULT '0' NOT NULL,
-	city varchar(255) DEFAULT '' NOT NULL,
-	country varchar(255) DEFAULT '' NOT NULL,
-	telephone varchar(255) DEFAULT '' NOT NULL,
-	telefax varchar(255) DEFAULT '' NOT NULL,
-	email varchar(255) DEFAULT '' NOT NULL,
-	website varchar(255) DEFAULT '' NOT NULL,
-	products int(11) DEFAULT '0' NOT NULL,
-	
-	PRIMARY KEY (uid),
-	KEY parent (pid)
-);
-
-
-#
 # Table structure for table 'tx_hypestore_relation_category_category'
 #
 
@@ -534,7 +461,8 @@ CREATE TABLE tx_hypestore_relation_product_product (
 # Table structure for table 'fe_users'
 #
 CREATE TABLE fe_users (
-tx_hypestore_domain_model_addresses int(11) DEFAULT '0' NOT NULL,
+	tx_hypestore_domain_model_shipping_address int(11) DEFAULT '0' NOT NULL,
+	tx_hypestore_domain_model_billing_address int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_orders int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_cart_items int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_watchlist_items int(11) DEFAULT '0' NOT NULL

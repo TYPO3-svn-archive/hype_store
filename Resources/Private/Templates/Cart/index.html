@@ -35,7 +35,9 @@
 			<p class="totalPrice"><strong>Total sum:</strong> <em>{totalPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> including VAT</p>
 			
 			<f:if condition="{settings.common.feature.checkout}">
+			<f:if condition="{settings.view.checkout.pid}">
 				<f:link.action pluginName="Checkout" controller="Checkout" pageUid="{settings.view.checkout.pid}">Order products &rsaquo;</f:link.action>
+			</f:if>
 			</f:if>
 		</f:then>
 		

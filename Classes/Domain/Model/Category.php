@@ -387,9 +387,9 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 		
 		return clone $this->products;
 	}
-
-
-
+	
+	
+	
 	/* Custom getter methods */
 
 	/**
@@ -398,7 +398,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return array
 	 */
 	public function getDescendentProducts() {
-
+		
 		# get the desdendent products from the service
 		return $this->categoryService->getDescendentProducts($this);
 	}
