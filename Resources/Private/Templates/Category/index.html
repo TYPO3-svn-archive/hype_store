@@ -12,7 +12,7 @@
 					
 					<!-- category.images -->
 					<f:if condition="{h:file.exists(path: '{settings.object.category.field.images.path}{category.images.0}')}">
-						<f:link.action action="list" arguments="{category: category}" class="image">
+						<f:link.action action="list" arguments="{category: category, path: '{category.uid}'}" class="image">
 							<f:image src="{settings.object.category.field.images.path}{category.images.0}" maxWidth="{settings.view.category.action.index.field.images.maxWidth}" maxHeight="{settings.view.category.action.index.field.images.maxHeight}" alt="{category.title}" />
 						</f:link.action>
 					</f:if>
@@ -33,7 +33,7 @@
 										<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}">{product.title}</f:link.action>
 										
 										<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{product.images.0}')}">
-											<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product}" class="image">
+											<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}" class="image">
 												<f:image src="{settings.object.product.field.images.path}{product.images.0}" maxWidth="{settings.view.category.action.index.object.product.field.images.maxWidth}" maxHeight="{settings.view.category.action.index.object.product.field.images.maxHeight}" alt="{product.title}" />
 											</f:link.action>
 										</f:if>
@@ -56,7 +56,7 @@
 								<f:for each="{category.categories}" as="subcategory">
 									<li>
 										<f:link.action action="list" arguments="{category: subcategory, path: '{category.uid},{subcategory.uid}'}">{subcategory.title}</f:link.action>
-										<f:if condition="0"> <!-- {subcategory.introduction} -->
+										<f:if condition="{subcategory.introduction}">
 											<p class="introduction">{subcategory.introduction->f:format.nl2br()}</p>
 										</f:if>
 									</li>

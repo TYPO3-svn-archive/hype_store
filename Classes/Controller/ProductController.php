@@ -45,6 +45,9 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 		# initialize product repository
 		$this->productRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_ProductRepository');
 		
+		# initialize product repository
+		$this->discountRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_DiscountRepository');
+		
 		# prepare category pid (flexform hack)
 		$this->settings['view']['category']['pid'] = (strpos($this->settings['view']['category']['pid'], '_')) > 0
 			? substr($this->settings['view']['category']['pid'], strpos($this->settings['view']['category']['pid'], '_') + 1)

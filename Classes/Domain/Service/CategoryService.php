@@ -57,7 +57,29 @@ class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 	}
 	
 	/**
-	 * Returns all descendent categories of the given category
+	 * Returns all preceded categories for a given category
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Category $category
+	 * @return array
+	 */
+	public function getPrecededCategories(Tx_HypeStore_Domain_Model_Category $category) {
+		
+		# get direct categories
+		$categories = $category->getParentCategories()->toArray();
+		
+		if(count($categories) > 0) {
+			foreach($categories as $parentCategory) {
+				$categories = array_merge($this->getPrecededCategories($parentCategory), $categories);
+			}
+			
+			return $categories;
+		} else {
+			return $categories;
+		}
+	}
+	
+	/**
+	 * Returns all descendent categories for the given category
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return array
@@ -79,7 +101,7 @@ class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 	}
 	
 	/**
-	 * Returns all products of the given and all descendent categories
+	 * Returns all products for the given and all descendent categories
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return array

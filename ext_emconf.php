@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Hype Store',
-	'description' => 'Implements an online shop with categories, products, a shopping cart including checkout and other features,',
+	'description' => 'Implements an online shop with categories, products, a shopping cart including checkout and other features.',
 	'category' => 'fe',
 	'shy' => 0,
 	'version' => '0.1.2',

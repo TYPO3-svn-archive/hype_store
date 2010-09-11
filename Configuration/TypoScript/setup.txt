@@ -109,6 +109,12 @@ config.tx_extbase {
 				}
 			}
 			
+			Tx_HypeStore_Domain_Model_Discount {
+				mapping {
+					tableName = tx_hypestore_domain_model_discount
+				}
+			}
+			
 			Tx_HypeStore_Domain_Model_Depot {
 				mapping {
 					tableName = tx_hypestore_domain_model_depot

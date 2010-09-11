@@ -106,11 +106,10 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	
 	# Apparel
 	
-	
 	# Book
 	isbn10_number varchar(10) DEFAULT '' NOT NULL,
 	isbn13_number varchar(13) DEFAULT '' NOT NULL,
-	author int(11) DEFAULT '0' NOT NULL,
+	authors text,
 	publisher int(11) DEFAULT '0' NOT NULL,
 	publication_year int(4) DEFAULT '0' NOT NULL,
 	editor int(11) DEFAULT '0' NOT NULL,
@@ -262,6 +261,65 @@ CREATE TABLE tx_hypestore_domain_model_product_stock (
 	depot int(11) DEFAULT '0' NOT NULL,
 	product int(11) DEFAULT '0' NOT NULL,
 	quantity int(11) DEFAULT '0' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+
+#
+# Table structure for table 'tx_hypestore_domain_model_article_stock'
+#
+CREATE TABLE tx_hypestore_domain_model_article_stock (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	sys_language_uid int(11) DEFAULT '0' NOT NULL,
+	l10n_parent int(11) DEFAULT '0' NOT NULL,
+	l10n_diffsource mediumtext,
+	sorting int(10) DEFAULT '0' NOT NULL,
+	deleted tinyint(4) DEFAULT '0' NOT NULL,
+	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	starttime int(11) DEFAULT '0' NOT NULL,
+	endtime int(11) DEFAULT '0' NOT NULL,
+	fe_group int(11) DEFAULT '0' NOT NULL,
+	
+	depot int(11) DEFAULT '0' NOT NULL,
+	article int(11) DEFAULT '0' NOT NULL,
+	quantity int(11) DEFAULT '0' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+
+#
+# Table structure for table 'tx_hypestore_domain_model_discount'
+#
+CREATE TABLE tx_hypestore_domain_model_discount (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	sys_language_uid int(11) DEFAULT '0' NOT NULL,
+	l10n_parent int(11) DEFAULT '0' NOT NULL,
+	l10n_diffsource mediumtext,
+	sorting int(10) DEFAULT '0' NOT NULL,
+	deleted tinyint(4) DEFAULT '0' NOT NULL,
+	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	starttime int(11) DEFAULT '0' NOT NULL,
+	endtime int(11) DEFAULT '0' NOT NULL,
+	fe_group int(11) DEFAULT '0' NOT NULL,
+	
+	title varchar(255) DEFAULT '' NOT NULL,
+	rate tinyint(3) DEFAULT '0' NOT NULL,
+	included_products int(11) DEFAULT '0' NOT NULL,
+	excluded_products int(11) DEFAULT '0' NOT NULL,
+	included_categories int(11) DEFAULT '0' NOT NULL,
+	excluded_categories int(11) DEFAULT '0' NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -450,6 +508,42 @@ CREATE TABLE tx_hypestore_relation_product_product (
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+
+#
+# Table structure for table 'tx_hypestore_relation_discount_category'
+#
+
+CREATE TABLE tx_hypestore_relation_discount_category (
+	uid int(11) NOT NULL auto_increment,
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	exclude tinyint(1) DEFAULT '0' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+
+#
+# Table structure for table 'tx_hypestore_relation_discount_product'
+#
+
+CREATE TABLE tx_hypestore_relation_discount_product (
+	uid int(11) NOT NULL auto_increment,
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	exclude tinyint(1) DEFAULT '0' NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY uid_local (uid_local),

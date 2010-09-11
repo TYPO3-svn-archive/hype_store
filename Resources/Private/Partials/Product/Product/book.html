@@ -10,7 +10,7 @@
 
 <!-- product.identifier -->
 <f:if condition="{product.identifier}">
-	<p class="identifier">Article-No.: #BOOK.{product.identifier}</p>
+	<p class="identifier">Article-No.: {product.identifier}</p>
 </f:if>
 
 <!-- product.introduction -->
@@ -40,9 +40,11 @@
 <h3>Details</h3>
 
 <dl class="details">
-	<f:if condition="{product.author}">
-		<dt>Author</dt>
-		<dd>{product.author.name}</dd>
+	<f:if condition="{f:count(subject: '{product.authors}')} > 0">
+		<dt>Authors</dt>
+		<f:for each="{product.authors}" as="author">
+			<dd>{author.name}</dd>
+		</f:for>
 	</f:if>
 	
 	<f:if condition="{product.publisher}">
@@ -82,7 +84,7 @@
 </f:if>
 
 <!-- product.minimumOrderQuantity -->
-<f:if condition="{product.minimumOrderQuantity}">
+<f:if condition="{product.minimumOrderQuantity} > 1">
 	<dl class="minimum_order_quantity">
 		<dt>Minimum order quantity</dt>
 		<dd><em>{product.minimumOrderQuantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em></dd>
@@ -90,15 +92,27 @@
 </f:if>
 
 <!-- product.grossPrice -->
-<f:if condition="{product.flatPrice}">
+<f:if condition="{product.grossPrice}">
 	<dl class="flat_price">
-		<dt>Price<f:if condition="{product.tax}"> incl. {product.tax}% VAT</f:if></dt>
-		<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+		<dt>Price<f:if condition="{product.taxGroup}"> incl. {product.taxGroup.value}% VAT</f:if></dt>
+		
+		<f:if condition="{product.discount}">
+			<f:then>
+				<dd>
+					<strike>{product.undiscountedGrossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</strike><br />
+					<em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')} (-{product.discount.rate}%)</em>
+				</dd>
+			</f:then>
+			
+			<f:else>
+				<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+			</f:else>
+		</f:if>
 	</dl>
 </f:if>
 
 <!-- product.scaledPrices -->
-<f:if condition="{product.scaledPrices}">
+<f:if condition="{f:count(subject: '{product.scaledPrices}')} > 0">
 	<div class="scaled_prices">
 		<h3>Scaled prices</h3>
 		

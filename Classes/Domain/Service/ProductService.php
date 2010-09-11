@@ -32,20 +32,77 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 	 */
 	public function __construct() {
 		$this->categoryService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_CategoryService');
+		$this->discountRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_DiscountRepository');
 	}
 	
 	/**
-	 * Calculates the price for a single product based on a given quantity
+	 * Returns all preceded categories for a given product
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @return array
+	 */
+	public function getPrecededCategories($product) {
+		
+		# get direct categories
+		$categories = $product->getCategories()->toArray();
+		
+		if(count($categories) > 0) {
+			foreach($categories as $category) {
+				$categories = array_merge($this->categoryService->getPrecededCategories($category), $categories);
+			}
+		}
+		
+		return $categories;
+	}
+	
+	/**
+	 * Calculates the final price for a single product based on a given quantity
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Product $product
 	 * @param int $quantity
 	 * @return float
 	 */
 	public function getPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1) {
-
+		
 		# get flat price
 		$price = $product->getFlatPrice();
-
+		
+		# get the "best price" if a scaled price matches the given quantity
+		foreach($product->getScaledPrices() as $scaledPrice) {
+			if($quantity >= $scaledPrice->getQuantity()) {
+				$price = min(($price) ? $price : $scaledPrice->getValue(), $scaledPrice->getValue());
+			}
+		}
+		
+		# get the applyable discount
+		$discount = $this->getDiscount($product);
+		
+		if($discount) {
+			# substract the discount rate
+			$price *= ($discount->getRate() / 100);
+		}
+		
+		# add tax
+		if($product->getTaxGroup()) {
+			$price += ($price * ($product->getTaxGroup()->getValue() / 100));
+		}
+		
+		# return a rounded price for correct quantity calculation
+		return round($price, 2);
+	}
+	
+	/**
+	 * Calculates the undiscounted price for a single product based on a given quantity
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @param int $quantity
+	 * @return float
+	 */
+	public function getUndiscountedPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1) {
+		
+		# get flat price
+		$price = $product->getFlatPrice();
+		
 		# get the "best price" if a scaled price matches the given quantity
 		foreach($product->getScaledPrices() as $scaledPrice) {
 			if($quantity >= $scaledPrice->getQuantity()) {
@@ -54,10 +111,23 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 		}
 		
 		# add tax
-		$price = $price + ($price * ($product->getTax() / 100));
+		if($product->getTaxGroup()) {
+			$price = $price + ($price * ($product->getTaxGroup()->getValue() / 100));
+		}
 		
 		# return a rounded price for correct quantity calculation
 		return round($price, 2);
+	}
+	
+	/**
+	 * Gets the final relevant discount for a given product
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @return Tx_HypeStore_Domain_Model_Discount
+	 */
+	public function getDiscount(Tx_HypeStore_Domain_Model_Product $product) {
+		$discount = array_shift($this->discountRepository->findByProduct($product));
+		return $discount;
 	}
 	
 	/**

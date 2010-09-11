@@ -31,7 +31,7 @@
  * @scope prototype
  * @entity
  */
-class Tx_HypeStore_Domain_Model_Customer extends Tx_Extbase_Domain_Model_FrontendUser {
+class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_FrontendUser {
 	
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_CustomerAddress>

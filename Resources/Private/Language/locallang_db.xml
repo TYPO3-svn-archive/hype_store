@@ -16,6 +16,7 @@
 			<label index="tx_hypestore.tabs.prices">Prices</label>
 			<label index="tx_hypestore.tabs.relations">Relations</label>
 			<label index="tx_hypestore.tabs.products">Products</label>
+			<label index="tx_hypestore.tabs.categories">Categories</label>
 			
 			<label index="tx_hypestore_domain_model_category">Category</label>
 			<label index="tx_hypestore_domain_model_category.title">Title</label>
@@ -62,7 +63,7 @@
 			
 			<label index="tx_hypestore_domain_model_product.isbn13_number">ISBN 13 number</label>
 			<label index="tx_hypestore_domain_model_product.isbn10_number">ISBN 10 number</label>
-			<label index="tx_hypestore_domain_model_product.author">Author</label>
+			<label index="tx_hypestore_domain_model_product.authors">Authors</label>
 			<label index="tx_hypestore_domain_model_product.publisher">Publisher</label>
 			<label index="tx_hypestore_domain_model_product.publication_year">Publication year</label>
 			<label index="tx_hypestore_domain_model_product.editor">Editor</label>
@@ -100,10 +101,23 @@
 			<label index="tx_hypestore_domain_model_product_stock.product">Product</label>
 			<label index="tx_hypestore_domain_model_product_stock.quantity">Quantity</label>
 			
+			<label index="tx_hypestore_domain_model_article_stock">Stock</label>
+			<label index="tx_hypestore_domain_model_article_stock.depot">Depot</label>
+			<label index="tx_hypestore_domain_model_article_stock.article">Article</label>
+			<label index="tx_hypestore_domain_model_article_stock.quantity">Quantity</label>
+			
 			<label index="tx_hypestore_domain_model_product_attribute">Product value</label>
 			<label index="tx_hypestore_domain_model_product_attribute.product">Product</label>
 			<label index="tx_hypestore_domain_model_product_attribute.attribute">Attribute</label>
 			<label index="tx_hypestore_domain_model_product_attribute.value">Value</label>
+			
+			<label index="tx_hypestore_domain_model_discount">Discount</label>
+			<label index="tx_hypestore_domain_model_discount.title">Title</label>
+			<label index="tx_hypestore_domain_model_discount.rate">Rate</label>
+			<label index="tx_hypestore_domain_model_discount.included_categories">Included categories</label>
+			<label index="tx_hypestore_domain_model_discount.excluded_categories">Excluded categories</label>
+			<label index="tx_hypestore_domain_model_discount.included_products">Included products</label>
+			<label index="tx_hypestore_domain_model_discount.excluded_products">Excluded products</label>
 			
 			<label index="tx_hypestore_domain_model_depot">Depot</label>
 			<label index="tx_hypestore_domain_model_depot.title">Title</label>
@@ -153,6 +167,7 @@
 			<label index="tx_hypestore.tabs.prices">Preise</label>
 			<label index="tx_hypestore.tabs.relations">Verknüpfungen</label>
 			<label index="tx_hypestore.tabs.products">Produkte</label>
+			<label index="tx_hypestore.tabs.categories">Kategorien</label>
 			
 			<label index="tx_hypestore_domain_model_category">Kategorie</label>
 			<label index="tx_hypestore_domain_model_category.title">Titel</label>
@@ -199,7 +214,7 @@
 			
 			<label index="tx_hypestore_domain_model_product.isbn13_number">ISBN 13 Nummer</label>
 			<label index="tx_hypestore_domain_model_product.isbn10_number">ISBN 10 Nummer</label>
-			<label index="tx_hypestore_domain_model_product.author">Autor</label>
+			<label index="tx_hypestore_domain_model_product.authors">Autoren</label>
 			<label index="tx_hypestore_domain_model_product.publisher">Verlag</label>
 			<label index="tx_hypestore_domain_model_product.publication_year">Erscheinungsjahr</label>
 			<label index="tx_hypestore_domain_model_product.editor">Herausgeber</label>
@@ -237,10 +252,23 @@
 			<label index="tx_hypestore_domain_model_product_stock.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_product_stock.quantity">Anzahl</label>
 			
+			<label index="tx_hypestore_domain_model_article_stock">Lagerbestand</label>
+			<label index="tx_hypestore_domain_model_article_stock.depot">Depot</label>
+			<label index="tx_hypestore_domain_model_article_stock.article">Artikel</label>
+			<label index="tx_hypestore_domain_model_article_stock.quantity">Anzahl</label>
+			
 			<label index="tx_hypestore_domain_model_product_attribute">Produkteigenschaft</label>
 			<label index="tx_hypestore_domain_model_product_attribute.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_product_attribute.attribute">Eigenschaft</label>
 			<label index="tx_hypestore_domain_model_product_attribute.value">Wert</label>
+			
+			<label index="tx_hypestore_domain_model_discount">Ermäßigung</label>
+			<label index="tx_hypestore_domain_model_discount.title">Bezeichnung</label>
+			<label index="tx_hypestore_domain_model_discount.rate">Rate</label>
+			<label index="tx_hypestore_domain_model_discount.included_categories">Inkludierte Kategorien</label>
+			<label index="tx_hypestore_domain_model_discount.excluded_categories">Ausgenommene Kategorien</label>
+			<label index="tx_hypestore_domain_model_discount.included_products">Inkludierte Produkte</label>
+			<label index="tx_hypestore_domain_model_discount.excluded_products">Ausgenommene Produkte</label>
 			
 			<label index="tx_hypestore_domain_model_depot">Depot</label>
 			<label index="tx_hypestore_domain_model_depot.title">Titel</label>

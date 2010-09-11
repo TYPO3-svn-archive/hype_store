@@ -48,10 +48,10 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	protected $isbn13Number;
 	
 	/**
-	 * @var Tx_HypeDirectory_Domain_Model_Contact
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeDirectory_Domain_Model_Contact>
 	 * @lazy
 	 */
-	protected $author;
+	protected $authors;
 	
 	/**
 	 * @var Tx_HypeDirectory_Domain_Model_Contact
@@ -76,6 +76,19 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	 * @validate Integer
 	 */
 	protected $edition;
+	
+	/*
+	Example:  0-123456-47-9
+	
+	1. Begin with prefix of “978”
+	2. Use the first nine numeric characters of the ISBN (include dashes)
+	  978-0-123456-47-
+	3. Calculate the EAN check digit using the “Mod 10 Algorithm”
+	  978-0-123456-47-2
+	
+	ISBN-10         0-123456-47-9
+	ISBN-13  978-0-123456-47-2
+	*/
 	
 	/**
 	 * Setter for isbn10Number
@@ -116,22 +129,70 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	}
 	
 	/**
-	 * Setter for author
+	 * Setter for authors
 	 *
 	 * @param Tx_HypeDirectory_Domain_Model_Contact $author
 	 * @return void
 	 */
-	public function setAuthor(Tx_HypeDirectory_Domain_Model_Contact $author) {
-		$this->author = $author;
-	}
+	//public function setAuthor(Tx_HypeDirectory_Domain_Model_Contact $author) {
+	//	$this->author = $author;
+	//}
 	
 	/**
 	 * Getter for author
 	 *
 	 * @return Tx_HypeDirectory_Domain_Model_Contact
 	 */
-	public function getAuthor() {
-		return $this->author;
+	//public function getAuthor() {
+	//	return $this->author;
+	//}
+	
+	/**
+	 * Setter for authors
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $authors
+	 * @return void
+	 */
+	public function setAuthors(Tx_Extbase_Persistence_ObjectStorage $authors) {
+		$this->authors = clone $authors;
+	}
+	
+	/**
+	 * Adds an author
+	 *
+	 * @param Tx_HypeDirectory_Domain_Model_Contact $author
+	 * @return void
+	 */
+	public function addAuthor(Tx_HypeDirectory_Domain_Model_Contact $author) {
+		$this->authors->attach($author);
+	}
+	
+	/**
+	 * Removes an author
+	 *
+	 * @param Tx_HypeDirectory_Domain_Model_Contact $author
+	 * @return void
+	 */
+	public function removeAuthor(Tx_HypeDirectory_Domain_Model_Contact $author) {
+		$this->authors->detach($author);
+	}
+	
+	/**
+	 * Remove all authors
+	 *
+	 * @return void
+	 */
+	public function removeAuthors() {
+		$this->authors = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+	
+	/**
+	 * Getter for authors
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getAuthors() {
+		return clone $this->authors;
 	}
 	
 	/**

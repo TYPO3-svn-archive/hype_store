@@ -308,6 +308,64 @@ $TCA['tx_hypestore_domain_model_product_stock'] = array(
 	),
 );
 
+# Article stock
+t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_article_stock');
+$TCA['tx_hypestore_domain_model_article_stock'] = array(
+	'ctrl' => array(
+		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article_stock',
+		'label'	 => 'article',
+		'tstamp'	=> 'tstamp',
+		'crdate'	=> 'crdate',
+		'cruser_id' => 'cruser_id',
+		'languageField'			=> 'sys_language_uid',
+		'transOrigPointerField'	=> 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+			'fe_group' => 'fe_group',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/stock.png',
+		
+		'hideTable' => TRUE,
+		'dividers2tabs' => TRUE,
+	),
+);
+
+# Discount
+t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_discount');
+$TCA['tx_hypestore_domain_model_discount'] = array(
+	'ctrl' => array(
+		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_discount',
+		'label'	 => 'title',
+		'label_alt' => 'rate',
+		'label_alt_force' => TRUE,
+		'tstamp'	=> 'tstamp',
+		'crdate'	=> 'crdate',
+		'cruser_id' => 'cruser_id',
+		'languageField'			=> 'sys_language_uid',
+		'transOrigPointerField'	=> 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		//'sortby' => 'sorting',
+		'default_sortby' => 'title',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+			'fe_group' => 'fe_group',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/discount.png',
+		
+		'dividers2tabs' => TRUE,
+	),
+);
+
 # Depot
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_depot');
 $TCA['tx_hypestore_domain_model_depot'] = array(

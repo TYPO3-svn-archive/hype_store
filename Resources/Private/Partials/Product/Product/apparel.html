@@ -10,7 +10,7 @@
 
 <!-- product.identifier -->
 <f:if condition="{product.identifier}">
-	<p class="identifier">Article-No.: #APPAREL.{product.identifier}</p>
+	<p class="identifier">Article-No.: {product.identifier}</p>
 </f:if>
 
 <!-- product.manufacturer -->
@@ -63,15 +63,27 @@
 </f:if>
 
 <!-- product.grossPrice -->
-<f:if condition="{product.flatPrice}">
+<f:if condition="{product.grossPrice}">
 	<dl class="flat_price">
-		<dt>Price<f:if condition="{product.tax}"> incl. {product.tax_group.value}% VAT</f:if></dt>
-		<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+		<dt>Price<f:if condition="{product.taxGroup}"> incl. {product.taxGroup.value}% VAT</f:if></dt>
+		
+		<f:if condition="{product.discount}">
+			<f:then>
+				<dd>
+					<strike>{product.undiscountedGrossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</strike><br />
+					<em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')} (-{product.discount.rate}%)</em>
+				</dd>
+			</f:then>
+			
+			<f:else>
+				<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+			</f:else>
+		</f:if>
 	</dl>
 </f:if>
 
 <!-- product.scaledPrices -->
-<f:if condition="{product.scaledPrices}">
+<f:if condition="{f:count(subject: '{product.scaledPrices}')} > 0">
 	<div class="scaled_prices">
 		<h3>Scaled prices</h3>
 		

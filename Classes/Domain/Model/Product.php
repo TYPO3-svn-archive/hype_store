@@ -618,22 +618,22 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	}
 
 	/**
-	 * Setter for tax
+	 * Setter for taxGroup
 	 *
-	 * @param int $tax
+	 * @param Tx_HypeStore_Domain_Model_TaxGroup $tax
 	 * @return void
 	 */
-	public function setTax($tax) {
-		$this->tax = $tax;
+	public function setTaxGroup(Tx_HypeStore_Domain_Model_TaxGroup $taxGroup) {
+		$this->taxGroup = $taxGroup;
 	}
 
 	/**
-	 * Getter for tax
+	 * Getter for taxGroup
 	 *
-	 * @return int
+	 * @return Tx_HypeStore_Domain_Model_TaxGroup
 	 */
-	public function getTax() {
-		return $this->tax;
+	public function getTaxGroup() {
+		return $this->taxGroup;
 	}
 	
 	/**
@@ -852,7 +852,23 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	
 	
 	/* Service methods */
-
+	
+	/**
+	 * Gets all preceded categories
+	 *
+	 * @return array
+	 */
+	public function getPrecededCategories() {
+		
+		$categories = array();
+		
+		foreach($this->productService->getPrecededCategories($this) as $category) {
+			$categories[$category->getUid()] = $category;
+		}
+		
+		return $categories;
+	}
+	
 	/**
 	 * Gets the calculated gross price
 	 *
@@ -863,6 +879,24 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	}
 	
 	/**
+	 * Gets the calculated, undiscounted gross price
+	 *
+	 * @return double
+	 */
+	public function getUndiscountedGrossPrice() {
+		return $this->productService->getUndiscountedPrice($this);
+	}
+	
+	/**
+	 * Gets the assigned discount
+	 *
+	 * @return Tx_HypeStore_Domain_Model_Discount
+	 */
+	public function getDiscount() {
+		return $this->productService->getDiscount($this);
+	}
+	
+	/**
 	 * Gets the calculated stock quantity
 	 *
 	 * @return int
@@ -870,10 +904,6 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	public function getStock() {
 		return $this->productService->getStock($this);
 	}
-	
-	
-	
-	/* Service methods */
 
 	/**
 	 * Returns all rootlines for this product
