@@ -169,12 +169,12 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 				'maxitems' => 999999,
 				'MM' => 'tx_hypestore_relation_category_category',
 				'MM_opposite_field' => 'categories',
-				
+
 				'form_type' => 'user',
 				'userFunc' => 'tx_hypestore_tca_field->categories',
 				'user_type' => 'tree',
 				'indent_sign' => ' ',
-				
+
 				'allowed' => 'tx_hypestore_domain_model_category',
 				'wizards' => array(
 					'suggest' => array(
@@ -198,12 +198,12 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 				'minitems' => 0,
 				'maxitems' => 999999,
 				'MM' => 'tx_hypestore_relation_category_category',
-				
+
 				'form_type' => 'user',
 				'userFunc' => 'tx_hypestore_tca_field->categories',
 				'user_type' => 'tree',
 				'indent_sign' => ' ',
-				
+
 				'allowed' => 'tx_hypestore_domain_model_category',
 				'wizards' => array(
 					'suggest' => array(
@@ -228,7 +228,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 				'maxitems' => 999999,
 				'MM' => 'tx_hypestore_relation_category_product',
 				'MM_opposite_field' => 'categories',
-				
+
 				'allowed' => 'tx_hypestore_domain_model_product',
 				'wizards' => array(
 					'suggest' => array(
@@ -244,7 +244,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 	'types' => array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media, images,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations, parent_categories, categories, products;;;;1-1-1
 		'),
@@ -392,8 +392,8 @@ $TCA['tx_hypestore_domain_model_product_type'] = array(
 	),
 	'types' => array(
 		'0' => array('showitem' => '
-			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;1-1-1, keyword;;;;1-1-1, icon;;;;1-1-1, 
-			
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;1-1-1, keyword;;;;1-1-1, icon;;;;1-1-1,
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,attributes;;;;1-1-1,
 		'),
 	),
@@ -406,7 +406,7 @@ $TCA['tx_hypestore_domain_model_product_type'] = array(
 $TCA['tx_hypestore_domain_model_product'] = array(
 	'ctrl' => $TCA['tx_hypestore_domain_model_product']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,gtin,categories,introduction,description,images,files,articles,flat_price,tax_group,minimum_order_quantity,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks,manufacturer,authors,publisher,editor,edition'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,subtitle,identifier,gtin,categories,introduction,description,images,files,articles,list_price,flat_price,tax_scale,minimum_order_quantity,scaled_prices,attributes,related_products,stock_threshold,stock_unit,stocks,manufacturer,authors,publisher,editor,edition'
 	),
 	'feInterface' => $TCA['tx_hypestore_domain_model_product']['feInterface'],
 	'columns' => array(
@@ -514,7 +514,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.identifier',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '10',
 				'eval' => 'required,trim',
 			),
 			'displayCond' => 'FIELD:articles:REQ:false',
@@ -538,7 +538,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'default' => 'basic',
 				//'foreign_table' => 'tx_hypestore_domain_model_product_type',
 				//'foreign_table_loadIcons' => TRUE,
-				
+
 				'items' => array(
 					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.type.basic', 'basic',),
 					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.type.apparel', 'apparel', 'EXT:hype_store/Configuration/TCA/Icons/Product/apparel.png'),
@@ -554,26 +554,35 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'type' => 'select',
 				'foreign_table' => 'tx_hypestore_domain_model_category',
 				//'foreign_table_where' => 'ORDER BY tx_hypestore_domain_model_category.categories DESC, tx_hypestore_domain_model_category.title ASC',
-				'size' => 15,
-				'autoSizeMax' => 25,
+				'MM' => 'tx_hypestore_relation_category_product',
+				'size' => 10,
+				//'autoSizeMax' => 25,
 				'minitems' => 0,
 				'maxitems' => 999999,
-				'MM' => 'tx_hypestore_relation_category_product',
-				
-				'form_type' => 'user',
-				'userFunc' => 'tx_hypestore_tca_field->categories',
-				'user_type' => 'tree',
-				'indent_sign' => ' ',
-				
-				'allowed' => 'tx_hypestore_domain_model_category',
-				'wizards' => array(
-					'suggest' => array(
-						'type' => 'suggest',
-						'default' => array(
-							'searchWholePhrase' => 1,
-						),
+
+				'renderMode' => 'tree',
+				'treeConfig' => array(
+					'childrenField' => 'categories',
+					'appearance' => array(
+						'expandAll' => TRUE,
+						'showHeader' => TRUE
 					),
 				),
+
+				//'form_type' => 'user',
+				//'userFunc' => 'tx_hypestore_tca_field->categories',
+				//'user_type' => 'tree',
+				//'indent_sign' => ' ',
+
+				//'allowed' => 'tx_hypestore_domain_model_category',
+				//'wizards' => array(
+				//	'suggest' => array(
+				//		'type' => 'suggest',
+				//		'default' => array(
+				//			'searchWholePhrase' => 1,
+				//		),
+				//	),
+				//),
 			),
 		),
 		'introduction' => array(
@@ -644,13 +653,13 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'foreign_field'				=> 'product',
 				'foreign_label'				=> 'identifier',
 				'foreign_default_sortby'	=> 'identifier',
-				//'foreign_unique'	=> 'quantity',
-				'appearance'		=> array(
-					'collapseAll'		=> TRUE,
-					'expandSingle'		=> TRUE,
+				'foreign_unique'			=> 'quantity',
+				'appearance'				=> array(
+					'collapseAll'				=> TRUE,
+					'expandSingle'				=> TRUE,
 				),
-				'minitems'			=> 0,
-				'maxitems'			=> 999999,
+				'minitems'					=> 0,
+				'maxitems'					=> 999999,
 			),
 		),
 		'minimum_order_quantity' => array(
@@ -660,6 +669,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'type' => 'input',
 				'size' => '5',
 				'eval' => 'int',
+				'default' => 1,
 				'range' => array('lower' => 0),
 			),
 		),
@@ -673,12 +683,22 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'range' => array('lower' => 0),
 			),
 		),
-		'tax_group' => array(
+		'list_price' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.tax_group',
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.list_price',
+			'config' => array(
+				'type' => 'input',
+				'size' => '5',
+				'eval' => 'double2',
+				'range' => array('lower' => 0),
+			),
+		),
+		'tax_scale' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.tax_scale',
 			'config' => array(
 				'type' => 'select',
-				'foreign_table' => 'tx_hypestore_domain_model_tax_group',
+				'foreign_table' => 'tx_hypestore_domain_model_tax_scale',
 				'size' => 1,
 				'minitems' => 1,
 				'maxitems' => 1,
@@ -696,14 +716,15 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'foreign_field'				=> 'product',
 				'foreign_label'				=> 'value',
 				'foreign_default_sortby'	=> 'value',
-				//'foreign_unique'	=> 'quantity',
-				'appearance'		=> array(
-					'collapseAll'		=> TRUE,
-					'expandSingle'		=> TRUE,
+				'foreign_unique'			=> 'quantity',
+				'appearance'				=> array(
+					'collapseAll'				=> TRUE,
+					'expandSingle'				=> TRUE,
 				),
-				'minitems'			=> 0,
-				'maxitems'			=> 999999,
+				'minitems'					=> 0,
+				'maxitems'					=> 999999,
 			),
+			'displayCond' => 'FIELD:minimum_order_quantity:>=:1',
 		),
 		'attributes' => array(
 			'exclude' => 1,
@@ -714,13 +735,13 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'foreign_field'				=> 'product',
 				'foreign_label'				=> 'attribute',
 				'foreign_default_sortby'	=> 'attribute',
-				//'foreign_unique'	=> 'attribute',
-				'appearance'		=> array(
-					'collapseAll'		=> TRUE,
-					'expandSingle'		=> TRUE,
+				'foreign_unique'			=> 'attribute',
+				'appearance'				=> array(
+					'collapseAll'				=> TRUE,
+					'expandSingle'				=> TRUE,
 				),
-				'minitems'			=> 0,
-				'maxitems'			=> 999999,
+				'minitems'					=> 0,
+				'maxitems'					=> 999999,
 			),
 		),
 		'related_products' => array(
@@ -735,7 +756,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'minitems' => 0,
 				'maxitems' => 999999,
 				'MM' => 'tx_hypestore_relation_product_product',
-				
+
 				'allowed' => 'tx_hypestore_domain_model_product',
 				'wizards' => array(
 					'suggest' => array(
@@ -782,7 +803,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'foreign_field'				=> 'product',
 				'foreign_label'				=> 'depot',
 				'foreign_default_sortby'	=> 'depot',
-				//'foreign_unique'	=> 'depot',
+				'foreign_unique'			=> 'depot',
 				'appearance'				=> array(
 					'collapseAll'				=> TRUE,
 					'expandSingle'				=> TRUE,
@@ -792,7 +813,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 			),
 			'displayCond' => 'FIELD:articles:REQ:false',
 		),
-		
+
 		# General
 		'manufacturer' => array(
 			'exclude' => 1,
@@ -817,7 +838,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 			),
 			'displayCond' => 'EXT:hype_directory:LOADED:true',
 		),
-		
+
 		# Book
 		'isbn10_number' => array(
 			'exclude' => 1,
@@ -846,8 +867,10 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'type' => 'group',
 				'internal_type' => 'db',
 				'allowed' => 'tx_hypedirectory_domain_model_contact',
-				'foreign_table' => 'tx_hypedirectory_domain_model_contact',
 				'prepend_tname' => FALSE,
+				'foreign_table' => 'tx_hypedirectory_domain_model_contact',
+				'MM' => 'tx_hypestore_relation_product_contact',
+				'MM_match_fields' => array('dedication' => 'author'),
 				'size' => 3,
 				'autoSizeMax' => 5,
 				'minitems' => 0,
@@ -870,8 +893,10 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'type' => 'group',
 				'internal_type' => 'db',
 				'allowed' => 'tx_hypedirectory_domain_model_contact',
-				'foreign_table' => 'tx_hypedirectory_domain_model_contact',
 				'prepend_tname' => FALSE,
+				'foreign_table' => 'tx_hypedirectory_domain_model_contact',
+				'MM' => 'tx_hypestore_relation_product_contact',
+				'MM_match_fields' => array('dedication' => 'publisher'),
 				'size' => 1,
 				'minitems' => 0,
 				'maxitems' => 1,
@@ -903,8 +928,10 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 				'type' => 'group',
 				'internal_type' => 'db',
 				'allowed' => 'tx_hypedirectory_domain_model_contact',
-				'foreign_table' => 'tx_hypedirectory_domain_model_contact',
 				'prepend_tname' => FALSE,
+				'foreign_table' => 'tx_hypedirectory_domain_model_contact',
+				'MM' => 'tx_hypestore_relation_product_contact',
+				'MM_match_fields' => array('dedication' => 'editor'),
 				'size' => 1,
 				'minitems' => 0,
 				'maxitems' => 1,
@@ -933,42 +960,44 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 	'types' => array(
 		'basic' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,		articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax_group, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
 		'apparel' => array('showitem' => '
-			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, manufacturer;;;;1-1-1,
-			
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
+
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.details,		manufacturer,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,		articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax_group, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
 		'furniture' => array('showitem' => '
-			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3, manufacturer;;;;1-1-1,
-			
+			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
+
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.details,		manufacturer,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,		articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax_group, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
 		'book' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.details,		isbn13_number, isbn10_number, authors;;;;1-1-1, publisher;;;;1-1-1, publication_year, editor;;;;1-1-1, edition,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,		articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, tax_group, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
@@ -1089,7 +1118,7 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article.identifier',
 			'config' => array(
 				'type' => 'input',
-				'size' => '30',
+				'size' => '10',
 				'eval' => 'required,trim',
 			),
 		),
@@ -1158,7 +1187,8 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 				'type' => 'input',
 				'size' => '5',
 				'eval' => 'int',
-				'range' => array('lower' => 1),
+				'default' => 1,
+				'range' => array('lower' => 0),
 			),
 		),
 		'flat_price' => array(
@@ -1180,14 +1210,15 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 				'foreign_field'				=> 'product',
 				'foreign_label'				=> 'value',
 				'foreign_default_sortby'	=> 'value',
-				//'foreign_unique'	=> 'quantity',
-				'appearance'		=> array(
-					'collapseAll'		=> TRUE,
-					'expandSingle'		=> TRUE,
+				'foreign_unique'			=> 'quantity',
+				'appearance'				=> array(
+					'collapseAll'				=> TRUE,
+					'expandSingle'				=> TRUE,
 				),
-				'minitems'			=> 0,
-				'maxitems'			=> 999999,
+				'minitems'					=> 0,
+				'maxitems'					=> 999999,
 			),
+			'displayCond' => 'FIELD:minimum_order_quantity:>=:1',
 		),
 		'attributes' => array(
 			'exclude' => 1,
@@ -1198,13 +1229,13 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 				'foreign_field'				=> 'product',
 				'foreign_label'				=> 'attribute',
 				'foreign_default_sortby'	=> 'attribute',
-				//'foreign_unique'	=> 'attribute',
-				'appearance'		=> array(
-					'collapseAll'		=> TRUE,
-					'expandSingle'		=> TRUE,
+				'foreign_unique'			=> 'attribute',
+				'appearance'				=> array(
+					'collapseAll'				=> TRUE,
+					'expandSingle'				=> TRUE,
 				),
-				'minitems'			=> 0,
-				'maxitems'			=> 999999,
+				'minitems'					=> 0,
+				'maxitems'					=> 999999,
 			),
 		),
 		'stock_threshold' => array(
@@ -1226,7 +1257,7 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 				'foreign_field'				=> 'article',
 				'foreign_label'				=> 'depot',
 				'foreign_default_sortby'	=> 'depot',
-				//'foreign_unique'	=> 'depot',
+				'foreign_unique'			=> 'depot',
 				'appearance'				=> array(
 					'collapseAll'				=> TRUE,
 					'expandSingle'				=> TRUE,
@@ -1239,33 +1270,33 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 	'types' => array(
 		'basic' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		minimum_order_quantity, flat_price, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
 		'),
 		'apparel' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		minimum_order_quantity, flat_price, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
 		'),
 		'book' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		minimum_order_quantity, flat_price, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
 		'),
 		'furniture' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		minimum_order_quantity, flat_price, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
 		'),
@@ -1399,12 +1430,12 @@ $TCA['tx_hypestore_domain_model_discount'] = array(
 				'MM_match_fields' => array(
 					'exclude' => 0
 				),
-				
+
 				'form_type' => 'user',
 				'userFunc' => 'tx_hypestore_tca_field->categories',
 				'user_type' => 'tree',
 				'indent_sign' => ' ',
-				
+
 				'allowed' => 'tx_hypestore_domain_model_category',
 				'wizards' => array(
 					'suggest' => array(
@@ -1431,12 +1462,12 @@ $TCA['tx_hypestore_domain_model_discount'] = array(
 				'MM_match_fields' => array(
 					'exclude' => 1
 				),
-				
+
 				'form_type' => 'user',
 				'userFunc' => 'tx_hypestore_tca_field->categories',
 				'user_type' => 'tree',
 				'indent_sign' => ' ',
-				
+
 				'allowed' => 'tx_hypestore_domain_model_category',
 				'wizards' => array(
 					'suggest' => array(
@@ -1504,10 +1535,10 @@ $TCA['tx_hypestore_domain_model_discount'] = array(
 	'types' => array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;1-1-1, rate;;;;1-1-1,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.categories,
 				included_categories, excluded_categories,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.products,
 				included_products, excluded_products
 		'),
@@ -1659,7 +1690,7 @@ $TCA['tx_hypestore_domain_model_depot'] = array(
 				'foreign_field'				=> 'depot',
 				'foreign_label'				=> 'product',
 				'foreign_default_sortby'	=> 'product',
-				//'foreign_unique'	=> 'product',
+				'foreign_unique'			=> 'product',
 				'appearance'				=> array(
 					'collapseAll'				=> TRUE,
 					'expandSingle'				=> TRUE,
@@ -1677,7 +1708,7 @@ $TCA['tx_hypestore_domain_model_depot'] = array(
 				'foreign_field'				=> 'depot',
 				'foreign_label'				=> 'article',
 				'foreign_default_sortby'	=> 'article',
-				//'foreign_unique'	=> 'product',
+				'foreign_unique'			=> 'product',
 				'appearance'				=> array(
 					'collapseAll'				=> TRUE,
 					'expandSingle'				=> TRUE,
@@ -1690,7 +1721,7 @@ $TCA['tx_hypestore_domain_model_depot'] = array(
 	'types' => array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;2-2-2, street;;;;3-3-3, postcode, city, country,
-			
+
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.product_stocks, product_stocks,
 			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.article_stocks, article_stocks,
 		'),
@@ -2357,12 +2388,12 @@ $TCA['tx_hypestore_domain_model_product_price'] = array(
 	),
 );
 
-$TCA['tx_hypestore_domain_model_tax_group'] = array(
-	'ctrl' => $TCA['tx_hypestore_domain_model_tax_group']['ctrl'],
+$TCA['tx_hypestore_domain_model_tax_scale'] = array(
+	'ctrl' => $TCA['tx_hypestore_domain_model_tax_scale']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,value'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,rate'
 	),
-	'feInterface' => $TCA['tx_hypestore_domain_model_tax_group']['feInterface'],
+	'feInterface' => $TCA['tx_hypestore_domain_model_tax_scale']['feInterface'],
 	'columns' => array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
@@ -2386,8 +2417,8 @@ $TCA['tx_hypestore_domain_model_tax_group'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'		=> 'tx_hypestore_domain_model_product_price',
-				'foreign_table_where' => 'AND tx_hypestore_domain_model_product_price.pid=###CURRENT_PID### AND tx_hypestore_domain_model_product_price.sys_language_uid IN (-1,0)',
+				'foreign_table'		=> 'tx_hypestore_domain_model_tax_scale',
+				'foreign_table_where' => 'AND tx_hypestore_domain_model_tax_scale.pid=###CURRENT_PID### AND tx_hypestore_domain_model_tax_scale.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -2445,19 +2476,19 @@ $TCA['tx_hypestore_domain_model_tax_group'] = array(
 				'foreign_table' => 'fe_groups'
 			),
 		),
-		'value' => array(
+		'rate' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_tax_group.value',
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_tax_scale.rate',
 			'config' => array(
 				'type' => 'input',
 				'size' => '5',
 				'eval' => 'required,double2',
-				'range' => array('lower' => 0),
+				'range' => array('lower' => 0, 'upper' => 100),
 			),
 		),
 	),
 	'types' => array(
-		'0' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, value'),
+		'0' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, rate'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => 'starttime, endtime, fe_group'),

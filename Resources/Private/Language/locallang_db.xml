@@ -7,6 +7,8 @@
 	
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_hypestore">Hype Store</label>
+			
 			<label index="tx_hypestore.tabs.details">Details</label>
 			<label index="tx_hypestore.tabs.media">Media</label>
 			<label index="tx_hypestore.tabs.stocks">Stocks</label>
@@ -51,7 +53,8 @@
 			<label index="tx_hypestore_domain_model_product.articles">Articles</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Manufacturer</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Price</label>
-			<label index="tx_hypestore_domain_model_product.tax_group">Tax group</label>
+			<label index="tx_hypestore_domain_model_product.list_price">List price</label>
+			<label index="tx_hypestore_domain_model_product.tax_scale">Tax scale</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Minimum order quantity</label>
 			<label index="tx_hypestore_domain_model_product.scaled_prices">Prices</label>
 			<label index="tx_hypestore_domain_model_product.related_products">Related Products</label>
@@ -81,7 +84,7 @@
 			<label index="tx_hypestore_domain_model_article.images">Images</label>
 			<label index="tx_hypestore_domain_model_article.files">Files</label>
 			<label index="tx_hypestore_domain_model_article.flat_price">Price</label>
-			<label index="tx_hypestore_domain_model_article.tax_group">Tax group</label>
+			<label index="tx_hypestore_domain_model_article.tax_scale">Tax scale</label>
 			<label index="tx_hypestore_domain_model_article.minimum_order_quantity">Minimum order quantity</label>
 			<label index="tx_hypestore_domain_model_article.scaled_prices">Prices</label>
 			<label index="tx_hypestore_domain_model_article.attributes">Attributes</label>
@@ -93,8 +96,8 @@
 			<label index="tx_hypestore_domain_model_product_price.quantity">Quantity</label>
 			<label index="tx_hypestore_domain_model_product_price.value">Value</label>
 			
-			<label index="tx_hypestore_domain_model_tax_group">Tax group</label>
-			<label index="tx_hypestore_domain_model_tax_group.value">Value</label>
+			<label index="tx_hypestore_domain_model_tax_scale">Tax scale</label>
+			<label index="tx_hypestore_domain_model_tax_scale.rate">Rate</label>
 			
 			<label index="tx_hypestore_domain_model_product_stock">Stock</label>
 			<label index="tx_hypestore_domain_model_product_stock.depot">Depot</label>
@@ -155,9 +158,15 @@
 			<label index="fe_users.tx_hypestore_domain_model_orders">Orders</label>
 			<label index="fe_users.tx_hypestore_domain_model_cart_items">Cart items</label>
 			<label index="fe_users.tx_hypestore_domain_model_watchlist_items">Watchlist items</label>
+			
+			<label index="tx_hypedirectory_domain_model_contact.tx_hypestore_domain_model_created_products">Author of</label>
+			<label index="tx_hypedirectory_domain_model_contact.tx_hypestore_domain_model_published_products">Publisher of</label>
+			<label index="tx_hypedirectory_domain_model_contact.tx_hypestore_domain_model_edited_products">Editor of</label>
 		</languageKey>
 		
 		<languageKey index="de" type="array">
+			<label index="tx_hypestore">Hype Store</label>
+			
 			<label index="tx_hypestore.tabs.details">Details</label>
 			<label index="tx_hypestore.tabs.media">Medien</label>
 			<label index="tx_hypestore.tabs.stocks">Lagerbestände</label>
@@ -202,7 +211,8 @@
 			<label index="tx_hypestore_domain_model_product.articles">Artikel</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Hersteller</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Preis</label>
-			<label index="tx_hypestore_domain_model_product.tax">Steuergruppe</label>
+			<label index="tx_hypestore_domain_model_product.list_price">Listenpreis</label>
+			<label index="tx_hypestore_domain_model_product.tax_scale">Steuertarif</label>
 			<label index="tx_hypestore_domain_model_product.minimum_order_quantity">Mindestbestellmenge</label>
 			<label index="tx_hypestore_domain_model_product.scaled_prices">Staffelpreise</label>
 			<label index="tx_hypestore_domain_model_product.related_products">Ähnliche Produkte</label>
@@ -232,7 +242,7 @@
 			<label index="tx_hypestore_domain_model_article.images">Bilder</label>
 			<label index="tx_hypestore_domain_model_article.files">Dateien</label>
 			<label index="tx_hypestore_domain_model_article.flat_price">Preis</label>
-			<label index="tx_hypestore_domain_model_article.tax_group">Steuergruppe</label>
+			<label index="tx_hypestore_domain_model_article.tax_scale">Steuertarif</label>
 			<label index="tx_hypestore_domain_model_article.minimum_order_quantity">Mindestbestellmenge</label>
 			<label index="tx_hypestore_domain_model_article.scaled_prices">Staffelpreise</label>
 			<label index="tx_hypestore_domain_model_article.attributes">Eigenschaften</label>
@@ -244,8 +254,8 @@
 			<label index="tx_hypestore_domain_model_product_price.quantity">Menge</label>
 			<label index="tx_hypestore_domain_model_product_price.value">Wert</label>
 			
-			<label index="tx_hypestore_domain_model_tax_group">Steuergruppe</label>
-			<label index="tx_hypestore_domain_model_tax_group.value">Wert</label>
+			<label index="tx_hypestore_domain_model_tax_scale">Steuertarif</label>
+			<label index="tx_hypestore_domain_model_tax_scale.rate">Steuersatz</label>
 			
 			<label index="tx_hypestore_domain_model_product_stock">Lagerbestand</label>
 			<label index="tx_hypestore_domain_model_product_stock.depot">Depot</label>
@@ -306,6 +316,10 @@
 			<label index="fe_users.tx_hypestore_domain_model_orders">Bestellungen</label>
 			<label index="fe_users.tx_hypestore_domain_model_cart_items">Warenkorb</label>
 			<label index="fe_users.tx_hypestore_domain_model_watchlist_items">Merkliste</label>
+			
+			<label index="tx_hypedirectory_domain_model_contact.tx_hypestore_domain_model_created_products">Autor von</label>
+			<label index="tx_hypedirectory_domain_model_contact.tx_hypestore_domain_model_published_products">Verleger von</label>
+			<label index="tx_hypedirectory_domain_model_contact.tx_hypestore_domain_model_edited_products">Herausgeber von</label>
 		</languageKey>
 	</data>
 </T3locallang>

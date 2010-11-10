@@ -40,7 +40,7 @@
 <f:if condition="{product.attributes}">
 	<div class="attributes">
 		<h3>Attributes</h3>
-		
+
 		<ul>
 			<f:for each="{product.attributes}" as="attribute">
 				<li>{attribute.attribute.title}: <em>{attribute.value} <f:if condition="{attribute.attribute.unit}">{attribute.attribute.unit}</f:if></em></li>
@@ -59,9 +59,9 @@
 
 <!-- product.grossPrice -->
 <f:if condition="{product.grossPrice}">
-	<dl class="flat_price">
-		<dt>Price<f:if condition="{product.taxGroup}"> incl. {product.taxGroup.value}% VAT</f:if></dt>
-		
+	<dl class="price">
+		<dt>Price<f:if condition="{product.taxScale}"> incl. {product.taxScale.rate}% VAT</f:if></dt>
+
 		<f:if condition="{product.discount}">
 			<f:then>
 				<dd>
@@ -69,10 +69,14 @@
 					<em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')} (-{product.discount.rate}%)</em>
 				</dd>
 			</f:then>
-			
+
 			<f:else>
 				<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
 			</f:else>
+		</f:if>
+
+		<f:if condition="{product.listPrice}">
+			<dd><small class="list_price">List price: <em>{product.listPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></small></dd>
 		</f:if>
 	</dl>
 </f:if>
@@ -81,7 +85,7 @@
 <f:if condition="{f:count(subject: '{product.scaledPrices}')} > 0">
 	<div class="scaled_prices">
 		<h3>Scaled prices</h3>
-		
+
 		<ul>
 			<f:for each="{product.scaledPrices}" as="price">
 				<li>
@@ -97,7 +101,7 @@
 <f:if condition="{product.files}">
 	<div class="files">
 		<h3>Attached files</h3>
-		
+
 		<ul>
 			<f:for each="{product.files}" as="file">
 				<f:if condition="{h:file.exists(path: '{settings.object.product.field.files.path}{file}')}">
@@ -113,7 +117,7 @@
 	<f:then>
 		<p class="stock">Product is probably in stock! ({product.stock})</p>
 	</f:then>
-	
+
 	<f:else>
 		<p class="stock">Product is out of stock!</p>
 	</f:else>

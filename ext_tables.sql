@@ -92,8 +92,9 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	articles int(11) DEFAULT '0' NOT NULL,
 	categories int(11) DEFAULT '0' NOT NULL,
 	minimum_order_quantity int(11) DEFAULT '0' NOT NULL,
+	list_price double(11,2) DEFAULT '0.00' NOT NULL,
 	flat_price double(11,2) DEFAULT '0.00' NOT NULL,
-	tax_group int(11) DEFAULT '0' NOT NULL,
+	tax_scale int(11) DEFAULT '0' NOT NULL,
 	scaled_prices int(11) DEFAULT '0' NOT NULL,
 	attributes int(11) DEFAULT '0' NOT NULL,
 	related_products int(11) DEFAULT '0' NOT NULL,
@@ -215,9 +216,9 @@ CREATE TABLE tx_hypestore_domain_model_product_price (
 
 
 #
-# Table structure for table 'tx_hypestore_domain_model_tax_group'
+# Table structure for table 'tx_hypestore_domain_model_tax_scale'
 #
-CREATE TABLE tx_hypestore_domain_model_tax_group (
+CREATE TABLE tx_hypestore_domain_model_tax_scale (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
@@ -232,7 +233,7 @@ CREATE TABLE tx_hypestore_domain_model_tax_group (
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
 	
-	value double(11,2) DEFAULT '0.00' NOT NULL,
+	rate double(11,2) DEFAULT '0.00' NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -516,6 +517,24 @@ CREATE TABLE tx_hypestore_relation_product_product (
 
 
 #
+# Table structure for table 'tx_hypestore_relation_product_contact'
+#
+
+CREATE TABLE tx_hypestore_relation_product_contact (
+	uid int(11) NOT NULL auto_increment,
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	dedication varchar(255) DEFAULT '' NOT NULL,
+	
+	PRIMARY KEY (uid),
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+
+#
 # Table structure for table 'tx_hypestore_relation_discount_category'
 #
 
@@ -557,7 +576,17 @@ CREATE TABLE tx_hypestore_relation_discount_product (
 CREATE TABLE fe_users (
 	tx_hypestore_domain_model_shipping_address int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_billing_address int(11) DEFAULT '0' NOT NULL,
-	tx_hypestore_domain_model_orders int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_cart_items int(11) DEFAULT '0' NOT NULL,
-	tx_hypestore_domain_model_watchlist_items int(11) DEFAULT '0' NOT NULL
+	tx_hypestore_domain_model_watchlist_items int(11) DEFAULT '0' NOT NULL,
+	tx_hypestore_domain_model_orders int(11) DEFAULT '0' NOT NULL
+);
+
+
+#
+# Table structure for table 'tx_hypedirectory_domain_model_contact'
+#
+CREATE TABLE tx_hypedirectory_domain_model_contact (
+	tx_hypestore_domain_model_created_products int(11) DEFAULT '0' NOT NULL,
+	tx_hypestore_domain_model_published_products int(11) DEFAULT '0' NOT NULL,
+	tx_hypestore_domain_model_edited_products int(11) DEFAULT '0' NOT NULL
 );

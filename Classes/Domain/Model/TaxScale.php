@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Tax group
+ * Tax scale
  *
  * @package HypeStore
  * @subpackage Domain/Model
@@ -33,13 +33,13 @@
  * @scope prototype
  * @entity
  */
-class Tx_HypeStore_Domain_Model_TaxGroup extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_HypeStore_Domain_Model_TaxScale extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
 	 * @var float
 	 * @validate Float
 	 */
-	protected $value;
+	protected $rate;
 	
 	/**
 	 * Initialization
@@ -49,22 +49,22 @@ class Tx_HypeStore_Domain_Model_TaxGroup extends Tx_Extbase_DomainObject_Abstrac
 	public function initializeObject() {}
 	
 	/**
-	 * Setter for value
+	 * Setter for rate
 	 *
-	 * @param string $value
+	 * @param float $rate
 	 * @return void
 	 */
-	public function setValue($value) {
-		$this->value = $value;
+	public function setRate($rate) {
+		$this->rate = $rate;
 	}
 	
 	/**
-	 * Getter for value
+	 * Getter for rate
 	 *
-	 * @return string
+	 * @return float
 	 */
-	public function getValue() {
-		return $this->value;
+	public function getRate() {
+		return $this->rate;
 	}
 	
 	
@@ -77,7 +77,7 @@ class Tx_HypeStore_Domain_Model_TaxGroup extends Tx_Extbase_DomainObject_Abstrac
 	 * @return string
 	 */
 	public function __toString() {
-		return (string)$this->getValue();
+		return (string)$this->getRate();
 	}
 }
 ?>

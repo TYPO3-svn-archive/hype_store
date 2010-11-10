@@ -83,8 +83,8 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 		}
 		
 		# add tax
-		if($product->getTaxGroup()) {
-			$price += ($price * ($product->getTaxGroup()->getValue() / 100));
+		if($product->getTaxScale()) {
+			$price += ($price * ($product->getTaxScale()->getRate() / 100));
 		}
 		
 		# return a rounded price for correct quantity calculation
@@ -111,8 +111,8 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 		}
 		
 		# add tax
-		if($product->getTaxGroup()) {
-			$price = $price + ($price * ($product->getTaxGroup()->getValue() / 100));
+		if($product->getTaxScale()) {
+			$price = $price + ($price * ($product->getTaxScale()->getRate() / 100));
 		}
 		
 		# return a rounded price for correct quantity calculation
