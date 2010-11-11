@@ -16,16 +16,16 @@ CREATE TABLE tx_hypestore_domain_model_category (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	subtitle varchar(255) DEFAULT '' NOT NULL,
 	introduction text,
 	description text,
 	images text,
-	parent_categories int(11) DEFAULT '0' NOT NULL,
+	parent_category int(11) DEFAULT '0' NOT NULL,
 	categories int(11) DEFAULT '0' NOT NULL,
 	products int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -50,12 +50,12 @@ CREATE TABLE tx_hypestore_domain_model_product_type (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	keyword varchar(32) DEFAULT '' NOT NULL,
 	icon varchar(255) DEFAULT '' NOT NULL,
 	attributes int(10) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -79,7 +79,7 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	subtitle varchar(255) DEFAULT '' NOT NULL,
 	identifier varchar(255) DEFAULT '' NOT NULL,
@@ -101,12 +101,12 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	stock_threshold int(11) DEFAULT '0' NOT NULL,
 	stock_unit int(11) DEFAULT '0' NOT NULL,
 	stocks int(11) DEFAULT '0' NOT NULL,
-	
+
 	# General
 	manufacturer int(11) DEFAULT '0' NOT NULL,
-	
+
 	# Apparel
-	
+
 	# Book
 	isbn10_number varchar(10) DEFAULT '' NOT NULL,
 	isbn13_number varchar(13) DEFAULT '' NOT NULL,
@@ -115,10 +115,10 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	publication_year int(4) DEFAULT '0' NOT NULL,
 	editor int(11) DEFAULT '0' NOT NULL,
 	edition int(11) DEFAULT '0' NOT NULL,
-	
+
 	# Furniture
-	
-	
+
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -142,7 +142,7 @@ CREATE TABLE tx_hypestore_domain_model_article (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	product int(11) DEFAULT '0' NOT NULL,
 	identifier varchar(255) DEFAULT '' NOT NULL,
 	gtin bigint(14) DEFAULT '0' NOT NULL,
@@ -155,7 +155,7 @@ CREATE TABLE tx_hypestore_domain_model_article (
 	attributes int(11) DEFAULT '0' NOT NULL,
 	stock_threshold int(11) DEFAULT '0' NOT NULL,
 	stocks int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -178,11 +178,11 @@ CREATE TABLE tx_hypestore_domain_model_product_attribute (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	product int(11) DEFAULT '0' NOT NULL,
 	attribute int(11) DEFAULT '0' NOT NULL,
 	value varchar(255) DEFAULT '' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -205,11 +205,11 @@ CREATE TABLE tx_hypestore_domain_model_product_price (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	product int(11) DEFAULT '0' NOT NULL,
 	value double(11,2) DEFAULT '0.00' NOT NULL,
 	quantity int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -232,9 +232,9 @@ CREATE TABLE tx_hypestore_domain_model_tax_scale (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	rate double(11,2) DEFAULT '0.00' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -258,11 +258,11 @@ CREATE TABLE tx_hypestore_domain_model_product_stock (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	depot int(11) DEFAULT '0' NOT NULL,
 	product int(11) DEFAULT '0' NOT NULL,
 	quantity int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -286,11 +286,11 @@ CREATE TABLE tx_hypestore_domain_model_article_stock (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	depot int(11) DEFAULT '0' NOT NULL,
 	article int(11) DEFAULT '0' NOT NULL,
 	quantity int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -314,14 +314,14 @@ CREATE TABLE tx_hypestore_domain_model_discount (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	rate tinyint(3) DEFAULT '0' NOT NULL,
 	included_products int(11) DEFAULT '0' NOT NULL,
 	excluded_products int(11) DEFAULT '0' NOT NULL,
 	included_categories int(11) DEFAULT '0' NOT NULL,
 	excluded_categories int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -345,14 +345,14 @@ CREATE TABLE tx_hypestore_domain_model_depot (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	street varchar(255) DEFAULT '' NOT NULL,
 	postcode int(11) DEFAULT '0' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
 	country varchar(255) DEFAULT '' NOT NULL,
 	stocks int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -375,11 +375,11 @@ CREATE TABLE tx_hypestore_domain_model_attribute (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	unit varchar(255) DEFAULT '' NOT NULL,
 	type int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -403,10 +403,10 @@ CREATE TABLE tx_hypestore_domain_model_order (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	customer int(11) DEFAULT '0' NOT NULL,
 	items int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -429,11 +429,11 @@ CREATE TABLE tx_hypestore_domain_model_cart_item (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	customer int(11) DEFAULT '0' NOT NULL,
 	product int(11) DEFAULT '0' NOT NULL,
 	quantity int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -456,10 +456,10 @@ CREATE TABLE tx_hypestore_domain_model_watchlist_item (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	fe_group int(11) DEFAULT '0' NOT NULL,
-	
+
 	customer int(11) DEFAULT '0' NOT NULL,
 	product int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -475,7 +475,7 @@ CREATE TABLE tx_hypestore_relation_category_category (
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
@@ -492,7 +492,7 @@ CREATE TABLE tx_hypestore_relation_category_product (
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
@@ -509,7 +509,7 @@ CREATE TABLE tx_hypestore_relation_product_product (
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
@@ -527,7 +527,7 @@ CREATE TABLE tx_hypestore_relation_product_contact (
 	sorting int(11) DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) DEFAULT '0' NOT NULL,
 	dedication varchar(255) DEFAULT '' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
@@ -545,7 +545,7 @@ CREATE TABLE tx_hypestore_relation_discount_category (
 	sorting int(11) DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) DEFAULT '0' NOT NULL,
 	exclude tinyint(1) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
@@ -563,7 +563,7 @@ CREATE TABLE tx_hypestore_relation_discount_product (
 	sorting int(11) DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) DEFAULT '0' NOT NULL,
 	exclude tinyint(1) DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)

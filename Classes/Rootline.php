@@ -26,25 +26,25 @@
  * Rootline
  */
 class Tx_HypeStore_Rootline {
-	
+
 	protected $rootline;
-	
+
 	public function __construct(array $rootline) {
 		$this->rootline = $rootline;
 	}
-	
+
 	public function setRootline(array $rootline) {
 		$this->rootline = $rootline;
 	}
-	
+
 	public function getRootline() {
 		return $this->rootline;
 	}
-	
-	public function addCategory($category) {
+
+	public function addCategory(Tx_HypeStore_Domain_Model_Category $category) {
 		array_push($this->rootline, $category);
 	}
-	
+
 	public function __toString() {
 		return implode(',', array_keys($this->rootline));
 	}

@@ -25,7 +25,7 @@
 /**
  * A repository for Discounts
  */
-class Tx_HypeStore_Domain_Repository_DiscountRepository extends Tx_Extbase_Persistence_Repository {		
+class Tx_HypeStore_Domain_Repository_DiscountRepository extends Tx_Extbase_Persistence_Repository {
 
 	/**
 	 * Finds all valid discounts for a given product
@@ -34,32 +34,32 @@ class Tx_HypeStore_Domain_Repository_DiscountRepository extends Tx_Extbase_Persi
 	 * @return array
 	 */
 	public function findByProduct(Tx_HypeStore_Domain_Model_Product $product) {
-		
+
 		# create a new query
 		$query = $this->createQuery();
 		$query->setOrderings(array('rate' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
-		
+
 		# get all preceded categories
-		$categories = $product->getPrecededCategories();
-		
+		$categories = $product->getPrecedingCategories();
+
 		# chain constraints
 		$constraints = array();
 		foreach($categories as $category) {
 			array_push($constraints, $query->contains('includedCategories', $category));
 		}
 		array_push($constraints, $query->contains('includedProducts', $product));
-		
+
 		$andConstraints = array($query->logicalOr($constraints));
 		reset($categories);
-		
+
 		foreach($categories as $category) {
 			array_push($andConstraints, $query->logicalNot($query->contains('excludedCategories', $category)));
 		}
 		array_push($andConstraints, $query->logicalNot($query->contains('excludedProducts', $product)));
-		
+
 		# apply constraints
 		$query->matching($query->logicalAnd($andConstraints));
-		
+
 		# return results
 		return $query->execute();
 	}

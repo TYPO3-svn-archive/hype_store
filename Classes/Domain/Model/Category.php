@@ -34,76 +34,76 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $title;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 0, maximum = 255)
 	 */
 	protected $subtitle;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $introduction;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $description;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $images;
-	
+
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Category>
+	 * @var Tx_HypeStore_Domain_Model_Category
 	 * @lazy
 	 */
-	protected $parentCategories;
-	
+	protected $parentCategory;
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Category>
 	 * @lazy
 	 */
 	protected $categories;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Product>
 	 * @lazy
 	 */
 	protected $products;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->products = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Initialization
 	 *
 	 * return void
 	 */
 	public function initializeObject() {
-		
+
 		# initialize the category service
 		$this->categoryService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_CategoryService');
 	}
-	
+
 	/**
 	 * Setter for title
 	 *
@@ -113,7 +113,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function setTitle($title) {
 		$this->title = $title;
 	}
-	
+
 	/**
 	 * Getter for title
 	 *
@@ -122,7 +122,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function getTitle() {
 		return $this->title;
 	}
-	
+
 	/**
 	 * Setter for subtitle
 	 *
@@ -132,7 +132,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function setSubtitle($subtitle) {
 		$this->subtitle = $subtitle;
 	}
-	
+
 	/**
 	 * Getter for subtitle
 	 *
@@ -141,7 +141,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function getSubtitle() {
 		return $this->subtitle;
 	}
-	
+
 	/**
 	 * Setter for introduction
 	 *
@@ -151,7 +151,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function setIntroduction($introduction) {
 		$this->introduction = $introduction;
 	}
-	
+
 	/**
 	 * Getter for introduction
 	 *
@@ -160,7 +160,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function getIntroduction() {
 		return $this->introduction;
 	}
-	
+
 	/**
 	 * Setter for description
 	 *
@@ -170,7 +170,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function setDescription($description) {
 		$this->description = $description;
 	}
-	
+
 	/**
 	 * Getter for description
 	 *
@@ -179,7 +179,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function getDescription() {
 		return $this->description;
 	}
-	
+
 	/**
 	 * Setter for images
 	 *
@@ -189,7 +189,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function setImages(array $images) {
 		$this->images = implode(',', $images);
 	}
-	
+
 	/**
 	 * Adds an image
 	 *
@@ -199,7 +199,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function addImage($image) {
 		$this->images = implode(',', array_push(explode(',', $this->images), $image));
 	}
-	
+
 	/**
 	 * Removes an image
 	 *
@@ -209,7 +209,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function removeImage($image) {
 		//$this->images = explode(',', $this->images);
 	}
-	
+
 	/**
 	 * Removes all images
 	 *
@@ -218,7 +218,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function removeImages() {
 		$this->images = '';
 	}
-	
+
 	/**
 	 * Getter for images
 	 *
@@ -228,62 +228,33 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 		if(!$this->images) {
 			return NULL;
 		}
-		
+
 		return explode(',', $this->images);
 	}
-	
+
 	/**
-	 * Setter for parentCategories
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $categories
-	 * @return void
-	 */
-	public function setParentCategories(Tx_Extbase_Persistence_ObjectStorage $categories) {
-		$this->parentCategories = clone $categories;
-	}
-	
-	/**
-	 * Adds a parentCategory
+	 * Setter for parentCategory
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return void
 	 */
-	public function addParentCategory(Tx_HypeStore_Domain_Model_Category $category) {
-		$this->parentCategories->attach($category);
+	public function setParentCategory(Tx_HypeStore_Domain_Model_Category $category) {
+		$this->parentCategory = clone $category;
 	}
-	
+
 	/**
-	 * Removes a parentCategory
+	 * Getter for parentCategory
 	 *
-	 * @param Tx_HypeStore_Domain_Model_Category $category
-	 * @return void
+	 * @return Tx_HypeStore_Domain_Model_Category
 	 */
-	public function removeParentCategory(Tx_HypeStore_Domain_Model_Category $category) {
-		$this->parentCategories->detach($category);
-	}
-	
-	/**
-	 * Remove all parentCategories
-	 *
-	 * @return void
-	 */
-	public function removeParentCategories() {
-		$this->parentCategories = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-	
-	/**
-	 * Getter for parentCategories
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getParentCategories() {
-		if($this->parentCategories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->parentCategories->_loadRealInstance();
+	public function getParentCategory() {
+		if($this->parentCategory instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->parentCategory->_loadRealInstance();
 		}
-		
-		return clone $this->parentCategories;
+
+		return $this->parentCategory;
 	}
-	
+
 	/**
 	 * Setter for categories
 	 *
@@ -293,7 +264,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function setCategories(Tx_Extbase_Persistence_ObjectStorage $categories) {
 		$this->categories = clone $categories;
 	}
-	
+
 	/**
 	 * Adds a category
 	 *
@@ -303,7 +274,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function addCategory(Tx_HypeStore_Domain_Model_Category $category) {
 		$this->categories->attach($category);
 	}
-	
+
 	/**
 	 * Removes a category
 	 *
@@ -313,7 +284,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function removeCategory(Tx_HypeStore_Domain_Model_Category $category) {
 		$this->categories->detach($category);
 	}
-	
+
 	/**
 	 * Remove all categories
 	 *
@@ -322,7 +293,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function removeCategories() {
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for categories
 	 *
@@ -332,10 +303,10 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 		if($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->categories->_loadRealInstance();
 		}
-		
+
 		return clone $this->categories;
 	}
-	
+
 	/**
 	 * Setter for products
 	 *
@@ -345,7 +316,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function setProducts(Tx_Extbase_Persistence_ObjectStorage $products) {
 		$this->products = clone $products;
 	}
-	
+
 	/**
 	 * Adds a product
 	 *
@@ -355,7 +326,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function addProduct(Tx_HypeStore_Domain_Model_Product $product) {
 		$this->products->attach($product);
 	}
-	
+
 	/**
 	 * Removes a product
 	 *
@@ -365,7 +336,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function removeProduct(Tx_HypeStore_Domain_Model_Product $product) {
 		$this->products->detach($product);
 	}
-	
+
 	/**
 	 * Remove all products
 	 *
@@ -374,7 +345,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function removeProducts() {
 		$this->products = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for products
 	 *
@@ -384,12 +355,12 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 		if($this->products instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->products->_loadRealInstance();
 		}
-		
+
 		return clone $this->products;
 	}
-	
-	
-	
+
+
+
 	/* Custom getter methods */
 
 	/**
@@ -398,15 +369,15 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return array
 	 */
 	public function getDescendentProducts() {
-		
+
 		# get the desdendent products from the service
 		return $this->categoryService->getDescendentProducts($this);
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

@@ -26,7 +26,7 @@
  * Category service
  */
 class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
-	
+
 	/**
 	 * Constructor
 	 */
@@ -34,87 +34,75 @@ class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 		# instantiate the product repository
 		$this->productRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_ProductRepository');
 	}
-	
+
 	/**
-	 * Determines the existing rootlines for a given category
+	 * Determines the rootline for a given category
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return array
 	 */
-	public function getRootlines(Tx_HypeStore_Domain_Model_Category $category) {
-		
-		$rootlines = array($category->getUid() => $category);
-		
-		if(count($category->getParentCategories()) > 0) {
-			foreach($category->getParentCategories() as $subcategory) {
-				if(count($subcategory->getParentCategories()) > 0) {
-					$rootlines = array($subcategory->getUid() => $this->getRootlines($subcategory)) + $rootlines;
-				}
-			}
+	public function getRootline(Tx_HypeStore_Domain_Model_Category $category) {
+
+		$rootline = array($category->getUid() => $category);
+
+		if($precedingCategories = $this->getPrecedingCategories($category)) {
+			$rootline = array_merge($precedingCategories, $rootline);
 		}
-		
-		return new Tx_HypeStore_Rootline($rootlines);
+
+		return  t3lib_div::makeInstance('Tx_HypeStore_Rootline', $rootline);
 	}
-	
+
 	/**
-	 * Returns all preceded categories for a given category
+	 * Returns all preceding categories for a given category
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return array
 	 */
-	public function getPrecededCategories(Tx_HypeStore_Domain_Model_Category $category) {
-		
-		# get direct categories
-		$categories = $category->getParentCategories()->toArray();
-		
-		if(count($categories) > 0) {
-			foreach($categories as $parentCategory) {
-				$categories = array_merge($this->getPrecededCategories($parentCategory), $categories);
-			}
-			
-			return $categories;
-		} else {
-			return $categories;
+	public function getPrecedingCategories(Tx_HypeStore_Domain_Model_Category $category) {
+
+		$categories = array();
+
+		if($parentCategory = $category->getParentCategory()) {
+			$categories = array_merge($this->getPrecedingCategories($parentCategory), $categories);
 		}
+
+		return $categories;
 	}
-	
+
 	/**
-	 * Returns all descendent categories for the given category
+	 * Returns all succeeding categories for a given category
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return array
 	 */
-	public function getDescendentCategories(Tx_HypeStore_Domain_Model_Category $category) {
-		
-		# get direct categories
-		$categories = $category->getCategories()->toArray();
-		
-		if(count($categories) > 0) {
-			foreach($categories as $childCategory) {
-				$categories = $this->getDescendentCategories($childCategory) + $categories;
+	public function getSucceedingCategories(Tx_HypeStore_Domain_Model_Category $category) {
+
+		$categories = array();
+
+		if($categories = $category->getCategories()->toArray()) {
+			foreach($categories as $succeedingCategory) {
+				$categories = array_merge($this->getSucceedingCategories($succeedingCategory), $categories);
 			}
-			
-			return $categories;
-		} else {
-			return $categories;
 		}
+
+		return $categories;
 	}
-	
+
 	/**
-	 * Returns all products for the given and all descendent categories
+	 * Returns all products for a given and all it's succeeding categories
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
 	 * @return array
 	 */
 	public function getDescendentProducts(Tx_HypeStore_Domain_Model_Category $category) {
-		
+
 		# get all categories
-		$categories = array($category) + $this->getDescendentCategories($category) ;
-		
+		$categories = array_merge(array($category), $this->getSucceedingCategories($category));
+
 		if(count($categories) > 0) {
 			return $this->productRepository->findWithCategories($categories);
 		}
-		
+
 		return NULL;
 	}
 }

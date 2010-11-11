@@ -548,6 +548,10 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_HypeDirectory_Domain_Model_Contact
 	 */
 	public function getManufacturer() {
+		if($this->manufacturer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->manufacturer->_loadRealInstance();
+		}
+
 		return $this->manufacturer;
 	}
 
@@ -878,15 +882,15 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	/* Service methods */
 
 	/**
-	 * Gets all preceded categories
+	 * Gets all preceding categories
 	 *
 	 * @return array
 	 */
-	public function getPrecededCategories() {
+	public function getPrecedingCategories() {
 
 		$categories = array();
 
-		foreach($this->productService->getPrecededCategories($this) as $category) {
+		foreach($this->productService->getPrecedingCategories($this) as $category) {
 			$categories[$category->getUid()] = $category;
 		}
 
