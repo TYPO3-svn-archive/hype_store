@@ -1,74 +1,74 @@
 plugin.tx_hypestore {
 	settings {
-		
+
 		common {
 			navigation {
 				expAll = 0
 			}
-			
+
 			currency {
 				code = EUR
 				sign = €
 				name = Euro
 			}
-			
+
 			tax {
 				rate = 20
 			}
-			
+
 			feature {
 				cart = 1
 				checkout = 1
 				watchlist = 1
 			}
 		}
-		
+
 		object {
 			category {
-				
+
 				field {
 					images {
 						path = uploads/hype/store/category/images/
 					}
 				}
 			}
-			
+
 			product {
-				
+
 				field {
 					images {
 						path = uploads/hype/store/product/images/
 					}
-					
+
 					files {
 						path = uploads/hype/store/product/files/
 					}
 				}
 			}
 		}
-		
+
 		view {
 			category {
 				pid =
-				
+
 				common {
 					overrideDocumentTitle = 1
 				}
-				
+
 				action {
 					index {
 						common {
 							showProducts = 1
 							showSubcategories = 1
 						}
-						
+
 						field {
 							images {
 								maxWidth = 240
 								maxHeight =
 							}
 						}
-						
+
 						object {
 							category {
 								field {
@@ -78,7 +78,7 @@ plugin.tx_hypestore {
 									}
 								}
 							}
-							
+
 							product {
 								field {
 									images {
@@ -89,20 +89,20 @@ plugin.tx_hypestore {
 							}
 						}
 					}
-					
+
 					list {
 						common {
 							showProducts = 1
 							showSubcategories = 1
 						}
-						
+
 						field {
 							images {
 								maxWidth = 120
 								maxHeight =
 							}
 						}
-						
+
 						object {
 							category {
 								field {
@@ -112,7 +112,7 @@ plugin.tx_hypestore {
 									}
 								}
 							}
-							
+
 							product {
 								field {
 									images {
@@ -125,14 +125,14 @@ plugin.tx_hypestore {
 					}
 				}
 			}
-			
+
 			product {
-				pid = 
-				
+				pid =
+
 				common {
 					overrideDocumentTitle = 1
 				}
-				
+
 				action {
 					index {
 						field {
@@ -141,7 +141,7 @@ plugin.tx_hypestore {
 								maxHeight =
 							}
 						}
-						
+
 						object {
 							category {
 								field {
@@ -151,7 +151,7 @@ plugin.tx_hypestore {
 									}
 								}
 							}
-							
+
 							product {
 								field {
 									images {
@@ -164,46 +164,47 @@ plugin.tx_hypestore {
 					}
 				}
 			}
-			
+
 			cart {
-				pid = 
-				
+				pid =
+				mode = full
+
 				common {
-					
+
 				}
-				
+
 				action {
-					
+
 				}
 			}
-			
+
 			checkout {
 				pid =
-				
+
 				common {
-					
+
 				}
-				
+
 				action {
-					
+
 				}
 			}
-			
+
 			watchlist {
 				pid =
-				
+
 				common {
-					
+
 				}
-				
+
 				action {
-					
+
 				}
 			}
 		}
 	}
-	
+
 	persistence {
-		storagePid = 
+		storagePid =
 	}
 }

@@ -1,0 +1,28 @@
+<div class="cart_items">
+	<h2>Products</h2>
+
+	<ul>
+		<f:for each="{cartItems}" as="cartItem">
+			<li>
+				<p>
+					<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: cartItem.product, path: cartItem.product.rootline}">{cartItem.product.title}</f:link.action>
+					&times; <strong>{cartItem.quantity} {f:translate(key: 'product.stock_unit.I.{cartItem.product.stockUnit}')}</strong>
+					<f:link.action action="remove" arguments="{cartItem: cartItem}" title="Remove {cartItem.product.title} from the cart.">&times;</f:link.action>
+					<f:if condition="{cartItem.product.grossPrice}"><br />á <em>{cartItem.price->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> = <em>{cartItem.priceSum->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></f:if>
+				</p>
+			</li>
+		</f:for>
+	</ul>
+</div>
+
+<p class="totalPrice"><strong>Total sum:</strong> <em>{totalPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em> including VAT</p>
+
+<f:if condition="{settings.view.cart.pid}">
+	<f:link.action pluginName="Cart" controller="Cart" pageUid="{settings.view.cart.pid}">Cart &rarr;</f:link.action>
+</f:if>
+
+<f:if condition="{settings.common.feature.checkout}">
+<f:if condition="{settings.view.checkout.pid}">
+	<f:link.action pluginName="Checkout" controller="Checkout" pageUid="{settings.view.checkout.pid}">Checkout &rarr;</f:link.action>
+</f:if>
+</f:if>

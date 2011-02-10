@@ -8,56 +8,56 @@ config.tx_extbase {
 					tableName = tx_hypestore_domain_model_category
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Product {
 				mapping {
 					tableName = tx_hypestore_domain_model_product
 					recordType = basic
 				}
-				
+
 				subclasses {
 					Apparel = Tx_HypeStore_Domain_Model_Product_Apparel
 					Furniture = Tx_HypeStore_Domain_Model_Product_Furniture
 					Book = Tx_HypeStore_Domain_Model_Product_Book
 				}
-				
+
 				columns {
 					attributes.foreignClass = Tx_HypeStore_Domain_Model_ProductAttribute
 					scaled_prices.foreignClass = Tx_HypeStore_Domain_Model_ProductPrice
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Product_Apparel < .Tx_HypeStore_Domain_Model_Product
 			Tx_HypeStore_Domain_Model_Product_Apparel {
 				mapping {
 					recordType = apparel
 				}
-				
+
 				subclasses >
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Product_Furniture < .Tx_HypeStore_Domain_Model_Product
 			Tx_HypeStore_Domain_Model_Product_Furniture {
 				mapping {
 					recordType = furniture
 				}
-				
+
 				subclasses >
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Product_Book < .Tx_HypeStore_Domain_Model_Product
 			Tx_HypeStore_Domain_Model_Product_Book {
 				mapping {
 					recordType = book
 				}
-				
+
 				subclasses >
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Customer {
 				mapping {
 					tableName = fe_users
-					
+
 					columns {
 						tx_hypestore_domain_model_addresses.mapOnProperty = addresses
 						tx_hypestore_domain_model_orders.mapOnProperty = orders
@@ -65,80 +65,80 @@ config.tx_extbase {
 						tx_hypestore_domain_model_watchlist_items.mapOnProperty = watchlistItems
 					}
 				}
-				
+
 				columns {
 					cart_items.foreignClass = Tx_HypeStore_Domain_Model_CartItem
 					cart_items.foreignClass = Tx_HypeStore_Domain_Model_CartItem
 					watchlist_items.foreignClass = Tx_HypeStore_Domain_Model_WatchlistItem
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_CustomerAddress {
 				mapping {
 					tableName = tx_hypestore_domain_model_customer_address
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_ProductPrice {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_price
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_TaxScale {
 				mapping {
 					tableName = tx_hypestore_domain_model_tax_scale
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_ProductAttribute {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_attribute
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_ProductStock {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_stock
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_ProductState {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_state
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Discount {
 				mapping {
 					tableName = tx_hypestore_domain_model_discount
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Depot {
 				mapping {
 					tableName = tx_hypestore_domain_model_depot
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_CartItem {
 				mapping {
 					tableName = tx_hypestore_domain_model_cart_item
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_WatchlistItem {
 				mapping {
 					tableName = tx_hypestore_domain_model_watchlist_item
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Order {
 				mapping {
 					tableName = tx_hypestore_domain_model_order
 				}
 			}
-			
+
 			Tx_HypeStore_Domain_Model_Manufacturer {
 				mapping {
 					tableName = tx_hypestore_domain_model_manufacturer
@@ -150,75 +150,75 @@ config.tx_extbase {
 
 plugin.tx_hypestore {
 	settings {
-		
+
 		common {
 			navigation {
 				expAll = {$plugin.tx_hypestore.settings.common.navigation.expAll}
 			}
-			
+
 			currency {
 				code = {$plugin.tx_hypestore.settings.common.currency.code}
 				sign = {$plugin.tx_hypestore.settings.common.currency.sign}
 				name = {$plugin.tx_hypestore.settings.common.currency.name}
 			}
-			
+
 			tax {
 				rate = {$plugin.tx_hypestore.settings.common.tax.rate}
 			}
-			
+
 			feature {
 				cart = {$plugin.tx_hypestore.settings.common.feature.cart}
 				checkout = {$plugin.tx_hypestore.settings.common.feature.checkout}
 				watchlist = {$plugin.tx_hypestore.settings.common.feature.watchlist}
 			}
 		}
-		
+
 		object {
 			category {
-				
+
 				field {
 					images {
 						path = {$plugin.tx_hypestore.settings.object.category.field.images.path}
 					}
 				}
 			}
-			
+
 			product {
-				
+
 				field {
 					images {
 						path = {$plugin.tx_hypestore.settings.object.product.field.images.path}
 					}
-					
+
 					files {
 						path = {$plugin.tx_hypestore.settings.object.product.field.files.path}
 					}
 				}
 			}
 		}
-		
+
 		view {
 			category {
 				pid = {$plugin.tx_hypestore.settings.view.category.pid}
-				
+
 				common {
 					overrideDocumentTitle = {$plugin.tx_hypestore.settings.view.category.common.overrideDocumentTitle}
 				}
-				
+
 				action {
 					index {
 						common {
 							showProducts = {$plugin.tx_hypestore.settings.view.category.action.index.common.showProducts}
 							showSubcategories = {$plugin.tx_hypestore.settings.view.category.action.index.common.showSubcategories}
 						}
-						
+
 						field {
 							images {
 								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.field.images.maxWidth}
 								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.field.images.maxHeight}
 							}
 						}
-						
+
 						object {
 							category {
 								field {
@@ -228,7 +228,7 @@ plugin.tx_hypestore {
 									}
 								}
 							}
-							
+
 							product {
 								field {
 									images {
@@ -239,20 +239,20 @@ plugin.tx_hypestore {
 							}
 						}
 					}
-					
+
 					list {
 						common {
 							showProducts = {$plugin.tx_hypestore.settings.view.category.action.list.common.showProducts}
 							showSubcategories = {$plugin.tx_hypestore.settings.view.category.action.list.common.showSubcategories}
 						}
-						
+
 						field {
 							images {
 								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.field.images.maxWidth}
 								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.field.images.maxHeight}
 							}
 						}
-						
+
 						object {
 							category {
 								field {
@@ -262,7 +262,7 @@ plugin.tx_hypestore {
 									}
 								}
 							}
-							
+
 							product {
 								field {
 									images {
@@ -275,14 +275,14 @@ plugin.tx_hypestore {
 					}
 				}
 			}
-			
+
 			product {
 				pid = {$plugin.tx_hypestore.settings.view.product.pid}
-				
+
 				common {
 					overrideDocumentTitle = {$plugin.tx_hypestore.settings.view.product.common.overrideDocumentTitle}
 				}
-				
+
 				action {
 					index {
 						field {
@@ -291,7 +291,7 @@ plugin.tx_hypestore {
 								maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.field.images.maxHeight}
 							}
 						}
-						
+
 						object {
 							category {
 								field {
@@ -301,7 +301,7 @@ plugin.tx_hypestore {
 									}
 								}
 							}
-							
+
 							product {
 								field {
 									images {
@@ -314,45 +314,46 @@ plugin.tx_hypestore {
 					}
 				}
 			}
-			
+
 			cart {
 				pid = {$plugin.tx_hypestore.settings.view.cart.pid}
-				
+				mode = {$plugin.tx_hypestore.settings.view.cart.mode}
+
 				common {
-					
+
 				}
-				
+
 				action {
-					
+
 				}
 			}
-			
+
 			checkout {
 				pid = {$plugin.tx_hypestore.settings.view.checkout.pid}
-				
+
 				common {
-					
+
 				}
-				
+
 				action {
-					
+
 				}
 			}
-			
+
 			watchlist {
 				pid = {$plugin.tx_hypestore.settings.view.watchlist.pid}
-				
+
 				common {
-					
+
 				}
-				
+
 				action {
-					
+
 				}
 			}
 		}
 	}
-	
+
 	template {
 		menu = HMENU
 		menu {
@@ -362,13 +363,13 @@ plugin.tx_hypestore {
 				pid = {$plugin.tx_hypestore.settings.view.category.pid}
 				expAll = {$plugin.tx_hypestore.settings.common.navigation.expAll}
 			}
-			
+
 			1 = TMENU
 			1 {
 				itemArrayProcFunc = user_hypestore_menu->item
 			}
 		}
-		
+
 		path = HMENU
 		path {
 			special = userfunction
@@ -377,7 +378,7 @@ plugin.tx_hypestore {
 				pid = {$plugin.tx_hypestore.settings.view.category.pid}
 				expAll = {$plugin.tx_hypestore.settings.common.navigation.expAll}
 			}
-			
+
 			1 = TMENU
 			1 {
 				itemArrayProcFunc = user_hypestore_menu->item
