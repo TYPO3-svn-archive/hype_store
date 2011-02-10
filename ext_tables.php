@@ -136,6 +136,7 @@ $TCA['tx_hypestore_domain_model_product_type'] = array(
 
 # Product
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_product');
+t3lib_extMgm::addToInsertRecords('tx_hypestore_domain_model_product');
 $TCA['tx_hypestore_domain_model_product'] = array(
 	'ctrl' => array(
 		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product',

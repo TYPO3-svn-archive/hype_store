@@ -385,3 +385,13 @@ plugin.tx_hypestore {
 		}
 	}
 }
+
+
+
+# INSERT RECORDS
+
+# Contact
+tt_content.shortcut.20.0.conf.tx_hypestore_domain_model_product < tt_content.list.20.hypestore_product
+tt_content.shortcut.20.0.conf.tx_hypestore_domain_model_product {
+	action = record
+}

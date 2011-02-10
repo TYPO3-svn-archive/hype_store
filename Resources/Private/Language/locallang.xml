@@ -10,13 +10,17 @@
 			<label index="product.stock_unit.I.1">lm</label>
 			<label index="product.stock_unit.I.2">kg</label>
 			<label index="product.stock_unit.I.3">ltr</label>
+
+			<label index="product_not_found">Product not found.</label>
 		</languageKey>
-		
+
 		<languageKey index="de" type="array">
 			<label index="product.stock_unit.I.0">Stk.</label>
 			<label index="product.stock_unit.I.1">Lfm.</label>
 			<label index="product.stock_unit.I.2">kg</label>
 			<label index="product.stock_unit.I.3">l</label>
+
+			<label index="product_not_found">Produkt nicht gefunden.</label>
 		</languageKey>
 	</data>
 </T3locallang>

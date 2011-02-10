@@ -1,0 +1,13 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<f:section name="content">
+	<f:if condition="{product}">
+		<f:then>
+			<f:render partial="Product/Product/{product.type}.html" arguments="{product: product, settings: settings}"/>
+		</f:then>
+
+		<f:else>
+			<p>{f:translate(key: 'product_not_found')}</p>
+		</f:else>
+	</f:if>
+</f:section>
