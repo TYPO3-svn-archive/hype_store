@@ -34,13 +34,13 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
 	 * @lazy
 	 */
 	protected $customer;
-	
+
 	/**
 	 * Setter for customer
 	 *
@@ -50,7 +50,7 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
 		$this->customer = $customer;
 	}
-	
+
 	/**
 	 * Getter for customer
 	 *
@@ -60,14 +60,14 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 		if($this->customer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->customer->_loadRealInstance();
 		}
-		
+
 		return $this->customer;
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

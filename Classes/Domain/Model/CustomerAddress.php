@@ -32,79 +32,79 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
 	 * @lazy
 	 */
 	protected $customer;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $title;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $name;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $company;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $street;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $stair;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $floor;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $door;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $postcode;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $city;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $country;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $telephoneNumber;
-	
+
 	/**
 	 * Setter for customer
 	 *
@@ -113,7 +113,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
 		$this->customer = $customer;
 	}
-	
+
 	/**
 	 * Getter for customer
 	 *
@@ -123,10 +123,10 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 		if($this->customer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->customer->_loadRealInstance();
 		}
-		
+
 		return $this->customer;
 	}
-	
+
 	/**
 	 * Setter for title
 	 *
@@ -135,7 +135,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setTitle($title) {
 		$this->title = $title;
 	}
-	
+
 	/**
 	 * Getter for title
 	 *
@@ -144,7 +144,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getTitle() {
 		return $this->title;
 	}
-	
+
 	/**
 	 * Setter for name
 	 *
@@ -153,7 +153,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setName($name) {
 		$this->name = $name;
 	}
-	
+
 	/**
 	 * Getter for name
 	 *
@@ -162,7 +162,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getName() {
 		return $this->name;
 	}
-	
+
 	/**
 	 * Setter for company
 	 *
@@ -171,7 +171,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setCompany($company) {
 		$this->company = $var;
 	}
-	
+
 	/**
 	 * Getter for company
 	 *
@@ -180,7 +180,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getCompany() {
 		return $this->company;
 	}
-	
+
 	/**
 	 * Setter for street
 	 *
@@ -189,7 +189,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setStreet($street) {
 		$this->street = $street;
 	}
-	
+
 	/**
 	 * Getter for street
 	 *
@@ -198,7 +198,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getStreet() {
 		return $this->street;
 	}
-	
+
 	/**
 	 * Setter for stair
 	 *
@@ -207,7 +207,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setStair($stair) {
 		$this->stair = $stair;
 	}
-	
+
 	/**
 	 * Getter for stair
 	 *
@@ -216,7 +216,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getStair() {
 		return $this->stair;
 	}
-	
+
 	/**
 	 * Setter for floor
 	 *
@@ -225,7 +225,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setFloor($floor) {
 		$this->floor = $floor;
 	}
-	
+
 	/**
 	 * Getter for floor
 	 *
@@ -234,7 +234,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getFloor() {
 		return $this->floor;
 	}
-	
+
 	/**
 	 * Setter for door
 	 *
@@ -243,7 +243,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setDoor($door) {
 		$this->door = $door;
 	}
-	
+
 	/**
 	 * Getter for door
 	 *
@@ -252,7 +252,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getDoor() {
 		return $this->door;
 	}
-	
+
 	/**
 	 * Setter for postcode
 	 *
@@ -261,7 +261,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setPostcode($postcode) {
 		$this->postcode = $postcode;
 	}
-	
+
 	/**
 	 * Getter for postcode
 	 *
@@ -270,7 +270,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getPostcode() {
 		return $this->postcode;
 	}
-	
+
 	/**
 	 * Setter for city
 	 *
@@ -279,7 +279,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setCity($city) {
 		$this->city = $city;
 	}
-	
+
 	/**
 	 * Getter for city
 	 *
@@ -288,7 +288,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getCity() {
 		return $this->city;
 	}
-	
+
 	/**
 	 * Setter for country
 	 *
@@ -297,7 +297,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setCountry($country) {
 		$this->country = $country;
 	}
-	
+
 	/**
 	 * Getter for country
 	 *
@@ -306,7 +306,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function getCountry() {
 		return $this->country;
 	}
-	
+
 	/**
 	 * Setter for telephoneNumber
 	 *
@@ -315,7 +315,7 @@ class Tx_HypeStore_Domain_Model_CustomerAddress extends Tx_Extbase_DomainObject_
 	public function setTelephoneNumber($number) {
 		$this->telephoneNumber = $number;
 	}
-	
+
 	/**
 	 * Getter for telephoneNumber
 	 *

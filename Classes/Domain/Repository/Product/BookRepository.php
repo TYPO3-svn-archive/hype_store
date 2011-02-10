@@ -26,6 +26,6 @@
  * A repository for Books
  */
 class Tx_HypeStore_Domain_Repository_Product_BookRepository extends Tx_HypeStore_Domain_Repository_ProductRepository {
-	
+
 }
 ?>

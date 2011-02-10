@@ -90,7 +90,7 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/category.png',
-		
+
 		'dividers2tabs' => TRUE,
 	),
 );
@@ -120,7 +120,7 @@ $TCA['tx_hypestore_domain_model_product_type'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/product-type.png',
-		
+
 		'dividers2tabs' => TRUE,
 		'thumbnail' => 'icon',
 		'adminOnly' => TRUE,
@@ -160,7 +160,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/product.png',
-		
+
 		'dividers2tabs' => TRUE,
 		'thumbnail' => 'images',
 		'type'		=> 'type',
@@ -201,7 +201,7 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/article.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 		'thumbnail' => 'images',
@@ -237,7 +237,7 @@ $TCA['tx_hypestore_domain_model_product_attribute'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/attribute-value.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
@@ -266,7 +266,7 @@ $TCA['tx_hypestore_domain_model_product_price'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/price.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
@@ -295,7 +295,7 @@ $TCA['tx_hypestore_domain_model_tax_scale'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/tax-scale.png',
-		
+
 		'dividers2tabs' => TRUE,
 	),
 );
@@ -322,7 +322,7 @@ $TCA['tx_hypestore_domain_model_product_stock'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/stock.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
@@ -350,7 +350,7 @@ $TCA['tx_hypestore_domain_model_article_stock'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/stock.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
@@ -381,7 +381,7 @@ $TCA['tx_hypestore_domain_model_discount'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/discount.png',
-		
+
 		'dividers2tabs' => TRUE,
 	),
 );
@@ -408,7 +408,7 @@ $TCA['tx_hypestore_domain_model_depot'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/depot.png',
-		
+
 		'dividers2tabs' => TRUE,
 	),
 );
@@ -435,7 +435,7 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/attribute.png',
-		
+
 		'dividers2tabs' => TRUE,
 	),
 );
@@ -462,7 +462,7 @@ $TCA['tx_hypestore_domain_model_cart_item'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/cart-item.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
@@ -490,7 +490,7 @@ $TCA['tx_hypestore_domain_model_watchlist_item'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/watchlist-item.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
@@ -522,7 +522,7 @@ $TCA['tx_hypestore_domain_model_order'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/order.png',
-		
+
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
@@ -732,37 +732,37 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['XCLASS']['t3lib/class.t3lib_tceforms.php'] = 
 # WEB MODULE
 
 if(TYPO3_MODE == 'BE') {
-	
+
 	# Category
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_category'][0] = array(
 		'fList' => 'title,subtitle,products',
 		'icon' => TRUE,
 	);
-	
+
 	# Product
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_product'][0] = array(
 		'fList' => 'identifier,title,subtitle,images',
 		'icon' => TRUE,
 	);
-	
+
 	# TaxScale
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_tax_scale'][0] = array(
 		'fList' => 'rate',
 		'icon' => TRUE,
 	);
-	
+
 	# Depot
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_depot'][0] = array(
 		'fList' => 'title,city,country',
 		'icon' => TRUE,
 	);
-	
+
 	# Attribute
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_attribute'][0] = array(
 		'fList' => 'title,unit,type',
 		'icon' => TRUE,
 	);
-	
+
 	# Order
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_order'][0] = array(
 		'fList' => 'customer',

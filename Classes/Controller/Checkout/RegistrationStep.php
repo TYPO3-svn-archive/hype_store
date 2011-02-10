@@ -29,21 +29,21 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_HypeStore_Controller_Checkout_RegistrationStep extends Tx_HypeStore_Controller_Checkout_AbstractStep {
-	
+
 	public function isValid() {
 		return FALSE;
 	}
-	
+
 	public function needsValidation() {
 		return TRUE;
 	}
-	
+
 	public function isRequired() {
 		return !$GLOBALS['TSFE']->fe_user->user;
 	}
-	
+
 	public function indexAction() {
-		
+
 	}
 }
 ?>

@@ -29,17 +29,17 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_HypeStore_Controller_Checkout_PaymentStep extends Tx_HypeStore_Controller_Checkout_AbstractStep {
-	
+
 	public function isValid() {
 		return FALSE;
 	}
-	
+
 	public function needsValidation() {
 		return TRUE;
 	}
-	
+
 	public function indexAction() {
-		
+
 	}
 }
 ?>

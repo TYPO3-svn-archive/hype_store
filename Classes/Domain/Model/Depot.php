@@ -34,61 +34,61 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $title;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $street;
-	
+
 	/**
 	 * @var int
 	 * @validate Integer
 	 */
 	protected $postcode;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $city;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $country;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_DepotStock>
 	 * @lazy
 	 * @cascade remove
 	 */
 	protected $stocks;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductState>
 	 * @lazy
 	 * @cascade remove
 	 */
 	protected $states;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->stocks = new Tx_Extbase_Persistence_ObjectStorage;
 		$this->states = new Tx_Extbase_Persistence_ObjectStorage;
 	}
-	
+
 	/**
 	 * Setter for title
 	 *
@@ -98,7 +98,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function setTitle($title) {
 		$this->title = $title;
 	}
-	
+
 	/**
 	 * Getter for title
 	 *
@@ -107,7 +107,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function getTitle() {
 		return $this->title;
 	}
-	
+
 	/**
 	 * Setter for street
 	 *
@@ -117,7 +117,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function setStreet($street) {
 		$this->street = $street;
 	}
-	
+
 	/**
 	 * Getter for street
 	 *
@@ -126,7 +126,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function getStreet() {
 		return $this->street;
 	}
-	
+
 	/**
 	 * Setter for postcode
 	 *
@@ -136,7 +136,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function setPostcode($postcode) {
 		$this->postcode = $postcode;
 	}
-	
+
 	/**
 	 * Getter for postcode
 	 *
@@ -145,7 +145,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function getPostcode() {
 		return $this->postcode;
 	}
-	
+
 	/**
 	 * Setter for city
 	 *
@@ -155,7 +155,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function setCity($city) {
 		$this->city = $city;
 	}
-	
+
 	/**
 	 * Getter for city
 	 *
@@ -164,7 +164,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function getCity() {
 		return $this->city;
 	}
-	
+
 	/**
 	 * Setter for country
 	 *
@@ -174,7 +174,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function setCountry($country) {
 		$this->country = $country;
 	}
-	
+
 	/**
 	 * Getter for country
 	 *
@@ -183,7 +183,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function getCountry() {
 		return $this->country;
 	}
-	
+
 	/**
 	 * Setter for stocks
 	 *
@@ -193,7 +193,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function setStocks(Tx_Extbase_Persistence_ObjectStorage $stocks) {
 		$this->stocks = clone $stocks;
 	}
-	
+
 	/**
 	 * Adds a stock
 	 *
@@ -203,7 +203,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function addStock(Tx_HypeStore_Domain_Model_DepotStock $stock) {
 		$this->stocks->attach($stock);
 	}
-	
+
 	/**
 	 * Removes a stock
 	 *
@@ -213,7 +213,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function removeStock(Tx_HypeStore_Domain_Model_DepotStock $stock) {
 		$this->stocks->detach($stock);
 	}
-	
+
 	/**
 	 * Remove all stocks
 	 *
@@ -222,7 +222,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function removeStocks() {
 		$this->stocks = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for stocks
 	 *
@@ -232,10 +232,10 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 		if($this->stocks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->stocks->_loadRealInstance();
 		}
-		
+
 		return clone $this->stocks;
 	}
-	
+
 	/**
 	 * Setter for states
 	 *
@@ -245,7 +245,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function setStates(Tx_Extbase_Persistence_ObjectStorage $states) {
 		$this->states = clone $states;
 	}
-	
+
 	/**
 	 * Adds a state
 	 *
@@ -255,7 +255,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function addState(Tx_HypeStore_Domain_Model_ProductState $state) {
 		$this->states->attach($state);
 	}
-	
+
 	/**
 	 * Removes a state
 	 *
@@ -265,7 +265,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function removeState(Tx_HypeStore_Domain_Model_ProductState $state) {
 		$this->states->detach($state);
 	}
-	
+
 	/**
 	 * Remove all states
 	 *
@@ -274,7 +274,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function removeStates() {
 		$this->states = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for states
 	 *
@@ -284,14 +284,14 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 		if($this->states instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->states->_loadRealInstance();
 		}
-		
+
 		return clone $this->states;
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

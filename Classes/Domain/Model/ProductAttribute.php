@@ -34,31 +34,31 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Attribute
 	 */
 	protected $attribute;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $value;
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
 	 * @lazy
 	 */
 	protected $product;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	/**
 	 * Setter for attribute
 	 *
@@ -68,7 +68,7 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	public function setAttribute(Tx_HypeStore_Domain_Model_Attribute $attribute) {
 		$this->attribute = $attribute;
 	}
-	
+
 	/**
 	 * Getter for attribute
 	 *
@@ -77,7 +77,7 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	public function getAttribute() {
 		return $this->attribute;
 	}
-	
+
 	/**
 	 * Setter for value
 	 *
@@ -87,7 +87,7 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	public function setValue($value) {
 		$this->value = $value;
 	}
-	
+
 	/**
 	 * Getter for value
 	 *
@@ -96,7 +96,7 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	public function getValue() {
 		return $this->value;
 	}
-	
+
 	/**
 	 * Setter for product
 	 *
@@ -106,7 +106,7 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	public function setProduct(Tx_HypeStore_Domain_Model_Product $product) {
 		$this->product = $product;
 	}
-	
+
 	/**
 	 * Getter for product
 	 *
@@ -116,14 +116,14 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->product->_loadRealInstance();
 		}
-		
+
 		return $this->product;
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

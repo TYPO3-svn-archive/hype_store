@@ -25,6 +25,6 @@
 /**
  * A repository for Orders
  */
-class Tx_HypeStore_Domain_Repository_OrderRepository extends Tx_Extbase_Persistence_Repository {			
+class Tx_HypeStore_Domain_Repository_OrderRepository extends Tx_Extbase_Persistence_Repository {
 }
 ?>

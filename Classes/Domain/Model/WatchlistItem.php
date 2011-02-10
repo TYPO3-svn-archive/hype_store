@@ -34,43 +34,43 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
 	 * @lazy
 	 */
 	protected $customer;
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
 	 * @lazy
 	 */
 	protected $product;
-	
+
 	/**
 	 * @var int
 	 * @validate Integer
 	 */
 	protected $quantity;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	/**
 	 * Initialization
 	 *
 	 * return void
 	 */
 	public function initializeObject() {
-		
+
 		# initialize the price calculation service
 		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
-	
+
 	/**
 	 * Setter for customer
 	 *
@@ -80,7 +80,7 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
 		$this->customer = $customer;
 	}
-	
+
 	/**
 	 * Getter for customer
 	 *
@@ -90,10 +90,10 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 		if($this->customer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->customer->_loadRealInstance();
 		}
-		
+
 		return $this->customer;
 	}
-	
+
 	/**
 	 * Setter for product
 	 *
@@ -103,7 +103,7 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 	public function setProduct(Tx_HypeStore_Domain_Model_Product $product) {
 		$this->product = $product;
 	}
-	
+
 	/**
 	 * Getter for product
 	 *
@@ -113,10 +113,10 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->product->_loadRealInstance();
 		}
-		
+
 		return $this->product;
 	}
-	
+
 	/**
 	 * Setter for quantity
 	 *
@@ -126,7 +126,7 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 	public function setQuantity($quantity) {
 		$this->quantity = $quantity;
 	}
-	
+
 	/**
 	 * Getter for quantity
 	 *
@@ -135,11 +135,11 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 	public function getQuantity() {
 		return $this->quantity;
 	}
-	
-	
-	
+
+
+
 	/* Service methods */
-	
+
 	/**
 	 * Returns the price for a single cart item product
 	 *
@@ -148,7 +148,7 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 	public function getPrice() {
 		return $this->productService->getPrice($this->getProduct(), $this->getQuantity());
 	}
-	
+
 	/**
 	 * Returns the total price for the cart item
 	 *
@@ -157,11 +157,11 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 	public function getPriceSum() {
 		return $this->getPrice() * $this->getQuantity();
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

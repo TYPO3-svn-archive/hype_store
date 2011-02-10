@@ -34,20 +34,20 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_TaxScale extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var float
 	 * @validate Float
 	 */
 	protected $rate;
-	
+
 	/**
 	 * Initialization
 	 *
 	 * return void
 	 */
 	public function initializeObject() {}
-	
+
 	/**
 	 * Setter for rate
 	 *
@@ -57,7 +57,7 @@ class Tx_HypeStore_Domain_Model_TaxScale extends Tx_Extbase_DomainObject_Abstrac
 	public function setRate($rate) {
 		$this->rate = $rate;
 	}
-	
+
 	/**
 	 * Getter for rate
 	 *
@@ -66,11 +66,11 @@ class Tx_HypeStore_Domain_Model_TaxScale extends Tx_Extbase_DomainObject_Abstrac
 	public function getRate() {
 		return $this->rate;
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

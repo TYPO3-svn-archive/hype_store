@@ -25,6 +25,6 @@
 /**
  * A repository for Depots
  */
-class Tx_HypeStore_Domain_Repository_DepotRepository extends Tx_Extbase_Persistence_Repository {			
+class Tx_HypeStore_Domain_Repository_DepotRepository extends Tx_Extbase_Persistence_Repository {
 }
 ?>

@@ -28,29 +28,29 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
- 
+
 /*
 	STEPS
-	
+
 	Things to consider somewhere:
 		* Stock needs to be checked on availibility before confirming the order,
 		  the user needs to be informed, if some product is out of stock when ordering. (optional)
-		
+
 		* After confirmation (last step) the order stored in the session, needs to be
 		  persisted in the database, and the session object must be unset.
-		
+
 	0 Registration Process
 		* Personal Details
 		* Contact Details
 		* Account Details
-		
+
 	1 Address Details
 		* Delivery Address
 		* Invoice Address
-	
+
 	2 Shipping Options
 		* Shipping Type
-	
+
 	3 Payment Methods
 		* CashOnDelivery
 		* PrePayment
@@ -59,51 +59,51 @@
 		* CreditCard
 		* PayPal
 		* ...
-	
+
 	4 Order Overview
 		* Ordered Products
 		* Total Price
 		* Provided Details
 		* Terms
-	
+
 	5 Order Confirmation
 */
 
 class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controller_ActionController {
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage
 	 */
 	protected $steps;
-	
+
 	/**
 	 * @var Tx_HypeStore_Controller_Checkout_AbstractStep
 	 */
 	protected $currentStep;
-	
+
 	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-		
+
 		# initialize steps
 		$this->steps = new Tx_Extbase_Persistence_ObjectStorage;
-		
+
 		# register all available steps
 		$this->registerSteps();
-		
+
 		# order steps based on their dependencies
 		$this->sortSteps();
-		
+
 		# determines the current step
 		$this->determineCurrentStep();
-		
+
 		# prepares the current step
 		//$this->prepareCurrentStep();
 	}
-	
+
 	/**
 	 * Initializes the view before invoking an action method.
 	 *
@@ -111,77 +111,77 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	 * @return void
 	 */
 	public function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-		
+
 		# assign global settings
 		$this->view->assign('settings', $this->settings);
-		
+
 		# assign steps
 		$this->view->assign('steps', $this->getSteps());
 	}
-	
+
 	/**
 	 * Registers all default steps.
 	 *
 	 * @return void
 	 */
 	protected function registerSteps() {
-		
+
 		$registrationStep = new Tx_HypeStore_Controller_Checkout_RegistrationStep;
 		$addressStep = new Tx_HypeStore_Controller_Checkout_AddressStep;
 		$shippingStep = new Tx_HypeStore_Controller_Checkout_ShippingStep;
 		$paymentStep = new Tx_HypeStore_Controller_Checkout_PaymentStep;
-		
+
 		$paymentStep->addDependency($shippingStep);
 		$shippingStep->addDependency($addressStep);
 		$addressStep->addDependency($registrationStep);
-		
+
 		$this->addStep($paymentStep);
 		$this->addStep($shippingStep);
 		$this->addStep($addressStep);
 		$this->addStep($registrationStep);
 	}
-	
+
 	/**
 	 * Sorts all registered steps (using topological sorting).
 	 *
 	 * @return void
 	 */
 	protected function sortSteps() {
-		
+
 		# define empty stack
 		$steps = new Tx_Extbase_Persistence_ObjectStorage;
-		
+
 		$temp = $this->getSteps()->toArray();
-		
+
 		# loop through all steps
 		while($step = array_pop($temp)) {
-			
+
 			if($step->hasDependencies()) {
-				
+
 				$isSatisfied = TRUE;
-				
+
 				foreach($step->getDependencies() as $dependency) {
 					if(!$steps->contains($dependency)) {
 						$isSatisfied = FALSE;
 						break;
 					}
 				}
-				
+
 				if($isSatisfied) {
 					$steps->attach($step);
 				} else {
 					$this->addStep($step);
 				}
-				
+
 			} else {
 				$steps->attach($step);
 			}
 		}
-		
+
 		# define new steps
 		$this->setSteps($steps);
 	}
-	
+
 	/**
 	 * Determines the current step.
 	 *
@@ -195,7 +195,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 			}
 		}
 	}
-	
+
 	/**
 	 * Prepares the current step.
 	 *
@@ -209,7 +209,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 		$this->currentStep->injectReflectionService($this->reflectionService);
 		$this->currentStep->injectObjectManager($this->objectManager);
 	}
-	
+
 	/**
 	 * Index action for this controller.
 	 *
@@ -217,25 +217,25 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	 * @return string
 	 */
 	public function indexAction($step = NULL) {
-		
+
 		if($step) {
 			$stepsArray = $this->getSteps()->toArray();
-			
+
 			if(array_key_exists($step, $stepsArray)) {
 				$this->currentStep = $stepsArray[$step];
 			}
 		}
-		
+
 		$this->prepareCurrentStep();
-		
+
 		$this->view->assign('section', $this->currentStep->processRequest($this->request, $this->response));
 	}
-	
+
 	public function validateAction() {
 		$this->prepareCurrentStep();
 		$this->view->assign('section', $this->currentStep->processRequest($this->request, $this->response));
 	}
-	
+
 	/**
 	 * Sets all steps
 	 *
@@ -245,7 +245,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	protected function setSteps(Tx_Extbase_Persistence_ObjectStorage $steps) {
 		$this->steps = $steps;
 	}
-	
+
 	/**
 	 * Returns all registered steps.
 	 *
@@ -254,7 +254,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	protected function getSteps() {
 		return $this->steps;
 	}
-	
+
 	/**
 	 * Adds a step to the checkout process.
 	 *
@@ -264,7 +264,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	protected function addStep(Tx_HypeStore_Controller_Checkout_AbstractStep $step) {
 		$this->steps->attach($step);
 	}
-	
+
 	/**
 	 * Removes a step to the checkout process.
 	 *

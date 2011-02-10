@@ -26,14 +26,14 @@
  * Cart service
  */
 class Tx_HypeStore_Domain_Service_CartService implements t3lib_singleton {
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
-	
+
 	/**
 	 * Calculates the total price for the given cart items
 	 *
@@ -41,13 +41,13 @@ class Tx_HypeStore_Domain_Service_CartService implements t3lib_singleton {
 	 * @return float
 	 */
 	public function getTotalPrice(Tx_Extbase_Persistence_ObjectStorage $cartItems) {
-		
+
 		$price = 0;
-		
+
 		foreach($cartItems as $cartItem) {
 			$price += $this->productService->getPrice($cartItem->getProduct(), $cartItem->getQuantity()) * $cartItem->getQuantity();
 		}
-		
+
 		return $price;
 	}
 }

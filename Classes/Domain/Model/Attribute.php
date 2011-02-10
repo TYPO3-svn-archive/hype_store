@@ -34,32 +34,32 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $title;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 0, maximum = 255)
 	 */
 	protected $unit;
-	
+
 	/**
 	 * @var int
 	 * @validate Integer
 	 */
 	protected $type;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	/**
 	 * Setter for title
 	 *
@@ -69,7 +69,7 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	public function setTitle($title) {
 		$this->title = $title;
 	}
-	
+
 	/**
 	 * Getter for title
 	 *
@@ -78,7 +78,7 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	public function getTitle() {
 		return $this->title;
 	}
-	
+
 	/**
 	 * Setter for unit
 	 *
@@ -88,7 +88,7 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	public function setUnit($unit) {
 		$this->unit = $unit;
 	}
-	
+
 	/**
 	 * Getter for unit
 	 *
@@ -97,7 +97,7 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	public function getUnit() {
 		return $this->unit;
 	}
-	
+
 	/**
 	 * Setter for type
 	 *
@@ -107,7 +107,7 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	public function setType($type) {
 		$this->type = $type;
 	}
-	
+
 	/**
 	 * Getter for type
 	 *
@@ -116,11 +116,11 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	public function getType() {
 		return $this->type;
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

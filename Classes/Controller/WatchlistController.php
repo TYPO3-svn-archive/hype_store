@@ -29,47 +29,47 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Controller_ActionController {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Repository_CustomerRepository
 	 */
 	protected $customerRepository;
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
 	 */
 	protected $customer;
-	
+
 	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-		
+
 		# initialize the customer repository
 		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
-		
+
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
 			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
 			: $this->settings['view']['product']['pid'];
-		
+
 		# prepare cart pid (flexform hack)
 		$this->settings['view']['cart']['pid'] = (strpos($this->settings['view']['cart']['pid'], '_')) > 0
 			? substr($this->settings['view']['cart']['pid'], strpos($this->settings['view']['cart']['pid'], '_') + 1)
 			: $this->settings['view']['cart']['pid'];
-		
+
 		# load a known user
 		if($GLOBALS['TSFE']->fe_user->user) {
 			$this->customer = $this->customerRepository->findByUid((int)$GLOBALS['TSFE']->fe_user->user['uid']);
-		
+
 		# load an unknown user
 		} else {
 			$this->customer = NULL;
 		}
 	}
-	
+
 	/**
 	 * Initializes the view before invoking an action method.
 	 *
@@ -79,19 +79,19 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	public function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
 		$view->assign('settings', $this->settings);
 	}
-	
+
 	/**
 	 * Index action for this controller.
 	 *
 	 * @return string
 	 */
 	public function indexAction() {
-		
+
 		if($this->customer) {
 			$this->view->assign('watchlistItems', $this->customer->getWatchlistItems());
 		}
 	}
-	
+
 	/**
 	 * Add action for this controller.
 	 *
@@ -100,9 +100,9 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	 * @return void
 	 */
 	public function addAction(Tx_HypeStore_Domain_Model_Product $product) {
-		
+
 		if($this->customer) {
-			
+
 			# check if the product to add is already on the watchlist
 			$existingWatchlistItem = NULL;
 			foreach($this->customer->getWatchlistItems() as $watchlistItem) {
@@ -111,27 +111,27 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 					break;
 				}
 			}
-			
+
 			# add the product to the watchlist
 			if(!$existingWatchlistItem) {
-				
+
 				# create a new watchlist item
 				$watchlistItem = new Tx_HypeStore_Domain_Model_WatchlistItem;
 				$watchlistItem->setProduct($product);
 				$watchlistItem->setCustomer($this->customer);
-				
+
 				# add the new watchlist item
 				$this->customer->addWatchlistItem($watchlistItem);
 			}
-			
+
 			# display a success message
 			$this->flashMessages->add('The product ' . $product->getTitle() . ' was added to the watchlist.');
 		}
-		
+
 		# redirect to the watchlist
 		$this->redirect('index');
 	}
-	
+
 	/**
 	 * Move action for this controller.
 	 *
@@ -140,24 +140,24 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	 * @return void
 	 */
 	public function moveAction(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
-		
+
 		if($this->customer) {
-			
+
 			# remove the watchlist item
 			$this->customer->removeWatchlistItem($watchlistItem);
-			
+
 			# and add it to the cart
 			$uri = $this->uriBuilder
 				->reset()
 				->setTargetPageUid($this->settings['view']['cart']['pid'])
 				->uriFor('add', array('product' => $watchlistItem->getProduct()), 'Cart', 'HypeStore', 'Cart');
-			
+
 			$this->redirectToURI($uri);
 		}
-		
+
 		$this->redirect('index');
 	}
-	
+
 	/**
 	 * Remove action for this controller.
 	 *
@@ -166,12 +166,12 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	 * @return void
 	 */
 	public function removeAction(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
-		
+
 		if($this->customer) {
 			$this->customer->removeWatchlistItem($watchlistItem);
 			$this->flashMessages->add('The product ' . $watchlistItem->getProduct()->getTitle() . ' was removed from the watchlist.');
 		}
-		
+
 		$this->redirect('index');
 	}
 }

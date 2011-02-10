@@ -25,6 +25,6 @@
 /**
  * A repository for Customers
  */
-class Tx_HypeStore_Domain_Repository_CustomerRepository extends Tx_Extbase_Persistence_Repository {			
+class Tx_HypeStore_Domain_Repository_CustomerRepository extends Tx_Extbase_Persistence_Repository {
 }
 ?>

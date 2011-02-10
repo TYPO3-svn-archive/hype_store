@@ -34,96 +34,96 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
 	 */
 	protected $product;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $identifier;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 0, maximum = 255)
 	 */
 	protected $gtin;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $images;
-	
+
 	/**
 	 * @var string
 	 * @validate String
 	 */
 	protected $files;
-	
+
 	/**
 	 * @var integer
 	 * validate Integer
 	 */
 	protected $minimumOrderQuantity;
-	
+
 	/**
 	 * @var float
 	 */
 	protected $flatPrice;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductPrice>
 	 * @lazy
 	 * @cascade remove
 	 */
 	protected $scaledPrices;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductAttribute>
 	 * @lazy
 	 * @cascade remove
 	 */
 	protected $attributes;
-	
+
 	/**
 	 * @var integer
 	 * validate Integer
 	 */
 	protected $stockThreshold;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductStock>
 	 * @lazy
 	 * @cascade remove
 	 */
 	protected $stocks;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->scaledPrices		= new Tx_Extbase_Persistence_ObjectStorage();
 		$this->attributes		= new Tx_Extbase_Persistence_ObjectStorage();
 		$this->stocks			= new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Initialization
 	 *
 	 * return void
 	 */
 	public function initializeObject() {
-		
+
 		# initialize the product service
 		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
-	
+
 	/**
 	 * Setter for identifier
 	 *
@@ -133,7 +133,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setIdentifier($identifier) {
 		$this->identifier = $identifier;
 	}
-	
+
 	/**
 	 * Getter for identifier
 	 *
@@ -142,7 +142,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getIdentifier() {
 		return $this->identifier;
 	}
-	
+
 	/**
 	 * Setter for gtin
 	 *
@@ -152,7 +152,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setGtin($gtin) {
 		$this->gtin = $gtin;
 	}
-	
+
 	/**
 	 * Getter for gtin
 	 *
@@ -161,7 +161,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getGtin() {
 		return $this->gtin;
 	}
-	
+
 	/**
 	 * Setter for images
 	 *
@@ -171,7 +171,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setImages(array $images) {
 		$this->images = implode(',', $images);
 	}
-	
+
 	/**
 	 * Adds an image
 	 *
@@ -181,7 +181,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function addImage($image) {
 		$this->images = implode(',', array_push(explode(',', $this->images), $image));
 	}
-	
+
 	/**
 	 * Removes an image
 	 *
@@ -191,7 +191,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeImage($image) {
 		//$this->images = explode(',', $this->images);
 	}
-	
+
 	/**
 	 * Removes all images
 	 *
@@ -200,7 +200,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeImages() {
 		$this->images = '';
 	}
-	
+
 	/**
 	 * Getter for images
 	 *
@@ -210,10 +210,10 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 		if(!$this->images) {
 			return NULL;
 		}
-		
+
 		return explode(',', $this->images);
 	}
-	
+
 	/**
 	 * Setter for files
 	 *
@@ -223,7 +223,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setFiles(array $files) {
 		$this->files = implode(',', $files);
 	}
-	
+
 	/**
 	 * Adds a file
 	 *
@@ -233,7 +233,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function addFile($file) {
 		$this->files = implode(',', array_push(explode(',', $this->files), $file));
 	}
-	
+
 	/**
 	 * Removes a file
 	 *
@@ -243,7 +243,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeFile($file) {
 		//$this->images = explode(',', $this->images);
 	}
-	
+
 	/**
 	 * Removes all files
 	 *
@@ -252,7 +252,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeFiles() {
 		$this->files = '';
 	}
-	
+
 	/**
 	 * Getter for images
 	 *
@@ -262,10 +262,10 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 		if(!$this->files) {
 			return NULL;
 		}
-		
+
 		return explode(',', $this->files);
 	}
-	
+
 	/**
 	 * Setter for minimum order quantity
 	 *
@@ -275,7 +275,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setMinimumOrderQuantity($quantity) {
 		$this->minimumOrderQuantity = $quantity;
 	}
-	
+
 	/**
 	 * Getter for minimum order quantity
 	 *
@@ -284,7 +284,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getMinimumOrderQuantity() {
 		return $this->minimumOrderQuantity;
 	}
-	
+
 	/**
 	 * Setter for flat price
 	 *
@@ -294,7 +294,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setFlatPrice($price) {
 		$this->flatPrice = $price;
 	}
-	
+
 	/**
 	 * Getter for flat price
 	 *
@@ -303,7 +303,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getFlatPrice() {
 		return $this->flatPrice;
 	}
-	
+
 	/**
 	 * Setter for scaled prices
 	 *
@@ -313,7 +313,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setScaledPrices(Tx_Extbase_Persistence_ObjectStorage $prices) {
 		$this->scaledPrices = clone $prices;
 	}
-	
+
 	/**
 	 * Adds a scaled price
 	 *
@@ -323,7 +323,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function addScaledPrice(Tx_HypeStore_Domain_Model_ProductPrice $price) {
 		$this->scaledPrices->attach($price);
 	}
-	
+
 	/**
 	 * Removes a scaled price
 	 *
@@ -333,7 +333,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeScaledPrice(Tx_HypeStore_Domain_Model_ProductPrice $price) {
 		$this->scaledPrices->detach($price);
 	}
-	
+
 	/**
 	 * Remove all scaled prices
 	 *
@@ -342,7 +342,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeScaledPrices() {
 		$this->scaledPrices = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for scaled prices
 	 *
@@ -352,10 +352,10 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 		if($this->scaledPrices instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->scaledPrices->_loadRealInstance();
 		}
-		
+
 		return clone $this->scaledPrices;
 	}
-	
+
 	/**
 	 * Setter for attributes
 	 *
@@ -365,7 +365,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setAttributes(Tx_Extbase_Persistence_ObjectStorage $attributes) {
 		$this->attributes = clone $attributes;
 	}
-	
+
 	/**
 	 * Adds an attribute
 	 *
@@ -375,7 +375,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function addAttribute(Tx_HypeStore_Domain_Model_ProductAttribute $attribute) {
 		$this->attributes->attach($attribute);
 	}
-	
+
 	/**
 	 * Removes an attribute
 	 *
@@ -385,7 +385,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeAttribute(Tx_HypeStore_Domain_Model_ProductAttribute $attribute) {
 		$this->attributes->detach($attribute);
 	}
-	
+
 	/**
 	 * Remove all attributes
 	 *
@@ -394,7 +394,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeAttributes() {
 		$this->attributes = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for attributes
 	 *
@@ -404,10 +404,10 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 		if($this->attributes instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->attributes->_loadRealInstance();
 		}
-		
+
 		return clone $this->attributes;
 	}
-	
+
 	/**
 	 * Setter for stock threshold
 	 *
@@ -417,7 +417,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setStockThreshold($threshold) {
 		$this->stockThreshold = $threshold;
 	}
-	
+
 	/**
 	 * Getter for stock threshold
 	 *
@@ -426,7 +426,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getStockThreshold() {
 		return $this->stockThreshold;
 	}
-	
+
 	/**
 	 * Setter for stocks
 	 *
@@ -436,7 +436,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function setStocks(Tx_Extbase_Persistence_ObjectStorage $stocks) {
 		$this->stocks = clone $stocks;
 	}
-	
+
 	/**
 	 * Adds a stock
 	 *
@@ -446,7 +446,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function addStock(Tx_HypeStore_Domain_Model_DepotStock $stock) {
 		$this->stocks->attach($stock);
 	}
-	
+
 	/**
 	 * Removes a stock
 	 *
@@ -456,7 +456,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeStock(Tx_HypeStore_Domain_Model_DepotStock $stock) {
 		$this->stocks->detach($stock);
 	}
-	
+
 	/**
 	 * Remove all stocks
 	 *
@@ -465,7 +465,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function removeStocks() {
 		$this->stocks = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for stocks
 	 *
@@ -475,12 +475,12 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 		if($this->stocks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->stocks->_loadRealInstance();
 		}
-		
+
 		return clone $this->stocks;
 	}
-	
-	
-	
+
+
+
 	/* Service methods */
 
 	/**
@@ -491,7 +491,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getGrossPrice() {
 		return $this->articleService->getPrice($this);
 	}
-	
+
 	/**
 	 * Gets the calculated stock quantity
 	 *
@@ -500,9 +500,9 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getStock() {
 		return $this->articleService->getStock($this);
 	}
-	
-	
-	
+
+
+
 	/* Service methods */
 
 	/**
@@ -513,7 +513,7 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getRootlines() {
 		return $this->articleService->getRootlines($this);
 	}
-	
+
 	/**
 	 * Returns the first rootline of this product
 	 *
@@ -522,11 +522,11 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	public function getRootline() {
 		return array_shift($this->getRootlines())->__toString();
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

@@ -29,39 +29,39 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_HypeStore_Controller_Checkout_AddressStep extends Tx_HypeStore_Controller_Checkout_AbstractStep {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Repository_CustomerRepository
 	 */
 	protected $customerRepository;
-	
+
 	public function isValid() {
 		return ($GLOBALS['TSFE']->fe_user->getKey('ses', 'tx_hypestore_checkout.address'));
 	}
-	
+
 	public function needsValidation() {
 		return TRUE;
 	}
-	
+
 	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-		
+
 		# initialize the customer repository
 		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
-		
+
 		# load a known user
 		if($GLOBALS['TSFE']->fe_user->user) {
 			$this->customer = $this->customerRepository->findByUid((int)$GLOBALS['TSFE']->fe_user->user['uid']);
 		# load an unknown user
 		} else {
-			
+
 		}
 	}
-	
+
 	public function indexAction() {
 		$this->view->assign('customer', $this->customer);
 	}
@@ -73,12 +73,12 @@ class Tx_HypeStore_Controller_Checkout_AddressStep extends Tx_HypeStore_Controll
 	 * @return void
 	 */
 	public function validateAction(Tx_HypeStore_Domain_Model_CustomerAddress $address = NULL) {
-		 
+
 		 if($address) {
 			$GLOBALS['TSFE']->fe_user->setKey('ses', 'tx_hypestore_checkout.address', serialize($address));
 			$GLOBALS['TSFE']->fe_user->storeSessionData();
 		 }
-		 
+
 		 $this->redirect('index');
 	}
 }

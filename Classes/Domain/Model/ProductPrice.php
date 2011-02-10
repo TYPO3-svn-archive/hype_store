@@ -34,25 +34,25 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var int
 	 * @validate Integer
 	 */
 	protected $quantity;
-	
+
 	/**
 	 * @var float
 	 * @validate Float
 	 */
 	protected $value;
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
 	 * @lazy
 	 */
 	protected $product;
-	
+
 	/**
 	 * Initialization
 	 *
@@ -63,7 +63,7 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 		# initialize the price calculation service
 		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
-	
+
 	/**
 	 * Setter for quantity
 	 *
@@ -73,7 +73,7 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	public function setQuantity($quantity) {
 		$this->quantity = $quantity;
 	}
-	
+
 	/**
 	 * Getter for quantity
 	 *
@@ -82,7 +82,7 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	public function getQuantity() {
 		return $this->quantity;
 	}
-	
+
 	/**
 	 * Setter for value
 	 *
@@ -92,7 +92,7 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	public function setValue($value) {
 		$this->value = $value;
 	}
-	
+
 	/**
 	 * Getter for value
 	 *
@@ -101,7 +101,7 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	public function getValue() {
 		return $this->value;
 	}
-	
+
 	/**
 	 * Setter for product
 	 *
@@ -111,7 +111,7 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	public function setProduct(Tx_HypeStore_Domain_Model_Product $product) {
 		$this->product = $product;
 	}
-	
+
 	/**
 	 * Getter for product
 	 *
@@ -121,14 +121,14 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->product->_loadRealInstance();
 		}
-		
+
 		return $this->product;
 	}
-	
-	
-	
+
+
+
 	/* Service methods */
-	
+
 	/**
 	 * Gets the calculated gross value
 	 *
@@ -137,11 +137,11 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	public function getGrossValue() {
 		return $this->productService->getPrice($this->getProduct(), $this->getQuantity());
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

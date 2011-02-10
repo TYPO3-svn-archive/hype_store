@@ -34,62 +34,62 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $title;
-	
+
 	/**
 	 * @var integer
 	 * @validate Integer
 	 */
 	protected $rate;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Category>
 	 */
 	protected $includedCategories;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Category>
 	 */
 	protected $excludedCategories;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Product>
 	 */
 	protected $includedProducts;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Product>
 	 */
 	protected $excludedProducts;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->includedCategories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->excludedCategories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->includedProducts = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->excludedProducts = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Initialization
 	 *
 	 * return void
 	 */
 	public function initializeObject() {
-		
+
 		# initialize the category service
 		//$this->categoryService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_CategoryService');
 	}
-	
+
 	/**
 	 * Setter for title
 	 *
@@ -99,7 +99,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function setTitle($title) {
 		$this->title = $title;
 	}
-	
+
 	/**
 	 * Getter for title
 	 *
@@ -108,7 +108,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function getTitle() {
 		return $this->title;
 	}
-	
+
 	/**
 	 * Setter for rate
 	 *
@@ -118,7 +118,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function setRate($rate) {
 		$this->rate = $rate;
 	}
-	
+
 	/**
 	 * Getter for rate
 	 *
@@ -127,7 +127,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function getRate() {
 		return $this->rate;
 	}
-	
+
 	/**
 	 * Setter for includedCategories
 	 *
@@ -137,7 +137,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function setIncludedCategories(Tx_Extbase_Persistence_ObjectStorage $includedCategories) {
 		$this->includedCategories = clone $includedCategories;
 	}
-	
+
 	/**
 	 * Adds an includedCategory
 	 *
@@ -147,7 +147,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function addIncludedCategory(Tx_HypeStore_Domain_Model_Category $includedCategory) {
 		$this->includedCategories->attach($includedCategory);
 	}
-	
+
 	/**
 	 * Removes an includedCategory
 	 *
@@ -157,7 +157,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeIncludedCategory(Tx_HypeStore_Domain_Model_Category $includedCategory) {
 		$this->includedCategories->detach($includedCategory);
 	}
-	
+
 	/**
 	 * Remove all includedCategories
 	 *
@@ -166,7 +166,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeIncludedCategories() {
 		$this->includedCategories = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for includedCategories
 	 *
@@ -175,7 +175,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function getIncludedCategories() {
 		return clone $this->includedCategories;
 	}
-	
+
 	/**
 	 * Setter for excludedCategories
 	 *
@@ -185,7 +185,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function setExcludedCategories(Tx_Extbase_Persistence_ObjectStorage $excludedCategories) {
 		$this->excludedCategories = clone $excludedCategories;
 	}
-	
+
 	/**
 	 * Adds an excludedCategory
 	 *
@@ -195,7 +195,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function addExcludedCategory(Tx_HypeStore_Domain_Model_Category $excludedCategory) {
 		$this->excludedCategories->attach($excludedCategory);
 	}
-	
+
 	/**
 	 * Removes an excludedCategory
 	 *
@@ -205,7 +205,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeExcludedCategory(Tx_HypeStore_Domain_Model_Category $excludedCategory) {
 		$this->excludedCategories->detach($excludedCategory);
 	}
-	
+
 	/**
 	 * Remove all excludedCategories
 	 *
@@ -214,7 +214,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeExcludedCategories() {
 		$this->excludedCategories = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for excludedCategories
 	 *
@@ -223,7 +223,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function getExcludedCategories() {
 		return clone $this->excludedCategories;
 	}
-	
+
 	/**
 	 * Setter for includedProducts
 	 *
@@ -233,7 +233,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function setIncludedProducts(Tx_Extbase_Persistence_ObjectStorage $includedProducts) {
 		$this->includedProducts = clone $includedProducts;
 	}
-	
+
 	/**
 	 * Adds an includedProduct
 	 *
@@ -243,7 +243,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function addIncludedProduct(Tx_HypeStore_Domain_Model_Product $includedProduct) {
 		$this->includedProducts->attach($includedProduct);
 	}
-	
+
 	/**
 	 * Removes an includedProduct
 	 *
@@ -253,7 +253,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeIncludedProduct(Tx_HypeStore_Domain_Model_Product $includedProduct) {
 		$this->includedProducts->detach($includedProduct);
 	}
-	
+
 	/**
 	 * Remove all includedProducts
 	 *
@@ -262,7 +262,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeIncludedProducts() {
 		$this->includedProducts = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for includedProducts
 	 *
@@ -271,7 +271,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function getIncludedProducts() {
 		return clone $this->includedProducts;
 	}
-	
+
 	/**
 	 * Setter for excludedProducts
 	 *
@@ -281,7 +281,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function setExcludedProducts(Tx_Extbase_Persistence_ObjectStorage $excludedProducts) {
 		$this->excludedProducts = clone $excludedProducts;
 	}
-	
+
 	/**
 	 * Adds an excludedProduct
 	 *
@@ -291,7 +291,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function addExcludedProduct(Tx_HypeStore_Domain_Model_Product $excludedProduct) {
 		$this->excludedProducts->attach($excludedProduct);
 	}
-	
+
 	/**
 	 * Removes an excludedProduct
 	 *
@@ -301,7 +301,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeExcludedProduct(Tx_HypeStore_Domain_Model_Product $excludedProduct) {
 		$this->excludedProducts->detach($excludedProduct);
 	}
-	
+
 	/**
 	 * Remove all excludedProducts
 	 *
@@ -310,7 +310,7 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function removeExcludedProducts() {
 		$this->excludedProducts = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
+
 	/**
 	 * Getter for excludedProducts
 	 *
@@ -319,11 +319,11 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	public function getExcludedProducts() {
 		return clone $this->excludedProducts;
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

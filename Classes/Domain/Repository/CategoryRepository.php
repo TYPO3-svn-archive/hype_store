@@ -26,28 +26,28 @@
  * A repository for Categories
  */
 class Tx_HypeStore_Domain_Repository_CategoryRepository extends Tx_Extbase_Persistence_Repository {
-	
+
 	protected $referencedCategories = array();
-	
+
 	public function findMainCategories() {
 		$categories = $this->findAll();
-		
+
 		foreach($categories as $category) {
 			$subcategories = $category->getCategories();
-			
+
 			foreach($subcategories as $subcategory) {
 				if(!in_array($subcategory->getUid(), $this->referencedCategories)) {
 					array_push($this->referencedCategories, $subcategory->getUid());
 				}
 			}
 		}
-		
+
 		foreach($categories as $key => $category) {
 			if(in_array($category->getUid(), $this->referencedCategories)) {
 				unset($categories[$key]);
 			}
 		}
-		
+
 		return $categories;
 	}
 }

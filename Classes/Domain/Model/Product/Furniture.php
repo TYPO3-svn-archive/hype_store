@@ -34,6 +34,6 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_Product_Furniture extends Tx_HypeStore_Domain_Model_Product {
-	
+
 }
 ?>

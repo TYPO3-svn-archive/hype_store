@@ -29,6 +29,6 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface Tx_HypeStore_Controller_Checkout_StepInterface {
-	
+
 }
 ?>

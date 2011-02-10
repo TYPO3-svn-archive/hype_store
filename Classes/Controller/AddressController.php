@@ -29,43 +29,43 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_HypeStore_Controller_AddressController extends Tx_Extbase_MVC_Controller_ActionController {
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Repository_CustomerRepository
 	 */
 	protected $customerRepository;
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
 	 */
 	protected $customer = NULL;
-	
+
 	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-		
+
 		# initialize the customer repository
 		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
-		
+
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
 			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
 			: $this->settings['view']['product']['pid'];
-		
+
 		# prepare watchlist pid (flexform hack)
 		$this->settings['view']['watchlist']['pid'] = (strpos($this->settings['view']['watchlist']['pid'], '_')) > 0
 			? substr($this->settings['view']['watchlist']['pid'], strpos($this->settings['view']['watchlist']['pid'], '_') + 1)
 			: $this->settings['view']['watchlist']['pid'];
-		
+
 		# load a known user
 		if($GLOBALS['TSFE']->fe_user->user) {
 			$this->customer = $this->customerRepository->findByUid((int)$GLOBALS['TSFE']->fe_user->user['uid']);
 		}
 	}
-	
+
 	/**
 	 * Initializes the view before invoking an action method.
 	 *
@@ -87,7 +87,7 @@ class Tx_HypeStore_Controller_AddressController extends Tx_Extbase_MVC_Controlle
 			$this->view->assign('addresses', $this->customer->getAddresses());
 		}
 	}
-	
+
 	/**
 	 * Create action for this controller.
 	 *
@@ -97,7 +97,7 @@ class Tx_HypeStore_Controller_AddressController extends Tx_Extbase_MVC_Controlle
 		//$this->request->setArgument('address', '_NEW');
 		$this->forward('edit');
 	}
-	
+
 	/**
 	 * Edit action for this controller.
 	 *
@@ -143,7 +143,7 @@ class Tx_HypeStore_Controller_AddressController extends Tx_Extbase_MVC_Controlle
 
 		# set an appropriate message
 		$this->flashMessages->add('The address ' . $address->getTitle() . ' was removed.');
-		
+
 		# redirect to the index action
 		$this->redirect('index');
 	}

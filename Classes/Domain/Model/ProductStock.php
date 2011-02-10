@@ -34,32 +34,32 @@
  * @entity
  */
 class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * @var int
 	 * @validate Integer
 	 */
 	protected $quantity;
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Depot
 	 * @lazy
 	 */
 	protected $depot;
-	
+
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
 	 * @lazy
 	 */
 	protected $product;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	/**
 	 * Setter for quantity
 	 *
@@ -69,7 +69,7 @@ class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_Abs
 	public function setQuantity($quantity) {
 		$this->quantity = $quantity;
 	}
-	
+
 	/**
 	 * Getter for quantity
 	 *
@@ -78,7 +78,7 @@ class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_Abs
 	public function getQuantity() {
 		return $this->quantity;
 	}
-	
+
 	/**
 	 * Setter for product
 	 *
@@ -88,7 +88,7 @@ class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_Abs
 	public function setProduct(Tx_HypeStore_Domain_Model_Product $product) {
 		$this->product = $product;
 	}
-	
+
 	/**
 	 * Getter for product
 	 *
@@ -98,10 +98,10 @@ class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_Abs
 		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->product->_loadRealInstance();
 		}
-		
+
 		return $this->product;
 	}
-	
+
 	/**
 	 * Setter for depot
 	 *
@@ -111,7 +111,7 @@ class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_Abs
 	public function setDepot(Tx_HypeStore_Domain_Model_Depot $depot) {
 		$this->depot = $depot;
 	}
-	
+
 	/**
 	 * Getter for depot
 	 *
@@ -121,14 +121,14 @@ class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_Abs
 		if($this->depot instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->depot->_loadRealInstance();
 		}
-		
+
 		return $this->depot;
 	}
-	
-	
-	
+
+
+
 	/* Magic methods */
-	
+
 	/**
 	 * Returns as a formatted string
 	 *

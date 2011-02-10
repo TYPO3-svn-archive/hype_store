@@ -2,10 +2,10 @@
 
 class tx_hypestore_realurl_autoconfgen {
 	public function addRealURLConfig($parameters, $object) {
-		
+
 		# get realurl config
 		$config = $parameters['config'];
-		
+
 		$postVars = array(
 			'hype_store' => array(
 				/*
@@ -61,18 +61,18 @@ class tx_hypestore_realurl_autoconfgen {
 						'useUniqueCache_conf' => array(
 							'strtolower'     => 1,
 							'spaceCharacter' => '-',
-						),					
+						),
 					),
 				),
 			),
 		);
-		
+
 		if(!is_array($config['postVarSets']['_DEFAULT'])) {
 			$config['postVarSets']['_DEFAULT'] = $postVars;
 		} else {
 			$config['postVarSets']['_DEFAULT'] = array_merge($config['postVarSets']['_DEFAULT'], $postVars);
 		}
-		
+
 		return $config;
 	}
 }
