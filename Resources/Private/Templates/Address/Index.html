@@ -1,6 +1,6 @@
 {namespace h=Tx_Hype_ViewHelpers}
 
-<f:layout name="default" />
+<f:layout name="Default" />
 
 <f:section name="content">
 	<!-- addresses -->
@@ -22,7 +22,7 @@
 							<f:if condition="{address.country}">Country: {address.country}<br /></f:if>
 							<f:if condition="{address.telephoneNumber}">Telephone: {address.telephoneNumber}</f:if>
 						</p>
-						
+
 						<p>
 							<f:link.action action="edit" arguments="{address: address}">Edit address</f:link.action>
 							<f:link.action action="delete" arguments="{address: address}">Delete address</f:link.action>
@@ -36,6 +36,6 @@
 			<p>There are no addresses defined.</p>
 		</f:else>
 	</f:if>
-	
+
 	<p><f:link.action action="create">Add new address</f:link.action></p>
 </f:section>

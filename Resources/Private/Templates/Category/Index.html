@@ -1,6 +1,6 @@
 {namespace h=Tx_Hype_ViewHelpers}
 
-<f:layout name="default" />
+<f:layout name="Default" />
 
 <f:section name="content">
 	<f:if condition="{f:count(subject: categories)} > 0">
@@ -9,35 +9,35 @@
 				<div class="category">
 					<!-- category.title -->
 					<h2><f:link.action action="list" arguments="{category: category, path: '{category.uid}'}">{category.title}</f:link.action></h2>
-					
+
 					<!-- category.images -->
 					<f:if condition="{h:file.exists(path: '{settings.object.category.field.images.path}{category.images.0}')}">
 						<f:link.action action="list" arguments="{category: category, path: '{category.uid}'}" class="image">
 							<f:image src="{settings.object.category.field.images.path}{category.images.0}" maxWidth="{settings.view.category.action.index.field.images.maxWidth}" maxHeight="{settings.view.category.action.index.field.images.maxHeight}" alt="{category.title}" />
 						</f:link.action>
 					</f:if>
-					
+
 					<!-- category.introduction -->
 					<f:if condition="{category.introduction}">
 						<p>{category.introduction->f:format.nl2br()}</p>
 					</f:if>
-					
+
 					<!-- category.products -->
 					<f:if condition="{f:count(subject: category.products)} > 0">
 						<div class="products">
 							<h3>Produkte</h3>
-							
+
 							<ul>
 								<f:for each="{category.products}" as="product">
 									<li>
 										<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}">{product.title}</f:link.action>
-										
+
 										<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{product.images.0}')}">
 											<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}" class="image">
 												<f:image src="{settings.object.product.field.images.path}{product.images.0}" maxWidth="{settings.view.category.action.index.object.product.field.images.maxWidth}" maxHeight="{settings.view.category.action.index.object.product.field.images.maxHeight}" alt="{product.title}" />
 											</f:link.action>
 										</f:if>
-										
+
 										<f:if condition="{product.introduction}">
 											<p>{product.introduction->f:format.nl2br()}</p>
 										</f:if>
@@ -51,7 +51,7 @@
 					<f:if condition="{f:count(subject: category.categories)} > 0">
 						<div class="categories">
 							<h3>Unterkategorien</h3>
-							
+
 							<ul>
 								<f:for each="{category.categories}" as="subcategory">
 									<li>
@@ -67,7 +67,7 @@
 				</div>
 			</f:for>
 		</f:then>
-		
+
 		<f:else>
 			<p>Keine Kategorien verfügbar.</p>
 		</f:else>

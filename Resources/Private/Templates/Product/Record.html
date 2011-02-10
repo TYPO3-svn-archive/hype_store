@@ -3,7 +3,7 @@
 <f:section name="content">
 	<f:if condition="{product}">
 		<f:then>
-			<f:render partial="Product/Product/{product.type}.html" arguments="{product: product, settings: settings}"/>
+			<f:render partial="Product/Product/{product.type->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{product: product, settings: settings}"/>
 		</f:then>
 
 		<f:else>

@@ -1,13 +1,13 @@
 {namespace h=Tx_Hype_ViewHelpers}
 
-<f:layout name="default" />
+<f:layout name="Default" />
 
 <f:section name="content">
 	<f:if condition="{product}">
-		
+
 		<!-- Product details -->
-		<f:render partial="Product/Product/{product.type}.html" arguments="{product: product, settings: settings}"/>
-		
+		<f:render partial="Product/Product/{product.type->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{product: product, settings: settings}"/>
+
 		<!-- functions -->
 		<p class="actions">
 			<f:if condition="{settings.common.feature.cart}">
@@ -15,26 +15,26 @@
 				<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {product.title}</em> into the cart.</f:link.action><br />
 			</f:if>
 			</f:if>
-			
+
 			<f:if condition="{settings.common.feature.watchlist}">
 			<f:if condition="{settings.view.watchlist.pid}">
 				<f:link.action pluginName="Watchlist" controller="Watchlist" action="add" arguments="{product: product}" pageUid="{settings.view.watchlist.pid}" class="watchlist"><em>Set {product.title}</em> on the watchlist.</f:link.action>
 			</f:if>
 			</f:if>
 		</p>
-		
+
 		<!-- product.relatedProducts -->
 		<f:if condition="{f:count(subject: product.relatedProducts)} > 0">
 			<hr />
-			
+
 			<div class="products related_products">
 				<h3>Related products</h3>
-				
+
 				<ul>
 					<f:for each="{product.relatedProducts}" as="relatedProduct">
 						<li>
 							<h4><f:link.action arguments="{product: relatedProduct, path: relatedProduct.rootline}">{relatedProduct.title}</f:link.action></h4>
-								
+
 							<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{relatedProduct.images.0}')}">
 								<f:link.action arguments="{product: relatedProduct, path: relatedProduct.rootline}" class="image">
 									<f:image src="{settings.object.product.field.images.path}{relatedProduct.images.0}" maxHeight="60" alt="" />

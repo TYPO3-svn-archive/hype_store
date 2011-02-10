@@ -1,6 +1,6 @@
 {namespace h=Tx_Hype_ViewHelpers}
 
-<f:layout name="default" />
+<f:layout name="Default" />
 
 <f:section name="content">
 
@@ -10,7 +10,7 @@
 				<f:then>
 					<legend>Edit {address.title}</legend>
 				</f:then>
-				
+
 				<f:else>
 					<legend>Create new address</legend>
 				</f:else>
@@ -48,7 +48,7 @@
 
 			<label for="">Telephone</label>
 			<f:form.textbox property="telephoneNumber"/><br />
-			
+
 			<f:form.submit value="Save address"/>
 		</fieldset>
 	</f:form>
