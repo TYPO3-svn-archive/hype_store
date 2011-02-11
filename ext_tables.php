@@ -803,6 +803,18 @@ if(TYPO3_MODE == 'BE') {
 	# Order
 	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_order', 'hype_sto_6', 'EXT:hype_store/Configuration/TCA/Icons/order.png');
 	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_6', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/order.png');
+
+	# Attributes
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute', 'hype_sto_7', 'EXT:hype_store/Configuration/TCA/Icons/attribute.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_7', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/attribute.png');
+
+	# Cart Items
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_cart_item', 'hype_sto_8', 'EXT:hype_store/Configuration/TCA/Icons/cart-item.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_8', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/cart-item.png');
+
+	# Watchlist Items
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_watchlist_item', 'hype_sto_9', 'EXT:hype_store/Configuration/TCA/Icons/watchlist-item.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_9', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/watchlist-item.png');
 }
 
 ?>
