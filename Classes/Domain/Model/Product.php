@@ -168,6 +168,16 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	protected $stocks;
 
 	/**
+	 * @var Tx_Hype_Domain_Model_Typo3_Page
+	 */
+	protected $relatedPage;
+
+	/**
+	 * @var string
+	 */
+	protected $relatedAddress;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -875,6 +885,44 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 		}
 
 		return clone $this->stocks;
+	}
+
+	/**
+	 * Setter for related page
+	 *
+	 * @param Tx_Hype_Domain_Model_Typo3_Page $relatedPage
+	 * @return void
+	 */
+	public function setRelatedPage($relatedPage) {
+		$this->relatedPage = $relatedPage;
+	}
+
+	/**
+	 * Getter for related page
+	 *
+	 * @return Tx_Hype_Domain_Model_Typo3_Page
+	 */
+	public function getRelatedPage() {
+		return $this->relatedPage;
+	}
+
+	/**
+	 * Setter for related address
+	 *
+	 * @param string $relatedAddress
+	 * @return void
+	 */
+	public function setRelatedAddress($relatedAddress) {
+		$this->relatedAddress = $relatedAddress;
+	}
+
+	/**
+	 * Getter for related address
+	 *
+	 * @return string
+	 */
+	public function getRelatedAddress() {
+		return $this->relatedAddress;
 	}
 
 

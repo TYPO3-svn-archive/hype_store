@@ -101,6 +101,8 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	stock_threshold int(11) DEFAULT '0' NOT NULL,
 	stock_unit int(11) DEFAULT '0' NOT NULL,
 	stocks int(11) DEFAULT '0' NOT NULL,
+	related_page int(11) DEFAULT '0' NOT NULL,
+	related_address varchar(255) DEFAULT '' NOT NULL,
 
 	# General
 	manufacturer int(11) DEFAULT '0' NOT NULL,

@@ -63,6 +63,8 @@
 			<label index="tx_hypestore_domain_model_product.stock_unit">Unit</label>
 			<label index="tx_hypestore_domain_model_product.stocks">Stocks</label>
 			<label index="tx_hypestore_domain_model_product.categories">Categories</label>
+			<label index="tx_hypestore_domain_model_product.related_page">Related page</label>
+			<label index="tx_hypestore_domain_model_product.related_address">Related address</label>
 
 			<label index="tx_hypestore_domain_model_product.isbn13_number">ISBN 13 number</label>
 			<label index="tx_hypestore_domain_model_product.isbn10_number">ISBN 10 number</label>
@@ -221,6 +223,8 @@
 			<label index="tx_hypestore_domain_model_product.stock_unit">Einheit</label>
 			<label index="tx_hypestore_domain_model_product.stocks">Lagerstände</label>
 			<label index="tx_hypestore_domain_model_product.categories">Kategorien</label>
+			<label index="tx_hypestore_domain_model_product.related_page">Zugehörige Seite</label>
+			<label index="tx_hypestore_domain_model_product.related_address">Zugehörige Adresse</label>
 
 			<label index="tx_hypestore_domain_model_product.isbn13_number">ISBN 13 Nummer</label>
 			<label index="tx_hypestore_domain_model_product.isbn10_number">ISBN 10 Nummer</label>
