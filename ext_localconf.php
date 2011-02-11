@@ -7,7 +7,7 @@ if(!defined('TYPO3_MODE'))
 
 # PLUGINS
 
-# Category plugin
+# Category
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Category',
@@ -15,7 +15,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Category' => '')
 );
 
-# Product plugin
+# Product
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Product',
@@ -23,7 +23,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Product' => '')
 );
 
-# Cart plugin
+# Cart
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Cart',
@@ -31,7 +31,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Cart' => 'index,update,add,remove,move')
 );
 
-# Checkout plugin
+# Checkout
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Checkout',
@@ -39,7 +39,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Checkout' => 'index,validate')
 );
 
-# Watchlist plugin
+# Watchlist
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Watchlist',
@@ -47,7 +47,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Watchlist' => 'index,add,remove,move')
 );
 
-# Address plugin
+# Address
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Address',
