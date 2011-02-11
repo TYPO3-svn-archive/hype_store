@@ -11,9 +11,9 @@
 					<h2><f:link.action action="list" arguments="{category: category, path: '{category.uid}'}">{category.title}</f:link.action></h2>
 
 					<!-- category.images -->
-					<f:if condition="{h:file.exists(path: '{settings.object.category.field.images.path}{category.images.0}')}">
+					<f:if condition="{h:file.exists(path: '{settings.object.category.property.images.path}{category.images.0}')}">
 						<f:link.action action="list" arguments="{category: category, path: '{category.uid}'}" class="image">
-							<f:image src="{settings.object.category.field.images.path}{category.images.0}" maxWidth="{settings.view.category.action.index.field.images.maxWidth}" maxHeight="{settings.view.category.action.index.field.images.maxHeight}" alt="{category.title}" />
+							<f:image src="{settings.object.category.property.images.path}{category.images.0}" maxWidth="{settings.view.category.action.index.property.images.maxWidth}" maxHeight="{settings.view.category.action.index.property.images.maxHeight}" alt="{category.title}" />
 						</f:link.action>
 					</f:if>
 
@@ -32,9 +32,9 @@
 									<li>
 										<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}">{product.title}</f:link.action>
 
-										<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{product.images.0}')}">
+										<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{product.images.0}')}">
 											<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}" class="image">
-												<f:image src="{settings.object.product.field.images.path}{product.images.0}" maxWidth="{settings.view.category.action.index.object.product.field.images.maxWidth}" maxHeight="{settings.view.category.action.index.object.product.field.images.maxHeight}" alt="{product.title}" />
+												<f:image src="{settings.object.product.property.images.path}{product.images.0}" maxWidth="{settings.view.category.action.index.object.product.property.images.maxWidth}" maxHeight="{settings.view.category.action.index.object.product.property.images.maxHeight}" alt="{product.title}" />
 											</f:link.action>
 										</f:if>
 

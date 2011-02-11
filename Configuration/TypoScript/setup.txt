@@ -176,22 +176,22 @@ plugin.tx_hypestore {
 		object {
 			category {
 
-				field {
+				property {
 					images {
-						path = {$plugin.tx_hypestore.settings.object.category.field.images.path}
+						path = {$plugin.tx_hypestore.settings.object.category.property.images.path}
 					}
 				}
 			}
 
 			product {
 
-				field {
+				property {
 					images {
-						path = {$plugin.tx_hypestore.settings.object.product.field.images.path}
+						path = {$plugin.tx_hypestore.settings.object.product.property.images.path}
 					}
 
 					files {
-						path = {$plugin.tx_hypestore.settings.object.product.field.files.path}
+						path = {$plugin.tx_hypestore.settings.object.product.property.files.path}
 					}
 				}
 			}
@@ -212,28 +212,28 @@ plugin.tx_hypestore {
 							showSubcategories = {$plugin.tx_hypestore.settings.view.category.action.index.common.showSubcategories}
 						}
 
-						field {
+						property {
 							images {
-								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.field.images.maxWidth}
-								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.field.images.maxHeight}
+								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.property.images.maxWidth}
+								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.property.images.maxHeight}
 							}
 						}
 
 						object {
 							category {
-								field {
+								property {
 									images {
-										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.object.category.field.images.maxWidth}
-										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.object.category.field.images.maxHeight}
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.object.category.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.object.category.property.images.maxHeight}
 									}
 								}
 							}
 
 							product {
-								field {
+								property {
 									images {
-										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.object.product.field.images.maxWidth}
-										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.object.product.field.images.maxHeight}
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.index.object.product.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.index.object.product.property.images.maxHeight}
 									}
 								}
 							}
@@ -246,28 +246,28 @@ plugin.tx_hypestore {
 							showSubcategories = {$plugin.tx_hypestore.settings.view.category.action.list.common.showSubcategories}
 						}
 
-						field {
+						property {
 							images {
-								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.field.images.maxWidth}
-								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.field.images.maxHeight}
+								maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.property.images.maxWidth}
+								maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.property.images.maxHeight}
 							}
 						}
 
 						object {
 							category {
-								field {
+								property {
 									images {
-										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.field.images.maxWidth}
-										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.field.images.maxHeight}
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.property.images.maxHeight}
 									}
 								}
 							}
 
 							product {
-								field {
+								property {
 									images {
-										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.object.product.field.images.maxWidth}
-										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.field.images.maxHeight}
+										maxWidth = {$plugin.tx_hypestore.settings.view.category.action.list.object.product.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.category.action.list.object.category.property.images.maxHeight}
 									}
 								}
 							}
@@ -285,28 +285,28 @@ plugin.tx_hypestore {
 
 				action {
 					index {
-						field {
+						property {
 							images {
-								maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.field.images.maxWidth}
-								maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.field.images.maxHeight}
+								maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.property.images.maxWidth}
+								maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.property.images.maxHeight}
 							}
 						}
 
 						object {
 							category {
-								field {
+								property {
 									images {
-										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.object.category.field.images.maxWidth}
-										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.object.category.field.images.maxHeight}
+										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.object.category.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.object.category.property.images.maxHeight}
 									}
 								}
 							}
 
 							product {
-								field {
+								property {
 									images {
-										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.object.product.field.images.maxWidth}
-										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.object.product.field.images.maxHeight}
+										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.index.object.product.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.index.object.product.property.images.maxHeight}
 									}
 								}
 							}

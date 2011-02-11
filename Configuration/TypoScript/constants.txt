@@ -26,7 +26,7 @@ plugin.tx_hypestore {
 		object {
 			category {
 
-				field {
+				property {
 					images {
 						path = uploads/hype/store/category/images/
 					}
@@ -35,7 +35,7 @@ plugin.tx_hypestore {
 
 			product {
 
-				field {
+				property {
 					images {
 						path = uploads/hype/store/product/images/
 					}
@@ -62,7 +62,7 @@ plugin.tx_hypestore {
 							showSubcategories = 1
 						}
 
-						field {
+						property {
 							images {
 								maxWidth = 240
 								maxHeight =
@@ -71,7 +71,7 @@ plugin.tx_hypestore {
 
 						object {
 							category {
-								field {
+								property {
 									images {
 										maxWidth = 80
 										maxHeight =
@@ -80,7 +80,7 @@ plugin.tx_hypestore {
 							}
 
 							product {
-								field {
+								property {
 									images {
 										maxWidth = 80
 										maxHeight =
@@ -96,7 +96,7 @@ plugin.tx_hypestore {
 							showSubcategories = 1
 						}
 
-						field {
+						property {
 							images {
 								maxWidth = 120
 								maxHeight =
@@ -105,7 +105,7 @@ plugin.tx_hypestore {
 
 						object {
 							category {
-								field {
+								property {
 									images {
 										maxWidth = 80
 										maxHeight =
@@ -114,7 +114,7 @@ plugin.tx_hypestore {
 							}
 
 							product {
-								field {
+								property {
 									images {
 										maxWidth = 80
 										maxHeight =
@@ -135,7 +135,7 @@ plugin.tx_hypestore {
 
 				action {
 					index {
-						field {
+						property {
 							images {
 								maxWidth = 400
 								maxHeight =
@@ -144,7 +144,7 @@ plugin.tx_hypestore {
 
 						object {
 							category {
-								field {
+								property {
 									images {
 										maxWidth = 80
 										maxHeight =
@@ -153,7 +153,7 @@ plugin.tx_hypestore {
 							}
 
 							product {
-								field {
+								property {
 									images {
 										maxWidth = 80
 										maxHeight =

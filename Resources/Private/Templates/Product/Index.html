@@ -35,9 +35,9 @@
 						<li>
 							<h4><f:link.action arguments="{product: relatedProduct, path: relatedProduct.rootline}">{relatedProduct.title}</f:link.action></h4>
 
-							<f:if condition="{h:file.exists(path: '{settings.object.product.field.images.path}{relatedProduct.images.0}')}">
+							<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{relatedProduct.images.0}')}">
 								<f:link.action arguments="{product: relatedProduct, path: relatedProduct.rootline}" class="image">
-									<f:image src="{settings.object.product.field.images.path}{relatedProduct.images.0}" maxHeight="60" alt="" />
+									<f:image src="{settings.object.product.property.images.path}{relatedProduct.images.0}" maxHeight="60" alt="" />
 								</f:link.action>
 							</f:if>
 						</li>
