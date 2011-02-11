@@ -774,32 +774,35 @@ if(TYPO3_MODE == 'BE') {
 
 # PAGE ICONS
 
-# Extension
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore', 'hype_sto_0', 'EXT:hype_store/ext_icon.gif');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_0', t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icon.gif');
+if(TYPO3_MODE == 'BE') {
 
-# Category
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_category', 'hype_sto_1', 'EXT:hype_store/Configuration/TCA/Icons/category.png');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_1', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/category.png');
+	# Extension
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore', 'hype_sto_0', 'EXT:hype_store/ext_icon.gif');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_0', t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icon.gif');
 
-# Product
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product', 'hype_sto_2', 'EXT:hype_store/Configuration/TCA/Icons/product.png');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_2', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/product.png');
+	# Category
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_category', 'hype_sto_1', 'EXT:hype_store/Configuration/TCA/Icons/category.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_1', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/category.png');
 
-# Tax scale
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_tax_scale', 'hype_sto_3', 'EXT:hype_store/Configuration/TCA/Icons/tax-scale.png');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_3', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/tax-scale.png');
+	# Product
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product', 'hype_sto_2', 'EXT:hype_store/Configuration/TCA/Icons/product.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_2', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/product.png');
 
-# Discount
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_discount', 'hype_sto_4', 'EXT:hype_store/Configuration/TCA/Icons/discount.png');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_4', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/discount.png');
+	# Tax scale
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_tax_scale', 'hype_sto_3', 'EXT:hype_store/Configuration/TCA/Icons/tax-scale.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_3', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/tax-scale.png');
 
-# Depot
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_depot', 'hype_sto_5', 'EXT:hype_store/Configuration/TCA/Icons/depot.png');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_5', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/depot.png');
+	# Discount
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_discount', 'hype_sto_4', 'EXT:hype_store/Configuration/TCA/Icons/discount.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_4', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/discount.png');
 
-# Order
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_order', 'hype_sto_6', 'EXT:hype_store/Configuration/TCA/Icons/order.png');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_6', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/order.png');
+	# Depot
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_depot', 'hype_sto_5', 'EXT:hype_store/Configuration/TCA/Icons/depot.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_5', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/depot.png');
+
+	# Order
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_order', 'hype_sto_6', 'EXT:hype_store/Configuration/TCA/Icons/order.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_6', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/order.png');
+}
 
 ?>
