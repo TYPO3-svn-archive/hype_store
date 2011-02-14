@@ -28,6 +28,11 @@
 class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
 
 	/**
+	 * @var Tx_HypeStore_Domain_Repository_ProductRepository
+	 */
+	protected $productRepository;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

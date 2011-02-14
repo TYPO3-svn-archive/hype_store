@@ -26,7 +26,7 @@
  * Category
  *
  * @package HypeStore
- * @subpackage Domain
+ * @subpackage Domain/Model
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
@@ -49,25 +49,24 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 
 	/**
 	 * @var string
-	 * @validate String
+	 * @validate StringLength(minimum = 0, maximum = 65000)
 	 */
 	protected $introduction;
 
 	/**
 	 * @var string
-	 * @validate String
+	 * @validate StringLength(minimum = 0, maximum = 65000)
 	 */
 	protected $description;
 
 	/**
 	 * @var string
-	 * @validate String
+	 * @validate StringLength(minimum = 0, maximum = 65000)
 	 */
 	protected $images;
 
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Category
-	 * @lazy
 	 */
 	protected $parentCategory;
 
@@ -89,8 +88,8 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	public function __construct() {
 		parent::__construct();
 
-		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->products = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->categories = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->products = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -191,6 +190,19 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	}
 
 	/**
+	 * Getter for images
+	 *
+	 * @return array
+	 */
+	public function getImages() {
+		if(!$this->images) {
+			return NULL;
+		}
+
+		return explode(',', $this->images);
+	}
+
+	/**
 	 * Adds an image
 	 *
 	 * @param string $image
@@ -207,7 +219,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return void
 	 */
 	public function removeImage($image) {
-		//$this->images = explode(',', $this->images);
+		$this->images = implode(',', array_diff(explode(',', $this->images), array($image)));
 	}
 
 	/**
@@ -220,26 +232,13 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	}
 
 	/**
-	 * Getter for images
-	 *
-	 * @return array
-	 */
-	public function getImages() {
-		if(!$this->images) {
-			return NULL;
-		}
-
-		return explode(',', $this->images);
-	}
-
-	/**
 	 * Setter for parentCategory
 	 *
-	 * @param Tx_HypeStore_Domain_Model_Category $category
+	 * @param Tx_HypeStore_Domain_Model_Category $parentCategory
 	 * @return void
 	 */
-	public function setParentCategory(Tx_HypeStore_Domain_Model_Category $category) {
-		$this->parentCategory = clone $category;
+	public function setParentCategory(Tx_HypeStore_Domain_Model_Category $parentCategory) {
+		$this->parentCategory = $parentCategory;
 	}
 
 	/**
@@ -248,10 +247,6 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return Tx_HypeStore_Domain_Model_Category
 	 */
 	public function getParentCategory() {
-		if($this->parentCategory instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->parentCategory->_loadRealInstance();
-		}
-
 		return $this->parentCategory;
 	}
 
@@ -262,7 +257,16 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return void
 	 */
 	public function setCategories(Tx_Extbase_Persistence_ObjectStorage $categories) {
-		$this->categories = clone $categories;
+		$this->categories = $categories;
+	}
+
+	/**
+	 * Getter for categories
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getCategories() {
+		return $this->categories;
 	}
 
 	/**
@@ -291,20 +295,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return void
 	 */
 	public function removeCategories() {
-		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for categories
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getCategories() {
-		if($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->categories->_loadRealInstance();
-		}
-
-		return clone $this->categories;
+		$this->categories = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -314,7 +305,16 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return void
 	 */
 	public function setProducts(Tx_Extbase_Persistence_ObjectStorage $products) {
-		$this->products = clone $products;
+		$this->products = $products;
+	}
+
+	/**
+	 * Getter for products
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getProducts() {
+		return $this->products;
 	}
 
 	/**
@@ -343,20 +343,7 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * @return void
 	 */
 	public function removeProducts() {
-		$this->products = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for products
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getProducts() {
-		if($this->products instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->products->_loadRealInstance();
-		}
-
-		return clone $this->products;
+		$this->products = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 

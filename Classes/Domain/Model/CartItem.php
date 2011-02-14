@@ -26,7 +26,7 @@
  * Cart item
  *
  * @package HypeStore
- * @subpackage Domain
+ * @subpackage Domain/Model
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
@@ -37,13 +37,11 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
-	 * @lazy
 	 */
 	protected $customer;
 
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
-	 * @lazy
 	 */
 	protected $product;
 
@@ -66,11 +64,9 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	 * return void
 	 */
 	public function initializeObject() {
-
-		# initialize the price calculation service
 		$this->productService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_ProductService');
 	}
-	
+
 	/**
 	 * Setter for customer
 	 *
@@ -87,10 +83,6 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	 * @return Tx_HypeStore_Domain_Model_Customer
 	 */
 	public function getCustomer() {
-		if($this->customer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->customer->_loadRealInstance();
-		}
-
 		return $this->customer;
 	}
 
@@ -110,10 +102,6 @@ class Tx_HypeStore_Domain_Model_CartItem extends Tx_Extbase_DomainObject_Abstrac
 	 * @return Tx_HypeStore_Domain_Model_Product
 	 */
 	public function getProduct() {
-		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->product->_loadRealInstance();
-		}
-
 		return $this->product;
 	}
 

@@ -55,7 +55,6 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 
 	/**
 	 * @var Tx_HypeDirectory_Domain_Model_Contact
-	 * @lazy
 	 */
 	protected $publisher;
 
@@ -67,7 +66,6 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 
 	/**
 	 * @var Tx_HypeDirectory_Domain_Model_Contact
-	 * @lazy
 	 */
 	protected $editor;
 
@@ -76,6 +74,15 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	 * @validate Integer
 	 */
 	protected $edition;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		parent::__construct();
+
+		$this->authors = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+	}
 
 	/*
 	Example:  0-123456-47-9
@@ -86,8 +93,8 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	3. Calculate the EAN check digit using the “Mod 10 Algorithm”
 	  978-0-123456-47-2
 
-	ISBN-10         0-123456-47-9
-	ISBN-13  978-0-123456-47-2
+	ISBN-10     0-123456-47-9
+	ISBN-13 978-0-123456-47-2
 	*/
 
 	/**
@@ -131,30 +138,20 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	/**
 	 * Setter for authors
 	 *
-	 * @param Tx_HypeDirectory_Domain_Model_Contact $author
-	 * @return void
-	 */
-	//public function setAuthor(Tx_HypeDirectory_Domain_Model_Contact $author) {
-	//	$this->author = $author;
-	//}
-
-	/**
-	 * Getter for author
-	 *
-	 * @return Tx_HypeDirectory_Domain_Model_Contact
-	 */
-	//public function getAuthor() {
-	//	return $this->author;
-	//}
-
-	/**
-	 * Setter for authors
-	 *
 	 * @param Tx_Extbase_Persistence_ObjectStorage $authors
 	 * @return void
 	 */
 	public function setAuthors(Tx_Extbase_Persistence_ObjectStorage $authors) {
-		$this->authors = clone $authors;
+		$this->authors = $authors;
+	}
+
+	/**
+	 * Getter for authors
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getAuthors() {
+		return $this->authors;
 	}
 
 	/**
@@ -183,16 +180,7 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	 * @return void
 	 */
 	public function removeAuthors() {
-		$this->authors = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for authors
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getAuthors() {
-		return clone $this->authors;
+		$this->authors = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**

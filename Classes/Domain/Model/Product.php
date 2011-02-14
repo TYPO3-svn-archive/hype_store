@@ -26,7 +26,7 @@
  * Product
  *
  * @package HypeStore
- * @subpackage Domain
+ * @subpackage Domain/Model
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
@@ -67,13 +67,13 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * @var string
-	 * @validate String
+	 * @validate StringLength(minimum = 1, maximum = 65000)
 	 */
 	protected $introduction;
 
 	/**
 	 * @var string
-	 * @validate String
+	 * @validate StringLength(minimum = 1, maximum = 65000)
 	 */
 	protected $description;
 
@@ -91,13 +91,13 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * @var string
-	 * @validate String
+	 * @validate StringLength(minimum = 1, maximum = 65000)
 	 */
 	protected $images;
 
 	/**
 	 * @var string
-	 * @validate String
+	 * @validate StringLength(minimum = 1, maximum = 65000)
 	 */
 	protected $files;
 
@@ -109,17 +109,18 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * @var Tx_HypeDirectory_Domain_Model_Contact
-	 * @lazy
 	 */
 	protected $manufacturer;
 
 	/**
 	 * @var float
+	 * @validate Float
 	 */
 	protected $flatPrice;
 
 	/**
 	 * @var float
+	 * @validate Float
 	 */
 	protected $listPrice;
 
@@ -130,7 +131,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * @var integer
-	 * validate Integer
+	 * @validate Integer
 	 */
 	protected $minimumOrderQuantity;
 
@@ -174,6 +175,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * @var string
+	 * @validate StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $relatedAddress;
 
@@ -183,11 +185,12 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	public function __construct() {
 		parent::__construct();
 
-		$this->categories		= new Tx_Extbase_Persistence_ObjectStorage();
-		$this->relatedProducts	= new Tx_Extbase_Persistence_ObjectStorage();
-		$this->scaledPrices		= new Tx_Extbase_Persistence_ObjectStorage();
-		$this->attributes		= new Tx_Extbase_Persistence_ObjectStorage();
-		$this->stocks			= new Tx_Extbase_Persistence_ObjectStorage();
+		$this->categories		= t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->relatedProducts	= t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->scaledPrices		= t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->attributes		= t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->stocks			= t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->articles			= t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -341,7 +344,16 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function setCategories(Tx_Extbase_Persistence_ObjectStorage $categories) {
-		$this->categories = clone $categories;
+		$this->categories = $categories;
+	}
+
+	/**
+	 * Getter for categories
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getCategories() {
+		return $this->categories;
 	}
 
 	/**
@@ -370,59 +382,17 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function removeCategories() {
-		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for categories
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getCategories() {
-		if($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->categories->_loadRealInstance();
-		}
-
-		return clone $this->categories;
+		$this->categories = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
 	 * Setter for related products
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $products
+	 * @param Tx_Extbase_Persistence_ObjectStorage $relatedProducts
 	 * @return void
 	 */
-	public function setRelatedProducts(Tx_Extbase_Persistence_ObjectStorage $products) {
-		$this->relatedProducts = clone $products;
-	}
-
-	/**
-	 * Adds a related product
-	 *
-	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @return void
-	 */
-	public function addRelatedProduct(Tx_HypeStore_Domain_Model_Product $product) {
-		$this->relatedProducts->attach($product);
-	}
-
-	/**
-	 * Removes a related product
-	 *
-	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @return void
-	 */
-	public function removeRelatedProduct(Tx_HypeStore_Domain_Model_Product $product) {
-		$this->relatedProducts->detach($product);
-	}
-
-	/**
-	 * Remove all related products
-	 *
-	 * @return void
-	 */
-	public function removeRelatedProducts() {
-		$this->relatedProducts = new Tx_Extbase_Persistence_ObjectStorage();
+	public function setRelatedProducts(Tx_Extbase_Persistence_ObjectStorage $relatedProducts) {
+		$this->relatedProducts = $relatedProducts;
 	}
 
 	/**
@@ -431,11 +401,36 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getRelatedProducts() {
-		if($this->relatedProducts instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->relatedProducts->_loadRealInstance();
-		}
+		return $this->relatedProducts;
+	}
 
-		return clone $this->relatedProducts;
+	/**
+	 * Adds a related product
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $relatedProduct
+	 * @return void
+	 */
+	public function addRelatedProduct(Tx_HypeStore_Domain_Model_Product $relatedProduct) {
+		$this->relatedProducts->attach($relatedProduct);
+	}
+
+	/**
+	 * Removes a related product
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $relatedProduct
+	 * @return void
+	 */
+	public function removeRelatedProduct(Tx_HypeStore_Domain_Model_Product $relatedProduct) {
+		$this->relatedProducts->detach($relatedProduct);
+	}
+
+	/**
+	 * Remove all related products
+	 *
+	 * @return void
+	 */
+	public function removeRelatedProducts() {
+		$this->relatedProducts = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -446,6 +441,19 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 */
 	public function setImages(array $images) {
 		$this->images = implode(',', $images);
+	}
+
+	/**
+	 * Getter for images
+	 *
+	 * @return array
+	 */
+	public function getImages() {
+		if(!$this->images) {
+			return NULL;
+		}
+
+		return explode(',', $this->images);
 	}
 
 	/**
@@ -465,7 +473,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function removeImage($image) {
-		//$this->images = explode(',', $this->images);
+		$this->images = implode(',', array_diff(explode(',', $this->images), array($image)));
 	}
 
 	/**
@@ -478,19 +486,6 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	}
 
 	/**
-	 * Getter for images
-	 *
-	 * @return array
-	 */
-	public function getImages() {
-		if(!$this->images) {
-			return NULL;
-		}
-
-		return explode(',', $this->images);
-	}
-
-	/**
 	 * Setter for files
 	 *
 	 * @param array $images
@@ -498,6 +493,19 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 */
 	public function setFiles(array $files) {
 		$this->files = implode(',', $files);
+	}
+
+	/**
+	 * Getter for images
+	 *
+	 * @return array
+	 */
+	public function getFiles() {
+		if(!$this->files) {
+			return NULL;
+		}
+
+		return explode(',', $this->files);
 	}
 
 	/**
@@ -517,7 +525,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function removeFile($file) {
-		//$this->images = explode(',', $this->images);
+		$this->files = implode(',', array_diff(explode(',', $this->files), array($file)));
 	}
 
 	/**
@@ -527,19 +535,6 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 */
 	public function removeFiles() {
 		$this->files = '';
-	}
-
-	/**
-	 * Getter for images
-	 *
-	 * @return array
-	 */
-	public function getFiles() {
-		if(!$this->files) {
-			return NULL;
-		}
-
-		return explode(',', $this->files);
 	}
 
 	/**
@@ -558,10 +553,6 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_HypeDirectory_Domain_Model_Contact
 	 */
 	public function getManufacturer() {
-		if($this->manufacturer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->manufacturer->_loadRealInstance();
-		}
-
 		return $this->manufacturer;
 	}
 
@@ -572,7 +563,16 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function setArticles(Tx_Extbase_Persistence_ObjectStorage $articles) {
-		$this->articles = clone $articles;
+		$this->articles = $articles;
+	}
+
+	/**
+	 * Getter for articles
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getArticles() {
+		return $this->articles;
 	}
 
 	/**
@@ -601,20 +601,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function removeArticles() {
-		$this->articles = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for articles
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getArticles() {
-		if($this->articles instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->articles->_loadRealInstance();
-		}
-
-		return clone $this->articles;
+		$this->articles = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -696,40 +683,11 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	/**
 	 * Setter for scaled prices
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $prices
+	 * @param Tx_Extbase_Persistence_ObjectStorage $scaledPrices
 	 * @return void
 	 */
-	public function setScaledPrices(Tx_Extbase_Persistence_ObjectStorage $prices) {
-		$this->scaledPrices = clone $prices;
-	}
-
-	/**
-	 * Adds a scaled price
-	 *
-	 * @param Tx_HypeStore_Domain_Model_ProductPrice $price
-	 * @return void
-	 */
-	public function addScaledPrice(Tx_HypeStore_Domain_Model_ProductPrice $price) {
-		$this->scaledPrices->attach($price);
-	}
-
-	/**
-	 * Removes a scaled price
-	 *
-	 * @param Tx_HypeStore_Domain_Model_ProductPrice $price
-	 * @return void
-	 */
-	public function removeScaledPrice(Tx_HypeStore_Domain_Model_ProductPrice $price) {
-		$this->scaledPrices->detach($price);
-	}
-
-	/**
-	 * Remove all scaled prices
-	 *
-	 * @return void
-	 */
-	public function removeScaledPrices() {
-		$this->scaledPrices = new Tx_Extbase_Persistence_ObjectStorage();
+	public function setScaledPrices(Tx_Extbase_Persistence_ObjectStorage $scaledPrices) {
+		$this->scaledPrices = $scaledPrices;
 	}
 
 	/**
@@ -738,11 +696,36 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getScaledPrices() {
-		if($this->scaledPrices instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->scaledPrices->_loadRealInstance();
-		}
+		return $this->scaledPrices;
+	}
 
-		return clone $this->scaledPrices;
+	/**
+	 * Adds a scaled price
+	 *
+	 * @param Tx_HypeStore_Domain_Model_ProductPrice $scaledPrice
+	 * @return void
+	 */
+	public function addScaledPrice(Tx_HypeStore_Domain_Model_ProductPrice $scaledPrice) {
+		$this->scaledPrices->attach($scaledPrice);
+	}
+
+	/**
+	 * Removes a scaled price
+	 *
+	 * @param Tx_HypeStore_Domain_Model_ProductPrice $scaledPrice
+	 * @return void
+	 */
+	public function removeScaledPrice(Tx_HypeStore_Domain_Model_ProductPrice $scaledPrice) {
+		$this->scaledPrices->detach($scaledPrice);
+	}
+
+	/**
+	 * Remove all scaled prices
+	 *
+	 * @return void
+	 */
+	public function removeScaledPrices() {
+		$this->scaledPrices = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -752,7 +735,16 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function setAttributes(Tx_Extbase_Persistence_ObjectStorage $attributes) {
-		$this->attributes = clone $attributes;
+		$this->attributes = $attributes;
+	}
+
+	/**
+	 * Getter for attributes
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getAttributes() {
+		return $this->attributes;
 	}
 
 	/**
@@ -781,20 +773,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function removeAttributes() {
-		$this->attributes = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for attributes
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getAttributes() {
-		if($this->attributes instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->attributes->_loadRealInstance();
-		}
-
-		return clone $this->attributes;
+		$this->attributes = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -842,7 +821,16 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function setStocks(Tx_Extbase_Persistence_ObjectStorage $stocks) {
-		$this->stocks = clone $stocks;
+		$this->stocks = $stocks;
+	}
+
+	/**
+	 * Getter for stocks
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getStocks() {
+		return $this->stocks;
 	}
 
 	/**
@@ -871,20 +859,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 * @return void
 	 */
 	public function removeStocks() {
-		$this->stocks = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for stocks
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getStocks() {
-		if($this->stocks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->stocks->_loadRealInstance();
-		}
-
-		return clone $this->stocks;
+		$this->stocks = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**

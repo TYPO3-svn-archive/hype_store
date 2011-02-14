@@ -28,6 +28,16 @@
 class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 
 	/**
+	 * @var Tx_HypeStore_Domain_Service_CategoryService
+	 */
+	protected $categoryService;
+
+	/**
+	 * @var Tx_HypeStore_Domain_Repository_DiscountRepository
+	 */
+	protected $discountRepository;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -59,7 +69,7 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 	 * Calculates the final price for a single product based on a given quantity
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @param int $quantity
+	 * @param integer $quantity
 	 * @return float
 	 */
 	public function getPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1) {
@@ -95,7 +105,7 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 	 * Calculates the undiscounted price for a single product based on a given quantity
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @param int $quantity
+	 * @param integer $quantity
 	 * @return float
 	 */
 	public function getUndiscountedPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1) {
@@ -134,7 +144,7 @@ class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
 	 * Calculates the available stock for a given product
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @return int
+	 * @return integer
 	 */
 	public function getStock(Tx_HypeStore_Domain_Model_Product $product) {
 

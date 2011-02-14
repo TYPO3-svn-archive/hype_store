@@ -26,7 +26,7 @@
  * Depot
  *
  * @package HypeStore
- * @subpackage Domain
+ * @subpackage Domain/Model
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
@@ -66,7 +66,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	protected $country;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_DepotStock>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductStock>
 	 * @lazy
 	 * @cascade remove
 	 */
@@ -85,8 +85,8 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	public function __construct() {
 		parent::__construct();
 
-		$this->stocks = new Tx_Extbase_Persistence_ObjectStorage;
-		$this->states = new Tx_Extbase_Persistence_ObjectStorage;
+		$this->stocks = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->states = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -191,26 +191,35 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return void
 	 */
 	public function setStocks(Tx_Extbase_Persistence_ObjectStorage $stocks) {
-		$this->stocks = clone $stocks;
+		$this->stocks = $stocks;
+	}
+
+	/**
+	 * Getter for stocks
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getStocks() {
+		return $this->stocks;
 	}
 
 	/**
 	 * Adds a stock
 	 *
-	 * @param Tx_HypeStore_Domain_Model_DepotStock $stock
+	 * @param Tx_HypeStore_Domain_Model_ProductStock $stock
 	 * @return void
 	 */
-	public function addStock(Tx_HypeStore_Domain_Model_DepotStock $stock) {
+	public function addStock(Tx_HypeStore_Domain_Model_ProductStock $stock) {
 		$this->stocks->attach($stock);
 	}
 
 	/**
 	 * Removes a stock
 	 *
-	 * @param Tx_HypeStore_Domain_Model_DepotStock $stock
+	 * @param Tx_HypeStore_Domain_Model_ProductStock $stock
 	 * @return void
 	 */
-	public function removeStock(Tx_HypeStore_Domain_Model_DepotStock $stock) {
+	public function removeStock(Tx_HypeStore_Domain_Model_ProductStock $stock) {
 		$this->stocks->detach($stock);
 	}
 
@@ -220,20 +229,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return void
 	 */
 	public function removeStocks() {
-		$this->stocks = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for stocks
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getStocks() {
-		if($this->stocks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->stocks->_loadRealInstance();
-		}
-
-		return clone $this->stocks;
+		$this->stocks = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -243,7 +239,16 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return void
 	 */
 	public function setStates(Tx_Extbase_Persistence_ObjectStorage $states) {
-		$this->states = clone $states;
+		$this->states = $states;
+	}
+
+	/**
+	 * Getter for states
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getStates() {
+		return $this->states;
 	}
 
 	/**
@@ -272,20 +277,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return void
 	 */
 	public function removeStates() {
-		$this->states = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Getter for states
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getStates() {
-		if($this->states instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->states->_loadRealInstance();
-		}
-
-		return clone $this->states;
+		$this->states = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 

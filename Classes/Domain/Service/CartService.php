@@ -28,6 +28,11 @@
 class Tx_HypeStore_Domain_Service_CartService implements t3lib_singleton {
 
 	/**
+	 * @var Tx_HypeStore_Domain_Service_ProductService
+	 */
+	protected $productService;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

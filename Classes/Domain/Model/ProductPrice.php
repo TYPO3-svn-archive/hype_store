@@ -26,7 +26,7 @@
  * Product attribute
  *
  * @package HypeStore
- * @subpackage Domain
+ * @subpackage Domain/Model
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
@@ -49,7 +49,6 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
-	 * @lazy
 	 */
 	protected $product;
 
@@ -118,10 +117,6 @@ class Tx_HypeStore_Domain_Model_ProductPrice extends Tx_Extbase_DomainObject_Abs
 	 * @return Tx_HypeStore_Domain_Model_Product
 	 */
 	public function getProduct() {
-		if($this->product instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->product->_loadRealInstance();
-		}
-
 		return $this->product;
 	}
 

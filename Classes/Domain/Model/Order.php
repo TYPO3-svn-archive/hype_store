@@ -26,7 +26,7 @@
  * Order
  *
  * @package HypeStore
- * @subpackage Domain
+ * @subpackage Domain/Model
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
@@ -37,7 +37,6 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
-	 * @lazy
 	 */
 	protected $customer;
 
@@ -57,10 +56,6 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return Tx_HypeStore_Domain_Model_Customer
 	 */
 	public function getCustomer() {
-		if($this->customer instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->customer->_loadRealInstance();
-		}
-
 		return $this->customer;
 	}
 
@@ -74,7 +69,7 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return string
 	 */
 	public function __toString() {
-		return '';
+		return $this->getUid();
 	}
 }
 ?>

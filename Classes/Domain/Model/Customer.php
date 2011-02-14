@@ -26,7 +26,7 @@
  * Customer
  *
  * @package HypeStore
- * @subpackage Domain\Model
+ * @subpackage Domain/Model
  * @version $Id: Customer.php$
  * @scope prototype
  * @entity
@@ -67,10 +67,10 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	public function __construct() {
 		parent::__construct();
 
-		$this->addresses = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->orders = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->cartItems = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->watchlistItems = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->addresses = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->orders = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->cartItems = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->watchlistItems = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
 
 	/**
@@ -80,7 +80,16 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	 * @return void
 	 */
 	public function setAddresses(Tx_Extbase_Persistence_ObjectStorage $addresses) {
-		$this->addresses = clone $addresses;
+		$this->addresses = $addresses;
+	}
+
+	/**
+	 * Getter for addresses
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getAddresses() {
+		return $this->addresses;
 	}
 
 	/**
@@ -113,26 +122,22 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	}
 
 	/**
-	 * Getter for addresses
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getAddresses() {
-		if($this->addresses instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->addresses->_loadRealInstance();
-		}
-
-		return clone $this->addresses;
-	}
-
-	/**
 	 * Setter for orders
 	 *
 	 * @param Tx_Extbase_Persistence_ObjectStorage $orders
 	 * @return void
 	 */
 	public function setOrders(Tx_Extbase_Persistence_ObjectStorage $orders) {
-		$this->orders = clone $orders;
+		$this->orders = $orders;
+	}
+
+	/**
+	 * Getter for orders
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getOrders() {
+		return $this->orders;
 	}
 
 	/**
@@ -165,46 +170,42 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	}
 
 	/**
-	 * Getter for orders
+	 * Setter for cart items
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 * @param Tx_Extbase_Persistence_ObjectStorage $cartItems
+	 * @return void
 	 */
-	public function getOrders() {
-		if($this->orders instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->orders->_loadRealInstance();
-		}
-
-		return clone $this->orders;
+	public function setCartItems(Tx_Extbase_Persistence_ObjectStorage $cartItems) {
+		$this->cartItems = $cartItems;
 	}
 
 	/**
-	 * Setter for cart items
+	 * Getter for cart items
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $items
-	 * @return void
+	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function setCartItems(Tx_Extbase_Persistence_ObjectStorage $items) {
-		$this->cartItems = clone $items;
+	public function getCartItems() {
+		return $this->cartItems;
 	}
 
 	/**
 	 * Adds a cart item
 	 *
-	 * @param Tx_HypeStore_Domain_Model_CartItem $item
+	 * @param Tx_HypeStore_Domain_Model_CartItem $cartItem
 	 * @return void
 	 */
-	public function addCartItem(Tx_HypeStore_Domain_Model_CartItem $item) {
-		$this->cartItems->attach($item);
+	public function addCartItem(Tx_HypeStore_Domain_Model_CartItem $cartItem) {
+		$this->cartItems->attach($cartItem);
 	}
 
 	/**
 	 * Removes a cart item
 	 *
-	 * @param Tx_HypeStore_Domain_Model_CartItem $item
+	 * @param Tx_HypeStore_Domain_Model_CartItem $cartItem
 	 * @return void
 	 */
-	public function removeCartItem(Tx_HypeStore_Domain_Model_CartItem $item) {
-		$this->cartItems->detach($item);
+	public function removeCartItem(Tx_HypeStore_Domain_Model_CartItem $cartItem) {
+		$this->cartItems->detach($cartItem);
 	}
 
 	/**
@@ -217,55 +218,13 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	}
 
 	/**
-	 * Getter for cart items
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
-	 */
-	public function getCartItems() {
-		if($this->cartItems instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->cartItems->_loadRealInstance();
-		}
-
-		return clone $this->cartItems;
-	}
-
-	/**
 	 * Setter for watchlist items
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $items
+	 * @param Tx_Extbase_Persistence_ObjectStorage $watchlistItems
 	 * @return void
 	 */
-	public function setWatchlistItems(Tx_Extbase_Persistence_ObjectStorage $items) {
-		$this->watchlistItems = clone $items;
-	}
-
-	/**
-	 * Adds a watchlist item
-	 *
-	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
-	 * @return void
-	 */
-	public function addWatchlistItem(Tx_HypeStore_Domain_Model_WatchlistItem $item) {
-		$this->watchlistItems->attach($item);
-	}
-
-	/**
-	 * Removes a watchlist item
-	 *
-	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
-	 * @return void
-	 */
-	public function removeWatchlistItem(Tx_HypeStore_Domain_Model_WatchlistItem $item) {
-		$this->watchlistItems->detach($item);
-	}
-
-	/**
-	 * Remove all watchlist items
-	 *
-	 * @return void
-	 */
-	public function removeWatchlistItems() {
-		$this->watchlistItems = new Tx_Extbase_Persistence_ObjectStorage();
+	public function setWatchlistItems(Tx_Extbase_Persistence_ObjectStorage $watchlistItems) {
+		$this->watchlistItems = $watchlistItems;
 	}
 
 	/**
@@ -274,11 +233,49 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getWatchlistItems() {
-		if($this->watchlistItems instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->watchlistItems->_loadRealInstance();
-		}
+		return $this->watchlistItems;
+	}
 
-		return clone $this->watchlistItems;
+	/**
+	 * Adds a watchlist item
+	 *
+	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem
+	 * @return void
+	 */
+	public function addWatchlistItem(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
+		$this->watchlistItems->attach($watchlistItem);
+	}
+
+	/**
+	 * Removes a watchlist item
+	 *
+	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem
+	 * @return void
+	 */
+	public function removeWatchlistItem(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
+		$this->watchlistItems->detach($watchlistItem);
+	}
+
+	/**
+	 * Remove all watchlist items
+	 *
+	 * @return void
+	 */
+	public function removeWatchlistItems() {
+		$this->watchlistItems = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+	}
+
+
+
+	/* Magic methods */
+
+	/**
+	 * Returns as a formatted string
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->getUid();
 	}
 }
 ?>
