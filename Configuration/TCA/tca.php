@@ -160,25 +160,16 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_category.parent_category',
 			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_hypestore_domain_model_category',
-				//'foreign_table_where' => 'AND tx_hypestore_domain_model_category.uid != ###THIS_UID###',
-				'size' => 1,
-				'minitems' => 0,
-				'maxitems' => 1,
+				'type' => 'group',
+				'internal_type' => 'db',
+				'prepend_tname' => FALSE,
+				'allowed' => 'tx_hypestore_domain_model_category',
+				//'foreign_table' => 'tx_hypestore_domain_model_category',
 				'MM' => 'tx_hypestore_relation_category_category',
 				'MM_opposite_field' => 'categories',
-
-				//'form_type' => 'user',
-				//'userFunc' => 'tx_hypestore_tca_field->categories',
-				//'user_type' => 'tree',
-				//'indent_sign' => ' ',
-
-				'allowed' => 'tx_hypestore_domain_model_category',
-
-				'items' => array(
-					array('', 0),
-				),
+				'size' => 1,
+				'maxitems' => 1,
+				'maxitems' => 1,
 				'wizards' => array(
 					'suggest' => array(
 						'type' => 'suggest',
