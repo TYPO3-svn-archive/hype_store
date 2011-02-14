@@ -383,6 +383,7 @@ $TCA['tx_hypestore_domain_model_discount'] = array(
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/discount.png',
 
 		'dividers2tabs' => TRUE,
+		'hideTable' => TRUE,
 	),
 );
 
