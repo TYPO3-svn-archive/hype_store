@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help for the table &quot;tx_hypestore_domain_model_tax_scale&quot;</description>
+		<type>CSH</type>
+		<csh_table>tx_hypestore_domain_model_tax_scale</csh_table>
+		<labelContext type="array"></labelContext>
+	</meta>
+
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".description">Defines a certain tax scale.</label>
+			<label index="rate.description">Amount of the tax rate as a numeric value.</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+			<label index=".description">Definiert einen bestimmten Steuersatz.</label>
+			<label index="rate.description">Höhe des Steuersatzes als numerische Angabe.</label>
+		</languageKey>
+	</data>
+</T3locallang>

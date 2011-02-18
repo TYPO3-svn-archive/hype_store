@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help for the table &quot;tx_hypestore_domain_model_product_price&quot;</description>
+		<type>CSH</type>
+		<csh_table>tx_hypestore_domain_model_product_price</csh_table>
+		<labelContext type="array"></labelContext>
+	</meta>
+
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".description">Defines a certain price for a product.</label>
+			<label index="product.description">Related product.</label>
+			<label index="value.description">Price for the specified minimum order quantity.</label>
+			<label index="quantity.description">Minimum order quantity set for the defined price.</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+			<label index=".description">Definiert einen bestimmten Preis für ein Produkt.</label>
+			<label index="product.description">Zugehöriges Produkt.</label>
+			<label index="value.description">Preis für die festgelegte Mindestbestellmenge.</label>
+			<label index="quantity.description">Mindestbestellmenge die für den festgelegten Preis zutrifft.</label>
+		</languageKey>
+	</data>
+</T3locallang>

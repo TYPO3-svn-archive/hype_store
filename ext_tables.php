@@ -818,4 +818,47 @@ if(TYPO3_MODE == 'BE') {
 	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_9', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/watchlist-item.png');
 }
 
+
+
+# HELP
+
+if(TYPO3_MODE == 'BE') {
+
+	# Category
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_category.xml');
+
+	# Product Type
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_product_type', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_product_type.xml');
+
+	# Product
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_product', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_product.xml');
+
+	# Product Attribute
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_product_attribute', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_product_attribute.xml');
+
+	# Product Price
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_product_price', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_product_price.xml');
+
+	# Product Stock
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_product_stock', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_product_stock.xml');
+
+	# Tax Scale
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_tax_scale', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_tax_scale.xml');
+
+	# Depot
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_depot', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_depot.xml');
+
+	# Attribute
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_attribute', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_attribute.xml');
+
+	# Order
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_order', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_order.xml');
+
+	# Cart Item
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_cart_item', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_cart_item.xml');
+
+	# Watchlist Item
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_watchlist_item', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_watchlist_item.xml');
+}
+
 ?>

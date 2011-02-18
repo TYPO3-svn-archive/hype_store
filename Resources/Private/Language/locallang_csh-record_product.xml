@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help for the table &quot;tx_hypestore_domain_model_product&quot;</description>
+		<type>CSH</type>
+		<csh_table>tx_hypestore_domain_model_product</csh_table>
+		<labelContext type="array"></labelContext>
+	</meta>
+
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".description">Defines a store product.</label>
+			<label index="title.description">Unique name of the product.</label>
+			<label index="subtitle.description">Additional, optional name of the product.</label>
+			<label index="identifier.description">Internal identification of the product.</label>
+			<label index="gtin.description">International GTIN of the product.</label>
+			<label index="type.description">Sets the product type.</label>
+			<label index="introduction.description">Short, general description.</label>
+			<label index="description.description">Extensive, detailed description.</label>
+			<label index="images.description">Pictures for the presentation of this product. </label>
+			<label index="files.description">Relevant to the product or related documents. </label>
+			<label index="articles.description">Versions of the product, which differ in various details.</label>
+			<label index="categories.description">Categories in which the product is available.</label>
+			<label index="minimum_order_quantity.description">Minimum quantity to be ordered in a purchase.</label>
+			<label index="list_price.description">Generally applicable, recommended price.</label>
+			<label index="flat_price.description">Net price of the product.</label>
+			<label index="tax_scale.description">Sets the tax rate for the product.</label>
+			<label index="scaled_prices.description">Prices for specified minimum order quantities.</label>
+			<label index="attributes.description">Describes various features of the product.</label>
+			<label index="related_products.description">Similar or related products.</label>
+			<label index="stock_threshold.description">Minimum quantity available in total for all depots.</label>
+			<label index="stock_unit.description">Unit to which the product is sold.</label>
+			<label index="stocks.description">Stocks of all depots.</label>
+			<label index="related_page.description">Internal page, holding additional information of the product.</label>
+			<label index="related_address.description">Website address, holding additional information of the product.</label>
+			<label index="manufacturer.description">Manufacturer or producer of the product.</label>
+			<label index="isbn10_number.description">International 10-digit ISBN of the product.</label>
+			<label index="isbn13_number.description">International 13-digit ISBN of the product.</label>
+			<label index="authors.description">Authors of the publication.</label>
+			<label index="publisher.description">For distribution responsible person or institution.</label>
+			<label index="publication_year.description">Year in which the publication was published.</label>
+			<label index="editor.description">For the content responsible person or institution.</label>
+			<label index="edition.description">Number of the edition.</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+			<label index=".description">Definiert ein Shop-Produkt.</label>
+			<label index="title.description">Eindeutige Bezeichnung des Produkts.</label>
+			<label index="subtitle.description">Zusätzliche, optionale Bezeichnung des Produkts.</label>
+			<label index="identifier.description">Interne Kennung bzw. Identifikation des Produkts.</label>
+			<label index="gtin.description">Internationale GTIN des Produkts.</label>
+			<label index="type.description">Legt den Produkttyp fest.</label>
+			<label index="introduction.description">Kurzer, allgemeiner Beschreibungstext.</label>
+			<label index="description.description">Ausführlicher, detailierter Beschreibungstext.</label>
+			<label index="images.description">Bilder zur Präsentation dieses Produkts.</label>
+			<label index="files.description">Relevante bzw. dem Produkt zugehörige Dokumente.</label>
+			<label index="articles.description">Varianten des Produkts, die sich in Eigenschaften und Preis unterscheiden.</label>
+			<label index="categories.description">Kategorien in denen das Produkt vorhanden ist.</label>
+			<label index="minimum_order_quantity.description">Menge die bei einem Kauf mindestens bestellt werden muss.</label>
+			<label index="list_price.description">Allgemein gültiger, vom Hersteller empfohlener Preis.</label>
+			<label index="flat_price.description">Netto-Preis des Produkts.</label>
+			<label index="tax_scale.description">Legt den Steuersatz für das Produkt fest.</label>
+			<label index="scaled_prices.description">Preise für festgelegte Mindestbestellmengen.</label>
+			<label index="attributes.description">Beschreibt verschiedene Eigenschaften des Produkts.</label>
+			<label index="related_products.description">Ähnliche oder relevante Produkte.</label>
+			<label index="stock_threshold.description">Mindestmenge die in Summe in allen Depots vorhanden sein muss.</label>
+			<label index="stock_unit.description">Mengeneinheit zu welcher das Produkt verkauft wird.</label>
+			<label index="stocks.description">Lagerbestände aller Depots.</label>
+			<label index="related_page.description">Interne Seite die zusätzliche, produktrelevante Daten aufweist.</label>
+			<label index="related_address.description">Website-Adresse die zusätzliche, produktrelevante Daten aufweist.</label>
+			<label index="manufacturer.description">Hersteller bzw. Erzeuger des Produkts.</label>
+			<label index="isbn10_number.description">10-stellige, internationale ISBN des Produkts.</label>
+			<label index="isbn13_number.description">13-stellige, internationale ISBN des Produkts.</label>
+			<label index="authors.description">Verfasser der Publikation.</label>
+			<label index="publisher.description">Für den Vertrieb verantwortliche Person oder Institution.</label>
+			<label index="publication_year.description">Jahr in dem die Publikation veröffentlicht wurde.</label>
+			<label index="editor.description">Für den Inhalt verantwortliche Person oder Institution.</label>
+			<label index="edition.description">Nummer der Ausgabe.</label>
+		</languageKey>
+	</data>
+</T3locallang>
