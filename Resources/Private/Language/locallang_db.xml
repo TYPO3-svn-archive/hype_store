@@ -9,6 +9,9 @@
 		<languageKey index="default" type="array">
 			<label index="tx_hypestore">Hype Store</label>
 
+			<label index="tx_hypestore.message.cart_item-updated.title">Cart item "%s" was updated.</label>
+			<label index="tx_hypestore.message.cart_item-updated.body">Quantity was reset to the minimum order quantity of %s.</label>
+
 			<label index="tx_hypestore.tabs.details">Details</label>
 			<label index="tx_hypestore.tabs.media">Media</label>
 			<label index="tx_hypestore.tabs.stocks">Stocks</label>
@@ -168,6 +171,9 @@
 
 		<languageKey index="de" type="array">
 			<label index="tx_hypestore">Hype Store</label>
+
+			<label index="tx_hypestore.message.cart_item-updated.title">Produkt im Warenkorb "%s" wurde aktualisiert.</label>
+			<label index="tx_hypestore.message.cart_item-updated.body">Bestellmenge wurde auf die Mindestbestellmenge von %s gesetzt.</label>
 
 			<label index="tx_hypestore.tabs.details">Details</label>
 			<label index="tx_hypestore.tabs.media">Medien</label>
