@@ -7,21 +7,51 @@
 
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="tx_hypestore">Hype Store</label>
+			<label index="tx_hypestore">Online Store</label>
 
 			<label index="tx_hypestore.message.cart_item-updated.title">Cart item "%s" was updated.</label>
-			<label index="tx_hypestore.message.cart_item-updated.body">Quantity was reset to the minimum order quantity of %s.</label>
+			<label index="tx_hypestore.message.cart_item-updated.title">Cart item "%s" was updated.</label>
 
-			<label index="tx_hypestore.tabs.details">Details</label>
-			<label index="tx_hypestore.tabs.media">Media</label>
-			<label index="tx_hypestore.tabs.stocks">Stocks</label>
-			<label index="tx_hypestore.tabs.articles">Articles</label>
-			<label index="tx_hypestore.tabs.units">Request units</label>
-			<label index="tx_hypestore.tabs.attributes">Attributes</label>
-			<label index="tx_hypestore.tabs.prices">Prices</label>
-			<label index="tx_hypestore.tabs.relations">Relations</label>
-			<label index="tx_hypestore.tabs.products">Products</label>
-			<label index="tx_hypestore.tabs.categories">Categories</label>
+			<label index="tx_hypestore.plugin.category">Category</label>
+			<label index="tx_hypestore.plugin.category.tab.general">General</label>
+			<label index="tx_hypestore.plugin.category.field.main_category">Displayed category</label>
+			<label index="tx_hypestore.plugin.category.field.product_page">Product page</label>
+
+			<label index="tx_hypestore.plugin.product">Product</label>
+			<label index="tx_hypestore.plugin.product.tab.general">General</label>
+			<label index="tx_hypestore.plugin.product.field.fallback_product">Alternative product</label>
+			<label index="tx_hypestore.plugin.product.field.category_page">Category page</label>
+			<label index="tx_hypestore.plugin.product.field.cart_page">Cart page</label>
+			<label index="tx_hypestore.plugin.product.field.watchlist_page">Watchlist page</label>
+
+			<label index="tx_hypestore.plugin.cart">Cart</label>
+			<label index="tx_hypestore.plugin.cart.tab.general">General</label>
+			<label index="tx_hypestore.plugin.cart.field.display_mode">Display mode</label>
+			<label index="tx_hypestore.plugin.cart.field.display_mode.full">Full view</label>
+			<label index="tx_hypestore.plugin.cart.field.display_mode.compact">Compact view</label>
+			<label index="tx_hypestore.plugin.cart.field.product_page">Product page</label>
+			<label index="tx_hypestore.plugin.cart.field.cart_page">Cart page</label>
+			<label index="tx_hypestore.plugin.cart.field.watchlist_page">Watchlist page</label>
+			<label index="tx_hypestore.plugin.cart.field.checkout_page">Checkout page</label>
+
+			<label index="tx_hypestore.plugin.watchlist">Watchlist</label>
+			<label index="tx_hypestore.plugin.watchlist.tab.general">General</label>
+			<label index="tx_hypestore.plugin.watchlist.field.product_page">Product page</label>
+			<label index="tx_hypestore.plugin.watchlist.field.cart_page">Cart page</label>
+
+			<label index="tx_hypestore.plugin.checkout">Checkout</label>
+			<label index="tx_hypestore.plugin.address">Address</label>
+
+			<label index="tx_hypestore.tab.details">Details</label>
+			<label index="tx_hypestore.tab.media">Media</label>
+			<label index="tx_hypestore.tab.stocks">Stocks</label>
+			<label index="tx_hypestore.tab.articles">Articles</label>
+			<label index="tx_hypestore.tab.units">Request units</label>
+			<label index="tx_hypestore.tab.attributes">Attributes</label>
+			<label index="tx_hypestore.tab.prices">Prices</label>
+			<label index="tx_hypestore.tab.relations">Relations</label>
+			<label index="tx_hypestore.tab.products">Products</label>
+			<label index="tx_hypestore.tab.categories">Categories</label>
 
 			<label index="tx_hypestore_domain_model_category">Category</label>
 			<label index="tx_hypestore_domain_model_category.title">Title</label>
@@ -170,21 +200,51 @@
 		</languageKey>
 
 		<languageKey index="de" type="array">
-			<label index="tx_hypestore">Hype Store</label>
+			<label index="tx_hypestore">Online-Shop</label>
 
 			<label index="tx_hypestore.message.cart_item-updated.title">Produkt im Warenkorb "%s" wurde aktualisiert.</label>
 			<label index="tx_hypestore.message.cart_item-updated.body">Bestellmenge wurde auf die Mindestbestellmenge von %s gesetzt.</label>
 
-			<label index="tx_hypestore.tabs.details">Details</label>
-			<label index="tx_hypestore.tabs.media">Medien</label>
-			<label index="tx_hypestore.tabs.stocks">Lagerbestände</label>
-			<label index="tx_hypestore.tabs.articles">Artikel</label>
-			<label index="tx_hypestore.tabs.units">Anfrageeinheiten</label>
-			<label index="tx_hypestore.tabs.attributes">Eigenschaften</label>
-			<label index="tx_hypestore.tabs.prices">Preise</label>
-			<label index="tx_hypestore.tabs.relations">Verknüpfungen</label>
-			<label index="tx_hypestore.tabs.products">Produkte</label>
-			<label index="tx_hypestore.tabs.categories">Kategorien</label>
+			<label index="tx_hypestore.plugin.category">Kategorie</label>
+			<label index="tx_hypestore.plugin.category.tab.general">Allgemein</label>
+			<label index="tx_hypestore.plugin.category.field.main_category">Angezeigte Kategorie</label>
+			<label index="tx_hypestore.plugin.category.field.product_page">Seite der Produkte</label>
+
+			<label index="tx_hypestore.plugin.product">Produkt</label>
+			<label index="tx_hypestore.plugin.product.tab.general">Allgemein</label>
+			<label index="tx_hypestore.plugin.product.field.fallback_product">Alternatives Produkt</label>
+			<label index="tx_hypestore.plugin.product.field.category_page">Seite der Kategorien</label>
+			<label index="tx_hypestore.plugin.product.field.cart_page">Seite des Warenkorbs</label>
+			<label index="tx_hypestore.plugin.product.field.watchlist_page">Seite der Merkliste</label>
+
+			<label index="tx_hypestore.plugin.cart">Warenkorb</label>
+			<label index="tx_hypestore.plugin.cart.tab.general">Allgemein</label>
+			<label index="tx_hypestore.plugin.cart.field.display_mode">Anzeigemodus</label>
+			<label index="tx_hypestore.plugin.cart.field.display_mode.full">Vollständige Ansicht</label>
+			<label index="tx_hypestore.plugin.cart.field.display_mode.compact">Kompakte Ansicht</label>
+			<label index="tx_hypestore.plugin.cart.field.product_page">Seite der Produkte</label>
+			<label index="tx_hypestore.plugin.cart.field.cart_page">Seite des Warenkorbs</label>
+			<label index="tx_hypestore.plugin.cart.field.watchlist_page">Seite der Merkliste</label>
+			<label index="tx_hypestore.plugin.cart.field.checkout_page">Seite der Kasse</label>
+
+			<label index="tx_hypestore.plugin.watchlist">Merkliste</label>
+			<label index="tx_hypestore.plugin.watchlist.tab.general">Allgemein</label>
+			<label index="tx_hypestore.plugin.watchlist.field.product_page">Seite der Produkte</label>
+			<label index="tx_hypestore.plugin.watchlist.field.cart_page">Seite des Warenkorbs</label>
+
+			<label index="tx_hypestore.plugin.checkout">Kasse</label>
+			<label index="tx_hypestore.plugin.address">Adressen</label>
+
+			<label index="tx_hypestore.tab.details">Details</label>
+			<label index="tx_hypestore.tab.media">Medien</label>
+			<label index="tx_hypestore.tab.stocks">Lagerbestände</label>
+			<label index="tx_hypestore.tab.articles">Artikel</label>
+			<label index="tx_hypestore.tab.units">Anfrageeinheiten</label>
+			<label index="tx_hypestore.tab.attributes">Eigenschaften</label>
+			<label index="tx_hypestore.tab.prices">Preise</label>
+			<label index="tx_hypestore.tab.relations">Verknüpfungen</label>
+			<label index="tx_hypestore.tab.products">Produkte</label>
+			<label index="tx_hypestore.tab.categories">Kategorien</label>
 
 			<label index="tx_hypestore_domain_model_category">Kategorie</label>
 			<label index="tx_hypestore_domain_model_category.title">Titel</label>
@@ -308,18 +368,18 @@
 			<label index="tx_hypestore_domain_model_attribute.type.I.3">Logischer Wert (bool)</label>
 			<label index="tx_hypestore_domain_model_attribute.type">Typ</label>
 
-			<label index="tx_hypestore_domain_model_cart_item">Warenkorb Produkt</label>
+			<label index="tx_hypestore_domain_model_cart_item">Produkt im Warenkorb</label>
 			<label index="tx_hypestore_domain_model_cart_item.customer">Kunde</label>
 			<label index="tx_hypestore_domain_model_cart_item.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_cart_item.quantity">Anzahl</label>
 
-			<label index="tx_hypestore_domain_model_watchlist_item">Merkliste Produkt</label>
+			<label index="tx_hypestore_domain_model_watchlist_item">Vorgemerktes Produkt</label>
 			<label index="tx_hypestore_domain_model_watchlist_item.customer">Kunde</label>
 			<label index="tx_hypestore_domain_model_watchlist_item.product">Produkt</label>
 
-			<label index="tx_hypestore_domain_model_order">Order</label>
-			<label index="tx_hypestore_domain_model_order.customer">Customer</label>
-			<label index="tx_hypestore_domain_model_order.items">Items</label>
+			<label index="tx_hypestore_domain_model_order">Bestellung</label>
+			<label index="tx_hypestore_domain_model_order.customer">Kunde</label>
+			<label index="tx_hypestore_domain_model_order.items">Produkte</label>
 
 			<label index="fe_users.tx_hypestore_domain_model_billing_address">Rechnungsadress</label>
 			<label index="fe_users.tx_hypestore_domain_model_shipping_address">Lieferadresse</label>

@@ -7,7 +7,7 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>General</sheetTitle>
+					<sheetTitle>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.tab.general</sheetTitle>
 				</TCEforms>
 
 				<type>array</type>
@@ -15,7 +15,7 @@
 				<el>
 					<settings.view.category.uid>
 						<TCEforms>
-							<label>Main category</label>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.field.main_category</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -30,7 +30,7 @@
 
 					<settings.view.product.pid>
 						<TCEforms>
-							<label>Product page</label>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.field.product_page</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>

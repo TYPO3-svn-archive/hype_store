@@ -7,7 +7,7 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>General</sheetTitle>
+					<sheetTitle>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.product.tab.general</sheetTitle>
 				</TCEforms>
 
 				<type>array</type>
@@ -15,7 +15,7 @@
 				<el>
 					<settings.view.product.uid>
 						<TCEforms>
-							<label>Fallback product</label>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.product.field.fallback_product</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -30,7 +30,7 @@
 
 					<settings.view.category.pid>
 						<TCEforms>
-							<label>Category page</label>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.product.field.category_page</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -45,7 +45,7 @@
 
 					<settings.view.cart.pid>
 						<TCEforms>
-							<label>Cart page</label>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.product.field.cart_page</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -60,7 +60,7 @@
 
 					<settings.view.watchlist.pid>
 						<TCEforms>
-							<label>Watchlist page</label>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.product.field.watchlist_page</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>

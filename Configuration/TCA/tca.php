@@ -239,8 +239,8 @@ $TCA['tx_hypestore_domain_model_category'] = array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		parent_category, categories, products;;;;1-1-1
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.relations,		parent_category, categories, products;;;;1-1-1
 		'),
 	),
 	'palettes' => array(
@@ -388,7 +388,7 @@ $TCA['tx_hypestore_domain_model_product_type'] = array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;1-1-1, keyword;;;;1-1-1, icon;;;;1-1-1,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,attributes;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,attributes;;;;1-1-1,
 		'),
 	),
 	'palettes' => array(
@@ -992,45 +992,45 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 		'basic' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.articles,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
 		'apparel' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.details,		manufacturer,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.details,		manufacturer,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.articles,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
 		'furniture' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.details,		manufacturer,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.details,		manufacturer,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.articles,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
 		'book' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2;;1-1-1, identifier, gtin, type;;;;1-1-1, introduction;;;;1-1-1, description;;;richtext[]:rte_transform[mode=ts_css|imgpath=uploads/tx_hypestore/rte/];3-3-3,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.details,		isbn13_number, isbn10_number, authors;;;;1-1-1, publisher;;;;1-1-1, publication_year, editor;;;;1-1-1, edition,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.articles,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stock_unit, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.details,		isbn13_number, isbn10_number, authors;;;;1-1-1, publisher;;;;1-1-1, publication_year, editor;;;;1-1-1, edition,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.relations,		categories, related_products;;;;1-1-1, related_page;;;;1-1-1, related_address;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.articles,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, list_price, tax_scale, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stock_unit, stocks;;;;1-1-1,
 		'),
 	),
 	'palettes' => array(
@@ -1302,34 +1302,34 @@ $TCA['tx_hypestore_domain_model_article'] = array(
 		'basic' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stocks;;;;1-1-1,
 		'),
 		'apparel' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stocks;;;;1-1-1,
 		'),
 		'book' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stocks;;;;1-1-1,
 		'),
 		'furniture' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, product, identifier, gtin, type,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.media,			images, files;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.prices,		flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.attributes,	attributes,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.stocks,		stock_threshold, stocks;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.media,			images, files;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.prices,			flat_price, minimum_order_quantity, scaled_prices;;;;1-1-1,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.attributes,		attributes,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.stocks,			stock_threshold, stocks;;;;1-1-1,
 		'),
 	),
 	'palettes' => array(
@@ -1567,8 +1567,8 @@ $TCA['tx_hypestore_domain_model_discount'] = array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;1-1-1, rate;;;;1-1-1,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.categories,	included_categories, excluded_categories,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.products,		included_products, excluded_products
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.categories,		included_categories, excluded_categories,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.products,		included_products, excluded_products
 		'),
 	),
 	'palettes' => array(
@@ -1750,8 +1750,8 @@ $TCA['tx_hypestore_domain_model_depot'] = array(
 		'0' => array('showitem' => '
 			sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;;;2-2-2, street;;;;3-3-3, postcode, city, country,
 
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.product_stocks,	product_stocks,
-			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tabs.article_stocks,	article_stocks,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.product_stocks,		product_stocks,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.article_stocks,		article_stocks,
 		'),
 	),
 	'palettes' => array(

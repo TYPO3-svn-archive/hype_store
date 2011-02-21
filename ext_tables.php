@@ -12,29 +12,29 @@ require_once(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Utility/Tca.php');
 # TYPOSCRIPT
 
 # Extension
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', 'Hype Store');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore');
 
 
 
 # PLUGINS
 
 # Category
-Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Category', 'Hype Store, Category');
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Category', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category');
 
 # Product
-Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Product', 'Hype Store, Product');
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Product', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.product');
 
 # Cart
-Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Cart', 'Hype Store, Cart');
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Cart', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart');
 
 # Checkout
-Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Checkout', 'Hype Store, Checkout');
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Checkout', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.checkout');
 
 # Watchlist
-Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Watchlist', 'Hype Store, Watchlist');
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Watchlist', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.watchlist');
 
 # Address
-Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Address', 'Hype Store, Address');
+Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Address', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.address');
 
 
 
