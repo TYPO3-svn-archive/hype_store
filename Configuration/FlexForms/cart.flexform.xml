@@ -8,6 +8,7 @@
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.tab.general</sheetTitle>
+					<cshFile>LLL:EXT:hype_store/Resources/Private/Language/locallang_csh-plugin_cart.xml</cshFile>
 				</TCEforms>
 
 				<type>array</type>

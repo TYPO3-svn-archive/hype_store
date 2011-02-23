@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help for the plugin &quot;watchlist&quot;</description>
+		<type>CSH</type>
+		<csh_table></csh_table>
+		<labelContext type="array"></labelContext>
+	</meta>
+
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="settings.view.product.pid.description">Details of a product are shown on the given page.</label>
+			<label index="settings.view.cart.pid.description">On the specified page the cart is included.</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+			<label index="settings.view.product.pid.description">Auf der angegebenen Seite werden Details der Produkte angezeigt.</label>
+			<label index="settings.view.cart.pid.description">Auf der angegebenen Seite ist der Warenkorb eingebunden.</label>
+		</languageKey>
+	</data>
+</T3locallang>
