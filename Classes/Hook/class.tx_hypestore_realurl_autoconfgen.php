@@ -29,21 +29,10 @@ class tx_hypestore_realurl_autoconfgen {
 		$config = $parameters['config'];
 
 		$postVars = array(
-			'hype_store' => array(
-				/*
+			'store-category' => array(
 				array(
 					'GETvar' => 'tx_hypestore_category[controller]',
-					'noMatch' => 'bypass'
 				),
-				array(
-					'GETvar' => 'tx_hypestore_category[action]',
-					'noMatch' => 'bypass'
-				),
-				array(
-					'GETvar' => 'tx_hypestore_category[path]',
-					'noMatch' => 'bypass'
-				),
-				*/
 				array(
 					'GETvar' => 'tx_hypestore_category[category]',
 					'lookUpTable' => array(
@@ -58,20 +47,21 @@ class tx_hypestore_realurl_autoconfgen {
 						),
 					),
 				),
-				/*
+				array(
+					'GETvar' => 'tx_hypestore_category[path]',
+				),
+				array(
+					'GETvar' => 'tx_hypestore_category[action]',
+					'valueMap' => array(
+						'list' => 'list',
+					),
+					'noMatch' => 'null',
+				),
+			),
+			'store-product' => array(
 				array(
 					'GETvar' => 'tx_hypestore_product[controller]',
-					'noMatch' => 'bypass'
 				),
-				array(
-					'GETvar' => 'tx_hypestore_product[action]',
-					'noMatch' => 'bypass'
-				),
-				array(
-					'GETvar' => 'tx_hypestore_product[path]',
-					'noMatch' => 'bypass'
-				),
-				*/
 				array(
 					'GETvar' => 'tx_hypestore_product[product]',
 					'lookUpTable' => array(
@@ -85,6 +75,73 @@ class tx_hypestore_realurl_autoconfgen {
 							'spaceCharacter' => '-',
 						),
 					),
+				),
+				array(
+					'GETvar' => 'tx_hypestore_product[path]',
+				),
+				array(
+					'GETvar' => 'tx_hypestore_product[action]',
+					'noMatch' => 'null',
+				),
+			),
+			'store-cart' => array(
+				array(
+					'GETvar' => 'tx_hypestore_cart[controller]',
+				),
+				array(
+					'GETvar' => 'tx_hypestore_cart[product]',
+					'lookUpTable' => array(
+						'table'               => 'tx_hypestore_domain_model_product',
+						'id_field'            => 'uid',
+						'alias_field'         => 'title',
+						'addWhereClause'      => ' AND NOT deleted',
+						'useUniqueCache'      => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower'     => 1,
+							'spaceCharacter' => '-',
+						),
+					),
+				),
+				array(
+					'GETvar' => 'tx_hypestore_cart[action]',
+					'valueMap' => array(
+						'add' => 'add',
+						'update' => 'update',
+						'remove' => 'remove',
+						'move' => 'move',
+					),
+					'noMatch' => 'null',
+				),
+				array(
+					'GETvar' => 'tx_hypestore_cart[quantity]',
+				),
+			),
+			'store-watchlist' => array(
+				array(
+					'GETvar' => 'tx_hypestore_watchlist[controller]',
+				),
+				array(
+					'GETvar' => 'tx_hypestore_watchlist[product]',
+					'lookUpTable' => array(
+						'table'               => 'tx_hypestore_domain_model_product',
+						'id_field'            => 'uid',
+						'alias_field'         => 'title',
+						'addWhereClause'      => ' AND NOT deleted',
+						'useUniqueCache'      => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower'     => 1,
+							'spaceCharacter' => '-',
+						),
+					),
+				),
+				array(
+					'GETvar' => 'tx_hypestore_watchlist[action]',
+					'valueMap' => array(
+						'add' => 'add',
+						'remove' => 'remove',
+						'move' => 'move',
+					),
+					'noMatch' => 'null',
 				),
 			),
 		);
