@@ -135,22 +135,27 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	/**
 	 * Move action for this controller.
 	 *
-	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
-	 * @dontvalidate $watchlistItem
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @dontvalidate $product
 	 * @return void
 	 */
-	public function moveAction(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
+	public function moveAction(Tx_HypeStore_Domain_Model_Product $product) {
 
 		if($this->customer) {
 
 			# remove the watchlist item
-			$this->customer->removeWatchlistItem($watchlistItem);
+			foreach($this->customer->getWatchlistItems() as $watchlistItem) {
+				if($watchlistItem->getProduct() == $product) {
+					$this->customer->removeWatchlistItem($watchlistItem);
+					break;
+				}
+			}
 
 			# and add it to the cart
 			$uri = $this->uriBuilder
 				->reset()
 				->setTargetPageUid($this->settings['view']['cart']['pid'])
-				->uriFor('add', array('product' => $watchlistItem->getProduct()), 'Cart', 'HypeStore', 'Cart');
+				->uriFor('add', array('product' => $product), 'Cart', 'HypeStore', 'Cart');
 
 			$this->redirectToURI($uri);
 		}
@@ -161,15 +166,20 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	/**
 	 * Remove action for this controller.
 	 *
-	 * @param Tx_HypeStore_Domain_Model_WatchlistItem $item
-	 * @dontvalidate $watchlistItem
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @dontvalidate $product
 	 * @return void
 	 */
-	public function removeAction(Tx_HypeStore_Domain_Model_WatchlistItem $watchlistItem) {
+	public function removeAction(Tx_HypeStore_Domain_Model_Product $product) {
 
 		if($this->customer) {
-			$this->customer->removeWatchlistItem($watchlistItem);
-			$this->flashMessages->add('The product ' . $watchlistItem->getProduct()->getTitle() . ' was removed from the watchlist.');
+			foreach($this->customer->getWatchlistItems() as $watchlistItem) {
+				if($watchlistItem->getProduct() == $product) {
+					$this->customer->removeWatchlistItem($watchlistItem);
+					$this->flashMessages->add('The product ' . $product->getTitle() . ' was removed from the watchlist.');
+					break;
+				}
+			}
 		}
 
 		$this->redirect('index');

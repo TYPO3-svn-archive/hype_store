@@ -21,6 +21,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
 /**
  * Category controller
  *
@@ -214,22 +215,27 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	/**
 	 * Move action for this controller.
 	 *
-	 * @param Tx_HypeStore_Domain_Model_CartItem $cartItem
-	 * @dontvalidate $cartItem
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @dontvalidate $product
 	 * @return void
 	 */
-	public function moveAction(Tx_HypeStore_Domain_Model_CartItem $cartItem) {
+	public function moveAction(Tx_HypeStore_Domain_Model_Product $product) {
 
 		if($this->customer) {
 
 			# remove the watchlist item
-			$this->customer->removeCartItem($cartItem);
+			foreach($this->customer->getCartItems() as $cartItem) {
+				if($cartItem->getProduct() == $product) {
+					$this->customer->removeCartItem($cartItem);
+					break;
+				}
+			}
 
 			# and add it to the cart
 			$uri = $this->uriBuilder
 				->reset()
 				->setTargetPageUid($this->settings['view']['watchlist']['pid'])
-				->uriFor('add', array('product' => $cartItem->getProduct()), 'Watchlist', 'HypeStore', 'Watchlist');
+				->uriFor('add', array('product' => $product), 'Watchlist', 'HypeStore', 'Watchlist');
 
 			$this->redirectToURI($uri);
 		}
@@ -240,15 +246,20 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	/**
 	 * Remove action for this controller.
 	 *
-	 * @param Tx_HypeStore_Domain_Model_CartItem $item
-	 * @dontvalidate $cartItem
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @dontvalidate $product
 	 * @return void
 	 */
-	public function removeAction(Tx_HypeStore_Domain_Model_CartItem $cartItem) {
+	public function removeAction(Tx_HypeStore_Domain_Model_Product $product) {
 
 		if($this->customer) {
-			$this->customer->removeCartItem($cartItem);
-			$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' was removed from the cart.');
+			foreach($this->customer->getCartItems() as $cartItem) {
+				if($cartItem->getProduct() == $product) {
+					$this->customer->removeCartItem($cartItem);
+					$this->flashMessages->add('The product ' . $product->getTitle() . ' was removed from the cart.');
+					break;
+				}
+			}
 		}
 
 		$this->redirect('index');
