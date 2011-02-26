@@ -89,7 +89,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	public function initializeAction() {
 
 		# initialize steps
-		$this->steps = new Tx_Extbase_Persistence_ObjectStorage;
+		$this->steps = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 
 		# register all available steps
 		$this->registerSteps();
@@ -126,10 +126,10 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	 */
 	protected function registerSteps() {
 
-		$registrationStep = new Tx_HypeStore_Controller_Checkout_RegistrationStep;
-		$addressStep = new Tx_HypeStore_Controller_Checkout_AddressStep;
-		$shippingStep = new Tx_HypeStore_Controller_Checkout_ShippingStep;
-		$paymentStep = new Tx_HypeStore_Controller_Checkout_PaymentStep;
+		$registrationStep = t3lib_div::makeInstance('Tx_HypeStore_Controller_Checkout_RegistrationStep');
+		$addressStep = t3lib_div::makeInstance('Tx_HypeStore_Controller_Checkout_AddressStep');
+		$shippingStep = t3lib_div::makeInstance('Tx_HypeStore_Controller_Checkout_ShippingStep');
+		$paymentStep = t3lib_div::makeInstance('Tx_HypeStore_Controller_Checkout_PaymentStep');
 
 		$paymentStep->addDependency($shippingStep);
 		$shippingStep->addDependency($addressStep);
@@ -149,7 +149,7 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	protected function sortSteps() {
 
 		# define empty stack
-		$steps = new Tx_Extbase_Persistence_ObjectStorage;
+		$steps = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 
 		$temp = $this->getSteps()->toArray();
 

@@ -116,7 +116,7 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 			if(!$existingWatchlistItem) {
 
 				# create a new watchlist item
-				$watchlistItem = new Tx_HypeStore_Domain_Model_WatchlistItem;
+				$watchlistItem = t3lib_div::makeInstance('Tx_HypeStore_Domain_Model_WatchlistItem');
 				$watchlistItem->setProduct($product);
 				$watchlistItem->setCustomer($this->customer);
 
