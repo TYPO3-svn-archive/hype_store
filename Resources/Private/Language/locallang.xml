@@ -6,6 +6,13 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="message.cart-updated">Der Warenkorb wurde aktualisiert.</label>
+			<label index="message.cart_item-added">Das Produkt %s wurde in den Warenkorb gelegt.</label>
+			<label index="message.cart_item-removed">Das Produkt %s wurde aus dem Warenkorb entfernt.</label>
+			<label index="message.cart_item-changed">Die Menge des Produkts %s wurde auf die Mindestbestellmenge erhöht.</label>
+			<label index="message.watchlist_item-added">Das Produkt %s wurde auf die Merkliste gesetzt.</label>
+			<label index="message.watchlist_item-removed">Das Produkt %s wurde von der Merkliste genommen.</label>
+
 			<label index="product.stock_unit.I.0">pcs</label>
 			<label index="product.stock_unit.I.1">lm</label>
 			<label index="product.stock_unit.I.2">kg</label>
@@ -15,6 +22,13 @@
 		</languageKey>
 
 		<languageKey index="de" type="array">
+			<label index="message.cart-updated">The cart was updated.</label>
+			<label index="message.cart_item-added">The product %s was added to the cart.</label>
+			<label index="message.cart_item-removed">The product %s was removed from the cart.</label>
+			<label index="message.cart_item-changed">The quantity of the product %s was raised to it's minimum order quantity.</label>
+			<label index="message.watchlist_item-added">The product %s was added to the watchlist.</label>
+			<label index="message.watchlist_item-removed">The product %s was removed from the watchlist.</label>
+
 			<label index="product.stock_unit.I.0">Stk.</label>
 			<label index="product.stock_unit.I.1">Lfm.</label>
 			<label index="product.stock_unit.I.2">kg</label>

@@ -52,6 +52,9 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	 */
 	public function initializeAction() {
 
+		# initialize localization
+		$this->localization = t3lib_div::makeInstance('Tx_Extbase_Utility_Localization');
+
 		# initialize the cart item repository
 		$this->cartItemRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CartItemRepository');
 
@@ -126,7 +129,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 					$this->customer->removeCartItem($cartItem);
 
 					# add message: cart item was removed
-					$this->flashMessages->add('The product ' . $cartItem->getProduct()->getTitle() . ' was removed due to a quantity of zero or less.');
+					$this->flashMessages->add($this->localization->translate('message.cart_item-removed', $this->extensionName, array($cartItem->getProduct()->getTitle())));
 
 				# reset the quantity to the minimum if too low
 				} else if($cartItem->getQuantity() < $cartItem->getProduct()->getMinimumOrderQuantity()) {
@@ -135,13 +138,13 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 					$cartItem->setQuantity($cartItem->getProduct()->getMinimumOrderQuantity());
 
 					# add message: raised to minimum quantity
-					$this->flashMessages->add('The quantity of the product ' . $cartItem->getProduct()->getTitle() . ' was raised to the minimum order quantity.');
+					$this->flashMessages->add($this->localization->translate('message.cart_item-changed', $this->extensionName, array($cartItem->getProduct()->getTitle())));
 				}
 			}
 
 			# display a default message if none was set yet
 			if(count($this->flashMessages->getAll()) == 0) {
-				$this->flashMessages->add('The cart was updated.');
+				$this->flashMessages->add($this->localization->translate('message.cart-updated', $this->extensionName));
 			}
 		}
 
@@ -196,7 +199,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			}
 
 			# display a success message
-			$this->flashMessages->add('The product ' . $product->getTitle() . ' was added to the cart.');
+			$this->flashMessages->add($this->localization->translate('message.cart_item-added', $this->extensionName, array($product->getTitle())));
 		}
 
 		# redirect the user
@@ -256,7 +259,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			foreach($this->customer->getCartItems() as $cartItem) {
 				if($cartItem->getProduct() == $product) {
 					$this->customer->removeCartItem($cartItem);
-					$this->flashMessages->add('The product ' . $product->getTitle() . ' was removed from the cart.');
+					$this->flashMessages->add($this->localization->translate('message.cart_item-removed', $this->extensionName, array($product->getTitle())));
 					break;
 				}
 			}

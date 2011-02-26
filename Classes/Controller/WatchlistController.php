@@ -125,7 +125,7 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 			}
 
 			# display a success message
-			$this->flashMessages->add('The product ' . $product->getTitle() . ' was added to the watchlist.');
+			$this->flashMessages->add($this->localization->translate('message.watchlist_item-added', $this->extensionName, array($product->getTitle())));
 		}
 
 		# redirect to the watchlist
@@ -176,7 +176,7 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 			foreach($this->customer->getWatchlistItems() as $watchlistItem) {
 				if($watchlistItem->getProduct() == $product) {
 					$this->customer->removeWatchlistItem($watchlistItem);
-					$this->flashMessages->add('The product ' . $product->getTitle() . ' was removed from the watchlist.');
+					$this->flashMessages->add($this->localization->translate('message.watchlist_item-removed', $this->extensionName, array($product->getTitle())));
 					break;
 				}
 			}
