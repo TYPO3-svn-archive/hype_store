@@ -53,6 +53,7 @@ plugin.tx_hypestore {
 
 				common {
 					overrideDocumentTitle = 1
+					displayDescendedProducts = 0
 				}
 
 				action {

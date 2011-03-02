@@ -14,8 +14,10 @@
 
 			<label index="tx_hypestore.plugin.category">Category</label>
 			<label index="tx_hypestore.plugin.category.tab.general">General</label>
+			<label index="tx_hypestore.plugin.category.tab.options">Options</label>
 			<label index="tx_hypestore.plugin.category.field.main_category">Displayed category</label>
 			<label index="tx_hypestore.plugin.category.field.product_page">Product page</label>
+			<label index="tx_hypestore.plugin.category.field.displayDescendedProducts">Display all descended products</label>
 
 			<label index="tx_hypestore.plugin.product">Product</label>
 			<label index="tx_hypestore.plugin.product.tab.general">General</label>
@@ -207,8 +209,10 @@
 
 			<label index="tx_hypestore.plugin.category">Kategorie</label>
 			<label index="tx_hypestore.plugin.category.tab.general">Allgemein</label>
+			<label index="tx_hypestore.plugin.category.tab.options">Optionen</label>
 			<label index="tx_hypestore.plugin.category.field.main_category">Angezeigte Kategorie</label>
 			<label index="tx_hypestore.plugin.category.field.product_page">Seite der Produkte</label>
+			<label index="tx_hypestore.plugin.category.field.displayDescendedProducts">Alle untergeordneten Produkte anzeigen</label>
 
 			<label index="tx_hypestore.plugin.product">Produkt</label>
 			<label index="tx_hypestore.plugin.product.tab.general">Allgemein</label>

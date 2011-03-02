@@ -46,5 +46,27 @@
 				</el>
 			</ROOT>
 		</sDEF>
+
+		<options>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.tab.options</sheetTitle>
+					<cshFile>LLL:EXT:hype_store/Resources/Private/Language/locallang_csh-plugin_category.xml</cshFile>
+				</TCEforms>
+
+				<type>array</type>
+
+				<el>
+					<settings.view.category.common.displayDescendedProducts>
+						<TCEforms>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.field.displayDescendedProducts</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.view.category.common.displayDescendedProducts>
+				</el>
+			</ROOT>
+		</options>
 	</sheets>
 </T3DataStructure>

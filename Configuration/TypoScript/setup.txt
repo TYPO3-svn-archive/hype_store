@@ -203,6 +203,7 @@ plugin.tx_hypestore {
 
 				common {
 					overrideDocumentTitle = {$plugin.tx_hypestore.settings.view.category.common.overrideDocumentTitle}
+					displayDescendedProducts = {$plugin.tx_hypestore.settings.view.category.common.displayDescendedProducts}
 				}
 
 				action {
