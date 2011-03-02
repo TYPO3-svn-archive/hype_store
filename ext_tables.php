@@ -34,7 +34,7 @@ Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Checkout', 'LLL:EXT:hype
 Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Watchlist', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.watchlist');
 
 # Address
-Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Address', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.address');
+//Tx_Extbase_Utility_Extension::registerPlugin($_EXTKEY, 'Address', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.address');
 
 
 

@@ -48,12 +48,14 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 );
 
 # Address
+/*
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Address',
 	array('Address' => 'index,create,edit,save,delete'),
 	array('Address' => 'index,create,edit,save,delete')
 );
+*/
 
 
 
