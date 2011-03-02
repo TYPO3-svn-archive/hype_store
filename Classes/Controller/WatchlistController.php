@@ -47,6 +47,9 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	 */
 	public function initializeAction() {
 
+		# initialize localization
+		$this->localization = t3lib_div::makeInstance('Tx_Extbase_Utility_Localization');
+
 		# initialize the customer repository
 		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
 
