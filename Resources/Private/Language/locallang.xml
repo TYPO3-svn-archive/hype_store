@@ -6,22 +6,6 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="message.cart-updated">Der Warenkorb wurde aktualisiert.</label>
-			<label index="message.cart_item-added">Das Produkt %s wurde in den Warenkorb gelegt.</label>
-			<label index="message.cart_item-removed">Das Produkt %s wurde aus dem Warenkorb entfernt.</label>
-			<label index="message.cart_item-changed">Die Menge des Produkts %s wurde auf die Mindestbestellmenge erhöht.</label>
-			<label index="message.watchlist_item-added">Das Produkt %s wurde auf die Merkliste gesetzt.</label>
-			<label index="message.watchlist_item-removed">Das Produkt %s wurde von der Merkliste genommen.</label>
-
-			<label index="product.stock_unit.I.0">pcs</label>
-			<label index="product.stock_unit.I.1">lm</label>
-			<label index="product.stock_unit.I.2">kg</label>
-			<label index="product.stock_unit.I.3">ltr</label>
-
-			<label index="product_not_found">Product not found.</label>
-		</languageKey>
-
-		<languageKey index="de" type="array">
 			<label index="message.cart-updated">The cart was updated.</label>
 			<label index="message.cart_item-added">The product %s was added to the cart.</label>
 			<label index="message.cart_item-removed">The product %s was removed from the cart.</label>
@@ -29,12 +13,120 @@
 			<label index="message.watchlist_item-added">The product %s was added to the watchlist.</label>
 			<label index="message.watchlist_item-removed">The product %s was removed from the watchlist.</label>
 
+			<label index="category.index.products">Products</label>
+			<label index="category.index.subcategories">Subcategories</label>
+			<label index="category.index.no_category_available">No category available.</label>
+
+			<label index="category.list.products">Products</label>
+			<label index="category.list.subcategories">Subcategories</label>
+			<label index="category.list.no_category_available">No category available.</label>
+
+			<label index="product.index.article_number">Article-No.:</label>
+			<label index="product.index.attributes">Attributes</label>
+			<label index="product.index.files">Files</label>
+			<label index="product.index.details">Further details</label>
+			<label index="product.index.manufacturer">Manufacturer</label>
+			<label index="product.index.price">Price</label>
+			<label index="product.index.price_for_multiple">Price for %d %s:</label>
+			<label index="product.index.price_including_vat">Price incl. %d %% VAT</label>
+			<label index="product.index.scaled_prices">Scaled prices</label>
+			<label index="product.index.minimum_order_quantity">Minimum order quantity</label>
+			<label index="product.index.list_price">List price:</label>
+			<label index="product.index.put_into_cart">Put %s into the cart.</label>
+			<label index="product.index.put_onto_watchlist">Put %s onto the watchlist.</label>
+			<label index="product.index.related_products">Related products</label>
+			<label index="product.index.put_multiple_into_cart">Put %i %s into the cart.</label>
+			<label index="product.index.in_stock">Product is in stock.</label>
+			<label index="product.index.out_of_stock">Product is out of stock.</label>
+
+			<label index="product.index.authors">Author(s)</label>
+			<label index="product.index.publisher">Publisher</label>
+			<label index="product.index.publication_year">Publication year</label>
+			<label index="product.index.editor">Editor</label>
+			<label index="product.index.edition">Edition</label>
+
+			<label index="product.record.put_into_cart">Put %s into the cart.</label>
+			<label index="product.record.put_onto_watchlist">Put %s onto the watchlist.</label>
+			<label index="product.record.product_not_found">Product not found.</label>
+
+			<label index="cart.index.move_to_watchlist">Move %s to the watchlist.</label>
+			<label index="cart.index.remove_from_cart">Remove %s from the cart.</label>
+			<label index="cart.index.total_price">Total price:</label>
+			<label index="cart.index.update_cart">Update cart</label>
+			<label index="cart.index.view_cart">View cart →</label>
+			<label index="cart.index.order_products">Order products →</label>
+			<label index="cart.index.empty">The cart is empty.</label>
+
+			<label index="watchlist.index.move_to_cart">Move %s into the cart.</label>
+			<label index="watchlist.index.remove_from_watchlist">Remove %s from the watchlist.</label>
+			<label index="watchlist.index.empty">The watchlist is empty.</label>
+
+			<label index="product.stock_unit.I.0">pcs</label>
+			<label index="product.stock_unit.I.1">lm</label>
+			<label index="product.stock_unit.I.2">kg</label>
+			<label index="product.stock_unit.I.3">ltr</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+			<label index="message.cart-updated">Der Warenkorb wurde aktualisiert.</label>
+			<label index="message.cart_item-added">Das Produkt %s wurde in den Warenkorb gelegt.</label>
+			<label index="message.cart_item-removed">Das Produkt %s wurde aus dem Warenkorb entfernt.</label>
+			<label index="message.cart_item-changed">Die Menge des Produkts %s wurde auf die Mindestbestellmenge erhöht.</label>
+			<label index="message.watchlist_item-added">Das Produkt %s wurde auf die Merkliste gesetzt.</label>
+			<label index="message.watchlist_item-removed">Das Produkt %s wurde von der Merkliste genommen.</label>
+
+			<label index="category.index.products">Produkte</label>
+			<label index="category.index.subcategories">Unterkategorien</label>
+			<label index="category.index.no_category_available">Keine Kategorie verfügbar.</label>
+
+			<label index="category.list.products">Produkte</label>
+			<label index="category.list.subcategories">Unterkategorien</label>
+			<label index="category.list.no_category_available">Keine Kategorie verfügbar.</label>
+
+			<label index="product.index.article_number">Art.-Nr.:</label>
+			<label index="product.index.attributes">Eigenschaften</label>
+			<label index="product.index.files">Dateien</label>
+			<label index="product.index.details">Weitere Angaben</label>
+			<label index="product.index.manufacturer">Hersteller</label>
+			<label index="product.index.price">Preis</label>
+			<label index="product.index.price_for_multiple">Preis für %d %s:</label>
+			<label index="product.index.price_including_vat">Preis inkl. %d %% MwSt.</label>
+			<label index="product.index.scaled_prices">Staffelpreise</label>
+			<label index="product.index.minimum_order_quantity">Mindestbestellmenge</label>
+			<label index="product.index.list_price">Listenpreis:</label>
+			<label index="product.index.put_into_cart">%s in den Warenkorb legen.</label>
+			<label index="product.index.put_onto_watchlist">%s auf die Merkliste setzen.</label>
+			<label index="product.index.related_products">Ähnliche Produkte</label>
+			<label index="product.index.put_multiple_into_cart">%s %s in den Warenkorb legen.</label>
+			<label index="product.index.in_stock">Produkt ist lagernd.</label>
+			<label index="product.index.out_of_stock">Produkt ist nicht lagernd.</label>
+
+			<label index="product.index.authors">Autor(en)</label>
+			<label index="product.index.publisher">Verlag</label>
+			<label index="product.index.publication_year">Veröffentlichungsjahr</label>
+			<label index="product.index.editor">Herausgeber</label>
+			<label index="product.index.edition">Ausgabe</label>
+
+			<label index="product.record.put_into_cart">%s in den Warenkorb legen.</label>
+			<label index="product.record.put_onto_watchlist">%s auf die Merkliste setzen.</label>
+			<label index="product.record.product_not_found">Produkt nicht gefunden.</label>
+
+			<label index="cart.index.move_to_watchlist">%s auf die Merkliste verschieben.</label>
+			<label index="cart.index.remove_from_cart">%s aus dem Warenkorb entfernen.</label>
+			<label index="cart.index.total_price">Gesamtpreis:</label>
+			<label index="cart.index.update_cart">Warenkorb aktualisieren</label>
+			<label index="cart.index.view_cart">Warenkorb anzeigen →</label>
+			<label index="cart.index.order_products">Produkte bestellen →</label>
+			<label index="cart.index.empty">Der Warenkorb ist leer.</label>
+
+			<label index="watchlist.index.move_to_cart">%s in den Warenkorb verschieben.</label>
+			<label index="watchlist.index.remove_from_watchlist">%s von der Merkliste entfernen.</label>
+			<label index="watchlist.index.empty">Die Merkliste ist leer.</label>
+
 			<label index="product.stock_unit.I.0">Stk.</label>
 			<label index="product.stock_unit.I.1">Lfm.</label>
 			<label index="product.stock_unit.I.2">kg</label>
 			<label index="product.stock_unit.I.3">l</label>
-
-			<label index="product_not_found">Produkt nicht gefunden.</label>
 		</languageKey>
 	</data>
 </T3locallang>

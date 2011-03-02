@@ -25,7 +25,7 @@
 					<!-- category.products -->
 					<f:if condition="{f:count(subject: category.products)} > 0">
 						<div class="products">
-							<h3>Produkte</h3>
+							<h3>{f:translate(key: 'category.index.products')}</h3>
 
 							<ul>
 								<f:for each="{category.products}" as="product">
@@ -50,7 +50,7 @@
 					<!-- category.categories -->
 					<f:if condition="{f:count(subject: category.categories)} > 0">
 						<div class="categories">
-							<h3>Unterkategorien</h3>
+							<h3>{f:translate(key: 'category.index.subcategories')}</h3>
 
 							<ul>
 								<f:for each="{category.categories}" as="subcategory">
@@ -69,7 +69,7 @@
 		</f:then>
 
 		<f:else>
-			<p>Keine Kategorien verfügbar.</p>
+			<p>{f:translate(key: 'category.index.no_categories_available')}</p>
 		</f:else>
 	</f:if>
 </f:section>

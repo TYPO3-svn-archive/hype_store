@@ -11,20 +11,20 @@
 			<p class="actions">
 				<f:if condition="{settings.common.feature.cart}">
 				<f:if condition="{settings.view.cart.pid}">
-					<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {product.title}</em> into the cart.</f:link.action><br />
+					<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product}" pageUid="{settings.view.cart.pid}" class="cart">{f:translate(key: 'product.record.put_into_cart', arguments: {0: product.title})}</f:link.action><br />
 				</f:if>
 				</f:if>
 
 				<f:if condition="{settings.common.feature.watchlist}">
 				<f:if condition="{settings.view.watchlist.pid}">
-					<f:link.action pluginName="Watchlist" controller="Watchlist" action="add" arguments="{product: product}" pageUid="{settings.view.watchlist.pid}" class="watchlist"><em>Set {product.title}</em> on the watchlist.</f:link.action>
+					<f:link.action pluginName="Watchlist" controller="Watchlist" action="add" arguments="{product: product}" pageUid="{settings.view.watchlist.pid}" class="watchlist">{f:translate(key: 'product.record.put_onto_watchlist', arguments: {0: product.title})}</f:link.action>
 				</f:if>
 				</f:if>
 			</p>
 		</f:then>
 
 		<f:else>
-			<p>{f:translate(key: 'product_not_found')}</p>
+			<p>{f:translate(key: 'product.record.product_not_found')}</p>
 		</f:else>
 	</f:if>
 </f:section>

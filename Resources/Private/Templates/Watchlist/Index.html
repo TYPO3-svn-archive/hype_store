@@ -16,8 +16,8 @@
 								<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: watchlistItem.product, path: watchlistItem.product.rootline}">{watchlistItem.product.title}</f:link.action>
 								<f:if condition="{watchlistItem.product.introduction}"><br />{watchlistItem.product.introduction}</f:if>
 
-								<br /><f:link.action action="move" arguments="{product: watchlistItem.product}">Move {watchlistItem.product.title} to the cart.</f:link.action>
-								<br /><f:link.action action="remove" arguments="{product: watchlistItem.product}">Remove {watchlistItem.product.title} from the watchlist.</f:link.action>
+								<br /><f:link.action action="move" arguments="{product: watchlistItem.product}">{f:translate(key: 'watchlist.index.move_to_cart', arguments: {0: watchlistItem.product.title})}</f:link.action>
+								<br /><f:link.action action="remove" arguments="{product: watchlistItem.product}">{f:translate(key: 'watchlist.index.remove_from_watchlist', arguments: {0: watchlistItem.product.title})}</f:link.action>
 
 								<f:form.hidden name="watchlistItems[{watchlistItem.uid}][__identity]" value="{watchlistItem.uid}"/>
 							</p>
@@ -28,7 +28,7 @@
 		</f:then>
 
 		<f:else>
-			<p>There are no products on your watchlist yet.</p>
+			<p>{f:translate(key: 'watchlist.index.empty')}</p>
 		</f:else>
 	</f:if>
 </f:section>

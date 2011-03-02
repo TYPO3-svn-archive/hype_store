@@ -27,7 +27,7 @@
 			<!-- category.products -->
 			<f:if condition="{category.products}">
 				<div class="products">
-					<h2>Produkte</h2>
+					<h2>{f:translate(key: 'category.list.products')}</h2>
 
 					<ul>
 						<f:for each="{category.products}" as="product">
@@ -59,7 +59,7 @@
 			<!-- category.descendentProducts -->
 			<f:if condition="{category.descendentProducts}">
 				<div class="products">
-					<h2>Produkte (Nachfahren)</h2>
+					<h2>{f:translate(key: 'category.list.products')}</h2>
 
 					<ul>
 						<f:for each="{category.descendentProducts}" as="product">
@@ -90,7 +90,7 @@
 
 			<!-- category.categories -->
 			<f:if condition="{category.categories}">
-				<h2>Unterkategorien</h2>
+				<h2>{f:translate(key: 'category.list.subcategories')}</h2>
 
 				<ul>
 					<f:for each="{category.categories}" as="subcategory">
@@ -106,7 +106,7 @@
 							<!-- subcategory.products -->
 							<f:if condition="{subcategory.products}">
 								<div class="products">
-									<h4>Produkte</h4>
+									<h4>{f:translate(key: 'category.list.products')}</h4>
 
 									<ul>
 										<f:for each="{subcategory.products}" as="product">
@@ -142,7 +142,7 @@
 		</f:then>
 
 		<f:else>
-			<p>Keine Kategorie verf�gbar.</p>
+			<p>{f:translate(key: 'category.list.no_category_available')}</p>
 		</f:else>
 	</f:if>
 </f:section>
