@@ -16,6 +16,7 @@
 				<el>
 					<settings.view.category.uid>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.field.main_category</label>
 							<config>
 								<type>group</type>
@@ -31,6 +32,7 @@
 
 					<settings.view.product.pid>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.field.product_page</label>
 							<config>
 								<type>group</type>
@@ -59,6 +61,7 @@
 				<el>
 					<settings.view.category.common.displayDescendedProducts>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.category.field.displayDescendedProducts</label>
 							<config>
 								<type>check</type>
