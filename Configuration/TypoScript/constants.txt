@@ -162,6 +162,41 @@ plugin.tx_hypestore {
 							}
 						}
 					}
+
+					record {
+						property {
+							images {
+								width =
+								height =
+								maxWidth = 200
+								maxHeight =
+							}
+						}
+
+						object {
+							category {
+								property {
+									images {
+										width =
+										height =
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+
+							product {
+								property {
+									images {
+										width =
+										height =
+										maxWidth = 80
+										maxHeight =
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 

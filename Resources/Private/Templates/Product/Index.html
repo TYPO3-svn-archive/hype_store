@@ -6,7 +6,7 @@
 	<f:if condition="{product}">
 
 		<!-- Product details -->
-		<f:render partial="Product/Product/{product.type->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{product: product, settings: settings}"/>
+		<f:render partial="Product/Index/Product/{product.type->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{product: product, settings: settings}"/>
 
 		<!-- functions -->
 		<p class="actions">

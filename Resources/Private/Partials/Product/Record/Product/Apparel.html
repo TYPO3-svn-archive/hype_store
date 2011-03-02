@@ -13,6 +13,11 @@
 	<p class="identifier">Article-No.: {product.identifier}</p>
 </f:if>
 
+<!-- product.manufacturer -->
+<f:if condition="{product.manufacturer}">
+	<p class="manufacturer">Manufacturer: {product.manufacturer.title}</p>
+</f:if>
+
 <!-- product.introduction -->
 <f:if condition="{product.introduction}">
 	<p class="introduction">{product.introduction->f:format.nl2br()}</p>
@@ -23,7 +28,7 @@
 	<p class="images">
 		<f:for each="{product.images}" as="image">
 			<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
-				<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.product.action.index.property.images.maxWidth}" maxHeight="{settings.view.product.action.index.property.images.maxHeight}" alt="" />
+				<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.product.action.record.property.images.maxWidth}" maxHeight="{settings.view.product.action.record.property.images.maxHeight}" alt="" />
 			</f:if>
 		</f:for>
 	</p>
@@ -59,7 +64,7 @@
 
 <!-- product.grossPrice -->
 <f:if condition="{product.grossPrice}">
-	<dl class="price">
+	<dl class="flat_price">
 		<dt>Price<f:if condition="{product.taxScale}"> incl. {product.taxScale.rate}% VAT</f:if></dt>
 
 		<f:if condition="{product.discount}">
@@ -105,7 +110,7 @@
 		<ul>
 			<f:for each="{product.files}" as="file">
 				<f:if condition="{h:file.exists(path: '{settings.object.product.property.files.path}{file}')}">
-					<li><f:link.external uri="{settings.object.product.property.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.property.files.path}{file}')} {h:format.filesize(size: 123456, unit: 'k', decimals: '-1')} <h:format.filesize unit="k" decimals="-1">123456</h:format.filesize> <h:format.filesize unit="k" decimals="-1" size="123456" /></li>
+					<li><f:link.external uri="{settings.object.product.property.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.property.files.path}{file}')}</li>
 				</f:if>
 			</f:for>
 		</ul>

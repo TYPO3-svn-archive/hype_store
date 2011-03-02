@@ -312,6 +312,41 @@ plugin.tx_hypestore {
 							}
 						}
 					}
+
+					record {
+						property {
+							images {
+								width = {$plugin.tx_hypestore.settings.view.product.action.record.property.images.width}
+								height = {$plugin.tx_hypestore.settings.view.product.action.record.property.images.height}
+								maxWidth = {$plugin.tx_hypestore.settings.view.product.action.record.property.images.maxWidth}
+								maxHeight = {$plugin.tx_hypestore.settings.view.product.action.record.property.images.maxHeight}
+							}
+						}
+
+						object {
+							category {
+								property {
+									images {
+										width = {$plugin.tx_hypestore.settings.view.product.action.record.object.category.property.images.width}
+										height = {$plugin.tx_hypestore.settings.view.product.action.record.object.category.property.images.height}
+										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.record.object.category.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.record.object.category.property.images.maxHeight}
+									}
+								}
+							}
+
+							product {
+								property {
+									images {
+										width = {$plugin.tx_hypestore.settings.view.product.action.record.object.product.property.images.width}
+										height = {$plugin.tx_hypestore.settings.view.product.action.record.object.product.property.images.height}
+										maxWidth = {$plugin.tx_hypestore.settings.view.product.action.record.object.product.property.images.maxWidth}
+										maxHeight = {$plugin.tx_hypestore.settings.view.product.action.record.object.product.property.images.maxHeight}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 

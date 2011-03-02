@@ -13,11 +13,6 @@
 	<p class="identifier">Article-No.: {product.identifier}</p>
 </f:if>
 
-<!-- product.manufacturer -->
-<f:if condition="{product.manufacturer}">
-	<p class="manufacturer">Manufacturer: {product.manufacturer.title}</p>
-</f:if>
-
 <!-- product.introduction -->
 <f:if condition="{product.introduction}">
 	<p class="introduction">{product.introduction->f:format.nl2br()}</p>
@@ -28,7 +23,7 @@
 	<p class="images">
 		<f:for each="{product.images}" as="image">
 			<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
-				<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.product.action.index.property.images.maxWidth}" maxHeight="{settings.view.product.action.index.property.images.maxHeight}" alt="" />
+				<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.product.action.record.property.images.maxWidth}" maxHeight="{settings.view.product.action.record.property.images.maxHeight}" alt="" />
 			</f:if>
 		</f:for>
 	</p>
@@ -38,6 +33,40 @@
 <f:if condition="{product.description}">
 	<div class="description">{product.description->f:format.html()}</div>
 </f:if>
+
+<hr />
+
+<!-- product.details -->
+<h3>Details</h3>
+
+<dl class="details">
+	<f:if condition="{f:count(subject: '{product.authors}')} > 0">
+		<dt>Authors</dt>
+		<f:for each="{product.authors}" as="author">
+			<dd>{author.name}</dd>
+		</f:for>
+	</f:if>
+
+	<f:if condition="{product.publisher}">
+		<dt>Publisher</dt>
+		<dd>{product.publisher.name}</dd>
+	</f:if>
+
+	<f:if condition="{product.publicationYear}">
+		<dt>Publication year</dt>
+		<dd>{product.publicationYear}</dd>
+	</f:if>
+
+	<f:if condition="{product.editor}">
+		<dt>Editor</dt>
+		<dd>{product.editor.name}</dd>
+	</f:if>
+
+	<f:if condition="{product.edition}">
+		<dt>Edition</dt>
+		<dd>{product.edition}</dd>
+	</f:if>
+</dl>
 
 <hr />
 
@@ -55,7 +84,7 @@
 </f:if>
 
 <!-- product.minimumOrderQuantity -->
-<f:if condition="{product.minimumOrderQuantity}">
+<f:if condition="{product.minimumOrderQuantity} > 1">
 	<dl class="minimum_order_quantity">
 		<dt>Minimum order quantity</dt>
 		<dd><em>{product.minimumOrderQuantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em></dd>
@@ -117,7 +146,7 @@
 	</div>
 </f:if>
 
-<!-- product.stockQuantity -->
+<!-- product.stock -->
 <f:if condition="{product.stock} > 0">
 	<f:then>
 		<p class="stock">Product is probably in stock! ({product.stock})</p>
