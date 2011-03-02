@@ -3,7 +3,24 @@
 <f:section name="content">
 	<f:if condition="{product}">
 		<f:then>
+
+			<!-- Product details -->
 			<f:render partial="Product/Record/Product/{product.type->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{product: product, settings: settings}"/>
+
+			<!-- functions -->
+			<p class="actions">
+				<f:if condition="{settings.common.feature.cart}">
+				<f:if condition="{settings.view.cart.pid}">
+					<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product}" pageUid="{settings.view.cart.pid}" class="cart"><em>Put {product.title}</em> into the cart.</f:link.action><br />
+				</f:if>
+				</f:if>
+
+				<f:if condition="{settings.common.feature.watchlist}">
+				<f:if condition="{settings.view.watchlist.pid}">
+					<f:link.action pluginName="Watchlist" controller="Watchlist" action="add" arguments="{product: product}" pageUid="{settings.view.watchlist.pid}" class="watchlist"><em>Set {product.title}</em> on the watchlist.</f:link.action>
+				</f:if>
+				</f:if>
+			</p>
 		</f:then>
 
 		<f:else>
