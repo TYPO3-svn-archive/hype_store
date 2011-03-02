@@ -1,0 +1,132 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<!-- product.title -->
+<h1 class="title">{product.title}</h1>
+
+<!-- product.subtitle -->
+<f:if condition="{product.subtitle}">
+	<h2 class="subtitle">{product.subtitle}</h2>
+</f:if>
+
+<!-- product.identifier -->
+<f:if condition="{product.identifier}">
+	<p class="identifier">{f:translate(key: 'product.index.article_number')} {product.identifier}</p>
+</f:if>
+
+<!-- product.introduction -->
+<f:if condition="{product.introduction}">
+	<p class="introduction">{product.introduction->f:format.nl2br()}</p>
+</f:if>
+
+<!-- product.images -->
+<f:if condition="{product.images}">
+	<p class="images">
+		<f:for each="{product.images}" as="image">
+			<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
+				<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.product.action.index.property.images.maxWidth}" maxHeight="{settings.view.product.action.index.property.images.maxHeight}" alt="" />
+			</f:if>
+		</f:for>
+	</p>
+</f:if>
+
+<!-- product.description -->
+<f:if condition="{product.description}">
+	<div class="description">{product.description->f:format.html()}</div>
+</f:if>
+
+<hr />
+
+<!-- product.attributes -->
+<f:if condition="{product.attributes}">
+	<div class="attributes">
+		<h3>{f:translate(key: 'product.index.attributes')}</h3>
+
+		<ul>
+			<f:for each="{product.attributes}" as="attribute">
+				<li>{attribute.attribute.title}: <em>{attribute.value} <f:if condition="{attribute.attribute.unit}">{attribute.attribute.unit}</f:if></em></li>
+			</f:for>
+		</ul>
+	</div>
+</f:if>
+
+<!-- product.minimumOrderQuantity -->
+<f:if condition="{product.minimumOrderQuantity}">
+	<dl class="minimum_order_quantity">
+		<dt>{f:translate(key: 'product.index.minimum_order_quantity')}</dt>
+		<dd><em>{product.minimumOrderQuantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em></dd>
+	</dl>
+</f:if>
+
+<!-- product.grossPrice -->
+<f:if condition="{product.grossPrice}">
+	<dl class="price">
+		<f:if condition="{product.taxScale}">
+			<f:then>
+				<dt>{f:translate(key: 'product.index.price_including_vat', arguments: {0: product.taxScale.rate})}</dt>
+			</f:then>
+
+			<f:else>
+				<dt>{f:translate(key: 'product.index.price')}</dt>
+			</f:else>
+		</f:if>
+
+		<f:if condition="{product.discount}">
+			<f:then>
+				<dd>
+					<strike>{product.undiscountedGrossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</strike><br />
+					<em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')} (-{product.discount.rate}%)</em>
+				</dd>
+			</f:then>
+
+			<f:else>
+				<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+			</f:else>
+		</f:if>
+
+		<f:if condition="{product.listPrice}">
+			<dd><small class="list_price">{f:translate(key: 'product.index.list_price')} <em>{product.listPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></small></dd>
+		</f:if>
+	</dl>
+</f:if>
+
+<!-- product.scaledPrices -->
+<f:if condition="{f:count(subject: '{product.scaledPrices}')} > 0">
+	<div class="scaled_prices">
+		<h3>{f:translate(key: 'product.index.scaled_prices')}</h3>
+
+		<ul>
+			<f:for each="{product.scaledPrices}" as="price">
+				<li>
+					{f:translate(key: 'product.index.price_for_multiple', arguments: {0: price.quantity, 1: '{f:translate(key: \'product.stock_unit.I.{product.stockUnit}\')}'})} <em>{price.grossValue->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em><br />
+					<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product, quantity: price.quantity}" pageUid="{settings.view.cart.pid}" class="cart">{f:translate(key: 'product.index.put_multiple_into_cart', arguments: {0: price.quantity, 1: '{f:translate(key: \'product.stock_unit.I.{product.stockUnit}\')}'})}</f:link.action>
+				</li>
+			</f:for>
+		</ul>
+	</div>
+</f:if>
+
+<!-- product.files -->
+<f:if condition="{product.files}">
+	<div class="files">
+		<h3>{f:translate(key: 'product.index.files')}</h3>
+
+		<ul>
+			<f:for each="{product.files}" as="file">
+				<f:if condition="{h:file.exists(path: '{settings.object.product.property.files.path}{file}')}">
+					<li><f:link.external uri="{settings.object.product.property.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.property.files.path}{file}')} {h:format.filesize(size: 123456, unit: 'k', decimals: '-1')} <h:format.filesize unit="k" decimals="-1">123456</h:format.filesize> <h:format.filesize unit="k" decimals="-1" size="123456" /></li>
+				</f:if>
+			</f:for>
+		</ul>
+	</div>
+</f:if>
+
+<!-- product.stockQuantity -->
+<f:if condition="{product.stock} > 0">
+	<f:then>
+		<p class="stock">{f:translate(key: 'product.index.in_stock')}</p>
+	</f:then>
+
+	<f:else>
+		<p class="stock">{f:translate(key: 'product.index.out_of_stock')}</p>
+	</f:else>
+</f:if>
