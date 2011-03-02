@@ -31,6 +31,11 @@
 class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 * @var Tx_Extbase_Utility_Localization
+	 */
+	protected $localization;
+
+	/**
 	 * @var Tx_HypeStore_Domain_Repository_CartItemRepository
 	 */
 	protected $cartItemRepository;
