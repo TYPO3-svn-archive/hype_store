@@ -161,11 +161,12 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	 * Add action for this controller.
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Product $product
-	 * @param integer $quantity
+	 * @param mixed $quantity
 	 * @dontvalidate $product
+	 * @dontvalidate $quantity
 	 * @return void
 	 */
-	public function addAction(Tx_HypeStore_Domain_Model_Product $product, $quantity = NULL) {
+	public function addAction(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1) {
 
 		if($this->customer) {
 
@@ -182,7 +183,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			if($existingCartItem) {
 
 				# determine the quantity to add to the cart
-				$quantity = max($quantity, 1) + $existingCartItem->getQuantity();
+				$quantity = max((int)$quantity, 1) + $existingCartItem->getQuantity();
 
 				# calculate new quantity
 				$existingCartItem->setQuantity($quantity);
@@ -191,7 +192,7 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			} else {
 
 				# determine the quantity to add to the cart
-				$quantity = max($product->getMinimumOrderQuantity(), $quantity, 1);
+				$quantity = max($product->getMinimumOrderQuantity(), (int)$quantity, 1);
 
 				# create a new cart item
 				$cartItem = t3lib_div::makeInstance('Tx_HypeStore_Domain_Model_CartItem');
