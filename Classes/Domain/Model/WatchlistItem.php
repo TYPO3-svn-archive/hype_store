@@ -52,13 +52,6 @@ class Tx_HypeStore_Domain_Model_WatchlistItem extends Tx_Extbase_DomainObject_Ab
 	protected $quantity;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Initialization
 	 *
 	 * return void

@@ -12,7 +12,7 @@ require_once(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Utility/Tca.php');
 # TYPOSCRIPT
 
 # Extension
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', 'Hype Store');
 
 
 

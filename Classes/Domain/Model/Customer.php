@@ -65,8 +65,6 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct();
-
 		$this->addresses = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 		$this->orders = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 		$this->cartItems = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');

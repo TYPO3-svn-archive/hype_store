@@ -52,13 +52,6 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	protected $product;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Setter for attribute
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Attribute $attribute

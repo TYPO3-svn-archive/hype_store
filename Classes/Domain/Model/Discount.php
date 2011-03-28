@@ -71,8 +71,6 @@ class Tx_HypeStore_Domain_Model_Discount extends Tx_Extbase_DomainObject_Abstrac
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct();
-
 		$this->includedCategories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->excludedCategories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->includedProducts = new Tx_Extbase_Persistence_ObjectStorage();

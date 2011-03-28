@@ -86,8 +86,6 @@ class Tx_HypeStore_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstrac
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct();
-
 		$this->categories = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 		$this->products = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}

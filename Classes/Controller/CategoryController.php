@@ -77,7 +77,13 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 
 		# get categories
 		if($this->settings['view']['category']['uid']) {
-			$categories = $this->categoryRepository->findByUid((int)$this->settings['view']['category']['uid'])->getCategories();
+
+			$category = $this->categoryRepository->findByUid((int)$this->settings['view']['category']['uid']);
+			$categories = $category->getCategories();
+
+			if(count($categories) == 0) {
+				$categories = array($category);
+			}
 		} else {
 			$categories = $this->categoryRepository->findMainCategories();
 		}

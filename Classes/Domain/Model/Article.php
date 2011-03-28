@@ -106,8 +106,6 @@ class Tx_HypeStore_Domain_Model_Article extends Tx_Extbase_DomainObject_Abstract
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct();
-
 		$this->scaledPrices		= new Tx_Extbase_Persistence_ObjectStorage();
 		$this->attributes		= new Tx_Extbase_Persistence_ObjectStorage();
 		$this->stocks			= new Tx_Extbase_Persistence_ObjectStorage();

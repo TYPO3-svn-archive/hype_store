@@ -83,8 +83,6 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_Extbase_DomainObject_AbstractEn
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct();
-
 		$this->stocks = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 		$this->states = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}

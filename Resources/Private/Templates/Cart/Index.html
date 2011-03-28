@@ -4,9 +4,9 @@
 
 <f:section name="content">
 	<!-- customer.cartItems -->
-	<f:if condition="{cartItems}">
+	<f:if condition="{f:count(subject: customer.cartItems)} > 0">
 		<f:then>
-			<f:render partial="Cart/{settings.view.cart.mode->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{cartItems: cartItems, totalPrice: totalPrice, settings: settings}"/>
+			<f:render partial="Cart/{settings.view.cart.mode->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{customer: customer, totalPrice: totalPrice, settings: settings}"/>
 		</f:then>
 
 		<f:else>

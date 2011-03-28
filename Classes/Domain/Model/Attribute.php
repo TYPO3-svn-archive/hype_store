@@ -54,13 +54,6 @@ class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_Abstra
 	protected $type;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Setter for title
 	 *
 	 * @param string $title

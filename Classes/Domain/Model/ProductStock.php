@@ -52,13 +52,6 @@ class Tx_HypeStore_Domain_Model_ProductStock extends Tx_Extbase_DomainObject_Abs
 	protected $product;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Setter for quantity
 	 *
 	 * @param int $quantity

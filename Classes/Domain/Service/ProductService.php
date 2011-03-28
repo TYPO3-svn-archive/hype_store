@@ -52,7 +52,7 @@ class Tx_HypeStore_Domain_Service_ProductService
 	 * @param Tx_HypeStore_Domain_Model_Product $product
 	 * @return array
 	 */
-	public function getPrecedingCategories($product) {
+	public function getPrecedingCategories(Tx_HypeStore_Domain_Model_Product $product) {
 
 		# get direct categories
 		$categories = $product->getCategories()->toArray();
