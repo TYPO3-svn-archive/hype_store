@@ -25,6 +25,7 @@
 /**
  * A repository for Product Attributes
  */
-class Tx_HypeStore_Domain_Repository_ProductAttributeRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_ProductAttributeRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_ProductAttributeRepositoryInterface {
 }
 ?>

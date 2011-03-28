@@ -25,7 +25,8 @@
 /**
  * A repository for Furniture
  */
-class Tx_HypeStore_Domain_Repository_Product_FurnitureRepository extends Tx_HypeStore_Domain_Repository_ProductRepository {
+class Tx_HypeStore_Domain_Repository_Product_FurnitureRepository extends Tx_HypeStore_Domain_Repository_ProductRepository
+	implements Tx_HypeStore_Domain_Repository_Product_FurnitureRepositoryInterface {
 
 }
 ?>

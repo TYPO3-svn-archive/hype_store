@@ -25,7 +25,8 @@
 /**
  * Category service
  */
-class Tx_HypeStore_Domain_Service_CategoryService implements t3lib_singleton {
+class Tx_HypeStore_Domain_Service_CategoryService
+	implements t3lib_singleton, Tx_HypeStore_Domain_Service_CategoryServiceInterface {
 
 	/**
 	 * @var Tx_HypeStore_Domain_Repository_ProductRepository

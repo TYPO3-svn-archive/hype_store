@@ -36,14 +36,19 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	protected $localization;
 
 	/**
-	 * @var Tx_HypeStore_Domain_Repository_CartItemRepository
+	 * @var Tx_HypeStore_Domain_Repository_CartItemRepositoryInterface
 	 */
 	protected $cartItemRepository;
 
 	/**
-	 * @var Tx_HypeStore_Domain_Repository_CustomerRepository
+	 * @var Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface
 	 */
 	protected $customerRepository;
+
+	/**
+	 * @var Tx_HypeStore_Domain_Service_CartServiceInterface
+	 */
+	protected $cartService;
 
 	/**
 	 * @var Tx_HypeStore_Domain_Model_Customer
@@ -51,23 +56,51 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	protected $customer;
 
 	/**
+	 * Injects the localization
+	 *
+	 * @var Tx_Extbase_Utility_Localization $localization
+	 * @return void
+	 */
+	public function injectLocalization(Tx_Extbase_Utility_Localization $localization) {
+		$this->localization = $localization;
+	}
+
+	/**
+	 * Injects the cart item repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_CartItemRepositoryInterface $cartItemRepository
+	 * @return void
+	 */
+	public function injectCartItemRepository(Tx_HypeStore_Domain_Repository_CartItemRepositoryInterface $cartItemRepository) {
+		$this->cartItemRepository = $cartItemRepository;
+	}
+
+	/**
+	 * Injects the customer repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface $customerRepository
+	 * @return void
+	 */
+	public function injectCustomerRepository(Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface $customerRepository) {
+		$this->customerRepository = $customerRepository;
+	}
+
+	/**
+	 * Injects the cart service
+	 *
+	 * @var Tx_HypeStore_Domain_Service_CartServiceInterface $cartService
+	 * @return void
+	 */
+	public function injectCartService(Tx_HypeStore_Domain_Service_CartServiceInterface $cartService) {
+		$this->cartService = $cartService;
+	}
+
+	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-
-		# initialize localization
-		$this->localization = t3lib_div::makeInstance('Tx_Extbase_Utility_Localization');
-
-		# initialize the cart item repository
-		$this->cartItemRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CartItemRepository');
-
-		# initialize the customer repository
-		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
-
-		# initialize the price calculation service
-		$this->cartService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_CartService');
 
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
@@ -105,7 +138,8 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	 */
 	public function indexAction() {
 		if($this->customer) {
-			$this->view->assign('cartItems', $this->customer->getCartItems());
+			$this->view->assign('customer', $this->customer);
+			//$this->view->assign('cartItems', $this->customer->getCartItems());
 			$this->view->assign('totalPrice', $this->cartService->getTotalPrice($this->customer->getCartItems()));
 		}
 	}
@@ -114,15 +148,16 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	 * Update action for this controller.
 	 *
 	 * @dontverifyrequesthash
-	 * @param array $cartItems
+	 * @param Tx_HypeStore_Domain_Model_Customer $customer
 	 * @return void
 	 */
-	public function updateAction(array $cartItems) {
+	public function updateAction(Tx_HypeStore_Domain_Model_Customer $customer) {
 
 		if($this->customer) {
 
 			# map the new cart items onto the existing ones
-			$this->propertyMapper->map(array('cartItems'), array('cartItems' => $cartItems), $this->customer);
+			//$this->propertyMapper->map(array('cartItems'), array('cartItems' => $cartItems), $this->customer);
+			$this->customerRepository->update($customer);
 
 			# loop through all cart items
 			foreach($this->customer->getCartItems() as $cartItem) {

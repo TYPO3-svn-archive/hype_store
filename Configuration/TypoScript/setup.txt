@@ -65,12 +65,6 @@ config.tx_extbase {
 						tx_hypestore_domain_model_watchlist_items.mapOnProperty = watchlistItems
 					}
 				}
-
-				columns {
-					cart_items.foreignClass = Tx_HypeStore_Domain_Model_CartItem
-					cart_items.foreignClass = Tx_HypeStore_Domain_Model_CartItem
-					watchlist_items.foreignClass = Tx_HypeStore_Domain_Model_WatchlistItem
-				}
 			}
 
 			Tx_HypeStore_Domain_Model_CustomerAddress {

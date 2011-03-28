@@ -25,6 +25,8 @@
 /**
  * A repository for Tax Scales
  */
-class Tx_HypeStore_Domain_Repository_TaxScaleRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_TaxScaleRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_TaxScaleRepositoryInterface {
+
 }
 ?>

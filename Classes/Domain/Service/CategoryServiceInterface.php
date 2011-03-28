@@ -23,33 +23,12 @@
  ***************************************************************/
 
 /**
- * A repository for Categories
+ * An interface for category services
  */
-class Tx_HypeStore_Domain_Repository_CategoryRepository extends Tx_Extbase_Persistence_Repository
-	implements Tx_HypeStore_Domain_Repository_CategoryRepositoryInterface {
-
-	protected $referencedCategories = array();
-
-	public function findMainCategories() {
-		$categories = $this->findAll();
-
-		foreach($categories as $category) {
-			$subcategories = $category->getCategories();
-
-			foreach($subcategories as $subcategory) {
-				if(!in_array($subcategory->getUid(), $this->referencedCategories)) {
-					array_push($this->referencedCategories, $subcategory->getUid());
-				}
-			}
-		}
-
-		foreach($categories as $key => $category) {
-			if(in_array($category->getUid(), $this->referencedCategories)) {
-				unset($categories[$key]);
-			}
-		}
-
-		return $categories;
-	}
+interface Tx_HypeStore_Domain_Service_CategoryServiceInterface {
+	public function getRootline(Tx_HypeStore_Domain_Model_Category $category);
+	public function getPrecedingCategories(Tx_HypeStore_Domain_Model_Category $category);
+	public function getSucceedingCategories(Tx_HypeStore_Domain_Model_Category $category);
+	public function getDescendentProducts(Tx_HypeStore_Domain_Model_Category $category);
 }
 ?>

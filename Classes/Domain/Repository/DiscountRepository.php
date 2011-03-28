@@ -25,7 +25,8 @@
 /**
  * A repository for Discounts
  */
-class Tx_HypeStore_Domain_Repository_DiscountRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_DiscountRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_DiscountRepositoryInterface {
 
 	/**
 	 * Finds all valid discounts for a given product

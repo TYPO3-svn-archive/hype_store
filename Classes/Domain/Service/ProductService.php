@@ -25,7 +25,8 @@
 /**
  * Product service
  */
-class Tx_HypeStore_Domain_Service_ProductService implements t3lib_singleton {
+class Tx_HypeStore_Domain_Service_ProductService
+	implements t3lib_singleton, Tx_HypeStore_Domain_Service_ProductServiceInterface {
 
 	/**
 	 * @var Tx_HypeStore_Domain_Service_CategoryService

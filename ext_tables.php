@@ -824,6 +824,8 @@ if(TYPO3_MODE == 'BE') {
 
 if(TYPO3_MODE == 'BE') {
 
+	# RECORD
+
 	# Category
 	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_category.xml');
 
@@ -859,6 +861,25 @@ if(TYPO3_MODE == 'BE') {
 
 	# Watchlist Item
 	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_watchlist_item', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_watchlist_item.xml');
+
+
+
+	# PLUGIN
+
+	# Category
+	t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.hypestore_category.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-plugin_category.xml');
+
+	# Product
+	t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.hypestore_product.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-plugin_product.xml');
+
+	# Cart
+	t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.hypestore_cart.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-plugin_cart.xml');
+
+	# Checkout
+	t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.hypestore_checkout.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-plugin_checkout.xml');
+
+	# Watchlist
+	t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.hypestore_watchlist.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-plugin_watchlist.xml');
 }
 
 ?>

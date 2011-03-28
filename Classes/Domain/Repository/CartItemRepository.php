@@ -25,6 +25,7 @@
 /**
  * A repository for Cart Items
  */
-class Tx_HypeStore_Domain_Repository_CartItemRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_CartItemRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_CartItemRepositoryInterface {
 }
 ?>

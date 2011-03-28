@@ -25,6 +25,8 @@
 /**
  * A repository for Articles
  */
-class Tx_HypeStore_Domain_Repository_ArticleRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_ArticleRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_ArticleRepositoryInterface {
+
 }
 ?>

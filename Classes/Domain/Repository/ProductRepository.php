@@ -25,7 +25,8 @@
 /**
  * A repository for Products
  */
-class Tx_HypeStore_Domain_Repository_ProductRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_ProductRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_ProductRepositoryInterface {
 
 	/**
 	 * Finds all products which are assigned to at least one of the given categories

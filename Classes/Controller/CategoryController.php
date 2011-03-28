@@ -31,9 +31,19 @@
 class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * @var Tx_HypeStore_Domain_Repository_CategoryRepository
+	 * @var Tx_HypeStore_Domain_Repository_CategoryRepositoryInterface
 	 */
 	protected $categoryRepository;
+
+	/**
+	 * Injects the category repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_CategoryRepositoryInterface $categoryRepository
+	 * @return void
+	 */
+	public function injectCategoryRepository(Tx_HypeStore_Domain_Repository_CategoryRepositoryInterface $categoryRepository) {
+		$this->categoryRepository = $categoryRepository;
+	}
 
 	/**
 	 * Initializes the current action
@@ -41,9 +51,6 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	 * @return void
 	 */
 	public function initializeAction() {
-
-		# instantiate the category repository
-		$this->categoryRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CategoryRepository');
 
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0

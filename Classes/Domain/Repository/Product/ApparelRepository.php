@@ -25,7 +25,8 @@
 /**
  * A repository for Apparel
  */
-class Tx_HypeStore_Domain_Repository_Product_ApparelRepository extends Tx_HypeStore_Domain_Repository_ProductRepository {
+class Tx_HypeStore_Domain_Repository_Product_ApparelRepository extends Tx_HypeStore_Domain_Repository_ProductRepository
+	implements Tx_HypeStore_Domain_Repository_Product_ApparelRepositoryInterface {
 
 }
 ?>

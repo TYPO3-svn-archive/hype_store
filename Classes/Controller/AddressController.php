@@ -31,7 +31,7 @@
 class Tx_HypeStore_Controller_AddressController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * @var Tx_HypeStore_Domain_Repository_CustomerRepository
+	 * @var Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface
 	 */
 	protected $customerRepository;
 
@@ -41,14 +41,21 @@ class Tx_HypeStore_Controller_AddressController extends Tx_Extbase_MVC_Controlle
 	protected $customer = NULL;
 
 	/**
+	 * Injects the customer repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface $customerRepository
+	 * @return void
+	 */
+	public function injectCustomerRepository(Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface $customerRepository) {
+		$this->customerRepository = $customerRepository;
+	}
+
+	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-
-		# initialize the customer repository
-		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
 
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0

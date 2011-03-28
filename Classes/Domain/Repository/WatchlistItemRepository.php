@@ -25,6 +25,8 @@
 /**
  * A repository for Watchlist Items
  */
-class Tx_HypeStore_Domain_Repository_WatchlistItemRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_WatchlistItemRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_WatchlistItemRepositoryInterface {
+
 }
 ?>

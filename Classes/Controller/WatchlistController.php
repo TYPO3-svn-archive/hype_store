@@ -36,7 +36,7 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	protected $localization;
 
 	/**
-	 * @var Tx_HypeStore_Domain_Repository_CustomerRepository
+	 * @var Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface
 	 */
 	protected $customerRepository;
 
@@ -46,17 +46,31 @@ class Tx_HypeStore_Controller_WatchlistController extends Tx_Extbase_MVC_Control
 	protected $customer;
 
 	/**
+	 * Injects the localization
+	 *
+	 * @var Tx_Extbase_Utility_Localization $localization
+	 * @return void
+	 */
+	public function injectLocalization(Tx_Extbase_Utility_Localization $localization) {
+		$this->localization = $localization;
+	}
+
+	/**
+	 * Injects the customer repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface $customerRepository
+	 * @return void
+	 */
+	public function injectCustomerRepository(Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface $customerRepository) {
+		$this->customerRepository = $customerRepository;
+	}
+
+	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-
-		# initialize localization
-		$this->localization = t3lib_div::makeInstance('Tx_Extbase_Utility_Localization');
-
-		# initialize the customer repository
-		$this->customerRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_CustomerRepository');
 
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0

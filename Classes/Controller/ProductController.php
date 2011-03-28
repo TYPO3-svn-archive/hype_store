@@ -31,9 +31,34 @@
 class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * @var Tx_HypeStore_Domain_Repository_ProductRepository
+	 * @var Tx_HypeStore_Domain_Repository_ProductRepositoryInterface
 	 */
 	protected $productRepository;
+
+	/**
+	 * @var Tx_HypeStore_Domain_Repository_DiscountRepositoryInterface
+	 */
+	protected $discountRepository;
+
+	/**
+	 * Injects the product repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_ProductRepositoryInterface $productRepository
+	 * @return void
+	 */
+	public function injectProductRepository(Tx_HypeStore_Domain_Repository_ProductRepositoryInterface $productRepository) {
+		$this->productRepository = $productRepository;
+	}
+
+	/**
+	 * Injects the discount repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_DiscountRepositoryInterface $discountRepository
+	 * @return void
+	 */
+	public function injectDiscountRepository(Tx_HypeStore_Domain_Repository_DiscountRepositoryInterface $discountRepository) {
+		$this->discountRepository = $discountRepository;
+	}
 
 	/**
 	 * Initializes the current action
@@ -41,12 +66,6 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 	 * @return void
 	 */
 	public function initializeAction() {
-
-		# initialize product repository
-		$this->productRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_ProductRepository');
-
-		# initialize product repository
-		$this->discountRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_DiscountRepository');
 
 		# prepare category pid (flexform hack)
 		$this->settings['view']['category']['pid'] = (strpos($this->settings['view']['category']['pid'], '_')) > 0

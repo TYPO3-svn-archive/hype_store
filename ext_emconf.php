@@ -40,9 +40,9 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'php' => '5.2.0-0.0.0',
-			'typo3' => '4.4.0-4.4.99',
-			'extbase' => '1.2.0-0.0.0',
-			'fluid' => '1.2.0-0.0.0',
+			'typo3' => '4.5.0-4.5.99',
+			'extbase' => '1.3.0-1.3.99',
+			'fluid' => '1.3.0-1.3.99',
 			'hype' => '0.3.2-0.0.0',
 			'hype_directory' => '0.1.2-0.0.0',
 		),

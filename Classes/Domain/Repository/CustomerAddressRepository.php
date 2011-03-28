@@ -25,6 +25,8 @@
 /**
  * A repository for Customer Addresses
  */
-class Tx_HypeStore_Domain_Repository_CustomerAddressRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_CustomerAddressRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_CustomerAddressRepositoryInterface {
+
 }
 ?>

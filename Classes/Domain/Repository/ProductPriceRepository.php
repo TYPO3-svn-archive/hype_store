@@ -25,6 +25,8 @@
 /**
  * A repository for Product Prices
  */
-class Tx_HypeStore_Domain_Repository_ProductPriceRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_HypeStore_Domain_Repository_ProductPriceRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_ProductPriceRepositoryInterface {
+
 }
 ?>
