@@ -41,11 +41,11 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	protected $addresses;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Order>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Purchase>
 	 * @lazy
 	 * @cascade remove
 	 */
-	protected $orders;
+	protected $purchases;
 
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_CartItem>
@@ -66,7 +66,7 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	 */
 	public function __construct() {
 		$this->addresses = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
-		$this->orders = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$this->purchases = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 		$this->cartItems = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 		$this->watchlistItems = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 	}
@@ -120,51 +120,51 @@ class Tx_HypeStore_Domain_Model_Customer extends Tx_Hype_Domain_Model_Typo3_Fron
 	}
 
 	/**
-	 * Setter for orders
+	 * Setter for purchases
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $orders
+	 * @param Tx_Extbase_Persistence_ObjectStorage $purchases
 	 * @return void
 	 */
-	public function setOrders(Tx_Extbase_Persistence_ObjectStorage $orders) {
-		$this->orders = $orders;
+	public function setPurchases(Tx_Extbase_Persistence_ObjectStorage $purchases) {
+		$this->purchases = $purchases;
 	}
 
 	/**
-	 * Getter for orders
+	 * Getter for purchases
 	 *
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function getOrders() {
-		return $this->orders;
+	public function getPurchases() {
+		return $this->purchases;
 	}
 
 	/**
-	 * Adds an order
+	 * Adds a purchase
 	 *
-	 * @param Tx_HypeStore_Domain_Model_Order $order
+	 * @param Tx_HypeStore_Domain_Model_Purchase $purchase
 	 * @return void
 	 */
-	public function addOrder(Tx_HypeStore_Domain_Model_Order $order) {
-		$this->orders->attach($order);
+	public function addPurchase(Tx_HypeStore_Domain_Model_Purchase $purchase) {
+		$this->purchases->attach($purchase);
 	}
 
 	/**
-	 * Removes an order
+	 * Removes a purchase
 	 *
-	 * @param Tx_HypeStore_Domain_Model_Order $order
+	 * @param Tx_HypeStore_Domain_Model_Purchase $purchase
 	 * @return void
 	 */
-	public function removeOrder(Tx_HypeStore_Domain_Model_Order $order) {
-		$this->orders->detach($order);
+	public function removePurchase(Tx_HypeStore_Domain_Model_Purchase $purchase) {
+		$this->purchases->detach($purchase);
 	}
 
 	/**
-	 * Remove all orders
+	 * Remove all purchases
 	 *
 	 * @return void
 	 */
-	public function removeOrders() {
-		$this->orders = new Tx_Extbase_Persistence_ObjectStorage();
+	public function removePurchases() {
+		$this->purchases = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
 	/**

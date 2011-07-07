@@ -23,10 +23,15 @@
  ***************************************************************/
 
 /**
- * A repository for Depots
+ * Editor
+ *
+ * @package HypeStore
+ * @subpackage Domain/Model
+ * @version $Id:$
+ * @scope prototype
+ * @entity
  */
-class Tx_HypeStore_Domain_Repository_DepotRepository extends Tx_Extbase_Persistence_Repository
-	implements Tx_HypeStore_Domain_Repository_DepotRepositoryInterface {
+class Tx_HypeStore_Domain_Model_Contact_Editor extends Tx_HypeStore_Domain_Model_Contact {
 
 }
 ?>

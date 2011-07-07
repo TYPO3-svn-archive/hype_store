@@ -1,14 +1,21 @@
 includeLibs.tx_hypestore_menu = EXT:hype_store/Classes/Hook/class.tx_hypestore_menu.php
 
 config.tx_extbase {
+	objects {
+
+	}
+
 	persistence {
 		classes {
+
+			# Category
 			Tx_HypeStore_Domain_Model_Category {
 				mapping {
 					tableName = tx_hypestore_domain_model_category
 				}
 			}
 
+			# Product
 			Tx_HypeStore_Domain_Model_Product {
 				mapping {
 					tableName = tx_hypestore_domain_model_product
@@ -16,9 +23,10 @@ config.tx_extbase {
 				}
 
 				subclasses {
+					AudioDisc = Tx_HypeStore_Domain_Model_Product_AudioDisc
 					Apparel = Tx_HypeStore_Domain_Model_Product_Apparel
-					Furniture = Tx_HypeStore_Domain_Model_Product_Furniture
 					Book = Tx_HypeStore_Domain_Model_Product_Book
+					Furniture = Tx_HypeStore_Domain_Model_Product_Furniture
 				}
 
 				columns {
@@ -27,6 +35,7 @@ config.tx_extbase {
 				}
 			}
 
+			# Product: Apparel
 			Tx_HypeStore_Domain_Model_Product_Apparel < .Tx_HypeStore_Domain_Model_Product
 			Tx_HypeStore_Domain_Model_Product_Apparel {
 				mapping {
@@ -36,15 +45,17 @@ config.tx_extbase {
 				subclasses >
 			}
 
-			Tx_HypeStore_Domain_Model_Product_Furniture < .Tx_HypeStore_Domain_Model_Product
-			Tx_HypeStore_Domain_Model_Product_Furniture {
+			# Product: AudioDisc
+			Tx_HypeStore_Domain_Model_Product_AudioDisc < .Tx_HypeStore_Domain_Model_Product
+			Tx_HypeStore_Domain_Model_Product_AudioDisc {
 				mapping {
-					recordType = furniture
+					recordType = audio_disc
 				}
 
 				subclasses >
 			}
 
+			# Product: Book
 			Tx_HypeStore_Domain_Model_Product_Book < .Tx_HypeStore_Domain_Model_Product
 			Tx_HypeStore_Domain_Model_Product_Book {
 				mapping {
@@ -54,88 +65,158 @@ config.tx_extbase {
 				subclasses >
 			}
 
+			# Product: Furniture
+			Tx_HypeStore_Domain_Model_Product_Furniture < .Tx_HypeStore_Domain_Model_Product
+			Tx_HypeStore_Domain_Model_Product_Furniture {
+				mapping {
+					recordType = furniture
+				}
+
+				subclasses >
+			}
+
+			# Contact: Artist
+			Tx_HypeStore_Domain_Model_Contact_Artist {
+				mapping {
+					tableName = tx_hypedirectory_domain_model_contact
+				}
+			}
+
+			# Contact: Author
+			Tx_HypeStore_Domain_Model_Contact_Author {
+				mapping {
+					tableName = tx_hypedirectory_domain_model_contact
+				}
+			}
+
+			# Contact: Editor
+			Tx_HypeStore_Domain_Model_Contact_Editor {
+				mapping {
+					tableName = tx_hypedirectory_domain_model_contact
+				}
+			}
+
+			# Contact: Manufacturer
+			Tx_HypeStore_Domain_Model_Contact_Manufacturer {
+				mapping {
+					tableName = tx_hypedirectory_domain_model_contact
+				}
+			}
+
+			# Contact: Publisher
+			Tx_HypeStore_Domain_Model_Contact_Publisher {
+				mapping {
+					tableName = tx_hypedirectory_domain_model_contact
+				}
+			}
+
+			# Customer
 			Tx_HypeStore_Domain_Model_Customer {
 				mapping {
 					tableName = fe_users
 
 					columns {
 						tx_hypestore_domain_model_addresses.mapOnProperty = addresses
-						tx_hypestore_domain_model_orders.mapOnProperty = orders
+						tx_hypestore_domain_model_purchases.mapOnProperty = purchases
 						tx_hypestore_domain_model_cart_items.mapOnProperty = cartItems
 						tx_hypestore_domain_model_watchlist_items.mapOnProperty = watchlistItems
 					}
 				}
 			}
 
+			# Customer Address
 			Tx_HypeStore_Domain_Model_CustomerAddress {
 				mapping {
 					tableName = tx_hypestore_domain_model_customer_address
 				}
 			}
 
+			# Product Price
 			Tx_HypeStore_Domain_Model_ProductPrice {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_price
 				}
 			}
 
+			# Tax Scale
 			Tx_HypeStore_Domain_Model_TaxScale {
 				mapping {
 					tableName = tx_hypestore_domain_model_tax_scale
 				}
 			}
 
+			# Product Attribute
 			Tx_HypeStore_Domain_Model_ProductAttribute {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_attribute
 				}
 			}
 
+			# Product Stock
 			Tx_HypeStore_Domain_Model_ProductStock {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_stock
 				}
 			}
 
+			# Product State
 			Tx_HypeStore_Domain_Model_ProductState {
 				mapping {
 					tableName = tx_hypestore_domain_model_product_state
 				}
 			}
 
+			# Product Track
+			Tx_HypeStore_Domain_Model_ProductTrack {
+				mapping {
+					tableName = tx_hypestore_domain_model_product_track
+				}
+			}
+
+			# Depot
+			Tx_HypeStore_Domain_Model_Depot {
+				mapping {
+					tableName = tx_hypedirectory_domain_model_contact
+
+					columns {
+						tx_hypestore_domain_model_stocks.mapOnProperty = stocks
+						tx_hypestore_domain_model_states.mapOnProperty = states
+					}
+				}
+			}
+
+			# Discount
 			Tx_HypeStore_Domain_Model_Discount {
 				mapping {
 					tableName = tx_hypestore_domain_model_discount
 				}
 			}
 
-			Tx_HypeStore_Domain_Model_Depot {
-				mapping {
-					tableName = tx_hypestore_domain_model_depot
-				}
-			}
-
+			# Cart Item
 			Tx_HypeStore_Domain_Model_CartItem {
 				mapping {
 					tableName = tx_hypestore_domain_model_cart_item
 				}
 			}
 
+			# Watchlist Item
 			Tx_HypeStore_Domain_Model_WatchlistItem {
 				mapping {
 					tableName = tx_hypestore_domain_model_watchlist_item
 				}
 			}
 
-			Tx_HypeStore_Domain_Model_Order {
+			# Purchase
+			Tx_HypeStore_Domain_Model_Purchase {
 				mapping {
-					tableName = tx_hypestore_domain_model_order
+					tableName = tx_hypestore_domain_model_purchase
 				}
 			}
 
-			Tx_HypeStore_Domain_Model_Manufacturer {
+			# Purchase
+			Tx_HypeStore_Domain_Model_Purchase_item {
 				mapping {
-					tableName = tx_hypestore_domain_model_manufacturer
+					tableName = tx_hypestore_domain_model_purchase_item
 				}
 			}
 		}
@@ -186,6 +267,10 @@ plugin.tx_hypestore {
 
 					files {
 						path = {$plugin.tx_hypestore.settings.object.product.property.files.path}
+					}
+
+					tracks {
+						path = {$plugin.tx_hypestore.settings.object.product.property.tracks.path}
 					}
 				}
 			}

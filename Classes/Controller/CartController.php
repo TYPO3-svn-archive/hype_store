@@ -156,8 +156,8 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 		if($this->customer) {
 
 			# map the new cart items onto the existing ones
-			//$this->propertyMapper->map(array('cartItems'), array('cartItems' => $cartItems), $this->customer);
-			$this->customerRepository->update($customer);
+			$this->propertyMapper->map(array('cartItems'), array('cartItems' => $customer->getCartItems()), $this->customer);
+			$this->customerRepository->update($this->customer);
 
 			# loop through all cart items
 			foreach($this->customer->getCartItems() as $cartItem) {

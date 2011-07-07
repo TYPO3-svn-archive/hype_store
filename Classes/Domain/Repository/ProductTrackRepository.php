@@ -23,10 +23,10 @@
  ***************************************************************/
 
 /**
- * A repository for Customers
+ * A repository for Product Prices
  */
-class Tx_HypeStore_Domain_Repository_CustomerRepository extends Tx_Hype_Domain_Repository_Typo3_FrontendUserRepository
-	implements Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface {
+class Tx_HypeStore_Domain_Repository_ProductPriceRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_ProductPriceRepositoryInterface {
 
 }
 ?>

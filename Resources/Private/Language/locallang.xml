@@ -45,6 +45,10 @@
 			<label index="product.index.editor">Editor</label>
 			<label index="product.index.edition">Edition</label>
 
+			<label index="product.index.artist">Artist</label>
+			<label index="product.index.record_label">Record label</label>
+			<label index="product.index.tracks">Tracks</label>
+
 			<label index="product.record.put_into_cart">Put %s into the cart.</label>
 			<label index="product.record.put_onto_watchlist">Put %s onto the watchlist.</label>
 			<label index="product.record.product_not_found">Product not found.</label>
@@ -106,6 +110,10 @@
 			<label index="product.index.publication_year">Veröffentlichungsjahr</label>
 			<label index="product.index.editor">Herausgeber</label>
 			<label index="product.index.edition">Ausgabe</label>
+
+			<label index="product.index.artist">Interpret</label>
+			<label index="product.index.record_label">Platten-Label</label>
+			<label index="product.index.tracks">Tracks</label>
 
 			<label index="product.record.put_into_cart">%s in den Warenkorb legen.</label>
 			<label index="product.record.put_onto_watchlist">%s auf die Merkliste setzen.</label>

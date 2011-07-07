@@ -23,8 +23,10 @@
  ***************************************************************/
 
 /**
- * An interface for depot repositories
+ * A repository for Audio Disc
  */
-interface Tx_HypeStore_Domain_Repository_DepotRepositoryInterface {
+class Tx_HypeStore_Domain_Repository_Product_AudioDiscRepository extends Tx_HypeStore_Domain_Repository_ProductRepository
+	implements Tx_HypeStore_Domain_Repository_Product_AudioDiscRepositoryInterface {
+
 }
 ?>

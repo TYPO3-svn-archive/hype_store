@@ -1,0 +1,64 @@
+{namespace h=Tx_Hype_ViewHelpers}
+
+<!-- product.title -->
+<h1 class="title">{product.title}</h1>
+
+<!-- product.subtitle -->
+<f:if condition="{product.subtitle}">
+	<h2 class="subtitle">{product.subtitle}</h2>
+</f:if>
+
+<!-- product.identifier -->
+<f:if condition="{product.identifier}">
+	<p class="identifier">{f:translate(key: 'product.index.article_number')} {product.identifier}</p>
+</f:if>
+
+<!-- product.introduction -->
+<f:if condition="{product.introduction}">
+	<p class="introduction">{product.introduction->f:format.nl2br()}</p>
+</f:if>
+
+<!-- product.images -->
+<f:if condition="{product.images}">
+	<p class="images">
+		<f:for each="{product.images}" as="image">
+			<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
+				<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.product.action.record.property.images.maxWidth}" maxHeight="{settings.view.product.action.record.property.images.maxHeight}" alt="" />
+			</f:if>
+		</f:for>
+	</p>
+</f:if>
+
+<hr />
+
+<!-- product.grossPrice -->
+<f:if condition="{product.grossPrice}">
+	<dl class="flat_price">
+		<f:if condition="{product.taxScale}">
+			<f:then>
+				<dt>{f:translate(key: 'product.index.price_including_vat', arguments: {0: product.taxScale.rate})}</dt>
+			</f:then>
+
+			<f:else>
+				<dt>{f:translate(key: 'product.index.price')}</dt>
+			</f:else>
+		</f:if>
+
+		<f:if condition="{product.discount}">
+			<f:then>
+				<dd>
+					<strike>{product.undiscountedGrossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</strike><br />
+					<em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')} (-{product.discount.rate}%)</em>
+				</dd>
+			</f:then>
+
+			<f:else>
+				<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+			</f:else>
+		</f:if>
+
+		<f:if condition="{product.listPrice}">
+			<dd><small class="list_price">{f:translate(key: 'product.index.list_price')} <em>{product.listPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></small></dd>
+		</f:if>
+	</dl>
+</f:if>

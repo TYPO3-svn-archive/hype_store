@@ -48,13 +48,13 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	protected $isbn13Number;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeDirectory_Domain_Model_Contact>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Contact_Author>
 	 * @lazy
 	 */
 	protected $authors;
 
 	/**
-	 * @var Tx_HypeDirectory_Domain_Model_Contact
+	 * @var Tx_HypeStore_Domain_Model_Contact_Publisher
 	 */
 	protected $publisher;
 
@@ -65,7 +65,7 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	protected $publicationYear;
 
 	/**
-	 * @var Tx_HypeDirectory_Domain_Model_Contact
+	 * @var Tx_HypeStore_Domain_Model_Contact_Editor
 	 */
 	protected $editor;
 
@@ -157,20 +157,20 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	/**
 	 * Adds an author
 	 *
-	 * @param Tx_HypeDirectory_Domain_Model_Contact $author
+	 * @param Tx_HypeStore_Domain_Model_Contact_Author $author
 	 * @return void
 	 */
-	public function addAuthor(Tx_HypeDirectory_Domain_Model_Contact $author) {
+	public function addAuthor(Tx_HypeStore_Domain_Model_Contact_Author $author) {
 		$this->authors->attach($author);
 	}
 
 	/**
 	 * Removes an author
 	 *
-	 * @param Tx_HypeDirectory_Domain_Model_Contact $author
+	 * @param Tx_HypeStore_Domain_Model_Contact_Author $author
 	 * @return void
 	 */
-	public function removeAuthor(Tx_HypeDirectory_Domain_Model_Contact $author) {
+	public function removeAuthor(Tx_HypeStore_Domain_Model_Contact_Author $author) {
 		$this->authors->detach($author);
 	}
 
@@ -186,17 +186,17 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	/**
 	 * Setter for publisher
 	 *
-	 * @param Tx_HypeDirectory_Domain_Model_Contact $publisher
+	 * @param Tx_HypeStore_Domain_Model_Contact_Publisher $publisher
 	 * @return void
 	 */
-	public function setPublisher(Tx_HypeDirectory_Domain_Model_Contact $publisher) {
+	public function setPublisher(Tx_HypeStore_Domain_Model_Contact_Publisher $publisher) {
 		$this->publisher = $publisher;
 	}
 
 	/**
 	 * Getter for publisher
 	 *
-	 * @return Tx_HypeDirectory_Domain_Model_Contact
+	 * @return Tx_HypeStore_Domain_Model_Contact_Publisher
 	 */
 	public function getPublisher() {
 		return $this->publisher;
@@ -224,17 +224,17 @@ class Tx_HypeStore_Domain_Model_Product_Book extends Tx_HypeStore_Domain_Model_P
 	/**
 	 * Setter for editor
 	 *
-	 * @param Tx_HypeDirectory_Domain_Model_Contact $editor
+	 * @param Tx_HypeStore_Domain_Model_Contact_Editor $editor
 	 * @return void
 	 */
-	public function setEditor(Tx_HypeDirectory_Domain_Model_Contact $editor) {
+	public function setEditor(Tx_HypeStore_Domain_Model_Contact_Editor $editor) {
 		$this->editor = $editor;
 	}
 
 	/**
 	 * Getter for editor
 	 *
-	 * @return Tx_HypeDirectory_Domain_Model_Contact
+	 * @return Tx_HypeStore_Domain_Model_Contact_Editor
 	 */
 	public function getEditor() {
 		return $this->editor;

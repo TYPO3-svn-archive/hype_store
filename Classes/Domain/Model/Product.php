@@ -108,7 +108,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	protected $articles;
 
 	/**
-	 * @var Tx_HypeDirectory_Domain_Model_Contact
+	 * @var Tx_HypeStore_Domain_Model_Contact_Manufacturer
 	 */
 	protected $manufacturer;
 
@@ -538,17 +538,17 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	/**
 	 * Setter for manufacturer
 	 *
-	 * @param Tx_HypeDirectory_Domain_Model_Contact $manufacturer
+	 * @param Tx_HypeStore_Domain_Model_Contact_Manufacturer $manufacturer
 	 * @return void
 	 */
-	public function setManufacturer(Tx_HypeDirectory_Domain_Model_Contact $manufacturer) {
+	public function setManufacturer(Tx_HypeStore_Domain_Model_Contact_Manufacturer $manufacturer) {
 		$this->manufacturer = $manufacturer;
 	}
 
 	/**
 	 * Getter for manufacturer
 	 *
-	 * @return Tx_HypeDirectory_Domain_Model_Contact
+	 * @return Tx_HypeStore_Domain_Model_Contact_Manufacturer
 	 */
 	public function getManufacturer() {
 		return $this->manufacturer;

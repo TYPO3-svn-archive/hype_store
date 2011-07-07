@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Hype Store',
-	'description' => 'Implements an online shop with categories, products, a shopping cart including checkout and other features.',
+	'description' => 'Web-Shop with categories, products, a shopping cart including checkout and other features.',
 	'category' => 'fe',
 	'shy' => 0,
 	'version' => '0.1.2',
@@ -24,11 +24,12 @@ $EM_CONF[$_EXTKEY] = array(
 	'state' => 'alpha',
 	'uploadfolder' => 0,
 	'createDirs' => '
-		uploads/hype/store/category/images,
-		uploads/hype/store/product/images,
-		uploads/hype/store/product/files,
-		uploads/hype/store/article/images,
-		uploads/hype/store/article/files',
+		uploads/hype/store/category/image/,
+        uploads/hype/store/category/rte/,
+		uploads/hype/store/product/image/,
+		uploads/hype/store/product/file/,
+        uploads/hype/store/product/track/,
+        uploads/hype/store/product/rte/',
 	'modify_tables' => '',
 	'clearcacheonload' => 0,
 	'lockType' => '',

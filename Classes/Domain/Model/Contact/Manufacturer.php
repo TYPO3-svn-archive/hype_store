@@ -23,10 +23,15 @@
  ***************************************************************/
 
 /**
- * A repository for Articles
+ * Manufacturer
+ *
+ * @package HypeStore
+ * @subpackage Domain/Model
+ * @version $Id:$
+ * @scope prototype
+ * @entity
  */
-class Tx_HypeStore_Domain_Repository_ArticleRepository extends Tx_Extbase_Persistence_Repository
-	implements Tx_HypeStore_Domain_Repository_ArticleRepositoryInterface {
+class Tx_HypeStore_Domain_Model_Contact_Manufacturer extends Tx_HypeStore_Domain_Model_Contact {
 
 }
 ?>

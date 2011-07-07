@@ -28,7 +28,7 @@ plugin.tx_hypestore {
 
 				property {
 					images {
-						path = uploads/hype/store/category/images/
+						path = uploads/hype/store/category/image/
 					}
 				}
 			}
@@ -37,11 +37,15 @@ plugin.tx_hypestore {
 
 				property {
 					images {
-						path = uploads/hype/store/product/images/
+						path = uploads/hype/store/product/image/
 					}
 
 					files {
-						path = uploads/hype/store/product/files/
+						path = uploads/hype/store/product/file/
+					}
+
+					tracks {
+						path = uploads/hype/store/product/track/
 					}
 				}
 			}

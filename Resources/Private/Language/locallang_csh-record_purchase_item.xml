@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help for the table &quot;tx_hypestore_domain_model_purchase_item&quot;</description>
+		<type>CSH</type>
+		<csh_table>tx_hypestore_domain_model_purchase_item</csh_table>
+		<labelContext type="array"></labelContext>
+	</meta>
+
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".description">Defines a purchased product.</label>
+			<label index="purchase.description">Purchase to which the item belongs to.</label>
+			<label index="product.description">Purchased product.</label>
+			<label index="quantity.description">Purchased amount.</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+			<label index=".description">Definiert ein bestelltes Produkt.</label>
+			<label index="purchase.description">Zugehörige Bestellung.</label>
+			<label index="product.description">Bestelltes Produkt.</label>
+			<label index="quantity.description">Bestellte Menge.</label>
+		</languageKey>
+	</data>
+</T3locallang>

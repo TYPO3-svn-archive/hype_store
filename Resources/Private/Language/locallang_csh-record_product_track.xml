@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help for the table &quot;tx_hypestore_domain_model_product_track&quot;</description>
+		<type>CSH</type>
+		<csh_table>tx_hypestore_domain_model_product_track</csh_table>
+		<labelContext type="array"></labelContext>
+	</meta>
+
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".description">Defines a track.</label>
+			<label index="number.description">Number of the track.</label>
+			<label index="title.description">Name of the track.</label>
+			<label index="length.description">Length of the track.</label>
+			<label index="sample.description">Audio file of a sample.</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+			<label index=".description">Nummer des Titels.</label>
+			<label index="title.description">Name des Titels.</label>
+			<label index="length.description">Länge des Titels.</label>
+			<label index="sample.description">Audiodatei eines Hörbeispiels.</label>
+		</languageKey>
+	</data>
+</T3locallang>

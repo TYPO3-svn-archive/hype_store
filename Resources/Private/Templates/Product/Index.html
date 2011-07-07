@@ -5,8 +5,8 @@
 <f:section name="content">
 	<f:if condition="{product}">
 
-		<!-- Product details -->
-		<f:render partial="Product/Index/Product/{product.type->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{product: product, settings: settings}"/>
+		<!-- specific details -->
+		<f:render partial="Product/Index/Product/{product.type->h:format.camelCase()}.html" arguments="{product: product, settings: settings}"/>
 
 		<!-- functions -->
 		<p class="actions">
@@ -25,9 +25,7 @@
 
 		<!-- product.relatedProducts -->
 		<f:if condition="{f:count(subject: product.relatedProducts)} > 0">
-			<hr />
-
-			<div class="products related_products">
+			<section class="related-products">
 				<h3>{f:translate(key: 'product.index.related_products')}</h3>
 
 				<ul>
@@ -43,7 +41,7 @@
 						</li>
 					</f:for>
 				</ul>
-			</div>
+			</section>
 		</f:if>
 	</f:if>
 </f:section>

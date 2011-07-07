@@ -23,8 +23,10 @@
  ***************************************************************/
 
 /**
- * An interface for article repositories
+ * A repository for Purchases
  */
-interface Tx_HypeStore_Domain_Repository_ArticleRepositoryInterface {
+class Tx_HypeStore_Domain_Repository_PurchaseRepository extends Tx_Extbase_Persistence_Repository
+	implements Tx_HypeStore_Domain_Repository_PurchaseRepositoryInterface {
+
 }
 ?>

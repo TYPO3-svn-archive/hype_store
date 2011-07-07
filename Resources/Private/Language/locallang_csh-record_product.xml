@@ -41,6 +41,7 @@
 			<label index="publication_year.description">Year in which the publication was published.</label>
 			<label index="editor.description">For the content responsible person or institution.</label>
 			<label index="edition.description">Number of the edition.</label>
+			<label index="tracks.description">Tracks of the record.</label>
 		</languageKey>
 
 		<languageKey index="de" type="array">
@@ -76,6 +77,7 @@
 			<label index="publication_year.description">Jahr in dem die Publikation veröffentlicht wurde.</label>
 			<label index="editor.description">Für den Inhalt verantwortliche Person oder Institution.</label>
 			<label index="edition.description">Nummer der Ausgabe.</label>
+			<label index="tracks.description">Titel der Audio-CD.</label>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -23,10 +23,8 @@
  ***************************************************************/
 
 /**
- * A repository for Customers
+ * An interface for purchase repositories
  */
-class Tx_HypeStore_Domain_Repository_CustomerRepository extends Tx_Hype_Domain_Repository_Typo3_FrontendUserRepository
-	implements Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface {
-
+interface Tx_HypeStore_Domain_Repository_PurchaseRepositoryInterface {
 }
 ?>

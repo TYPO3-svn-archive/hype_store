@@ -47,16 +47,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array('Watchlist' => 'index,add,remove,move')
 );
 
-# Address
-/*
-Tx_Extbase_Utility_Extension::configurePlugin(
-	$_EXTKEY,
-	'Address',
-	array('Address' => 'index,create,edit,save,delete'),
-	array('Address' => 'index,create,edit,save,delete')
-);
-*/
-
 
 
 # HOOKS
@@ -72,7 +62,7 @@ if(TYPO3_MODE == 'BE') {
 if(TYPO3_MODE == 'FE') {
 
 	# RealUrl
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$_EXTKEY] = 'EXT:hype_store/Classes/Hook/class.tx_hypestore_realurl_autoconfgen.php:&tx_hypestore_realurl_autoconfgen->addRealURLConfig';
+	//$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$_EXTKEY] = 'EXT:hype_store/Classes/Hook/class.tx_hypestore_realurl_autoconfgen.php:&tx_hypestore_realurl_autoconfgen->addRealURLConfig';
 }
 
 ?>

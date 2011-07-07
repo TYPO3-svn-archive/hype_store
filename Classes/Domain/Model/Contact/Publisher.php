@@ -23,10 +23,15 @@
  ***************************************************************/
 
 /**
- * A repository for Customers
+ * Publisher
+ *
+ * @package HypeStore
+ * @subpackage Domain/Model
+ * @version $Id:$
+ * @scope prototype
+ * @entity
  */
-class Tx_HypeStore_Domain_Repository_CustomerRepository extends Tx_Hype_Domain_Repository_Typo3_FrontendUserRepository
-	implements Tx_HypeStore_Domain_Repository_CustomerRepositoryInterface {
+class Tx_HypeStore_Domain_Model_Contact_Publisher extends Tx_HypeStore_Domain_Model_Contact {
 
 }
 ?>

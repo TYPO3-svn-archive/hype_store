@@ -23,8 +23,15 @@
  ***************************************************************/
 
 /**
- * An interface for order repositories
+ * Contact
+ *
+ * @package HypeStore
+ * @subpackage Domain/Model
+ * @version $Id:$
+ * @scope prototype
+ * @entity
  */
-interface Tx_HypeStore_Domain_Repository_OrderRepositoryInterface {
+class Tx_HypeStore_Domain_Model_Contact extends Tx_HypeDirectory_Domain_Model_Contact_Corporation {
+
 }
 ?>

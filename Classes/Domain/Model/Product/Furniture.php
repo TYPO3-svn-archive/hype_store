@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Car
+ * Furniture
  *
  * @package HypeStore
  * @subpackage Domain/Model/Product

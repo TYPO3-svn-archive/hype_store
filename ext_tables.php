@@ -130,6 +130,7 @@ $TCA['tx_hypestore_domain_model_product_type'] = array(
 			'apparel' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/apparel.png',
 			'book' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/book.png',
 			'furniture' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/furniture.png',
+			'audio_disc' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/audio_disc.png',
 		),
 	),
 );
@@ -150,7 +151,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 		'transOrigPointerField'	=> 'l10n_parent',
 		'transOrigDiffSourceField' => 'l10n_diffsource',
 		//'sortby' => 'sorting',
-		'default_sortby' => 'identifier',
+		'default_sortby' => 'type, identifier',
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
@@ -169,48 +170,7 @@ $TCA['tx_hypestore_domain_model_product'] = array(
 			'apparel' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/apparel.png',
 			'book' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/book.png',
 			'furniture' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/furniture.png',
-		),
-	),
-);
-$TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['1'] = $TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['book'];
-$TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['2'] = $TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['furniture'];
-$TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['3'] = $TCA['tx_hypestore_domain_model_product']['ctrl']['typeicons']['apparel'];
-
-# Article
-t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_article');
-$TCA['tx_hypestore_domain_model_article'] = array(
-	'ctrl' => array(
-		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article',
-		'label'	 => 'identifier',
-		'label_alt' => 'product',
-		'label_alt_force' => TRUE,
-		'tstamp'	=> 'tstamp',
-		'crdate'	=> 'crdate',
-		'cruser_id' => 'cruser_id',
-		'languageField'			=> 'sys_language_uid',
-		'transOrigPointerField'	=> 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		//'sortby' => 'sorting',
-		'default_sortby' => 'identifier',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-			'fe_group' => 'fe_group',
-		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/article.png',
-
-		'hideTable' => TRUE,
-		'dividers2tabs' => TRUE,
-		'thumbnail' => 'images',
-		'type'		=> 'type',
-		'typeicon_column' => 'type',
-		'typeicons' => array(
-			'apparel' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/apparel.png',
-			'book' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/book.png',
-			'furniture' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/furniture.png',
+			'audio_disc' => '../typo3conf/ext/hype_store/Configuration/TCA/Icons/Product/audio_disc.png',
 		),
 	),
 );
@@ -272,7 +232,7 @@ $TCA['tx_hypestore_domain_model_product_price'] = array(
 	),
 );
 
-# Tax svale
+# Tax scale
 t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_tax_scale');
 $TCA['tx_hypestore_domain_model_tax_scale'] = array(
 	'ctrl' => array(
@@ -328,19 +288,21 @@ $TCA['tx_hypestore_domain_model_product_stock'] = array(
 	),
 );
 
-# Article stock
-t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_article_stock');
-$TCA['tx_hypestore_domain_model_article_stock'] = array(
+# Product track
+t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_product_track');
+$TCA['tx_hypestore_domain_model_product_track'] = array(
 	'ctrl' => array(
-		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_article_stock',
-		'label'	 => 'article',
+		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_track',
+		'label'	 => 'number',
+		'label_alt' => 'title',
+		'label_alt_force' => TRUE,
 		'tstamp'	=> 'tstamp',
 		'crdate'	=> 'crdate',
 		'cruser_id' => 'cruser_id',
 		'languageField'			=> 'sys_language_uid',
 		'transOrigPointerField'	=> 'l10n_parent',
 		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'sortby' => 'sorting',
+		'default_sortby' => 'number',
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
@@ -349,7 +311,7 @@ $TCA['tx_hypestore_domain_model_article_stock'] = array(
 			'fe_group' => 'fe_group',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/stock.png',
+		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/Product/AudioDisc/track.png',
 
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
@@ -383,34 +345,7 @@ $TCA['tx_hypestore_domain_model_discount'] = array(
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/discount.png',
 
 		'dividers2tabs' => TRUE,
-		'hideTable' => TRUE,
-	),
-);
-
-# Depot
-t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_depot');
-$TCA['tx_hypestore_domain_model_depot'] = array(
-	'ctrl' => array(
-		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_depot',
-		'label'	 => 'title',
-		'tstamp'	=> 'tstamp',
-		'crdate'	=> 'crdate',
-		'cruser_id' => 'cruser_id',
-		'languageField'			=> 'sys_language_uid',
-		'transOrigPointerField'	=> 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'sortby' => 'sorting',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-			'fe_group' => 'fe_group',
-		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/depot.png',
-
-		'dividers2tabs' => TRUE,
+		//'hideTable' => TRUE,
 	),
 );
 
@@ -497,15 +432,12 @@ $TCA['tx_hypestore_domain_model_watchlist_item'] = array(
 	),
 );
 
-# Order
-t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_order');
-$TCA['tx_hypestore_domain_model_order'] = array(
+# Purchase
+t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_purchase');
+$TCA['tx_hypestore_domain_model_purchase'] = array(
 	'ctrl' => array(
-		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_order',
+		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_purchase',
 		'label'	 => 'customer',
-		//'label_alt' => 'category',
-		//'label_alt_force' => TRUE,
-		//'label_userFunc' => 'tx_hypestore_tca_label->getCategory',
 		'tstamp'	=> 'tstamp',
 		'crdate'	=> 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -522,14 +454,40 @@ $TCA['tx_hypestore_domain_model_order'] = array(
 			'fe_group' => 'fe_group',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/order.png',
+		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/purchase.png',
 
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
 	),
 );
 
+# Purchase Item
+t3lib_extMgm::allowTableOnStandardPages('tx_hypestore_domain_model_purchase_item');
+$TCA['tx_hypestore_domain_model_purchase_item'] = array(
+	'ctrl' => array(
+		'title'	 => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_purchase_item',
+		'label'	 => 'product',
+		'tstamp'	=> 'tstamp',
+		'crdate'	=> 'crdate',
+		'cruser_id' => 'cruser_id',
+		'languageField'			=> 'sys_language_uid',
+		'transOrigPointerField'	=> 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+			'fe_group' => 'fe_group',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/purchase_item.png',
 
+		'hideTable' => TRUE,
+		'dividers2tabs' => TRUE,
+	),
+);
 
 
 
@@ -604,12 +562,12 @@ $columns = array(
 			'maxitems'					=> 999999,
 		),
 	),
-	'tx_hypestore_domain_model_orders' => array(
+	'tx_hypestore_domain_model_purchases' => array(
 		'exclude' => 1,
-		'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:fe_users.tx_hypestore_domain_model_orders',
+		'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:fe_users.tx_hypestore_domain_model_purchases',
 		'config' => array(
 			'type'						=> 'inline',
-			'foreign_table'				=> 'tx_hypestore_domain_model_order',
+			'foreign_table'				=> 'tx_hypestore_domain_model_purchase',
 			'foreign_field'				=> 'customer',
 			//'foreign_label'			=> 'product',
 			//'foreign_default_sortby'	=> 'product',
@@ -624,7 +582,7 @@ $columns = array(
 );
 
 t3lib_extMgm::addTCAcolumns('fe_users', $columns, 1);
-t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;Store,tx_hypestore_domain_model_shipping_address,tx_hypestore_domain_model_billing_address,tx_hypestore_domain_model_orders;;;;1-1-1,tx_hypestore_domain_model_cart_items;;;;1-1-1,tx_hypestore_domain_model_watchlist_items;;;;1-1-1', '', 'after:tx_hypedirectory_domain_model_addresses');
+t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;Store,tx_hypestore_domain_model_shipping_address,tx_hypestore_domain_model_billing_address,tx_hypestore_domain_model_purchases;;;;1-1-1,tx_hypestore_domain_model_cart_items;;;;1-1-1,tx_hypestore_domain_model_watchlist_items;;;;1-1-1', '', 'after:tx_hypedirectory_domain_model_addresses');
 
 # Contacts
 t3lib_div::loadTCA('tx_hypedirectory_domain_model_contact');
@@ -715,11 +673,28 @@ $columns = array(
 			),
 		),
 	),
+	'tx_hypestore_domain_model_stocks' => array(
+		'exclude' => 0,
+		'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypedirectory_domain_model_contact.tx_hypestore_domain_model_stocks',
+		'config' => array(
+			'type'						=> 'inline',
+			'foreign_table'				=> 'tx_hypestore_domain_model_product_stock',
+			'foreign_field'				=> 'depot',
+			'foreign_label'				=> 'product',
+			'foreign_default_sortby'	=> 'product',
+			'foreign_unique'			=> 'product',
+			'appearance'				=> array(
+				'collapseAll'				=> TRUE,
+				'expandSingle'				=> TRUE,
+			),
+			'minitems'					=> 0,
+			'maxitems'					=> 999999,
+		),
+	),
 );
 
 t3lib_extMgm::addTCAcolumns('tx_hypedirectory_domain_model_contact', $columns, 1);
-t3lib_extMgm::addToAllTCAtypes('tx_hypedirectory_domain_model_contact', '--div--;Store,tx_hypestore_domain_model_created_products,tx_hypestore_domain_model_published_products,tx_hypestore_domain_model_edited_products', 'person', 'after:backend_user');
-t3lib_extMgm::addToAllTCAtypes('tx_hypedirectory_domain_model_contact', '--div--;Store,tx_hypestore_domain_model_created_products,tx_hypestore_domain_model_published_products,tx_hypestore_domain_model_edited_products', 'corporation', 'after:related_address');
+t3lib_extMgm::addToAllTCAtypes('tx_hypedirectory_domain_model_contact', '--div--;Store,tx_hypestore_domain_model_created_products,tx_hypestore_domain_model_published_products,tx_hypestore_domain_model_edited_products,tx_hypestore_domain_model_stocks');
 
 
 
@@ -727,49 +702,6 @@ t3lib_extMgm::addToAllTCAtypes('tx_hypedirectory_domain_model_contact', '--div--
 
 # TCE Forms
 $GLOBALS['TYPO3_CONF_VARS']['BE']['XCLASS']['t3lib/class.t3lib_tceforms.php'] = t3lib_extMgm::extPath($_EXTKEY) . '/Classes/Hook/class.tx_hypestore_t3lib_tceforms.php';
-
-
-
-# WEB MODULE
-
-if(TYPO3_MODE == 'BE') {
-
-	# Category
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_category'][0] = array(
-		'fList' => 'title,subtitle,products',
-		'icon' => TRUE,
-	);
-
-	# Product
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_product'][0] = array(
-		'fList' => 'identifier,title,subtitle,images',
-		'icon' => TRUE,
-	);
-
-	# TaxScale
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_tax_scale'][0] = array(
-		'fList' => 'rate',
-		'icon' => TRUE,
-	);
-
-	# Depot
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_depot'][0] = array(
-		'fList' => 'title,city,country',
-		'icon' => TRUE,
-	);
-
-	# Attribute
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_attribute'][0] = array(
-		'fList' => 'title,unit,type',
-		'icon' => TRUE,
-	);
-
-	# Order
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_hypestore_domain_model_order'][0] = array(
-		'fList' => 'customer',
-		'icon' => TRUE,
-	);
-}
 
 
 
@@ -797,13 +729,9 @@ if(TYPO3_MODE == 'BE') {
 	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_discount', 'hype_sto_4', 'EXT:hype_store/Configuration/TCA/Icons/discount.png');
 	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_4', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/discount.png');
 
-	# Depot
-	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_depot', 'hype_sto_5', 'EXT:hype_store/Configuration/TCA/Icons/depot.png');
-	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_5', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/depot.png');
-
-	# Order
-	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_order', 'hype_sto_6', 'EXT:hype_store/Configuration/TCA/Icons/order.png');
-	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_6', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/order.png');
+	# Purchase
+	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_purchase', 'hype_sto_6', 'EXT:hype_store/Configuration/TCA/Icons/purchase.png');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-hype_sto_6', t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/purchase.png');
 
 	# Attributes
 	$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute', 'hype_sto_7', 'EXT:hype_store/Configuration/TCA/Icons/attribute.png');
@@ -844,17 +772,20 @@ if(TYPO3_MODE == 'BE') {
 	# Product Stock
 	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_product_stock', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_product_stock.xml');
 
+	# Product Track
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_product_track', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_product_track.xml');
+
 	# Tax Scale
 	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_tax_scale', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_tax_scale.xml');
-
-	# Depot
-	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_depot', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_depot.xml');
 
 	# Attribute
 	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_attribute', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_attribute.xml');
 
-	# Order
-	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_order', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_order.xml');
+	# Purchase
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_purchase', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_purchase.xml');
+
+	# Purchase Item
+	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_purchase_item', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_purchase_item.xml');
 
 	# Cart Item
 	t3lib_extMgm::addLLrefForTCAdescr('tx_hypestore_domain_model_cart_item', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh-record_cart_item.xml');

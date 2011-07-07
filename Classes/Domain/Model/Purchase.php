@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Depot
+ * Purchase
  *
  * @package HypeStore
  * @subpackage Domain/Model
@@ -33,68 +33,85 @@
  * @scope prototype
  * @entity
  */
-class Tx_HypeStore_Domain_Model_Depot extends Tx_HypeStore_Domain_Model_Contact {
+class Tx_HypeStore_Domain_Model_Purchase extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_ProductStock>
+	 * @var Tx_HypeStore_Domain_Model_Customer
+	 */
+	protected $customer;
+
+	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_PurchaseItem>
 	 * @lazy
 	 * @cascade remove
 	 */
-	protected $stocks;
+	protected $items;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		$this->stocks = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
-	}
-
-	/**
-	 * Setter for stocks
+	 * Setter for customer
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $stocks
+	 * @param Tx_HypeStore_Domain_Model_Customer
 	 * @return void
 	 */
-	public function setStocks(Tx_Extbase_Persistence_ObjectStorage $stocks) {
-		$this->stocks = $stocks;
+	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
+		$this->customer = $customer;
 	}
 
 	/**
-	 * Getter for stocks
+	 * Getter for customer
+	 *
+	 * @return Tx_HypeStore_Domain_Model_Customer
+	 */
+	public function getCustomer() {
+		return $this->customer;
+	}
+
+	/**
+	 * Setter for items
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $items
+	 * @return void
+	 */
+	public function setItems(Tx_Extbase_Persistence_ObjectStorage $items) {
+		$this->items = $items;
+	}
+
+	/**
+	 * Getter for items
 	 *
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function getStocks() {
-		return $this->stocks;
+	public function getItems() {
+		return $this->items;
 	}
 
 	/**
-	 * Adds a stock
+	 * Adds an item
 	 *
-	 * @param Tx_HypeStore_Domain_Model_ProductStock $stock
+	 * @param Tx_HypeStore_Domain_Model_PurchaseItem $item
 	 * @return void
 	 */
-	public function addStock(Tx_HypeStore_Domain_Model_ProductStock $stock) {
-		$this->stocks->attach($stock);
+	public function addItem(Tx_HypeStore_Domain_Model_CartItem $item) {
+		$this->items->attach($item);
 	}
 
 	/**
-	 * Removes a stock
+	 * Removes an item
 	 *
-	 * @param Tx_HypeStore_Domain_Model_ProductStock $stock
+	 * @param Tx_HypeStore_Domain_Model_PurchaseItem $item
 	 * @return void
 	 */
-	public function removeStock(Tx_HypeStore_Domain_Model_ProductStock $stock) {
-		$this->stocks->detach($stock);
+	public function removeItem(Tx_HypeStore_Domain_Model_PurchaseItem $item) {
+		$this->items->detach($item);
 	}
 
 	/**
-	 * Remove all stocks
+	 * Remove all items
 	 *
 	 * @return void
 	 */
-	public function removeStocks() {
-		$this->stocks = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+	public function removeItems() {
+		$this->items = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
 
@@ -107,7 +124,7 @@ class Tx_HypeStore_Domain_Model_Depot extends Tx_HypeStore_Domain_Model_Contact 
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->getName();
+		return $this->getUid();
 	}
 }
 ?>

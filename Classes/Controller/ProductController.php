@@ -109,7 +109,7 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 
 		# overload document title
 		if($this->settings['view']['product']['common']['overrideDocumentTitle']) {
-			Tx_Hype_Utility_Document::setTitle($product->getTitle());
+			//Tx_Hype_Utility_Document::setTitle($product->getTitle());
 		}
 
 		# assign the product to the view

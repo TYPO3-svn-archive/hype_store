@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Order
+ * Purchase Item
  *
  * @package HypeStore
  * @subpackage Domain/Model
@@ -33,30 +33,79 @@
  * @scope prototype
  * @entity
  */
-class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_HypeStore_Domain_Model_PurchaseItem extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
-	 * @var Tx_HypeStore_Domain_Model_Customer
+	 * @var Tx_HypeStore_Domain_Model_Purchase
 	 */
-	protected $customer;
+	protected $purchase;
 
 	/**
-	 * Setter for customer
+	 * @var Tx_HypeStore_Domain_Model_Product
+	 */
+	protected $product;
+
+	/**
+	 * @var int
+	 * @validate Integer
+	 */
+	protected $quantity;
+
+	/**
+	 * Setter for purchase
 	 *
-	 * @param Tx_HypeStore_Domain_Model_Customer
+	 * @param Tx_HypeStore_Domain_Model_Purchase
 	 * @return void
 	 */
-	public function setCustomer(Tx_HypeStore_Domain_Model_Customer $customer) {
-		$this->customer = $customer;
+	public function setCustomer(Tx_HypeStore_Domain_Model_Purchase $purchase) {
+		$this->purchase = $purchase;
 	}
 
 	/**
-	 * Getter for customer
+	 * Getter for purchase
 	 *
-	 * @return Tx_HypeStore_Domain_Model_Customer
+	 * @return Tx_HypeStore_Domain_Model_Purchase
 	 */
-	public function getCustomer() {
-		return $this->customer;
+	public function getPurchase() {
+		return $this->purchase;
+	}
+
+	/**
+	 * Setter for product
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @return void
+	 */
+	public function setProduct(Tx_HypeStore_Domain_Model_Product $product) {
+		$this->product = $product;
+	}
+
+	/**
+	 * Getter for product
+	 *
+	 * @return Tx_HypeStore_Domain_Model_Product
+	 */
+	public function getProduct() {
+		return $this->product;
+	}
+
+	/**
+	 * Setter for quantity
+	 *
+	 * @param int $quantity
+	 * @return void
+	 */
+	public function setQuantity($quantity) {
+		$this->quantity = $quantity;
+	}
+
+	/**
+	 * Getter for quantity
+	 *
+	 * @return int
+	 */
+	public function getQuantity() {
+		return $this->quantity;
 	}
 
 
@@ -69,7 +118,7 @@ class Tx_HypeStore_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->getUid();
+		return $this->getProduct()->getTitle();
 	}
 }
 ?>

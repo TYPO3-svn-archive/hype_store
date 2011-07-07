@@ -11,9 +11,9 @@
 		<p class="identifier">{f:translate(key: 'product.index.article_number')} {product.identifier}</p>
 	</f:if>
 
-	<!-- publisher -->
-	<f:if condition="{product.publisher}">
-		<p class="publisher">{f:translate(key: 'product.index.publisher')}: {product.publisher.name}</p>
+	<!-- artist -->
+	<f:if condition="{product.artist}">
+		<p class="publisher">{f:translate(key: 'product.index.artist')}: {product.artist.name}</p>
 	</f:if>
 </header>
 
@@ -45,11 +45,12 @@
 	<section class="attributes">
 		<h1>{f:translate(key: 'product.index.attributes')}</h1>
 
-		<ul>
+		<dl>
 			<f:for each="{product.attributes}" as="attribute">
-				<li>{attribute.attribute.title}: <em>{attribute.value} <f:if condition="{attribute.attribute.unit}">{attribute.attribute.unit}</f:if></em></li>
+				<dt>{attribute.attribute.title}</dt>
+				<dd>{attribute.value} <f:if condition="{attribute.attribute.unit}">{attribute.attribute.unit}</f:if></dd>
 			</f:for>
-		</ul>
+		</dl>
 	</section>
 </f:if>
 
@@ -58,13 +59,6 @@
 	<h1>{f:translate(key: 'product.index.details')}</h1>
 
 	<dl>
-		<f:if condition="{f:count(subject: '{product.authors}')} > 0">
-			<dt>{f:translate(key: 'product.index.authors')}</dt>
-			<f:for each="{product.authors}" as="author">
-				<dd>{author.name}</dd>
-			</f:for>
-		</f:if>
-
 		<f:if condition="{product.publisher}">
 			<dt>{f:translate(key: 'product.index.publisher')}</dt>
 			<dd>{product.publisher.name}</dd>
@@ -74,18 +68,35 @@
 			<dt>{f:translate(key: 'product.index.publication_year')}</dt>
 			<dd>{product.publicationYear}</dd>
 		</f:if>
-
-		<f:if condition="{product.editor}">
-			<dt>{f:translate(key: 'product.index.editor')}</dt>
-			<dd>{product.editor.name}</dd>
-		</f:if>
-
-		<f:if condition="{product.edition}">
-			<dt>{f:translate(key: 'product.index.edition')}</dt>
-			<dd>{product.edition}</dd>
-		</f:if>
 	</dl>
 </section>
+
+<!-- tracks -->
+<f:if condition="{f:count(subject: '{product.tracks}')} > 0">
+	<section class="tracks">
+		<h1>{f:translate(key: 'product.index.tracks')}</h1>
+
+		<dl>
+			<f:for each="{product.tracks}" as="track">
+				<dt>
+					<span>{track.number}</span>:
+					<strong>{track.title}</strong>,
+					<span>{track.length}</span>
+				</dt>
+
+				<f:if condition="{f:count(subject: '{track.sample}')} > 0">
+					<dd>
+						<audio controls="controls" preload="auto">
+							<f:for each="{track.sample}" as="sample">
+								<source src="{settings.object.product.property.tracks.path}{sample}" />
+							</f:for>
+						</audio>
+					</dd>
+				</f:if>
+			</f:for>
+		</dl>
+	</section>
+</f:if>
 
 <!-- files -->
 <f:if condition="{product.files}">
@@ -106,7 +117,6 @@
 <section class="conditions">
 	<h1>Preise</h1>
 
-	<!-- gross price -->
 	<f:if condition="{product.grossPrice}">
 		<dl>
 			<f:if condition="{product.taxScale}">
@@ -133,7 +143,7 @@
 			</f:if>
 
 			<f:if condition="{product.listPrice}">
-				<dd><small class="list_price">{f:translate(key: 'product.index.list_price')} <em>{product.listPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></small></dd>
+				<dd><small class="list-price">{f:translate(key: 'product.index.list_price')} <em>{product.listPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></small></dd>
 			</f:if>
 		</dl>
 	</f:if>

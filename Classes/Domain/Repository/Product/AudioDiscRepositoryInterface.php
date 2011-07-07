@@ -23,10 +23,8 @@
  ***************************************************************/
 
 /**
- * A repository for Orders
+ * An interface for AudioDisc repositories
  */
-class Tx_HypeStore_Domain_Repository_OrderRepository extends Tx_Extbase_Persistence_Repository
-	implements Tx_HypeStore_Domain_Repository_OrderRepositoryInterface {
-
+interface Tx_HypeStore_Domain_Repository_Product_AudioDiscRepositoryInterface {
 }
 ?>
