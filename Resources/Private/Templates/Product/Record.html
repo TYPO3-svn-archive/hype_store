@@ -6,10 +6,8 @@
 	<f:if condition="{product}">
 		<f:then>
 
-			<!-- Product details -->
-			<f:render partial="Product/Record/Product/{product.type->h:format.string(options: {0: 'ucfirst'})}.html" arguments="{product: product, settings: settings}"/>
+			<f:render partial="Product/Record/Product/{product.type->h:format.camelCase()}.html" arguments="{product: product, settings: settings}"/>
 
-			<!-- functions -->
 			<p class="actions">
 				<f:if condition="{settings.common.feature.cart}">
 				<f:if condition="{settings.view.cart.pid}">

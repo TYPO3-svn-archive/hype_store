@@ -81,7 +81,7 @@
 				<dt>
 					<span>{track.number}</span>:
 					<strong>{track.title}</strong>,
-					<span>{track.length}</span>
+					<span>{track.length->h:format.durance()}</span>
 				</dt>
 
 				<f:if condition="{f:count(subject: '{track.sample}')} > 0">
@@ -106,7 +106,7 @@
 		<ul>
 			<f:for each="{product.files}" as="file">
 				<f:if condition="{h:file.exists(path: '{settings.object.product.property.files.path}{file}')}">
-					<li><f:link.external uri="{settings.object.product.property.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.property.files.path}{file}')}</li>
+					<li><f:link.external uri="{settings.object.product.property.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.property.files.path}{file}')->h:format.bytes()}</li>
 				</f:if>
 			</f:for>
 		</ul>
@@ -169,6 +169,7 @@
 	</f:if>
 
 	<!-- stock -->
+	<f:if condition="{settings.common.feature.stocks}">
 	<f:if condition="{product.stock} > 0">
 		<f:then>
 			<p class="in-stock">{f:translate(key: 'product.index.in_stock')}</p>
@@ -177,5 +178,6 @@
 		<f:else>
 			<p class="in-stock">{f:translate(key: 'product.index.out_of_stock')}</p>
 		</f:else>
+	</f:if>
 	</f:if>
 </section>

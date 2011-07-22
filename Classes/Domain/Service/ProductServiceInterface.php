@@ -27,8 +27,8 @@
  */
 interface Tx_HypeStore_Domain_Service_ProductServiceInterface {
 	public function getPrecedingCategories(Tx_HypeStore_Domain_Model_Product $product);
-	public function getPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity);
-	public function getUndiscountedPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity);
+	public function getPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1);
+	public function getUndiscountedPrice(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1);
 	public function getDiscount(Tx_HypeStore_Domain_Model_Product $product);
 	public function getStock(Tx_HypeStore_Domain_Model_Product $product);
 	public function getRootlines(Tx_HypeStore_Domain_Model_Product $product);

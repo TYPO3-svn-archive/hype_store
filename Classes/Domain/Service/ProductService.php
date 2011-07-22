@@ -90,12 +90,12 @@ class Tx_HypeStore_Domain_Service_ProductService
 
 		if($discount) {
 			# substract the discount rate
-			$price *= ($discount->getRate() / 100);
+			$price /= (1 + $discount->getRate() / 100);
 		}
 
 		# add tax
 		if($product->getTaxScale()) {
-			$price += ($price * ($product->getTaxScale()->getRate() / 100));
+			$price *= (1 + $product->getTaxScale()->getRate() / 100);
 		}
 
 		# return a rounded price for correct quantity calculation
@@ -137,8 +137,8 @@ class Tx_HypeStore_Domain_Service_ProductService
 	 * @return Tx_HypeStore_Domain_Model_Discount
 	 */
 	public function getDiscount(Tx_HypeStore_Domain_Model_Product $product) {
-		$discount = array_shift($this->discountRepository->findByProduct($product));
-		return $discount;
+		$discounts = $this->discountRepository->findByProduct($product);
+		return $discounts->getFirst();
 	}
 
 	/**

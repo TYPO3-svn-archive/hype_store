@@ -20,6 +20,7 @@ plugin.tx_hypestore {
 				cart = 1
 				checkout = 1
 				watchlist = 1
+				stocks = 1
 			}
 		}
 
@@ -246,5 +247,12 @@ plugin.tx_hypestore {
 
 	persistence {
 		storagePid =
+	}
+
+	view {
+		templateRootPath =
+		layoutRootPath =
+		partialRootPath =
+		defaultPid =
 	}
 }

@@ -34,32 +34,75 @@ class Tx_HypeStore_Domain_Repository_DiscountRepository extends Tx_Extbase_Persi
 	 * @param Tx_HypeStore_Domain_Model_Product $product
 	 * @return array
 	 */
+	public function old_findByProduct(Tx_HypeStore_Domain_Model_Product $product) {
+
+		# create a new query
+		$query = $this->createQuery();
+		$query->setOrderings(array('rate' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
+
+		# get products
+		$categories = $product->getCategories();
+
+		# build constraints
+		$includedCategories = array();
+		$excludedCategories = array();
+		foreach($categories as $category) {
+			array_push($includedCategories, $query->contains('includedCategories', $category));
+			array_push($excludedCategories, $query->logicalNot($query->contains('excludedCategories', $category)));
+		}
+		$includedProducts = $query->contains('includedProducts', $product);
+		$excludedProducts = $query->logicalNot($query->contains('excludedProducts', $product));
+
+		# final constraint
+		$constraint = $query->logicalOr(
+			$query->logicalAnd(
+				$query->logicalOr($includedCategories),
+				$query->logicalAnd($excludedCategories)
+			),
+			$query->logicalAnd(
+				$includedProducts,
+				$excludedProducts
+			)
+		);
+
+		# apply constraints
+		$query->matching($constraint);
+
+		# return results
+		return $query->execute();
+	}
+
+	/**
+	 * Finds all valid discounts for a given product
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @return array
+	 */
 	public function findByProduct(Tx_HypeStore_Domain_Model_Product $product) {
 
 		# create a new query
 		$query = $this->createQuery();
 		$query->setOrderings(array('rate' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
 
-		# get all preceded categories
-		$categories = $product->getPrecedingCategories();
+		# get products
+		$categories = $product->getCategories();
 
-		# chain constraints
-		$constraints = array();
-		foreach($categories as $category) {
-			array_push($constraints, $query->contains('includedCategories', $category));
-		}
-		array_push($constraints, $query->contains('includedProducts', $product));
-
-		$andConstraints = array($query->logicalOr($constraints));
-		reset($categories);
-
-		foreach($categories as $category) {
-			array_push($andConstraints, $query->logicalNot($query->contains('excludedCategories', $category)));
-		}
-		array_push($andConstraints, $query->logicalNot($query->contains('excludedProducts', $product)));
+		# final constraint
+		$constraint = $query->logicalAnd(
+			$query->logicalOr(
+				$query->in('includedCategories.uid', $categories),
+				$query->contains('includedProducts', $product)
+			),
+			$query->logicalNot(
+				$query->logicalOr(
+					$query->in('excludedCategories.uid', $categories),
+					$query->contains('excludedProducts', $product)
+				)
+			)
+		);
 
 		# apply constraints
-		$query->matching($query->logicalAnd($andConstraints));
+		$query->matching($constraint);
 
 		# return results
 		return $query->execute();

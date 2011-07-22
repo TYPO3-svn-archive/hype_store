@@ -245,6 +245,7 @@ plugin.tx_hypestore {
 				cart = {$plugin.tx_hypestore.settings.common.feature.cart}
 				checkout = {$plugin.tx_hypestore.settings.common.feature.checkout}
 				watchlist = {$plugin.tx_hypestore.settings.common.feature.watchlist}
+				stocks = {$plugin.tx_hypestore.settings.common.feature.stocks}
 			}
 		}
 
@@ -500,14 +501,29 @@ plugin.tx_hypestore {
 			}
 		}
 	}
+
+	persistence {
+		storagePid = {$plugin.tx_hypestore.persistence.storagePid}
+	}
+
+	view {
+		templateRootPath = {$plugin.tx_hypestore.view.templateRootPath}
+		layoutRootPath = {$plugin.tx_hypestore.view.layoutRootPath}
+		partialRootPath = {$plugin.tx_hypestore.view.partialRootPath}
+		defaultPid = {$plugin.tx_hypestore.view.defaultPid}
+	}
 }
 
 
 
 # INSERT RECORDS
 
-# Contact
+# Product
 tt_content.shortcut.20.0.conf.tx_hypestore_domain_model_product < tt_content.list.20.hypestore_product
 tt_content.shortcut.20.0.conf.tx_hypestore_domain_model_product {
-	action = record
+	switchableControllerActions {
+		Product {
+			0 = record
+		}
+	}
 }
