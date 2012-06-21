@@ -1,0 +1,50 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{f:count(subject: attributes)} > 0">
+	<f:then>
+		<div class="filters">
+			<f:for each="{attributes}" as="attribute">
+				<f:if condition="{h:string.compare(a: '{attribute.type}', b: 'set')}">
+					<f:then>
+						<f:if condition="{attribute.uid} == {filter.uid}">
+							<f:then>
+								<dl class="filter filter-active">
+									<dt>{attribute.title}</dt>
+
+									<f:for each="{attribute.items}" as="value">
+										<f:if condition="{filter.value} == {value}">
+											<f:then>
+												<dd class="filter-value filter-value-active"><span>{value}</span></dd>
+											</f:then>
+
+											<f:else>
+												<dd class="filter-value"><f:link.action arguments="{filter: {uid: '{attribute.uid}', value: '{value}'}}">{value}</f:link.action></dd>
+											</f:else>
+										</f:if>
+									</f:for>
+								</dl>
+							</f:then>
+
+							<f:else>
+								<dl class="filter">
+									<dt>{attribute.title}</dt>
+
+									<f:for each="{attribute.items}" as="value">
+										<dd class="filter-value"><f:link.action arguments="{filter: {uid: '{attribute.uid}', value: '{value}'}}">{value}</f:link.action></dd>
+									</f:for>
+								</dl>
+							</f:else>
+						</f:if>
+					</f:then>
+				</f:if>
+			</f:for>
+
+			<f:if condition="{f:count(subject: filter)} > 0">
+				<p class="filter-reset">
+					<f:link.page>Filter zurücksetzen</f:link.page>
+				</p>
+			</f:if>
+		</div>
+	</f:then>
+</f:if>

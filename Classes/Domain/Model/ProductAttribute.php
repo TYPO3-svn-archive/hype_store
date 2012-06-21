@@ -47,6 +47,11 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	protected $value;
 
 	/**
+	 * @var string
+	 */
+	protected $items;
+
+	/**
 	 * @var Tx_HypeStore_Domain_Model_Product
 	 */
 	protected $product;
@@ -87,6 +92,54 @@ class Tx_HypeStore_Domain_Model_ProductAttribute extends Tx_Extbase_DomainObject
 	 */
 	public function getValue() {
 		return $this->value;
+	}
+
+	/**
+	 * Setter for items
+	 *
+	 * @param array $items
+	 * @return void
+	 */
+	public function setItems(array $items) {
+		$this->items = implode(',', $items);
+	}
+
+	/**
+	 * Getter for items
+	 *
+	 * @return array
+	 */
+	public function getItems() {
+		return explode(',', $this->items);
+	}
+
+	/**
+	 * Adds an item
+	 *
+	 * @param string $item
+	 * @return void
+	 */
+	public function addItem($item) {
+		$this->setItems(array_merge($this->getItems(), array($item)));
+	}
+
+	/**
+	 * Removes an item
+	 *
+	 * @param string $item
+	 * @return void
+	 */
+	public function removeItem($item) {
+		$this->setItems(array_diff($this->getItems(), array($item)));
+	}
+
+	/**
+	 * Removes all items
+	 *
+	 * @return void
+	 */
+	public function removeItems() {
+		$this->items = '';
 	}
 
 	/**

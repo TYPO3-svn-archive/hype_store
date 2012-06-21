@@ -1,0 +1,12 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{product.images}">
+	<p class="images">
+		<f:for each="{product.images}" as="image">
+			<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
+				<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.product.action.record.property.images.maxWidth}" maxHeight="{settings.view.product.action.record.property.images.maxHeight}" alt="" />
+			</f:if>
+		</f:for>
+	</p>
+</f:if>

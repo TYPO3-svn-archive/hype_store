@@ -200,6 +200,7 @@ $TCA['tx_hypestore_domain_model_product_attribute'] = array(
 
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
+		'requestUpdate' => 'attribute',
 	),
 );
 
@@ -372,7 +373,8 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'		=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Configuration/TCA/Icons/attribute.png',
 
-		'dividers2tabs' => TRUE,
+		'dividers2tabs'		=> TRUE,
+		'type'				=> 'type',
 	),
 );
 

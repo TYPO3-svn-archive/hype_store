@@ -174,5 +174,40 @@ class Tx_HypeStore_Domain_Service_ProductService
 
 		return $rootlines;
 	}
+
+	/**
+	 * Checks if an attribute is assigned to a given product
+	 *
+	 * @param Tx_HypeStore_Domain_Model_Product $product
+	 * @param Tx_HypeStore_Domain_Model_Attribute $attribute
+	 * @param string $value
+	 *
+	 * @return boolean
+	 */
+	public function hasAttribute(Tx_HypeStore_Domain_Model_Product $product, Tx_HypeStore_Domain_Model_Attribute $attribute, $value = NULL) {
+
+		foreach($product->getAttributes() as $productAttribute) {
+
+			if($productAttribute->getAttribute() == $attribute) {
+
+				if(!$value) {
+					return TRUE;
+				}
+
+				switch($attribute->getType()) {
+
+					case 'set':
+
+						if(in_array($value, $productAttribute->getItems())) {
+							return TRUE;
+						}
+
+						break;
+				}
+			}
+		}
+
+		return FALSE;
+	}
 }
 ?>

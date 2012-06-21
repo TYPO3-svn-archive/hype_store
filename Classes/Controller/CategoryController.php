@@ -36,6 +36,11 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	protected $categoryRepository;
 
 	/**
+	 * @var Tx_HypeStore_Domain_Repository_AttributeRepositoryInterface
+	 */
+	protected $attributeRepository;
+
+	/**
 	 * Injects the category repository
 	 *
 	 * @var Tx_HypeStore_Domain_Repository_CategoryRepositoryInterface $categoryRepository
@@ -43,6 +48,16 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	 */
 	public function injectCategoryRepository(Tx_HypeStore_Domain_Repository_CategoryRepositoryInterface $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
+	}
+
+	/**
+	 * Injects the attribute repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_AttributeRepositoryInterface $attributeRepository
+	 * @return void
+	 */
+	public function injectAttributeRepository(Tx_HypeStore_Domain_Repository_AttributeRepositoryInterface $attributeRepository) {
+		$this->attributeRepository = $attributeRepository;
 	}
 
 	/**
@@ -71,11 +86,12 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	/**
 	 * Index action for this controller.
 	 *
+	 * @param mixed $filter
 	 * @return string
 	 */
-	public function indexAction() {
+	public function indexAction($filter = NULL) {
 
-		# get categories
+		# set categories
 		if($this->settings['view']['category']['uid']) {
 
 			$category = $this->categoryRepository->findByUid((int)$this->settings['view']['category']['uid']);
@@ -88,31 +104,78 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 			$categories = $this->categoryRepository->findMainCategories();
 		}
 
-		# assign categories
 		$this->view->assign('categories', $categories);
+
+		# set attributes
+		if($this->settings['view']['category']['filters']['useAllAttributes']) {
+			$attributes = $this->attributeRepository->findAll();
+		} else {
+			$uids = explode(',', $this->settings['view']['category']['filters']['attributes']);
+
+			$attributes = array();
+			foreach($uids as $uid) {
+				$attribute = $this->attributeRepository->findByUid($uid);
+
+				if($attribute) {
+					array_push($attributes, $attribute);
+				}
+			}
+		}
+
+		$this->view->assign('attributes', $attributes);
+
+		# set filter
+		if(is_array($filter)) {
+			$this->view->assign('filter', $filter);
+		}
 	}
 
 	/**
 	 * List action for this controller.
 	 *
 	 * @param Tx_HypeStore_Domain_Model_Category $category
+	 * @param mixed $filter
 	 * @dontvalidate $category
+	 * @dontvalidate $filter
 	 * @return string
 	 */
-	public function listAction(Tx_HypeStore_Domain_Model_Category $category) {
+	public function listAction(Tx_HypeStore_Domain_Model_Category $category, $filter = NULL) {
 
-		# overload document title
+		# set document title
 		if($this->settings['view']['category']['common']['overrideDocumentTitle']) {
 			Tx_Hype_Utility_Document::setTitle($category->getTitle());
 		}
 
-		# assign the path if available
+		# set the path if available
 		if($this->request->hasArgument('path')) {
 			$this->view->assign('path', $this->request->getArgument('path'));
 		}
 
-		# assign the category
+		# set the category
 		$this->view->assign('category', $category);
+
+		# set attributes
+		if($this->settings['view']['category']['filters']['useAllAttributes']) {
+			$attributes = $this->attributeRepository->findAll();
+		} else {
+			$uids = explode(',', $this->settings['view']['category']['filters']['attributes']);
+
+			$attributes = array();
+			foreach($uids as $uid) {
+				$attribute = $this->attributeRepository->findByUid($uid);
+
+				if($attribute) {
+					array_push($attributes, $attribute);
+				}
+			}
+		}
+
+		$this->view->assign('attributes', $attributes);
+
+		# set filter
+		if(is_array($filter)) {
+			$this->view->assign('filter', $filter);
+		}
 	}
 }
 ?>

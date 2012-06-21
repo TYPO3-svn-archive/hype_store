@@ -156,6 +156,7 @@ CREATE TABLE tx_hypestore_domain_model_product_attribute (
 	product int(11) DEFAULT '0' NOT NULL,
 	attribute int(11) DEFAULT '0' NOT NULL,
 	value varchar(255) DEFAULT '' NOT NULL,
+	items varchar(255) DEFAULT '' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -325,9 +326,12 @@ CREATE TABLE tx_hypestore_domain_model_attribute (
 	fe_group int(11) DEFAULT '0' NOT NULL,
 	editlock tinyint(1) DEFAULT '0' NOT NULL,
 
+	type varchar(64) DEFAULT '' NOT NULL,
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	unit varchar(255) DEFAULT '' NOT NULL,
-	type int(11) DEFAULT '0' NOT NULL,
+	items text,
+	multiple tinyint(1) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

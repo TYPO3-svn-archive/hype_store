@@ -1996,6 +1996,22 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 				'foreign_table' => 'fe_groups'
 			),
 		),
+
+		'type' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type',
+			'config' => array(
+				'type' => 'select',
+				'items' => array(
+					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type.basic', 'basic'),
+					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type.set', 'set'),
+					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type.custom', 'custom'),
+				),
+				'size' => 1,
+				'maxitems' => 1,
+			),
+		),
+
 		'title' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.title',
@@ -2014,21 +2030,21 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 				'eval' => 'trim',
 			),
 		),
-		'type' => array(
+		'items' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type',
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.items',
 			'config' => array(
-				'type' => 'select',
-				'items' => array(
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type.I.0', 0),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type.I.1', 1),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type.I.2', 2),
-					array('LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.type.I.3', 3),
-				),
-				'size' => 1,
-				'maxitems' => 1,
+				'type' => 'text',
 			),
 		),
+		'multiple' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_attribute.multiple',
+			'config' => array(
+				'type' => 'check',
+			),
+		),
+
 		'editlock' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -2039,17 +2055,39 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 		),
 	),
 	'types' => array(
-		0 => array('showitem' => '
+		'0' => array('showitem' => '
 				--palette--;;general,
 				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.title;title,
 				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.unit;unit,
-		--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.access,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.access,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.access;access,
+		'),
+		'basic' => array('showitem' => '
+				--palette--;;general,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.title;title,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.unit;unit,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.access,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.access;access,
+		'),
+		'set' => array('showitem' => '
+				--palette--;;general,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.title;title,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.unit;unit,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.items;items,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.access,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.access;access,
+		'),
+		'custom' => array('showitem' => '
+				--palette--;;general,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.title;title,
+				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.unit;unit,
+			--div--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.tab.access,
 				--palette--;LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.palette.access;access,
 		'),
 	),
 	'palettes' => array(
 		'general' => array(
-			'showitem' => 'sys_language_uid',
+			'showitem' => 'type, sys_language_uid',
 			'canNotCollapse' => TRUE,
 		),
 		'title' => array(
@@ -2057,7 +2095,11 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 			'canNotCollapse' => TRUE,
 		),
 		'unit' => array(
-			'showitem' => 'unit, type',
+			'showitem' => 'unit',
+			'canNotCollapse' => TRUE,
+		),
+		'items' => array(
+			'showitem' => 'items, multiple',
 			'canNotCollapse' => TRUE,
 		),
 		'access' => array(
@@ -2071,7 +2113,7 @@ $TCA['tx_hypestore_domain_model_attribute'] = array(
 $TCA['tx_hypestore_domain_model_product_attribute'] = array(
 	'ctrl' => $TCA['tx_hypestore_domain_model_product_attribute']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,product,attribute,value'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,product,attribute,value,items'
 	),
 	'feInterface' => $TCA['tx_hypestore_domain_model_product_attribute']['feInterface'],
 	'columns' => array(
@@ -2207,9 +2249,26 @@ $TCA['tx_hypestore_domain_model_product_attribute'] = array(
 			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_attribute.value',
 			'config' => array(
 				'type' => 'input',
-				'size' => 30,
+				'size' => 5,
 				'eval' => 'required,trim',
 			),
+			'displayCond' => 'RELATION:attribute.type:=:custom',
+		),
+		'items' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product_attribute.items',
+			'config' => array(
+				'type' => 'select',
+				'renderMode' => 'checkbox',
+				'maxitems' => 999,
+				//'items' => array(),
+				'itemsProcFunc' => 'tx_hypestore_tca_field->getSelectItems',
+				'custom' => array(
+					'table' => 'tx_hypestore_domain_model_attribute',
+					'field' => 'attribute'
+				),
+			),
+			'displayCond' => 'RELATION:attribute.type:=:set',
 		),
 		'editlock' => array(
 			'exclude' => 1,
@@ -2227,7 +2286,7 @@ $TCA['tx_hypestore_domain_model_product_attribute'] = array(
 	),
 	'palettes' => array(
 		'general' => array(
-			'showitem' => 'attribute, value',
+			'showitem' => 'attribute, value, items',
 			'canNotCollapse' => TRUE,
 		),
 	),

@@ -1,14 +1,20 @@
 {namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
 
 <f:layout name="Category" />
 
 <f:section name="content">
+
+	<!-- filters -->
+	<f:render partial="Category/Index/Filters.html" arguments="{attributes: attributes, filter: filter, settings: settings}"/>
+
+	<!-- categories -->
 	<f:if condition="{f:count(subject: categories)} > 0">
 		<f:then>
 			<f:for each="{categories}" as="category">
 				<div class="category">
 					<!-- category.title -->
-					<h2><f:link.action action="list" arguments="{category: category, path: '{category.uid}'}">{category.title}</f:link.action></h2>
+					<h2><f:link.action action="list" arguments="{category: category, path: '{category.uid}', filter: filter}">{category.title}</f:link.action></h2>
 
 					<!-- category.images -->
 					<f:if condition="{h:file.exists(path: '{settings.object.category.property.images.path}{category.images.0}')}">
@@ -23,47 +29,10 @@
 					</f:if>
 
 					<!-- category.products -->
-					<f:if condition="{f:count(subject: category.products)} > 0">
-						<div class="products">
-							<h3>{f:translate(key: 'category.index.products')}</h3>
-
-							<ul>
-								<f:for each="{category.products}" as="product">
-									<li>
-										<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}">{product.title}</f:link.action>
-
-										<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{product.images.0}')}">
-											<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}" class="image">
-												<f:image src="{settings.object.product.property.images.path}{product.images.0}" maxWidth="{settings.view.category.action.index.object.product.property.images.maxWidth}" maxHeight="{settings.view.category.action.index.object.product.property.images.maxHeight}" alt="{product.title}" />
-											</f:link.action>
-										</f:if>
-
-										<f:if condition="{product.introduction}">
-											<p>{product.introduction->f:format.nl2br()}</p>
-										</f:if>
-									</li>
-								</f:for>
-							</ul>
-						</div>
-					</f:if>
+					<f:render partial="Category/Index/Products.html" arguments="{category: category, path: path, filter:filter, settings: settings}"/>
 
 					<!-- category.categories -->
-					<f:if condition="{f:count(subject: category.categories)} > 0">
-						<div class="categories">
-							<h3>{f:translate(key: 'category.index.subcategories')}</h3>
-
-							<ul>
-								<f:for each="{category.categories}" as="subcategory">
-									<li>
-										<f:link.action action="list" arguments="{category: subcategory, path: '{category.uid},{subcategory.uid}'}">{subcategory.title}</f:link.action>
-										<f:if condition="{subcategory.introduction}">
-											<p class="introduction">{subcategory.introduction->f:format.nl2br()}</p>
-										</f:if>
-									</li>
-								</f:for>
-							</ul>
-						</div>
-					</f:if>
+					<f:render partial="Category/Index/Categories.html" arguments="{category: category, path: path, filter: filter, settings: settings}"/>
 				</div>
 			</f:for>
 		</f:then>

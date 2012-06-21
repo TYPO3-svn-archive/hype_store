@@ -1,0 +1,70 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{settings.view.category.common.displayDescendedProducts}">
+	<f:then>
+		<f:if condition="{f:count(subject: '{store:product.filter(products: \'{category.descendentProducts}\', filter: filter)}')} > 0">
+			<div class="products">
+				<h2>{f:translate(key: 'category.list.products')}</h2>
+
+				<ul>
+					<f:for each="{store:product.filter(products: '{category.descendentProducts}', filter: filter)}" as="product">
+						<li>
+							<!-- product.title -->
+							<h3><f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{product.rootline}'}">{product.title}</f:link.action></h3>
+
+							<!-- product.introduction -->
+							<f:if condition="{product.introduction}">
+								<p class="introduction">{product.introduction->f:format.nl2br()}</p>
+							</f:if>
+
+							<!-- product.images -->
+							<f:if condition="{product.images}">
+								<f:for each="{product.images}" as="image">
+									<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
+										<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{product.rootline}'}">
+											<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.category.action.list.object.product.property.images.maxWidth}" maxHeight="{settings.view.category.action.list.object.product.property.images.maxHeight}" alt="{product.title}" />
+										</f:link.action>
+									</f:if>
+								</f:for>
+							</f:if>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
+	</f:then>
+
+	<f:else>
+		<f:if condition="{f:count(subject: '{store:product.filter(products: \'{category.products}\', filter: filter)}')} > 0">
+			<div class="products">
+				<h2>{f:translate(key: 'category.list.products')}</h2>
+
+				<ul>
+					<f:for each="{store:product.filter(products: '{category.products}', filter: filter)}" as="product">
+						<li>
+							<!-- product.title -->
+							<h3><f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{path}'}">{product.title}</f:link.action></h3>
+
+							<!-- product.introduction -->
+							<f:if condition="{product.introduction}">
+								<p class="introduction">{product.introduction->f:format.nl2br()}</p>
+							</f:if>
+
+							<!-- product.images -->
+							<f:if condition="{product.images}">
+								<f:for each="{product.images}" as="image">
+									<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
+										<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{path}'}">
+											<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.category.action.list.object.product.property.images.maxWidth}" maxHeight="{settings.view.category.action.list.object.product.property.images.maxHeight}" alt="{product.title}" />
+										</f:link.action>
+									</f:if>
+								</f:for>
+							</f:if>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
+	</f:else>
+</f:if>

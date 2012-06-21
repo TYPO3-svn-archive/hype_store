@@ -27,6 +27,22 @@ class tx_hypestore_tca_field {
 	public function categories(&$field, $obj) {
 		return $obj->getSingleField_typeSelect($field['table'], $field['field'], $field['row'], $field);
 	}
+
+	/**
+	 * Returns the defined attribute items
+	 */
+	public function getSelectItems(&$field, &$obj) {
+		$record = t3lib_BEfunc::getRecord($field['config']['custom']['table'], $field['row'][$field['config']['custom']['field']]);
+
+		if($record) {
+			$items = t3lib_div::trimExplode(chr(10), $record['items']);
+
+			$field['items'] = array();
+			foreach($items as $item) {
+				$field['items'][] = array($item, $item, NULL);
+			}
+		}
+	}
 }
 
 ?>

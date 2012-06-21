@@ -1,0 +1,16 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{product.files}">
+	<section class="files">
+		<h1>{f:translate(key: 'product.index.files')}</h1>
+
+		<ul>
+			<f:for each="{product.files}" as="file">
+				<f:if condition="{h:file.exists(path: '{settings.object.product.property.files.path}{file}')}">
+					<li><f:link.external uri="{settings.object.product.property.files.path}{file}">{file}</f:link.external>, {h:file.size(path: '{settings.object.product.property.files.path}{file}')->h:format.bytes()}</li>
+				</f:if>
+			</f:for>
+		</ul>
+	</section>
+</f:if>

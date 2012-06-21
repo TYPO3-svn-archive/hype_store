@@ -1,0 +1,52 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{category.categories}">
+	<h2>{f:translate(key: 'category.list.subcategories')}</h2>
+
+	<ul>
+		<f:for each="{category.categories}" as="subcategory">
+			<li>
+				<!-- subcategory.title -->
+				<h3><f:link.action action="list" arguments="{category: subcategory, path: '{path},{subcategory.uid}', filter: filter}">{subcategory.title}</f:link.action></h3>
+
+				<!-- subcategory.introduction -->
+				<f:if condition="{subcategory.introduction}">
+					<p>{subcategory.introduction->f:format.nl2br()}</p>
+				</f:if>
+
+				<!-- subcategory.products -->
+				<f:if condition="{f:count(subject: '{store:product.filter(products: '{subcategory.products}', filter: filter)}')} > 0">
+					<div class="products">
+						<h4>{f:translate(key: 'category.list.products')}</h4>
+
+						<ul>
+							<f:for each="{store:product.filter(products: '{subcategory.products}', filter: filter)}" as="product">
+								<li>
+									<!-- product.title -->
+									<h5><f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{path},{subcategory.uid}'}">{product.title}</f:link.action></h5>
+
+									<!-- product.images -->
+									<f:if condition="{product.images}">
+										<f:for each="{product.images}" as="image">
+											<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{image}')}">
+												<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{path},{subcategory.uid}'}">
+													<f:image src="{settings.object.product.property.images.path}{image}" maxWidth="{settings.view.category.action.list.object.product.property.images.maxWidth}" maxHeight="{settings.view.category.action.list.object.product.property.images.maxHeight}" alt="{product.title}" />
+												</f:link.action>
+											</f:if>
+										</f:for>
+									</f:if>
+
+									<!-- product.introduction -->
+									<f:if condition="{product.introduction}">
+										<p class="introduction">{product.introduction->f:format.nl2br()}</p>
+									</f:if>
+								</li>
+							</f:for>
+						</ul>
+					</div>
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
+</f:if>

@@ -23,104 +23,41 @@
  ***************************************************************/
 
 /**
- * Attribute
+ * Attribute Custom
  *
  * @package HypeStore
- * @subpackage Domain/Model
+ * @subpackage Domain/Model/Attribute
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @scope prototype
  * @entity
  */
-class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_HypeStore_Domain_Model_Attribute_Custom extends Tx_HypeStore_Domain_Model_Attribute {
 
 	/**
 	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
+	 * @validate String
 	 */
-	protected $type;
+	protected $value;
 
 	/**
-	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
-	 */
-	protected $title;
-
-	/**
-	 * @var string
-	 * @validate StringLength(minimum = 0, maximum = 255)
-	 */
-	protected $unit;
-
-	/**
-	 * Setter for type
+	 * Setter for value
 	 *
-	 * @param string $type
+	 * @param string $value
 	 * @return void
 	 */
-	public function setType($type) {
-		$this->type = $type;
+	public function setValue($value) {
+		$this->value = $value;
 	}
 
 	/**
-	 * Getter for type
+	 * Getter for value
 	 *
 	 * @return string
 	 */
-	public function getType() {
-		return $this->type;
-	}
-
-	/**
-	 * Setter for title
-	 *
-	 * @param string $title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
-
-	/**
-	 * Getter for title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-
-	/**
-	 * Setter for unit
-	 *
-	 * @param string $unit
-	 * @return void
-	 */
-	public function setUnit($unit) {
-		$this->unit = $unit;
-	}
-
-	/**
-	 * Getter for unit
-	 *
-	 * @return string
-	 */
-	public function getUnit() {
-		return $this->unit;
-	}
-
-
-
-	/* Magic methods */
-
-	/**
-	 * Returns as a formatted string
-	 *
-	 * @return string
-	 */
-	public function __toString() {
-		return $this->getTitle();
+	public function getValue() {
+		return $this->value;
 	}
 }
 ?>

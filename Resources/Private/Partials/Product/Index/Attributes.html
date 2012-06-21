@@ -1,0 +1,28 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{product.attributes}">
+	<section class="attributes">
+		<h1>{f:translate(key: 'product.index.attributes')}</h1>
+
+		<dl>
+			<f:for each="{product.attributes}" as="attribute">
+				<dt>{attribute.attribute.title}</dt>
+
+				<f:if condition="{h:string.compare(a: '{attribute.attribute.type}', b: 'basic')}">
+					<dd>{attribute.attribute.title}</dd>
+				</f:if>
+
+				<f:if condition="{h:string.compare(a: '{attribute.attribute.type}', b: 'set')}">
+					<dd>
+						{h:string.implode(glue: ', ', pieces: '{attribute.items}')}
+					</dd>
+				</f:if>
+
+				<f:if condition="{h:string.compare(a: '{attribute.attribute.type}', b: 'custom')}">
+					<dd>{attribute.value} <f:if condition="{attribute.attribute.unit}">{attribute.attribute.unit}</f:if></dd>
+				</f:if>
+			</f:for>
+		</dl>
+	</section>
+</f:if>

@@ -23,6 +23,9 @@
  ***************************************************************/
 
 class ux_t3lib_TCEforms extends t3lib_TCEforms {
+
+	protected $table;
+
 	public function addSelectOptionsToItemArray($items, $fieldValue, $TSconfig, $field) {
 		global $TCA;
 
@@ -144,5 +147,102 @@ class ux_t3lib_TCEforms extends t3lib_TCEforms {
 
 		return $items;
 	}
+
+	/**
+	 * Returns the form HTML code for a database table field.
+	 *
+	 * @param	string		The table name
+	 * @param	string		The field name
+	 * @param	array		The record to edit from the database table.
+	 * @param	string		Alternative field name label to show.
+	 * @param	boolean		Set this if the field is on a palette (in top frame), otherwise not. (if set, field will render as a hidden field).
+	 * @param	string		The "extra" options from "Part 4" of the field configurations found in the "types" "showitem" list. Typically parsed by $this->getSpecConfFromString() in order to get the options as an associative array.
+	 * @param	integer		The palette pointer.
+	 * @return	mixed		String (normal) or array (palettes)
+	 */
+	public function getSingleField($table, $field, $row, $altName = '', $palette = 0, $extra = '', $pal = 0) {
+		$this->table = $table;
+		return parent::getSingleField($table, $field, $row, $altName, $palette, $extra, $pal);
+	}
+
+	/**
+	 * Returns true, if the evaluation of the required-field code is OK.
+	 *
+	 * @param	string		The required-field code
+	 * @param	array		The record to evaluate
+	 * @param	string		FlexForm value key, eg. vDEF
+	 * @return	boolean
+	 */
+	public function isDisplayCondition($displayCond, $row, $ffValueKey = '') {
+		global $TCA;
+
+		$output = FALSE;
+
+		$parts = explode(':', $displayCond);
+
+		switch((string) $parts[0]) {
+
+			case 'RELATION':
+
+				list($fieldName, $relationFieldName) = explode('.', $parts[1]);
+
+				$table = $TCA[$this->table]['columns'][$fieldName]['config']['foreign_table'];
+				$record = t3lib_BEfunc::getRecord($table, $row[$fieldName]);
+				$theFieldValue = $record[$relationFieldName];
+
+				switch ((string) $parts[2]) {
+					case 'REQ':
+						if (strtolower($parts[3]) == 'true') {
+							$output = $theFieldValue ? TRUE : FALSE;
+						} elseif (strtolower($parts[3]) == 'false') {
+							$output = !$theFieldValue ? TRUE : FALSE;
+						}
+					break;
+					case '>':
+						$output = $theFieldValue > $parts[3];
+					break;
+					case '<':
+						$output = $theFieldValue < $parts[3];
+					break;
+					case '>=':
+						$output = $theFieldValue >= $parts[3];
+					break;
+					case '<=':
+						$output = $theFieldValue <= $parts[3];
+					break;
+					case '-':
+					case '!-':
+						$cmpParts = explode('-', $parts[3]);
+						$output = $theFieldValue >= $cmpParts[0] && $theFieldValue <= $cmpParts[1];
+						if ($parts[2]{0} == '!') {
+							$output = !$output;
+						}
+					break;
+					case 'IN':
+					case '!IN':
+						$output = t3lib_div::inList($parts[3], $theFieldValue);
+						if ($parts[2]{0} == '!') {
+							$output = !$output;
+						}
+					break;
+					case '=':
+					case '!=':
+						$output = t3lib_div::inList($parts[3], $theFieldValue);
+						if ($parts[2]{0} == '!') {
+							$output = !$output;
+						}
+					break;
+				}
+
+				return $output;
+
+				break;
+
+			default:
+				return parent::isDisplayCondition($displayCond, $row, $ffValueKey);
+				break;
+		}
+	}
 }
+
 ?>

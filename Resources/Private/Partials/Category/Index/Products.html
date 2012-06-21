@@ -1,0 +1,34 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{f:count(subject: '{store:product.filter(products: \'{category.products}\', filter: filter)}')} > 0">
+	<f:then>
+		<div class="products">
+			<h3>{f:translate(key: 'category.index.products')}</h3>
+
+			<ul>
+				<f:for each="{store:product.filter(products: '{category.products}', filter: filter)}" as="product">
+					<li>
+						<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}">{product.title}</f:link.action>
+
+						<f:if condition="{h:file.exists(path: '{settings.object.product.property.images.path}{product.images.0}')}">
+							<f:link.action pluginName="Product" controller="Product" pageUid="{settings.view.product.pid}" arguments="{product: product, path: '{category.uid}'}" class="image">
+								<f:image src="{settings.object.product.property.images.path}{product.images.0}" maxWidth="{settings.view.category.action.index.object.product.property.images.maxWidth}" maxHeight="{settings.view.category.action.index.object.product.property.images.maxHeight}" alt="{product.title}" />
+							</f:link.action>
+						</f:if>
+
+						<f:if condition="{product.introduction}">
+							<p>{product.introduction->f:format.nl2br()}</p>
+						</f:if>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:then>
+
+	<f:else>
+		<div class="products">
+			<p>Keine Produkte vorhanden.</p>
+		</div>
+	</f:else>
+</f:if>

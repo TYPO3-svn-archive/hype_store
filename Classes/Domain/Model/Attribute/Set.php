@@ -23,104 +23,70 @@
  ***************************************************************/
 
 /**
- * Attribute
+ * Attribute Set
  *
  * @package HypeStore
- * @subpackage Domain/Model
+ * @subpackage Domain/Model/Attribute
  * @version $Id:$
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @scope prototype
  * @entity
  */
-class Tx_HypeStore_Domain_Model_Attribute extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_HypeStore_Domain_Model_Attribute_Set extends Tx_HypeStore_Domain_Model_Attribute {
 
 	/**
 	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
+	 * @validate String
 	 */
-	protected $type;
+	protected $items;
 
 	/**
-	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
-	 */
-	protected $title;
-
-	/**
-	 * @var string
-	 * @validate StringLength(minimum = 0, maximum = 255)
-	 */
-	protected $unit;
-
-	/**
-	 * Setter for type
+	 * Setter for items
 	 *
-	 * @param string $type
+	 * @param array $items
 	 * @return void
 	 */
-	public function setType($type) {
-		$this->type = $type;
+	public function setItems(array $items) {
+		$this->items = implode(chr(10), $items);
 	}
 
 	/**
-	 * Getter for type
+	 * Getter for items
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function getType() {
-		return $this->type;
+	public function getItems() {
+		return t3lib_div::trimExplode(chr(10), $this->items);
 	}
 
 	/**
-	 * Setter for title
+	 * Adds an item
 	 *
-	 * @param string $title
+	 * @param string $item
 	 * @return void
 	 */
-	public function setTitle($title) {
-		$this->title = $title;
+	public function addItem($item) {
+		$this->items = array_merge($this->items, array($item));
 	}
 
 	/**
-	 * Getter for title
+	 * Removes an item
 	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-
-	/**
-	 * Setter for unit
-	 *
-	 * @param string $unit
+	 * @param string $item
 	 * @return void
 	 */
-	public function setUnit($unit) {
-		$this->unit = $unit;
+	public function removeItem($item) {
+		$this->items = array_diff($this->items, array($item));
 	}
 
 	/**
-	 * Getter for unit
+	 * Removes all items
 	 *
-	 * @return string
+	 * @return void
 	 */
-	public function getUnit() {
-		return $this->unit;
-	}
-
-
-
-	/* Magic methods */
-
-	/**
-	 * Returns as a formatted string
-	 *
-	 * @return string
-	 */
-	public function __toString() {
-		return $this->getTitle();
+	public function removeItems() {
+		$this->items = array();
 	}
 }
 ?>

@@ -14,10 +14,13 @@
 
 			<label index="tx_hypestore.plugin.category">Category</label>
 			<label index="tx_hypestore.plugin.category.tab.general">General</label>
+			<label index="tx_hypestore.plugin.category.tab.filters">Filters</label>
 			<label index="tx_hypestore.plugin.category.tab.options">Options</label>
 			<label index="tx_hypestore.plugin.category.field.main_category">Displayed category</label>
 			<label index="tx_hypestore.plugin.category.field.product_page">Product page</label>
 			<label index="tx_hypestore.plugin.category.field.displayDescendedProducts">Display all descended products</label>
+			<label index="tx_hypestore.plugin.category.field.useAllAttributes">Use all attributes</label>
+			<label index="tx_hypestore.plugin.category.field.attributes">Attributes</label>
 
 			<label index="tx_hypestore.plugin.product">Product</label>
 			<label index="tx_hypestore.plugin.product.tab.general">General</label>
@@ -72,6 +75,7 @@
 			<label index="tx_hypestore.palette.edition">Edition</label>
 			<label index="tx_hypestore.palette.artist">Artist</label>
 			<label index="tx_hypestore.palette.unit">Unit</label>
+			<label index="tx_hypestore.palette.items">Items</label>
 			<label index="tx_hypestore.palette.track">Track</label>
 			<label index="tx_hypestore.palette.rate">Rate</label>
 			<label index="tx_hypestore.palette.access">Access options</label>
@@ -153,6 +157,7 @@
 			<label index="tx_hypestore_domain_model_product_attribute.product">Product</label>
 			<label index="tx_hypestore_domain_model_product_attribute.attribute">Attribute</label>
 			<label index="tx_hypestore_domain_model_product_attribute.value">Value</label>
+			<label index="tx_hypestore_domain_model_product_attribute.items">Items</label>
 
 			<label index="tx_hypestore_domain_model_product_track">Track</label>
 			<label index="tx_hypestore_domain_model_product_track.product">Product</label>
@@ -172,11 +177,12 @@
 			<label index="tx_hypestore_domain_model_attribute">Attribute</label>
 			<label index="tx_hypestore_domain_model_attribute.title">Title</label>
 			<label index="tx_hypestore_domain_model_attribute.unit">Unit</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.0">Integer</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.1">Float</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.2">String</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.3">Boolean</label>
 			<label index="tx_hypestore_domain_model_attribute.type">Type</label>
+			<label index="tx_hypestore_domain_model_attribute.type.basic">Basic</label>
+			<label index="tx_hypestore_domain_model_attribute.type.set">Set</label>
+			<label index="tx_hypestore_domain_model_attribute.type.custom">Custom</label>
+			<label index="tx_hypestore_domain_model_attribute.items">Items</label>
+			<label index="tx_hypestore_domain_model_attribute.multiple">Select multiple items</label>
 
 			<label index="tx_hypestore_domain_model_cart_item">Cart item</label>
 			<label index="tx_hypestore_domain_model_cart_item.customer">Customer</label>
@@ -216,10 +222,13 @@
 
 			<label index="tx_hypestore.plugin.category">Kategorie</label>
 			<label index="tx_hypestore.plugin.category.tab.general">Allgemein</label>
+			<label index="tx_hypestore.plugin.category.tab.filters">Filter</label>
 			<label index="tx_hypestore.plugin.category.tab.options">Optionen</label>
 			<label index="tx_hypestore.plugin.category.field.main_category">Angezeigte Kategorie</label>
 			<label index="tx_hypestore.plugin.category.field.product_page">Seite der Produkte</label>
 			<label index="tx_hypestore.plugin.category.field.displayDescendedProducts">Alle untergeordneten Produkte anzeigen</label>
+			<label index="tx_hypestore.plugin.category.field.useAllAttributes">Verwende alle Attribute</label>
+			<label index="tx_hypestore.plugin.category.field.attributes">Attribute</label>
 
 			<label index="tx_hypestore.plugin.product">Produkt</label>
 			<label index="tx_hypestore.plugin.product.tab.general">Allgemein</label>
@@ -274,6 +283,7 @@
 			<label index="tx_hypestore.palette.edition">Edition</label>
 			<label index="tx_hypestore.palette.artist">Interpret</label>
 			<label index="tx_hypestore.palette.unit">Einheit</label>
+			<label index="tx_hypestore.palette.items">Werte</label>
 			<label index="tx_hypestore.palette.track">Track</label>
 			<label index="tx_hypestore.palette.rate">Rate</label>
 			<label index="tx_hypestore.palette.access">Zugriffsoptionen</label>
@@ -355,6 +365,7 @@
 			<label index="tx_hypestore_domain_model_product_attribute.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_product_attribute.attribute">Eigenschaft</label>
 			<label index="tx_hypestore_domain_model_product_attribute.value">Wert</label>
+			<label index="tx_hypestore_domain_model_product_attribute.items">Werte</label>
 
 			<label index="tx_hypestore_domain_model_product_track">Track</label>
 			<label index="tx_hypestore_domain_model_product_track.product">Produkt</label>
@@ -374,11 +385,12 @@
 			<label index="tx_hypestore_domain_model_attribute">Eigenschaft</label>
 			<label index="tx_hypestore_domain_model_attribute.title">Titel</label>
 			<label index="tx_hypestore_domain_model_attribute.unit">Einheit</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.0">Ganzzahl (int)</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.1">Fließkommazahl (float)</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.2">Zeichenkette (string)</label>
-			<label index="tx_hypestore_domain_model_attribute.type.I.3">Logischer Wert (bool)</label>
-			<label index="tx_hypestore_domain_model_attribute.type">Typ</label>
+			<label index="tx_hypestore_domain_model_attribute.type">Type</label>
+			<label index="tx_hypestore_domain_model_attribute.type.basic">Basis</label>
+			<label index="tx_hypestore_domain_model_attribute.type.set">Auswahlliste</label>
+			<label index="tx_hypestore_domain_model_attribute.type.custom">Freitext</label>
+			<label index="tx_hypestore_domain_model_attribute.items">Werte</label>
+			<label index="tx_hypestore_domain_model_attribute.multiple">Mehrere Werte auswählbar</label>
 
 			<label index="tx_hypestore_domain_model_cart_item">Produkt im Warenkorb</label>
 			<label index="tx_hypestore_domain_model_cart_item.customer">Kunde</label>

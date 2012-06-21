@@ -61,6 +61,11 @@ plugin.tx_hypestore {
 					displayDescendedProducts = 0
 				}
 
+				filers {
+					useAllAttributes = 1
+					attributes =
+				}
+
 				action {
 					index {
 						common {

@@ -75,6 +75,39 @@ config.tx_extbase {
 				subclasses >
 			}
 
+			# Attribute
+			Tx_HypeStore_Domain_Model_Attribute {
+				mapping {
+					tableName = tx_hypestore_domain_model_attribute
+					recordType = basic
+				}
+
+				subclasses {
+					Set = Tx_HypeStore_Domain_Model_Attribute_Set
+					Custom = Tx_HypeStore_Domain_Model_Attribute_Custom
+				}
+			}
+
+			# Attribute: Set
+			Tx_HypeStore_Domain_Model_Attribute_Set < .Tx_HypeStore_Domain_Model_Attribute
+			Tx_HypeStore_Domain_Model_Attribute_Set {
+				mapping {
+					recordType = set
+				}
+
+				subclasses >
+			}
+
+			# Attribute: Custom
+			Tx_HypeStore_Domain_Model_Attribute_Custom < .Tx_HypeStore_Domain_Model_Attribute
+			Tx_HypeStore_Domain_Model_Attribute_Custom {
+				mapping {
+					recordType = custom
+				}
+
+				subclasses >
+			}
+
 			# Contact: Artist
 			Tx_HypeStore_Domain_Model_Contact_Artist {
 				mapping {
@@ -284,6 +317,11 @@ plugin.tx_hypestore {
 				common {
 					overrideDocumentTitle = {$plugin.tx_hypestore.settings.view.category.common.overrideDocumentTitle}
 					displayDescendedProducts = {$plugin.tx_hypestore.settings.view.category.common.displayDescendedProducts}
+				}
+
+				filters {
+					useAllAttributes = {$plugin.tx_hypestore.settings.view.category.filters.useAllAttributes}
+					attributes = {$plugin.tx_hypestore.settings.view.category.filters.attributes}
 				}
 
 				action {
