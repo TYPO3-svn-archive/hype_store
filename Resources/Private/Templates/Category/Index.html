@@ -9,12 +9,14 @@
 	<f:render partial="Category/Index/Filters.html" arguments="{attributes: attributes, filter: filter, settings: settings}"/>
 
 	<!-- categories -->
-	<f:if condition="{f:count(subject: categories)} > 0">
+	<f:if condition="{f:count(subject: '{categories}')} > 0">
 		<f:then>
 			<f:for each="{categories}" as="category">
 				<div class="category">
 					<!-- category.title -->
-					<h2><f:link.action action="list" arguments="{category: category, path: '{category.uid}', filter: filter}">{category.title}</f:link.action></h2>
+					<h3>
+						<f:link.action action="list" arguments="{category: category, path: '{category.uid}', filter: filter}">{category.title}</f:link.action>
+					</h3>
 
 					<!-- category.images -->
 					<f:if condition="{h:file.exists(path: '{settings.object.category.property.images.path}{category.images.0}')}">

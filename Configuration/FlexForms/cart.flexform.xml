@@ -14,29 +14,6 @@
 				<type>array</type>
 
 				<el>
-					<settings.view.cart.mode>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.field.display_mode</label>
-							<config>
-								<type>select</type>
-								<size>1</size>
-								<minitems>1</minitems>
-								<maxitems>1</maxitems>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.field.display_mode.full</numIndex>
-										<numIndex index="1">full</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.field.display_mode.compact</numIndex>
-										<numIndex index="1">compact</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.view.cart.mode>
-
 					<settings.view.product.pid>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -103,5 +80,51 @@
 				</el>
 			</ROOT>
 		</sDEF>
+
+		<filters>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.tab.options</sheetTitle>
+					<cshFile>LLL:EXT:hype_store/Resources/Private/Language/locallang_csh-plugin_cart.xml</cshFile>
+				</TCEforms>
+
+				<type>array</type>
+
+				<el>
+					<settings.view.cart.mode>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.field.display_mode</label>
+							<config>
+								<type>select</type>
+								<size>1</size>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.field.display_mode.full</numIndex>
+										<numIndex index="1">full</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.field.display_mode.compact</numIndex>
+										<numIndex index="1">compact</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.view.cart.mode>
+
+					<settings.view.cart.action.add.common.redirect>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore.plugin.cart.field.redirect</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.view.cart.action.add.common.redirect>
+				</el>
+			</ROOT>
+		</filters>
 	</sheets>
 </T3DataStructure>

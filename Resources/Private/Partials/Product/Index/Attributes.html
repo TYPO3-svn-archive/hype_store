@@ -1,9 +1,9 @@
 {namespace h=Tx_Hype_ViewHelpers}
 {namespace store=Tx_HypeStore_ViewHelpers}
 
-<f:if condition="{product.attributes}">
+<f:if condition="{f:count(subject: '{product.attributes}')} > 0">
 	<section class="attributes">
-		<h1>{f:translate(key: 'product.index.attributes')}</h1>
+		<h3>{f:translate(key: 'product.index.attributes')}</h3>
 
 		<dl>
 			<f:for each="{product.attributes}" as="attribute">

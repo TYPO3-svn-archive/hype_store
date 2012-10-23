@@ -13,34 +13,41 @@
 	</f:if>
 </header>
 
-<!-- introduction -->
-<f:if condition="{product.introduction}">
-	<p class="introduction">{product.introduction->f:format.nl2br()}</p>
-</f:if>
-
 <!-- images -->
 <f:render partial="Product/Index/Images.html" arguments="{product: product, settings: settings}"/>
 
+<!-- introduction -->
+<f:if condition="{product.introduction}">
+	<p class="t3x-store-product-introduction">{product.introduction->f:format.nl2br()}</p>
+</f:if>
+
 <!-- description -->
 <f:if condition="{product.description}">
-	<section class="description">
+	<section class="t3x-store-product-description">
 		{product.description->f:format.html()}
 	</section>
 </f:if>
 
+<!-- articles -->
+<f:if condition="{settings.extension.enableArticles}">
+	<f:render partial="Product/Index/Articles.html" arguments="{product: product, settings: settings}"/>
+</f:if>
+
 <!-- attributes -->
-<f:render partial="Product/Index/Attributes.html" arguments="{product: product, settings: settings}"/>
+<f:if condition="{settings.extension.enableAttributes}">
+	<f:render partial="Product/Index/Attributes.html" arguments="{product: product, settings: settings}"/>
+</f:if>
 
 <!-- files -->
 <f:render partial="Product/Index/Files.html" arguments="{product: product, settings: settings}"/>
 
 <!-- conditions -->
-<section class="conditions">
-	<h1>Preise</h1>
+<section class="t3x-store-product-conditions">
+	<h3>Preise</h3>
 
 	<!-- gross price -->
 	<f:if condition="{product.grossPrice}">
-		<dl>
+		<dl class="t3x-store-product-prices">
 			<f:if condition="{product.taxScale}">
 				<f:then>
 					<dt>{f:translate(key: 'product.index.price_including_vat', arguments: {0: product.taxScale.rate})}</dt>
@@ -60,34 +67,47 @@
 				</f:then>
 
 				<f:else>
-					<dd><em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></dd>
+					<dd>
+						<em>{product.grossPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em>
+					</dd>
 				</f:else>
 			</f:if>
 
 			<f:if condition="{product.listPrice}">
-				<dd><small class="list_price">{f:translate(key: 'product.index.list_price')} <em>{product.listPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em></small></dd>
+				<dd>
+					<small class="list_price">
+						{f:translate(key: 'product.index.list_price')}
+						<em>{product.listPrice->f:format.currency(currencySign: '{settings.common.currency.sign}')}</em>
+					</small>
+				</dd>
 			</f:if>
 		</dl>
 	</f:if>
 
 	<!-- minimum order quantity -->
 	<f:if condition="{product.minimumOrderQuantity} > 1">
-		<h2>{f:translate(key: 'product.index.minimum_order_quantity')}</h2>
-		<p>{product.minimumOrderQuantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</p>
+		<div class="t3x-store-product-minimum_order_quantity">
+			<h3>{f:translate(key: 'product.index.minimum_order_quantity')}</h3>
+			<p>{product.minimumOrderQuantity} {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</p>
+		</div>
 	</f:if>
 
 	<!-- scaled prices -->
+	<f:if condition="{settings.extension.enablePrices}">
 	<f:if condition="{f:count(subject: '{product.scaledPrices}')} > 0">
-		<h2>{f:translate(key: 'product.index.scaled_prices')}</h2>
+		<div class="t3x-store-product-scaled_prices">
+			<h3>{f:translate(key: 'product.index.scaled_prices')}</h3>
 
-		<ul>
-			<f:for each="{product.scaledPrices}" as="price">
-				<li>
-					{f:translate(key: 'product.index.price_for_multiple', arguments: {0: price.quantity, 1: '{f:translate(key: \'product.stock_unit.I.{product.stockUnit}\')}'})} <em>{price.grossValue->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em><br />
-					<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product, quantity: price.quantity}" pageUid="{settings.view.cart.pid}" class="cart">{f:translate(key: 'product.index.put_multiple_into_cart', arguments: {0: price.quantity, 1: '{f:translate(key: \'product.stock_unit.I.{product.stockUnit}\')}'})}</f:link.action>
-				</li>
-			</f:for>
-		</ul>
+			<ul>
+				<f:for each="{product.scaledPrices}" as="price">
+					<li>
+						{f:translate(key: 'product.index.price_for_multiple', arguments: {0: price.quantity, 1: '{f:translate(key: \'product.stock_unit.I.{product.stockUnit}\')}'})} <em>{price.grossValue->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{product.stockUnit}')}</em><br />
+						<f:link.action pluginName="Cart" controller="Cart" action="add" arguments="{product: product, quantity: price.quantity}" pageUid="{settings.view.cart.pid}" class="cart">{f:translate(key: 'product.index.put_multiple_into_cart', arguments: {0: price.quantity, 1: '{f:translate(key: \'product.stock_unit.I.{product.stockUnit}\')}'})}</f:link.action>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
 	</f:if>
 
 	<!-- stock -->

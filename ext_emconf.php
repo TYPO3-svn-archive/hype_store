@@ -16,7 +16,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'category' => 'fe',
 	'shy' => 0,
 	'version' => '0.2.1',
-	'dependencies' => 'extbase,fluid,hype,hype_directory',
+	'dependencies' => 'extbase,fluid,hype',
 	'conflicts' => '',
 	'priority' => '',
 	'loadOrder' => '',
@@ -40,12 +40,11 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
-			'php' => '5.2.0-0.0.0',
-			'typo3' => '4.5.0-4.5.99',
-			'extbase' => '1.3.0-1.3.99',
-			'fluid' => '1.3.0-1.3.99',
+			'php' => '5.3.0-0.0.0',
+			'typo3' => '4.5.0-4.7.99',
+			'extbase' => '1.3.0-4.7.5',
+			'fluid' => '1.3.0-4.7.5',
 			'hype' => '0.3.6-0.0.0',
-			'hype_directory' => '0.1.3-0.0.0',
 		),
 		'conflicts' => array(
 		),

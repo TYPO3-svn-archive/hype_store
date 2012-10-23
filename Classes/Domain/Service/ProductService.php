@@ -42,6 +42,11 @@ class Tx_HypeStore_Domain_Service_ProductService
 	 * Constructor
 	 */
 	public function __construct() {
+
+		# load extension configuration
+		$this->settings['extension'] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hype_store']);
+
+		# load objects
 		$this->categoryService = t3lib_div::makeInstance('Tx_HypeStore_Domain_Service_CategoryService');
 		$this->discountRepository = t3lib_div::makeInstance('Tx_HypeStore_Domain_Repository_DiscountRepository');
 	}
@@ -79,18 +84,22 @@ class Tx_HypeStore_Domain_Service_ProductService
 		$price = $product->getFlatPrice();
 
 		# get the "best price" if a scaled price matches the given quantity
-		foreach($product->getScaledPrices() as $scaledPrice) {
-			if($quantity >= $scaledPrice->getQuantity()) {
-				$price = min(($price) ? $price : $scaledPrice->getValue(), $scaledPrice->getValue());
+		if($this->settings['extension']['enablePrices']) {
+			foreach($product->getScaledPrices() as $scaledPrice) {
+				if($quantity >= $scaledPrice->getQuantity()) {
+					$price = min(($price) ? $price : $scaledPrice->getValue(), $scaledPrice->getValue());
+				}
 			}
 		}
 
 		# get the applyable discount
-		$discount = $this->getDiscount($product);
+		if($this->settings['extension']['enableDiscounts']) {
+			$discount = $this->getDiscount($product);
 
-		if($discount) {
-			# substract the discount rate
-			$price /= (1 + $discount->getRate() / 100);
+			if($discount) {
+				# substract the discount rate
+				$price /= (1 + $discount->getRate() / 100);
+			}
 		}
 
 		# add tax
@@ -115,9 +124,11 @@ class Tx_HypeStore_Domain_Service_ProductService
 		$price = $product->getFlatPrice();
 
 		# get the "best price" if a scaled price matches the given quantity
-		foreach($product->getScaledPrices() as $scaledPrice) {
-			if($quantity >= $scaledPrice->getQuantity()) {
-				$price = min($price, $scaledPrice->getValue());
+		if($this->settings['extension']['enablePrices']) {
+			foreach($product->getScaledPrices() as $scaledPrice) {
+				if($quantity >= $scaledPrice->getQuantity()) {
+					$price = min($price, $scaledPrice->getValue());
+				}
 			}
 		}
 
@@ -137,8 +148,16 @@ class Tx_HypeStore_Domain_Service_ProductService
 	 * @return Tx_HypeStore_Domain_Model_Discount
 	 */
 	public function getDiscount(Tx_HypeStore_Domain_Model_Product $product) {
-		$discounts = $this->discountRepository->findByProduct($product);
-		return $discounts->getFirst();
+
+		if($this->settings['extension']['enableDiscounts']) {
+			$discounts = $this->discountRepository->findByProduct($product);
+
+			if($discounts) {
+				return $discounts->getFirst();
+			}
+		}
+
+		return FALSE;
 	}
 
 	/**

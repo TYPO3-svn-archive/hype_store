@@ -102,7 +102,7 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	protected $files;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Article>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Product>
 	 * @lazy
 	 */
 	protected $articles;
@@ -576,20 +576,20 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	/**
 	 * Adds an article
 	 *
-	 * @param Tx_HypeStore_Domain_Model_Article $category
+	 * @param Tx_HypeStore_Domain_Model_Product $article
 	 * @return void
 	 */
-	public function addArticle(Tx_HypeStore_Domain_Model_Category $article) {
-		$this->articles->attach($category);
+	public function addArticle(Tx_HypeStore_Domain_Model_Product $article) {
+		$this->articles->attach($article);
 	}
 
 	/**
 	 * Removes an article
 	 *
-	 * @param Tx_HypeStore_Domain_Model_Article $article
+	 * @param Tx_HypeStore_Domain_Model_Product $article
 	 * @return void
 	 */
-	public function removeArticle(Tx_HypeStore_Domain_Model_Category $article) {
+	public function removeArticle(Tx_HypeStore_Domain_Model_Product $article) {
 		$this->articles->detach($article);
 	}
 

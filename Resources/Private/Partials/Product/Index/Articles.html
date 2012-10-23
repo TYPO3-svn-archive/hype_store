@@ -1,0 +1,41 @@
+{namespace h=Tx_Hype_ViewHelpers}
+{namespace store=Tx_HypeStore_ViewHelpers}
+
+<f:if condition="{f:count(subject: '{product.articles}')} > 0">
+	<section class="t3x-store-product-articles">
+		<h3>Artikel</h3>
+
+		<f:form pluginName="Cart" controller="Cart" action="add" pageUid="{settings.view.cart.pid}">
+			<ul>
+				<f:for each="{product.articles}" as="article">
+					<li>
+						{article.title} <f:if condition="{article.subtitle}">&mdash; {article.subtitle}</f:if><br />
+
+						<!-- scaled prices -->
+						<f:if condition="{settings.extension.enablePrices}">
+						<f:if condition="{f:count(subject: '{article.scaledPrices}')} > 0">
+							<strong>{f:translate(key: 'product.index.scaled_prices')}</strong>
+
+							<table class="t3x-store-product-article-scaled_prices">
+								<f:for each="{article.scaledPrices}" as="price">
+									<tr>
+										<td>
+											{f:translate(key: 'product.index.price_for_multiple', arguments: {0: price.quantity, 1: '{f:translate(key: \'product.stock_unit.I.{article.stockUnit}\')}'})}
+											<em>{price.grossValue->f:format.currency(currencySign: '{settings.common.currency.sign}')} / {f:translate(key: 'product.stock_unit.I.{article.stockUnit}')}</em>
+										</td>
+									</tr>
+								</f:for>
+							</table>
+						</f:if>
+						</f:if>
+
+						<f:form.textfield name="items[{article.uid}][quantity]" />
+						<f:form.hidden name="items[{article.uid}][productUid]" value="{article.uid}" />
+					</li>
+				</f:for>
+			</ul>
+
+			<f:form.submit value="{f:translate(key: 'product.index.put_into_cart', arguments: {0: product.title})}" />
+		</f:form>
+	</section>
+</f:if>

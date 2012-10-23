@@ -67,6 +67,9 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 	 */
 	public function initializeAction() {
 
+		# load extension configuration
+		$this->settings['extension'] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hype_store']);
+
 		# prepare category pid (flexform hack)
 		$this->settings['view']['category']['pid'] = (strpos($this->settings['view']['category']['pid'], '_')) > 0
 			? substr($this->settings['view']['category']['pid'], strpos($this->settings['view']['category']['pid'], '_') + 1)
@@ -107,9 +110,14 @@ class Tx_HypeStore_Controller_ProductController extends Tx_Extbase_MVC_Controlle
 			$product = $this->productRepository->findByUid((int)$this->settings['view']['product']['uid']);
 		}
 
+		# no product found
+		if(!$product) {
+			$this->redirect('index', 'Category', 'HypeStore', NULL, (int)$this->settings['view']['category']['pid']);
+		}
+
 		# overload document title
 		if($this->settings['view']['product']['common']['overrideDocumentTitle']) {
-			Tx_Hype_Utility_Document::setTitle($product->getTitle());
+			Tx_Hype_Utility_Document::setTitle(implode(' — ', array_filter(array($product->getTitle(), $product->getSubtitle()))));
 		}
 
 		# assign the product to the view

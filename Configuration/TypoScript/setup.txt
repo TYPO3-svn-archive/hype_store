@@ -327,6 +327,7 @@ plugin.tx_hypestore {
 				action {
 					index {
 						common {
+							skip = {$plugin.tx_hypestore.settings.view.category.action.index.common.skip}
 							showProducts = {$plugin.tx_hypestore.settings.view.category.action.index.common.showProducts}
 							showSubcategories = {$plugin.tx_hypestore.settings.view.category.action.index.common.showSubcategories}
 						}
@@ -478,7 +479,11 @@ plugin.tx_hypestore {
 				}
 
 				action {
-
+					add {
+						common {
+							redirect = {$plugin.tx_hypestore.settings.view.cart.action.add.common.redirect}
+						}
+					}
 				}
 			}
 

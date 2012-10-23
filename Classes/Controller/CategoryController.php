@@ -67,6 +67,9 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 	 */
 	public function initializeAction() {
 
+		# load extension configuration
+		$this->settings['extension'] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hype_store']);
+
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
 			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
@@ -93,17 +96,25 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 
 		# set categories
 		if($this->settings['view']['category']['uid']) {
-
 			$category = $this->categoryRepository->findByUid((int)$this->settings['view']['category']['uid']);
 			$categories = $category->getCategories();
-
-			if(count($categories) == 0) {
-				$categories = array($category);
-			}
 		} else {
 			$categories = $this->categoryRepository->findMainCategories();
 		}
 
+		# skip overview
+		if($this->settings['view']['category']['action']['index']['common']['skip']) {
+
+			# get first category
+			$category = $categories->getFirst();
+
+			# redirect if available
+			if($category) {
+				$this->redirect('list', NULL, NULL, array('category' => $category, 'path' => $category->getUid()));
+			}
+		}
+
+		# assign categories
 		$this->view->assign('categories', $categories);
 
 		# set attributes
@@ -143,7 +154,7 @@ class Tx_HypeStore_Controller_CategoryController extends Tx_Extbase_MVC_Controll
 
 		# set document title
 		if($this->settings['view']['category']['common']['overrideDocumentTitle']) {
-			Tx_Hype_Utility_Document::setTitle($category->getTitle());
+			Tx_Hype_Utility_Document::setTitle(implode(' — ', array_filter(array($category->getTitle(), $category->getSubtitle()))));
 		}
 
 		# set the path if available

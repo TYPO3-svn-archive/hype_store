@@ -57,6 +57,9 @@ class Tx_HypeStore_Controller_AddressController extends Tx_Extbase_MVC_Controlle
 	 */
 	public function initializeAction() {
 
+		# load extension configuration
+		$this->settings['extension'] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hype_store']);
+
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
 			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)

@@ -1,6 +1,4 @@
-#
-# Table structure for table 'tx_hypestore_domain_model_category'
-#
+# Category
 CREATE TABLE tx_hypestore_domain_model_category (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -32,11 +30,7 @@ CREATE TABLE tx_hypestore_domain_model_category (
 	KEY parent (pid)
 );
 
-
-
-#
-# Table structure for table 'tx_hypestore_domain_model_product_type'
-#
+# Product Type
 CREATE TABLE tx_hypestore_domain_model_product_type (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -63,10 +57,7 @@ CREATE TABLE tx_hypestore_domain_model_product_type (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_product'
-#
+# Product
 CREATE TABLE tx_hypestore_domain_model_product (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -84,11 +75,13 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	fe_group int(11) DEFAULT '0' NOT NULL,
 	editlock tinyint(1) DEFAULT '0' NOT NULL,
 
+	type varchar(64) DEFAULT '' NOT NULL,
+	product int(11) DEFAULT '0' NOT NULL,
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	subtitle varchar(255) DEFAULT '' NOT NULL,
 	identifier varchar(255) DEFAULT '' NOT NULL,
 	gtin bigint(14) DEFAULT '0' NOT NULL,
-	type varchar(64) DEFAULT '' NOT NULL,
 	introduction text,
 	description text,
 	images text,
@@ -133,10 +126,7 @@ CREATE TABLE tx_hypestore_domain_model_product (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_product_attribute'
-#
+# Product Attribute
 CREATE TABLE tx_hypestore_domain_model_product_attribute (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -162,10 +152,7 @@ CREATE TABLE tx_hypestore_domain_model_product_attribute (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_product_price'
-#
+# Product Price
 CREATE TABLE tx_hypestore_domain_model_product_price (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -190,10 +177,7 @@ CREATE TABLE tx_hypestore_domain_model_product_price (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_tax_scale'
-#
+# Tax Scale
 CREATE TABLE tx_hypestore_domain_model_tax_scale (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -216,10 +200,7 @@ CREATE TABLE tx_hypestore_domain_model_tax_scale (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_product_stock'
-#
+# Product Stock
 CREATE TABLE tx_hypestore_domain_model_product_stock (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -245,10 +226,7 @@ CREATE TABLE tx_hypestore_domain_model_product_stock (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_product_track'
-#
+# Product Track
 CREATE TABLE tx_hypestore_domain_model_product_track (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -276,9 +254,7 @@ CREATE TABLE tx_hypestore_domain_model_product_track (
 	KEY parent (pid)
 );
 
-#
-# Table structure for table 'tx_hypestore_domain_model_discount'
-#
+# Discount
 CREATE TABLE tx_hypestore_domain_model_discount (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -307,9 +283,7 @@ CREATE TABLE tx_hypestore_domain_model_discount (
 	KEY parent (pid)
 );
 
-#
-# Table structure for table 'tx_hypestore_domain_model_attribute'
-#
+# Attribute
 CREATE TABLE tx_hypestore_domain_model_attribute (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -337,10 +311,7 @@ CREATE TABLE tx_hypestore_domain_model_attribute (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_purchase'
-#
+# Purchase
 CREATE TABLE tx_hypestore_domain_model_purchase (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -365,10 +336,7 @@ CREATE TABLE tx_hypestore_domain_model_purchase (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_purchase_item'
-#
+# Purchase Item
 CREATE TABLE tx_hypestore_domain_model_purchase_item (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -393,10 +361,7 @@ CREATE TABLE tx_hypestore_domain_model_purchase_item (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_cart_item'
-#
+# Cart Item
 CREATE TABLE tx_hypestore_domain_model_cart_item (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -421,10 +386,7 @@ CREATE TABLE tx_hypestore_domain_model_cart_item (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_domain_model_watchlist_item'
-#
+# Watchlist Item
 CREATE TABLE tx_hypestore_domain_model_watchlist_item (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -448,11 +410,7 @@ CREATE TABLE tx_hypestore_domain_model_watchlist_item (
 	KEY parent (pid)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_relation_category_category'
-#
-
+# Relation: Category <-> Category
 CREATE TABLE tx_hypestore_relation_category_category (
 	uid int(11) NOT NULL auto_increment,
 	uid_local int(11) DEFAULT '0' NOT NULL,
@@ -465,11 +423,7 @@ CREATE TABLE tx_hypestore_relation_category_category (
 	KEY uid_foreign (uid_foreign)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_relation_category_product'
-#
-
+# Relation: Category <-> Product
 CREATE TABLE tx_hypestore_relation_category_product (
 	uid int(11) NOT NULL auto_increment,
 	uid_local int(11) DEFAULT '0' NOT NULL,
@@ -482,11 +436,7 @@ CREATE TABLE tx_hypestore_relation_category_product (
 	KEY uid_foreign (uid_foreign)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_relation_product_product'
-#
-
+# Relation: Product <-> Product
 CREATE TABLE tx_hypestore_relation_product_product (
 	uid int(11) NOT NULL auto_increment,
 	uid_local int(11) DEFAULT '0' NOT NULL,
@@ -499,11 +449,7 @@ CREATE TABLE tx_hypestore_relation_product_product (
 	KEY uid_foreign (uid_foreign)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_relation_product_contact'
-#
-
+# Relation: Product <-> Contact
 CREATE TABLE tx_hypestore_relation_product_contact (
 	uid int(11) NOT NULL auto_increment,
 	uid_local int(11) DEFAULT '0' NOT NULL,
@@ -517,11 +463,7 @@ CREATE TABLE tx_hypestore_relation_product_contact (
 	KEY uid_foreign (uid_foreign)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_relation_discount_category'
-#
-
+# Relation: Discount <-> Category
 CREATE TABLE tx_hypestore_relation_discount_category (
 	uid int(11) NOT NULL auto_increment,
 	uid_local int(11) DEFAULT '0' NOT NULL,
@@ -535,11 +477,7 @@ CREATE TABLE tx_hypestore_relation_discount_category (
 	KEY uid_foreign (uid_foreign)
 );
 
-
-#
-# Table structure for table 'tx_hypestore_relation_discount_product'
-#
-
+# Relation: Discount <-> Product
 CREATE TABLE tx_hypestore_relation_discount_product (
 	uid int(11) NOT NULL auto_increment,
 	uid_local int(11) DEFAULT '0' NOT NULL,
@@ -553,10 +491,7 @@ CREATE TABLE tx_hypestore_relation_discount_product (
 	KEY uid_foreign (uid_foreign)
 );
 
-
-#
-# Table structure for table 'fe_users'
-#
+# Extension: Frontend Users
 CREATE TABLE fe_users (
 	tx_hypestore_domain_model_shipping_address int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_billing_address int(11) DEFAULT '0' NOT NULL,
@@ -565,10 +500,7 @@ CREATE TABLE fe_users (
 	tx_hypestore_domain_model_purchases int(11) DEFAULT '0' NOT NULL
 );
 
-
-#
-# Table structure for table 'tx_hypedirectory_domain_model_contact'
-#
+# Extension: Contact
 CREATE TABLE tx_hypedirectory_domain_model_contact (
 	tx_hypestore_domain_model_created_products int(11) DEFAULT '0' NOT NULL,
 	tx_hypestore_domain_model_published_products int(11) DEFAULT '0' NOT NULL,

@@ -36,6 +36,11 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	protected $localization;
 
 	/**
+	 * @var Tx_HypeStore_Domain_Repository_ProductRepositoryInterface
+	 */
+	protected $productRepository;
+
+	/**
 	 * @var Tx_HypeStore_Domain_Repository_CartItemRepositoryInterface
 	 */
 	protected $cartItemRepository;
@@ -63,6 +68,16 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	 */
 	public function injectLocalization(Tx_Extbase_Utility_Localization $localization) {
 		$this->localization = $localization;
+	}
+
+	/**
+	 * Injects the product repository
+	 *
+	 * @var Tx_HypeStore_Domain_Repository_ProductRepositoryInterface $productRepository
+	 * @return void
+	 */
+	public function injectCustomerRepository(Tx_HypeStore_Domain_Repository_ProductRepositoryInterface $productRepository) {
+		$this->productRepository = $productRepository;
 	}
 
 	/**
@@ -102,6 +117,9 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	 */
 	public function initializeAction() {
 
+		# load extension configuration
+		$this->settings['extension'] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hype_store']);
+
 		# prepare product pid (flexform hack)
 		$this->settings['view']['product']['pid'] = (strpos($this->settings['view']['product']['pid'], '_')) > 0
 			? substr($this->settings['view']['product']['pid'], strpos($this->settings['view']['product']['pid'], '_') + 1)
@@ -113,11 +131,16 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 			: $this->settings['view']['watchlist']['pid'];
 
 		# load a known user
-		if($GLOBALS['TSFE']->fe_user->user) {
+		if($GLOBALS['TSFE']->fe_user->user['uid']) {
 			$this->customer = $this->customerRepository->findByUid((int)$GLOBALS['TSFE']->fe_user->user['uid']);
+
 		# load an unknown user
+		} else if($GLOBALS['TSFE']->fe_user->getKey('ses', 'tx_hypestore_customer')) {
+			$this->customer = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'tx_hypestore_customer'));
+
+		# create an unknown user
 		} else {
-			$this->customer = NULL;
+			$this->customer = new Tx_HypeStore_Domain_Model_Customer;
 		}
 	}
 
@@ -195,56 +218,73 @@ class Tx_HypeStore_Controller_CartController extends Tx_Extbase_MVC_Controller_A
 	/**
 	 * Add action for this controller.
 	 *
+	 * @param array $items
 	 * @param Tx_HypeStore_Domain_Model_Product $product
 	 * @param mixed $quantity
 	 * @dontvalidate $product
 	 * @dontvalidate $quantity
 	 * @return void
 	 */
-	public function addAction(Tx_HypeStore_Domain_Model_Product $product, $quantity = 1) {
+	public function addAction(array $items = array()) {
 
-		if($this->customer) {
+		if($this->customer && count($items) > 0) {
 
-			# check if the product to add is already in the cart
-			$existingCartItem = NULL;
-			foreach($this->customer->getCartItems() as $cartItem) {
-				if($cartItem->getProduct() == $product) {
-					$existingCartItem = $cartItem;
-					break;
+			# process items
+			foreach($items as $item) {
+
+				# find product
+				$product = $this->productRepository->findOneByUid((int)$item['productUid']);
+
+				# skip if not found
+				if(!$product) {
+					continue;
 				}
+
+				# set quantity
+				$quantity = $item['quantity'];
+
+				# check if the product to add is already in the cart
+				$existingCartItem = NULL;
+
+				foreach($this->customer->getCartItems() as $cartItem) {
+					if($cartItem->getProduct() == $product) {
+						$existingCartItem = $cartItem;
+						break;
+					}
+				}
+
+				# if the cart item exists, increase the quantity
+				if($existingCartItem) {
+
+					# determine the quantity to add to the cart
+					$quantity = max((int)$quantity, 1) + $existingCartItem->getQuantity();
+
+					# calculate new quantity
+					$existingCartItem->setQuantity($quantity);
+
+				# if it doesnt, add a new cart item
+				} else {
+
+					# determine the quantity to add to the cart
+					$quantity = max($product->getMinimumOrderQuantity(), (int)$quantity, 1);
+
+					# create a new cart item
+					$cartItem = t3lib_div::makeInstance('Tx_HypeStore_Domain_Model_CartItem');
+					$cartItem->setProduct($product);
+					$cartItem->setQuantity($quantity);
+					$cartItem->setCustomer($this->customer);
+
+					# add the new cart item
+					$this->customer->addCartItem($cartItem);
+				}
+
+				# display a success message
+				$this->flashMessages->add($this->localization->translate('message.cart_item-added', $this->extensionName, array($product->getTitle())));
 			}
-
-			# if the cart item exists, increase the quantity
-			if($existingCartItem) {
-
-				# determine the quantity to add to the cart
-				$quantity = max((int)$quantity, 1) + $existingCartItem->getQuantity();
-
-				# calculate new quantity
-				$existingCartItem->setQuantity($quantity);
-
-			# if it doesnt, add a new cart item
-			} else {
-
-				# determine the quantity to add to the cart
-				$quantity = max($product->getMinimumOrderQuantity(), (int)$quantity, 1);
-
-				# create a new cart item
-				$cartItem = t3lib_div::makeInstance('Tx_HypeStore_Domain_Model_CartItem');
-				$cartItem->setProduct($product);
-				$cartItem->setQuantity($quantity);
-				$cartItem->setCustomer($this->customer);
-
-				# add the new cart item
-				$this->customer->addCartItem($cartItem);
-			}
-
-			# display a success message
-			$this->flashMessages->add($this->localization->translate('message.cart_item-added', $this->extensionName, array($product->getTitle())));
 		}
 
 		# redirect the user
-		if($referrer = t3lib_div::getIndpEnv('HTTP_REFERER')) {
+		if($this->settings['view']['cart']['action']['add']['common']['redirect'] && $referrer = t3lib_div::getIndpEnv('HTTP_REFERER')) {
 
 			# redirect to the last visited page
 			$this->redirectToURI($referrer);

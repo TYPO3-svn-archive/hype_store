@@ -15,7 +15,7 @@
 
 			<label index="category.index.products">Products</label>
 			<label index="category.index.subcategories">Subcategories</label>
-			<label index="category.index.no_category_available">No category available.</label>
+			<label index="category.index.no_categories_available">No category available.</label>
 
 			<label index="category.list.products">Products</label>
 			<label index="category.list.subcategories">Subcategories</label>
@@ -81,7 +81,7 @@
 
 			<label index="category.index.products">Produkte</label>
 			<label index="category.index.subcategories">Unterkategorien</label>
-			<label index="category.index.no_category_available">Keine Kategorie verfügbar.</label>
+			<label index="category.index.no_categories_available">Keine Kategorien verfügbar.</label>
 
 			<label index="category.list.products">Produkte</label>
 			<label index="category.list.subcategories">Unterkategorien</label>

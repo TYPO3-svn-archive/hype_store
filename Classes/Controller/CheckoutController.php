@@ -88,6 +88,9 @@ class Tx_HypeStore_Controller_CheckoutController extends Tx_Extbase_MVC_Controll
 	 */
 	public function initializeAction() {
 
+		# load extension configuration
+		$this->settings['extension'] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hype_store']);
+
 		# initialize steps
 		$this->steps = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
 

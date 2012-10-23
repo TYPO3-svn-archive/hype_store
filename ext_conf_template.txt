@@ -1,0 +1,14 @@
+# cat=basic/enable/001; type=boolean; label = Types: Enables product types for a more scaleable store. Disable this for a much simpler store experience.
+enableTypes = 1
+
+# cat=basic/enable/002; type=boolean; label = Articles: Enables product articles for a more scaleable store. Disable this for a much simpler store experience.
+enableArticles = 1
+
+# cat=basic/enable/003; type=boolean; label = Attributes: Enables product attributes.
+enableAttributes = 1
+
+# cat=basic/enable/004; type=boolean; label = Discounts: Enables product discounts.
+enableDiscounts = 1
+
+# cat=basic/enable/005; type=boolean; label = Prices: Enables scaled prices.
+enablePrices = 1

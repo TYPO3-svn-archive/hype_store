@@ -1,9 +1,9 @@
 {namespace h=Tx_Hype_ViewHelpers}
 {namespace store=Tx_HypeStore_ViewHelpers}
 
-<f:if condition="{product.files}">
+<f:if condition="{f:count(subject: '{product.files}')} > 0">
 	<section class="files">
-		<h1>{f:translate(key: 'product.index.files')}</h1>
+		<h3>{f:translate(key: 'product.index.files')}</h3>
 
 		<ul>
 			<f:for each="{product.files}" as="file">

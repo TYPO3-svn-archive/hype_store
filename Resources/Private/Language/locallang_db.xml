@@ -21,6 +21,7 @@
 			<label index="tx_hypestore.plugin.category.field.displayDescendedProducts">Display all descended products</label>
 			<label index="tx_hypestore.plugin.category.field.useAllAttributes">Use all attributes</label>
 			<label index="tx_hypestore.plugin.category.field.attributes">Attributes</label>
+			<label index="tx_hypestore.plugin.category.field.skip">Skip category overview</label>
 
 			<label index="tx_hypestore.plugin.product">Product</label>
 			<label index="tx_hypestore.plugin.product.tab.general">General</label>
@@ -31,6 +32,7 @@
 
 			<label index="tx_hypestore.plugin.cart">Cart</label>
 			<label index="tx_hypestore.plugin.cart.tab.general">General</label>
+			<label index="tx_hypestore.plugin.cart.tab.options">Options</label>
 			<label index="tx_hypestore.plugin.cart.field.display_mode">Display mode</label>
 			<label index="tx_hypestore.plugin.cart.field.display_mode.full">Full view</label>
 			<label index="tx_hypestore.plugin.cart.field.display_mode.compact">Compact view</label>
@@ -38,6 +40,7 @@
 			<label index="tx_hypestore.plugin.cart.field.cart_page">Cart page</label>
 			<label index="tx_hypestore.plugin.cart.field.watchlist_page">Watchlist page</label>
 			<label index="tx_hypestore.plugin.cart.field.checkout_page">Checkout page</label>
+			<label index="tx_hypestore.plugin.cart.field.redirect">Redirect</label>
 
 			<label index="tx_hypestore.plugin.watchlist">Watchlist</label>
 			<label index="tx_hypestore.plugin.watchlist.tab.general">General</label>
@@ -229,6 +232,7 @@
 			<label index="tx_hypestore.plugin.category.field.displayDescendedProducts">Alle untergeordneten Produkte anzeigen</label>
 			<label index="tx_hypestore.plugin.category.field.useAllAttributes">Verwende alle Attribute</label>
 			<label index="tx_hypestore.plugin.category.field.attributes">Attribute</label>
+			<label index="tx_hypestore.plugin.category.field.skip">Kategorie-Übersicht überspringen</label>
 
 			<label index="tx_hypestore.plugin.product">Produkt</label>
 			<label index="tx_hypestore.plugin.product.tab.general">Allgemein</label>
@@ -239,6 +243,7 @@
 
 			<label index="tx_hypestore.plugin.cart">Warenkorb</label>
 			<label index="tx_hypestore.plugin.cart.tab.general">Allgemein</label>
+			<label index="tx_hypestore.plugin.cart.tab.options">Optionen</label>
 			<label index="tx_hypestore.plugin.cart.field.display_mode">Anzeigemodus</label>
 			<label index="tx_hypestore.plugin.cart.field.display_mode.full">Vollständige Ansicht</label>
 			<label index="tx_hypestore.plugin.cart.field.display_mode.compact">Kompakte Ansicht</label>
@@ -246,6 +251,7 @@
 			<label index="tx_hypestore.plugin.cart.field.cart_page">Seite des Warenkorbs</label>
 			<label index="tx_hypestore.plugin.cart.field.watchlist_page">Seite der Merkliste</label>
 			<label index="tx_hypestore.plugin.cart.field.checkout_page">Seite der Kasse</label>
+			<label index="tx_hypestore.plugin.cart.field.redirect">Weiterleiten</label>
 
 			<label index="tx_hypestore.plugin.watchlist">Merkliste</label>
 			<label index="tx_hypestore.plugin.watchlist.tab.general">Allgemein</label>
