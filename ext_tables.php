@@ -548,6 +548,28 @@ $columns = array(
 		),
 		'displayCond' => 'PARENT',
 	),
+	'product' => array(
+		'exclude' => 0,
+		'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.product',
+		'config' => array(
+			'type' => 'group',
+			'internal_type' => 'db',
+			'prepend_tname' => FALSE,
+			'allowed' => 'tx_hypestore_domain_model_product',
+			'foreign_table' => 'tx_hypestore_domain_model_product',
+			'size' => 1,
+			'maxitems' => 1,
+			'wizards' => array(
+				'suggest' => array(
+					'type' => 'suggest',
+					'default' => array(
+						'searchWholePhrase' => 1,
+						'searchCondition' => 'product=\'\'',
+					),
+				),
+			),
+		),´
+	),
 	'articles' => array(
 		'exclude' => 1,
 		'label' => 'LLL:EXT:hype_store/Resources/Private/Language/locallang_db.xml:tx_hypestore_domain_model_product.articles',

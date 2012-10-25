@@ -115,6 +115,7 @@
 			<label index="tx_hypestore_domain_model_product.description">Description</label>
 			<label index="tx_hypestore_domain_model_product.images">Images</label>
 			<label index="tx_hypestore_domain_model_product.files">Files</label>
+			<label index="tx_hypestore_domain_model_product.product">Product</label>
 			<label index="tx_hypestore_domain_model_product.articles">Articles</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Manufacturer</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Price</label>
@@ -326,6 +327,7 @@
 			<label index="tx_hypestore_domain_model_product.description">Beschreibung</label>
 			<label index="tx_hypestore_domain_model_product.images">Bilder</label>
 			<label index="tx_hypestore_domain_model_product.files">Dateien</label>
+			<label index="tx_hypestore_domain_model_product.product">Produkt</label>
 			<label index="tx_hypestore_domain_model_product.articles">Artikel</label>
 			<label index="tx_hypestore_domain_model_product.manufacturer">Hersteller</label>
 			<label index="tx_hypestore_domain_model_product.flat_price">Preis</label>

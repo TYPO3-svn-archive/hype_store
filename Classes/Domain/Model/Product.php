@@ -102,6 +102,11 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	protected $files;
 
 	/**
+	 * @var Tx_HypeStore_Domain_Model_Product
+	 */
+	protected $product;
+
+	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_HypeStore_Domain_Model_Product>
 	 * @lazy
 	 */
@@ -552,6 +557,25 @@ class Tx_HypeStore_Domain_Model_Product extends Tx_Extbase_DomainObject_Abstract
 	 */
 	public function getManufacturer() {
 		return $this->manufacturer;
+	}
+
+	/**
+	* Setter for product
+	*
+	* @param Tx_HypeStore_Domain_Model_Product $product
+	* @return void
+	*/
+	public function setProduct(Tx_HypeStore_Domain_Model_Product $product) {
+		$this->product = $product;
+	}
+
+	/**
+	* Getter for product
+	*
+	* @return Tx_HypeStore_Domain_Model_Product
+	*/
+	public function getProduct() {
+		return $this->product;
 	}
 
 	/**
